@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>id</key>
+		<string>CallManagerOption</string>
+		<key>title</key>
+		<string>Call Manager</string>
+		<key>description</key>
+		<string>What call manager to use</string>
+		<key>options</key>
+		<array>
+			<dict>
+				<key>title</key>
+				<string>Notification-based</string>
+				<key>value</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>CallKit-based</string>
+				<key>value</key>
+				<true/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>id</key>
+		<string>OrientationOption</string>
+		<key>title</key>
+		<string>Supported Video Orientation</string>
+		<key>description</key>
+		<string></string>
+		<key>options</key>
+		<array>
+			<dict>
+				<key>title</key>
+				<string>Portrait</string>
+				<key>value</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>Upside Down</string>
+				<key>value</key>
+				<integer>2</integer>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>Landscape Left</string>
+				<key>value</key>
+				<integer>4</integer>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>Landscape Right</string>
+				<key>value</key>
+				<integer>8</integer>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>id</key>
+		<string>CurrentCameraOption</string>
+		<key>title</key>
+		<string>Default camera for call</string>
+		<key>description</key>
+		<string></string>
+		<key>options</key>
+		<array>
+			<dict>
+				<key>title</key>
+				<string>Front</string>
+				<key>value</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>Back</string>
+				<key>value</key>
+				<true/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>id</key>
+		<string>CameraMirroringOption</string>
+		<key>title</key>
+		<string>Front camera mirroring</string>
+		<key>description</key>
+		<string></string>
+		<key>options</key>
+		<array>
+			<dict>
+				<key>title</key>
+				<string>Enabled</string>
+				<key>value</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>Disabled</string>
+				<key>value</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>id</key>
+		<string>CameraModeOption</string>
+		<key>title</key>
+		<string>Camera Mode</string>
+		<key>description</key>
+		<string></string>
+		<key>options</key>
+		<array>
+			<dict>
+				<key>title</key>
+				<string>Standard</string>
+				<key>value</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>Camera Preprocessing</string>
+				<key>value</key>
+				<integer>2</integer>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>Custom Camera</string>
+				<key>value</key>
+				<integer>3</integer>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>id</key>
+		<string>PreferredCodecOption</string>
+		<key>title</key>
+		<string>Preferred Codec</string>
+		<key>description</key>
+		<string></string>
+		<key>options</key>
+		<array>
+			<dict>
+				<key>title</key>
+				<string>Auto</string>
+				<key>value</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>VP8</string>
+				<key>value</key>
+				<string>VP8</string>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>H264</string>
+				<key>value</key>
+				<string>H264</string>
+			</dict>
+		</array>
+	</dict>
+</array>
+</plist>

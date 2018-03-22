@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHC-2I-USg">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--voximplant-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController title="voximplant" id="BYZ-38-t0r" customClass="LoginViewController" customModule="VoxImplantSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P4L-Mk-TlQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nl5-7b-THW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gateway" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="14Y-9i-uZX" customClass="InputField" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="80" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="URL" returnKeyType="next" textContentType="url"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mIz-ag-HWk" customClass="InputField" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="126" width="219" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="TLr-1T-D1p" customClass="InputField" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="172" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUH-cd-1xk" customClass="FilledButton" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="47" y="218" width="281" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginTouchedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="udc-GN-noO"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gi-OE-6tk">
+                                <rect key="frame" x="32" y="651" width="311" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vX9-32-Y7h" customClass="FilledButton" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="47" y="318" width="281" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Login with Access Token"/>
+                                <connections>
+                                    <action selector="loginWithTokenTouchedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UUn-Tk-zZo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token will expire in 2d" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OT7-jc-APO">
+                                <rect key="frame" x="113" y="360" width="150.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UMY-Oy-5Wh" customClass="FilledButton" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="47.5" y="268" width="281" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Login with One Time Key"/>
+                                <connections>
+                                    <action selector="loginWithOTKTouchedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JDy-Ye-Rtd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text=".voximplant.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtq-Km-tK1">
+                                <rect key="frame" x="235" y="129" width="124" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="14Y-9i-uZX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2YD-D8-j22"/>
+                            <constraint firstItem="OT7-jc-APO" firstAttribute="centerX" secondItem="vX9-32-Y7h" secondAttribute="centerX" id="4OM-N5-CZx"/>
+                            <constraint firstItem="TLr-1T-D1p" firstAttribute="top" secondItem="mIz-ag-HWk" secondAttribute="bottom" constant="16" id="4hO-6k-zjq"/>
+                            <constraint firstItem="mIz-ag-HWk" firstAttribute="leading" secondItem="14Y-9i-uZX" secondAttribute="leading" id="6Fo-fk-DUd"/>
+                            <constraint firstItem="vX9-32-Y7h" firstAttribute="top" secondItem="UMY-Oy-5Wh" secondAttribute="bottom" constant="16" id="6QJ-C0-T6I"/>
+                            <constraint firstItem="UMY-Oy-5Wh" firstAttribute="top" secondItem="hUH-cd-1xk" secondAttribute="bottom" constant="16" id="7If-o6-oR4"/>
+                            <constraint firstItem="14Y-9i-uZX" firstAttribute="top" secondItem="P4L-Mk-TlQ" secondAttribute="bottom" constant="16" id="95A-Tj-CRR"/>
+                            <constraint firstItem="xtq-Km-tK1" firstAttribute="trailing" secondItem="14Y-9i-uZX" secondAttribute="trailing" id="CB4-hD-t0w"/>
+                            <constraint firstItem="vX9-32-Y7h" firstAttribute="width" secondItem="hUH-cd-1xk" secondAttribute="width" id="DD1-1K-4Pg"/>
+                            <constraint firstItem="hUH-cd-1xk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ELn-c0-RR1"/>
+                            <constraint firstItem="mIz-ag-HWk" firstAttribute="top" secondItem="14Y-9i-uZX" secondAttribute="bottom" constant="16" id="N5R-85-tFp"/>
+                            <constraint firstItem="hUH-cd-1xk" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="NFM-ZI-JWt"/>
+                            <constraint firstItem="xtq-Km-tK1" firstAttribute="leading" secondItem="mIz-ag-HWk" secondAttribute="trailing" id="R84-aD-uTD"/>
+                            <constraint firstItem="Nl5-7b-THW" firstAttribute="top" secondItem="5Gi-OE-6tk" secondAttribute="bottom" constant="16" id="STO-e9-IUs"/>
+                            <constraint firstItem="TLr-1T-D1p" firstAttribute="width" secondItem="14Y-9i-uZX" secondAttribute="width" id="U1r-n4-JCc"/>
+                            <constraint firstItem="14Y-9i-uZX" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" constant="-32" id="UZz-ru-1mr"/>
+                            <constraint firstItem="vX9-32-Y7h" firstAttribute="centerX" secondItem="hUH-cd-1xk" secondAttribute="centerX" id="Y28-iP-42z"/>
+                            <constraint firstItem="OT7-jc-APO" firstAttribute="top" secondItem="vX9-32-Y7h" secondAttribute="bottom" constant="8" id="cFt-aI-yfA"/>
+                            <constraint firstItem="UMY-Oy-5Wh" firstAttribute="width" secondItem="hUH-cd-1xk" secondAttribute="width" id="gBL-y8-pIX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Gi-OE-6tk" secondAttribute="trailing" constant="16" id="gz6-GX-pKR"/>
+                            <constraint firstItem="TLr-1T-D1p" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mNG-31-9Nx"/>
+                            <constraint firstItem="UMY-Oy-5Wh" firstAttribute="centerX" secondItem="OT7-jc-APO" secondAttribute="centerX" id="qmV-Qh-n8G"/>
+                            <constraint firstItem="xtq-Km-tK1" firstAttribute="baseline" secondItem="mIz-ag-HWk" secondAttribute="baseline" id="tEI-If-bzG"/>
+                            <constraint firstItem="5Gi-OE-6tk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="v9Q-X0-fVT"/>
+                            <constraint firstItem="hUH-cd-1xk" firstAttribute="top" secondItem="TLr-1T-D1p" secondAttribute="bottom" constant="16" id="yMb-AT-fOO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="PxG-xP-JkA"/>
+                    <connections>
+                        <outlet property="gatewayField" destination="14Y-9i-uZX" id="K5C-3R-Xvn"/>
+                        <outlet property="loginWithTokenButton" destination="vX9-32-Y7h" id="jH5-BQ-Cm3"/>
+                        <outlet property="passwordField" destination="TLr-1T-D1p" id="aIZ-kx-MDZ"/>
+                        <outlet property="tokenLabel" destination="OT7-jc-APO" id="Gpd-Jv-wMI"/>
+                        <outlet property="userField" destination="mIz-ag-HWk" id="0aL-Zs-rFS"/>
+                        <outlet property="versionLabel" destination="5Gi-OE-6tk" id="tos-vq-qqj"/>
+                        <segue destination="Afn-Nw-kKQ" kind="show" identifier="MainController" id="mQr-B9-Ei8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="456.80000000000001" y="118.29085457271366"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="SHg-2W-zxM">
+            <objects>
+                <tableViewController title="Settings" id="hc8-xR-NKe" customClass="SettingsViewController" customModule="VoxImplantSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y4V-cI-xGL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="options-table-cell" id="2LM-tJ-i8E" customClass="SettingTableViewCell" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2LM-tJ-i8E" id="Fw3-F7-yP2">
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDc-S0-5t1">
+                                            <rect key="frame" x="16" y="8" width="33.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWp-na-cKT">
+                                            <rect key="frame" x="16" y="35.5" width="42" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GDc-S0-5t1" secondAttribute="trailing" constant="16" id="Bgg-9T-Rdv"/>
+                                        <constraint firstAttribute="bottom" secondItem="tWp-na-cKT" secondAttribute="bottom" constant="8" id="Gg4-kl-ee0"/>
+                                        <constraint firstItem="GDc-S0-5t1" firstAttribute="leading" secondItem="Fw3-F7-yP2" secondAttribute="leading" constant="16" id="LSR-bd-IVX"/>
+                                        <constraint firstItem="tWp-na-cKT" firstAttribute="top" secondItem="GDc-S0-5t1" secondAttribute="bottom" constant="8" id="PA1-80-zoe"/>
+                                        <constraint firstItem="GDc-S0-5t1" firstAttribute="top" secondItem="Fw3-F7-yP2" secondAttribute="top" constant="8" id="ZUU-KJ-jEE"/>
+                                        <constraint firstItem="tWp-na-cKT" firstAttribute="leading" secondItem="Fw3-F7-yP2" secondAttribute="leading" constant="16" id="i70-fk-MhF"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tWp-na-cKT" secondAttribute="trailing" constant="16" id="v8j-nX-vU5"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="ValueLabel" destination="tWp-na-cKT" id="3NU-Fh-K05"/>
+                                    <outlet property="titleLabel" destination="GDc-S0-5t1" id="yxo-eC-Lxb"/>
+                                    <outlet property="valueLabel" destination="tWp-na-cKT" id="BNN-tY-lmG"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hc8-xR-NKe" id="704-xR-rLw"/>
+                            <outlet property="delegate" destination="hc8-xR-NKe" id="q65-NX-cxx"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="kkd-6l-65N" kind="show" identifier="SettingsDetails" id="JoV-zJ-Xy4"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NX8-W9-f5X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1266" y="-568"/>
+        </scene>
+        <!--Settings Detail Table View Controller-->
+        <scene sceneID="Sba-gt-Xu6">
+            <objects>
+                <tableViewController id="kkd-6l-65N" customClass="SettingsDetailTableViewController" customModule="VoxImplantSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="6HA-0y-Fqk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detail-option-cell" id="ecX-Xj-z1v">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ecX-Xj-z1v" id="pfZ-np-43L">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kkd-6l-65N" id="JJ3-iE-N2J"/>
+                            <outlet property="delegate" destination="kkd-6l-65N" id="4x2-cN-ALC"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JXg-yz-b5u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2088" y="-565"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="QyJ-F5-qli">
+            <objects>
+                <viewController id="Afn-Nw-kKQ" customClass="MainViewController" customModule="VoxImplantSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Wx-Nw-CLS"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Jf-7z-pL3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4h9-Nc-pJu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contact login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-La-uaS" customClass="InputField" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="80" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="go" textContentType="email"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iso-DP-Krb" customClass="Button" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="126" width="163.5" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Audio Call"/>
+                                <connections>
+                                    <action selector="audioCallTouchedWithSender:" destination="Afn-Nw-kKQ" eventType="touchUpInside" id="Z9e-A1-JhK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJ2-2F-EDs" customClass="Button" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="195" y="126" width="163.5" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Video Call"/>
+                                <connections>
+                                    <action selector="videoCallTouchedWithSender:" destination="Afn-Nw-kKQ" eventType="touchUpInside" id="PoI-Lb-x03"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hJ2-2F-EDs" firstAttribute="leading" secondItem="iso-DP-Krb" secondAttribute="trailing" constant="16" id="4aN-fk-7jV"/>
+                            <constraint firstItem="hJ2-2F-EDs" firstAttribute="centerY" secondItem="iso-DP-Krb" secondAttribute="centerY" id="Ooi-2c-fxF"/>
+                            <constraint firstItem="iso-DP-Krb" firstAttribute="leading" secondItem="2eE-La-uaS" secondAttribute="leading" id="Vot-3F-pkb"/>
+                            <constraint firstItem="2eE-La-uaS" firstAttribute="top" secondItem="9Wx-Nw-CLS" secondAttribute="bottom" constant="16" id="dwV-ct-F8e"/>
+                            <constraint firstItem="2eE-La-uaS" firstAttribute="centerX" secondItem="4h9-Nc-pJu" secondAttribute="centerX" id="fx0-ml-EqN"/>
+                            <constraint firstItem="hJ2-2F-EDs" firstAttribute="width" secondItem="iso-DP-Krb" secondAttribute="width" id="kae-C3-5fk"/>
+                            <constraint firstItem="iso-DP-Krb" firstAttribute="top" secondItem="2eE-La-uaS" secondAttribute="bottom" constant="16" id="mIo-EV-5ri"/>
+                            <constraint firstItem="iso-DP-Krb" firstAttribute="width" secondItem="2eE-La-uaS" secondAttribute="width" multiplier="0.5" constant="-8" id="pCo-7H-90c"/>
+                            <constraint firstItem="2eE-La-uaS" firstAttribute="width" secondItem="4h9-Nc-pJu" secondAttribute="width" constant="-32" id="sS0-gk-94u"/>
+                            <constraint firstItem="hJ2-2F-EDs" firstAttribute="trailing" secondItem="2eE-La-uaS" secondAttribute="trailing" id="zg9-vp-sRV"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="LyO-sZ-4F2">
+                        <barButtonItem key="rightBarButtonItem" image="ic_settings" id="at5-mJ-Yca">
+                            <connections>
+                                <segue destination="hc8-xR-NKe" kind="show" id="ncK-ph-1hQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="targetField" destination="2eE-La-uaS" id="RmH-M2-rQw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qo4-Nc-jyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="457" y="-565"/>
+        </scene>
+        <!--Call View Controller-->
+        <scene sceneID="CRz-3e-YE1">
+            <objects>
+                <viewController id="17U-po-6Lk" customClass="CallViewController" customModule="VoxImplantSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B1K-l7-XxG"/>
+                        <viewControllerLayoutGuide type="bottom" id="9eP-go-Wed"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Grs-mY-hql">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Gca-pR-MzU" userLabel="Remote View">
+                                <rect key="frame" x="16" y="36" width="343" height="343"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Gca-pR-MzU" secondAttribute="height" id="AR6-Ng-IZD"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="V4e-fi-bG9" userLabel="Local View">
+                                <rect key="frame" x="125" y="395" width="234" height="206"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hQ-Ee-Mtp" customClass="CancelButton" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="125" y="617" width="234" height="34"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Hangup"/>
+                                <connections>
+                                    <action selector="hangupButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="5oj-NW-zhW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABj-4o-o6f" customClass="Button" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="617" width="93" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Hold"/>
+                                <connections>
+                                    <action selector="holdButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="7eh-1p-YQS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDH-Db-cqV" customClass="Button" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="16.5" y="567" width="92.5" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Audio"/>
+                                <connections>
+                                    <action selector="loudspeakerButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="7af-K6-dT1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyq-N9-vrd" customClass="Button" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="517" width="93" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="DTFM"/>
+                                <connections>
+                                    <action selector="dtfmButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="MO2-qc-h7v"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghe-IS-mQ9" customClass="Button" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="467" width="93" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Mute Video"/>
+                                <connections>
+                                    <action selector="muteVideoButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="q7d-bU-1L7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpq-is-bQu" customClass="Button" customModule="VoxImplantSwiftDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="417" width="93" height="34"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Mute Audio"/>
+                                <connections>
+                                    <action selector="muteAudioButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="du7-Bb-34b"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6hQ-Ee-Mtp" firstAttribute="top" relation="greaterThanOrEqual" secondItem="V4e-fi-bG9" secondAttribute="bottom" priority="750" constant="16" id="06H-kU-oBh"/>
+                            <constraint firstItem="9eP-go-Wed" firstAttribute="top" secondItem="6hQ-Ee-Mtp" secondAttribute="bottom" constant="16" id="3Oi-7Q-Hiz"/>
+                            <constraint firstItem="Ghe-IS-mQ9" firstAttribute="width" secondItem="Fyq-N9-vrd" secondAttribute="width" id="6cf-G1-Io4"/>
+                            <constraint firstAttribute="trailing" secondItem="6hQ-Ee-Mtp" secondAttribute="trailing" constant="16" id="8mc-tq-JnV"/>
+                            <constraint firstItem="Fyq-N9-vrd" firstAttribute="centerX" secondItem="HDH-Db-cqV" secondAttribute="centerX" id="9uh-VP-iW7"/>
+                            <constraint firstItem="Ghe-IS-mQ9" firstAttribute="width" secondItem="Zpq-is-bQu" secondAttribute="width" id="BO4-jH-2gX"/>
+                            <constraint firstItem="HDH-Db-cqV" firstAttribute="centerY" secondItem="Fyq-N9-vrd" secondAttribute="centerY" id="JRV-Oo-6p4"/>
+                            <constraint firstItem="6hQ-Ee-Mtp" firstAttribute="leading" secondItem="Gca-pR-MzU" secondAttribute="trailing" constant="16" id="Jgk-dN-51W"/>
+                            <constraint firstItem="Gca-pR-MzU" firstAttribute="leading" secondItem="Grs-mY-hql" secondAttribute="leading" constant="16" id="Krp-fZ-HOh"/>
+                            <constraint firstItem="ABj-4o-o6f" firstAttribute="leading" secondItem="HDH-Db-cqV" secondAttribute="trailing" constant="16" id="Kum-pf-wqk"/>
+                            <constraint firstItem="9eP-go-Wed" firstAttribute="top" secondItem="Gca-pR-MzU" secondAttribute="bottom" constant="16" id="OoX-4j-d6L"/>
+                            <constraint firstItem="V4e-fi-bG9" firstAttribute="top" secondItem="B1K-l7-XxG" secondAttribute="bottom" constant="16" id="QEB-jR-aDm"/>
+                            <constraint firstItem="Zpq-is-bQu" firstAttribute="bottom" secondItem="6hQ-Ee-Mtp" secondAttribute="top" constant="-16" id="T4V-OK-nya"/>
+                            <constraint firstItem="ABj-4o-o6f" firstAttribute="leading" secondItem="Grs-mY-hql" secondAttribute="leading" constant="16" id="UBc-jz-U6b"/>
+                            <constraint firstItem="Zpq-is-bQu" firstAttribute="centerX" secondItem="Ghe-IS-mQ9" secondAttribute="centerX" id="V23-Ze-Z9e"/>
+                            <constraint firstItem="ABj-4o-o6f" firstAttribute="centerY" secondItem="6hQ-Ee-Mtp" secondAttribute="centerY" id="X3e-se-ax9"/>
+                            <constraint firstAttribute="trailing" secondItem="V4e-fi-bG9" secondAttribute="trailing" constant="16" id="XAw-nx-kAa"/>
+                            <constraint firstItem="Fyq-N9-vrd" firstAttribute="leading" secondItem="Zpq-is-bQu" secondAttribute="leading" id="Zkc-VC-3Zy"/>
+                            <constraint firstItem="Ghe-IS-mQ9" firstAttribute="leading" secondItem="Zpq-is-bQu" secondAttribute="trailing" constant="16" id="ax2-MG-bWY"/>
+                            <constraint firstItem="9eP-go-Wed" firstAttribute="top" secondItem="6hQ-Ee-Mtp" secondAttribute="bottom" constant="16" id="bVP-3T-04v"/>
+                            <constraint firstAttribute="trailing" secondItem="6hQ-Ee-Mtp" secondAttribute="trailing" constant="16" id="c5N-bB-bD2"/>
+                            <constraint firstAttribute="trailing" secondItem="Ghe-IS-mQ9" secondAttribute="trailing" constant="16" id="cPx-nO-CTt"/>
+                            <constraint firstItem="HDH-Db-cqV" firstAttribute="leading" secondItem="Fyq-N9-vrd" secondAttribute="trailing" constant="16" id="cfg-97-7mk"/>
+                            <constraint firstItem="Ghe-IS-mQ9" firstAttribute="centerX" secondItem="Fyq-N9-vrd" secondAttribute="centerX" id="eAr-7k-pdZ"/>
+                            <constraint firstAttribute="trailing" secondItem="Gca-pR-MzU" secondAttribute="trailing" constant="16" id="eHB-cP-WST"/>
+                            <constraint firstItem="ABj-4o-o6f" firstAttribute="width" secondItem="HDH-Db-cqV" secondAttribute="width" id="eKe-Ae-CWz"/>
+                            <constraint firstItem="ABj-4o-o6f" firstAttribute="top" secondItem="HDH-Db-cqV" secondAttribute="bottom" constant="16" id="fgF-th-Qe3"/>
+                            <constraint firstItem="HDH-Db-cqV" firstAttribute="top" secondItem="Fyq-N9-vrd" secondAttribute="bottom" constant="16" id="gQB-f8-Qsq"/>
+                            <constraint firstItem="HDH-Db-cqV" firstAttribute="width" secondItem="Fyq-N9-vrd" secondAttribute="width" id="gSS-ek-8eZ"/>
+                            <constraint firstAttribute="trailing" secondItem="ABj-4o-o6f" secondAttribute="trailing" constant="16" id="jUX-fN-77y"/>
+                            <constraint firstItem="Zpq-is-bQu" firstAttribute="leading" secondItem="Gca-pR-MzU" secondAttribute="trailing" constant="16" id="kcj-HW-YD3"/>
+                            <constraint firstItem="V4e-fi-bG9" firstAttribute="leading" secondItem="Gca-pR-MzU" secondAttribute="trailing" constant="16" id="ngy-Ln-hcI"/>
+                            <constraint firstItem="6hQ-Ee-Mtp" firstAttribute="leading" secondItem="ABj-4o-o6f" secondAttribute="trailing" constant="16" id="nqn-rz-yEn"/>
+                            <constraint firstItem="V4e-fi-bG9" firstAttribute="trailing" secondItem="Gca-pR-MzU" secondAttribute="trailing" id="oFu-o9-gWm"/>
+                            <constraint firstItem="6hQ-Ee-Mtp" firstAttribute="leading" secondItem="V4e-fi-bG9" secondAttribute="leading" id="pBJ-b9-i3H"/>
+                            <constraint firstItem="Zpq-is-bQu" firstAttribute="top" secondItem="Fyq-N9-vrd" secondAttribute="bottom" constant="16" id="pVZ-BA-sEn"/>
+                            <constraint firstItem="V4e-fi-bG9" firstAttribute="top" secondItem="Gca-pR-MzU" secondAttribute="bottom" constant="16" id="rMA-LB-AlI"/>
+                            <constraint firstItem="ABj-4o-o6f" firstAttribute="top" secondItem="V4e-fi-bG9" secondAttribute="bottom" constant="16" id="vK1-xe-UU2"/>
+                            <constraint firstItem="HDH-Db-cqV" firstAttribute="centerX" secondItem="ABj-4o-o6f" secondAttribute="centerX" id="w5q-EV-j5r"/>
+                            <constraint firstItem="Fyq-N9-vrd" firstAttribute="top" secondItem="Ghe-IS-mQ9" secondAttribute="bottom" priority="750" constant="16" id="wQw-kx-QLn"/>
+                            <constraint firstItem="Ghe-IS-mQ9" firstAttribute="top" secondItem="Zpq-is-bQu" secondAttribute="bottom" constant="16" id="xKW-gn-Jfo"/>
+                            <constraint firstItem="ABj-4o-o6f" firstAttribute="centerY" secondItem="HDH-Db-cqV" secondAttribute="centerY" id="xbR-sV-CMm"/>
+                            <constraint firstItem="Gca-pR-MzU" firstAttribute="top" secondItem="B1K-l7-XxG" secondAttribute="bottom" constant="16" id="yFb-35-5e9"/>
+                            <constraint firstItem="Ghe-IS-mQ9" firstAttribute="centerY" secondItem="Zpq-is-bQu" secondAttribute="centerY" id="zAa-S8-MRQ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="eHB-cP-WST"/>
+                                <exclude reference="oFu-o9-gWm"/>
+                                <exclude reference="rMA-LB-AlI"/>
+                                <exclude reference="V23-Ze-Z9e"/>
+                                <exclude reference="6cf-G1-Io4"/>
+                                <exclude reference="eAr-7k-pdZ"/>
+                                <exclude reference="xKW-gn-Jfo"/>
+                                <exclude reference="9uh-VP-iW7"/>
+                                <exclude reference="wQw-kx-QLn"/>
+                                <exclude reference="gQB-f8-Qsq"/>
+                                <exclude reference="w5q-EV-j5r"/>
+                                <exclude reference="UBc-jz-U6b"/>
+                                <exclude reference="X3e-se-ax9"/>
+                                <exclude reference="fgF-th-Qe3"/>
+                                <exclude reference="06H-kU-oBh"/>
+                                <exclude reference="nqn-rz-yEn"/>
+                                <exclude reference="pBJ-b9-i3H"/>
+                                <exclude reference="bVP-3T-04v"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="eHB-cP-WST"/>
+                                <include reference="yFb-35-5e9"/>
+                                <exclude reference="QEB-jR-aDm"/>
+                                <exclude reference="XAw-nx-kAa"/>
+                                <exclude reference="ngy-Ln-hcI"/>
+                                <include reference="oFu-o9-gWm"/>
+                                <include reference="rMA-LB-AlI"/>
+                                <exclude reference="T4V-OK-nya"/>
+                                <include reference="V23-Ze-Z9e"/>
+                                <exclude reference="kcj-HW-YD3"/>
+                                <exclude reference="pVZ-BA-sEn"/>
+                                <include reference="6cf-G1-Io4"/>
+                                <exclude reference="ax2-MG-bWY"/>
+                                <exclude reference="cPx-nO-CTt"/>
+                                <include reference="eAr-7k-pdZ"/>
+                                <include reference="xKW-gn-Jfo"/>
+                                <exclude reference="zAa-S8-MRQ"/>
+                                <include reference="9uh-VP-iW7"/>
+                                <exclude reference="Zkc-VC-3Zy"/>
+                                <include reference="wQw-kx-QLn"/>
+                                <exclude reference="JRV-Oo-6p4"/>
+                                <exclude reference="cfg-97-7mk"/>
+                                <include reference="gQB-f8-Qsq"/>
+                                <include reference="w5q-EV-j5r"/>
+                                <exclude reference="Kum-pf-wqk"/>
+                                <include reference="UBc-jz-U6b"/>
+                                <include reference="X3e-se-ax9"/>
+                                <include reference="fgF-th-Qe3"/>
+                                <exclude reference="jUX-fN-77y"/>
+                                <exclude reference="xbR-sV-CMm"/>
+                                <include reference="06H-kU-oBh"/>
+                                <exclude reference="Jgk-dN-51W"/>
+                                <exclude reference="c5N-bB-bD2"/>
+                                <include reference="nqn-rz-yEn"/>
+                                <include reference="pBJ-b9-i3H"/>
+                                <exclude reference="3Oi-7Q-Hiz"/>
+                                <exclude reference="OoX-4j-d6L"/>
+                                <include reference="bVP-3T-04v"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="dtfmButton" destination="Fyq-N9-vrd" id="l9h-Qy-mj0"/>
+                        <outlet property="hangButton" destination="6hQ-Ee-Mtp" id="vs3-sQ-ogb"/>
+                        <outlet property="holdButton" destination="ABj-4o-o6f" id="HfA-Gc-agO"/>
+                        <outlet property="localContainer" destination="V4e-fi-bG9" id="fNC-Oz-38l"/>
+                        <outlet property="loudspeakerButton" destination="HDH-Db-cqV" id="PnH-iM-JTt"/>
+                        <outlet property="muteAudioButton" destination="Zpq-is-bQu" id="JRM-dr-OFa"/>
+                        <outlet property="muteVideoButton" destination="Ghe-IS-mQ9" id="dLR-DB-VmG"/>
+                        <outlet property="remoteContainer" destination="Gca-pR-MzU" id="xKj-v9-wpR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0rK-7K-tkL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2086" y="118"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UIJ-2o-41t">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xHC-2I-USg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zRq-HF-HTN">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rp5-H6-ixQ"/>
+                        <segue destination="17U-po-6Lk" kind="presentation" identifier="CallController" id="gzB-Tp-FEE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qXj-yd-tC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-361" y="118"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_settings" width="24" height="24"/>
+    </resources>
+</document>

@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E64A1DA204428D700925847 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E64A1D9204428D700925847 /* SettingTableViewCell.swift */; };
+		8E64A1DC2044323300925847 /* SettingsDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E64A1DB2044323300925847 /* SettingsDetailTableViewController.swift */; };
+		8EA9CF08204EAF7400C05397 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9CF07204EAF7400C05397 /* Theme.swift */; };
+		8EEA98B41FB5A1AD00E90861 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA98B31FB5A1AD00E90861 /* AppDelegate.swift */; };
+		8EEA98B61FB5A1AD00E90861 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA98B51FB5A1AD00E90861 /* LoginViewController.swift */; };
+		8EEA98BB1FB5A1AD00E90861 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA98BA1FB5A1AD00E90861 /* Assets.xcassets */; };
+		CCC49035527628A7858EC419 /* CameraPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC49834203B1A76385A4170 /* CameraPreprocessor.swift */; };
+		CCC4903971168773EBA560E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC491FD7C1ACBD94F860234 /* SettingsViewController.swift */; };
+		CCC490E9B4BE368B70290A44 /* CallKitCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC4906BF0A95E0B4C2120DB /* CallKitCallManager.swift */; };
+		CCC4927CE761DE13C2DAE8FC /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCC49E089A8C2B508BB41F45 /* Roboto-Bold.ttf */; };
+		CCC492858EB7282AA47F554F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCC499078F2B01F18BEEFA65 /* LaunchScreen.storyboard */; };
+		CCC492C1E7A1EDE973F8F396 /* NotificationCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC49FA3B85C0ADD1004439B /* NotificationCallManager.swift */; };
+		CCC492F342C5D67A7817583B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCC49400BF4083B8A847E5DE /* Roboto-Regular.ttf */; };
+		CCC492F49D7BFF70DC8D60BE /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC49744B0AD4FD8B846011F /* CallViewController.swift */; };
+		CCC49714DABAFC7CAA033F90 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC49FFC14C3B73630F79C99 /* UIHelper.swift */; };
+		CCC4977892FEA43CCA89647A /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCC496137D0B89EBA0630819 /* Settings.plist */; };
+		CCC49816A01C531BC34CB298 /* ringtone.aiff in Resources */ = {isa = PBXBuildFile; fileRef = CCC4992F44D29BCD94399E4B /* ringtone.aiff */; };
+		CCC498F59BFC27654895B2F1 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC49D66A2C4F22D7BCD0A8D /* CustomCamera.swift */; };
+		CCC499656A96BEF87DB86BE4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC4957B1C1960994048FF98 /* MainViewController.swift */; };
+		CCC49B74A3381D7361B52CF6 /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC49BF0B0DB536600405A02 /* CallManager.swift */; };
+		CCC49C6056A7AD7A8858EFA5 /* VoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC492D00742D08A53364017 /* VoxController.swift */; };
+		CCC49C7F300BCAE8F040C8EB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC492F2B2E3646CF534F67B /* BaseViewController.swift */; };
+		CCC49D30AE9A409752166283 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCC49B17EE2DA30729AC7FCA /* Main.storyboard */; };
+		CCC49EF1E1DBDE7F6598462C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC497500C8EDA589EAD7F10 /* Settings.swift */; };
+		CCC49FB0513FDFD9B086E1CD /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC4967DF41EEB4E5BA1A8B5 /* Log.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8E64A1D9204428D700925847 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		8E64A1DB2044323300925847 /* SettingsDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailTableViewController.swift; sourceTree = "<group>"; };
+		8E85E3881FBB06E50033831A /* VoximplantSwiftDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoximplantSwiftDemo.entitlements; sourceTree = "<group>"; };
+		8EA9CF07204EAF7400C05397 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		8EDEB75B1FD022E4000EC892 /* VoximplantSwiftDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VoximplantSwiftDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		8EEA98B01FB5A1AD00E90861 /* VoximplantSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoximplantSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EEA98B31FB5A1AD00E90861 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8EEA98B51FB5A1AD00E90861 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8EEA98BA1FB5A1AD00E90861 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CCC4906BF0A95E0B4C2120DB /* CallKitCallManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallKitCallManager.swift; sourceTree = "<group>"; };
+		CCC491FD7C1ACBD94F860234 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CCC492D00742D08A53364017 /* VoxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoxController.swift; sourceTree = "<group>"; };
+		CCC492D1E3DC7CD9273A9595 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		CCC492F2B2E3646CF534F67B /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		CCC49400BF4083B8A847E5DE /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		CCC4957B1C1960994048FF98 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CCC496137D0B89EBA0630819 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Settings.plist; sourceTree = "<group>"; };
+		CCC4967DF41EEB4E5BA1A8B5 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		CCC49744B0AD4FD8B846011F /* CallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
+		CCC497500C8EDA589EAD7F10 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		CCC49834203B1A76385A4170 /* CameraPreprocessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraPreprocessor.swift; sourceTree = "<group>"; };
+		CCC499078F2B01F18BEEFA65 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CCC4992F44D29BCD94399E4B /* ringtone.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = ringtone.aiff; sourceTree = "<group>"; };
+		CCC49B17EE2DA30729AC7FCA /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CCC49BF0B0DB536600405A02 /* CallManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
+		CCC49D66A2C4F22D7BCD0A8D /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
+		CCC49E089A8C2B508BB41F45 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		CCC49FA3B85C0ADD1004439B /* NotificationCallManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCallManager.swift; sourceTree = "<group>"; };
+		CCC49FFC14C3B73630F79C99 /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8EEA98AD1FB5A1AD00E90861 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E9DA3F2206144A500721415 /* CameraHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				CCC49834203B1A76385A4170 /* CameraPreprocessor.swift */,
+				CCC49D66A2C4F22D7BCD0A8D /* CustomCamera.swift */,
+			);
+			path = CameraHelpers;
+			sourceTree = "<group>";
+		};
+		8E9DA3F3206144C200721415 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CCC491FD7C1ACBD94F860234 /* SettingsViewController.swift */,
+				CCC492F2B2E3646CF534F67B /* BaseViewController.swift */,
+				CCC49744B0AD4FD8B846011F /* CallViewController.swift */,
+				8EEA98B51FB5A1AD00E90861 /* LoginViewController.swift */,
+				CCC4957B1C1960994048FF98 /* MainViewController.swift */,
+				8E64A1DB2044323300925847 /* SettingsDetailTableViewController.swift */,
+				8E64A1D9204428D700925847 /* SettingTableViewCell.swift */,
+				8EA9CF07204EAF7400C05397 /* Theme.swift */,
+				CCC49FFC14C3B73630F79C99 /* UIHelper.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		8EEA98A71FB5A1AC00E90861 = {
+			isa = PBXGroup;
+			children = (
+				8EEA98B21FB5A1AD00E90861 /* VoximplantSwiftDemo */,
+				8EEA98B11FB5A1AD00E90861 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8EEA98B11FB5A1AD00E90861 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8EEA98B01FB5A1AD00E90861 /* VoximplantSwiftDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8EEA98B21FB5A1AD00E90861 /* VoximplantSwiftDemo */ = {
+			isa = PBXGroup;
+			children = (
+				8E85E3881FBB06E50033831A /* VoximplantSwiftDemo.entitlements */,
+				8EDEB75B1FD022E4000EC892 /* VoximplantSwiftDemo-Bridging-Header.h */,
+				8EEA98B31FB5A1AD00E90861 /* AppDelegate.swift */,
+				CCC4967DF41EEB4E5BA1A8B5 /* Log.swift */,
+				CCC497500C8EDA589EAD7F10 /* Settings.swift */,
+				CCC492D00742D08A53364017 /* VoxController.swift */,
+				8EEA98BA1FB5A1AD00E90861 /* Assets.xcassets */,
+				CCC49DAE8A3D8804A11D92D3 /* CallManagers */,
+				8E9DA3F2206144A500721415 /* CameraHelpers */,
+				CCC49948470DE24BD407D95B /* Resources */,
+				8E9DA3F3206144C200721415 /* UI */,
+			);
+			path = VoximplantSwiftDemo;
+			sourceTree = "<group>";
+		};
+		CCC49948470DE24BD407D95B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CCC4992F44D29BCD94399E4B /* ringtone.aiff */,
+				CCC492D1E3DC7CD9273A9595 /* Info.plist */,
+				CCC496137D0B89EBA0630819 /* Settings.plist */,
+				CCC499078F2B01F18BEEFA65 /* LaunchScreen.storyboard */,
+				CCC49B17EE2DA30729AC7FCA /* Main.storyboard */,
+				CCC49E089A8C2B508BB41F45 /* Roboto-Bold.ttf */,
+				CCC49400BF4083B8A847E5DE /* Roboto-Regular.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CCC49DAE8A3D8804A11D92D3 /* CallManagers */ = {
+			isa = PBXGroup;
+			children = (
+				CCC4906BF0A95E0B4C2120DB /* CallKitCallManager.swift */,
+				CCC49BF0B0DB536600405A02 /* CallManager.swift */,
+				CCC49FA3B85C0ADD1004439B /* NotificationCallManager.swift */,
+			);
+			path = CallManagers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8EEA98AF1FB5A1AD00E90861 /* VoximplantSwiftDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EEA98C21FB5A1AD00E90861 /* Build configuration list for PBXNativeTarget "VoximplantSwiftDemo" */;
+			buildPhases = (
+				8EEA98AC1FB5A1AD00E90861 /* Sources */,
+				8EEA98AD1FB5A1AD00E90861 /* Frameworks */,
+				8EEA98AE1FB5A1AD00E90861 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VoximplantSwiftDemo;
+			productName = VoxImplantSwiftDemo;
+			productReference = 8EEA98B01FB5A1AD00E90861 /* VoximplantSwiftDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8EEA98A81FB5A1AC00E90861 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "Zingaya Ltd.";
+				TargetAttributes = {
+					8EEA98AF1FB5A1AD00E90861 = {
+						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 8EEA98AB1FB5A1AC00E90861 /* Build configuration list for PBXProject "VoximplantSwiftDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8EEA98A71FB5A1AC00E90861;
+			productRefGroup = 8EEA98B11FB5A1AD00E90861 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8EEA98AF1FB5A1AD00E90861 /* VoximplantSwiftDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8EEA98AE1FB5A1AD00E90861 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EEA98BB1FB5A1AD00E90861 /* Assets.xcassets in Resources */,
+				CCC4977892FEA43CCA89647A /* Settings.plist in Resources */,
+				CCC49816A01C531BC34CB298 /* ringtone.aiff in Resources */,
+				CCC4927CE761DE13C2DAE8FC /* Roboto-Bold.ttf in Resources */,
+				CCC492F342C5D67A7817583B /* Roboto-Regular.ttf in Resources */,
+				CCC492858EB7282AA47F554F /* LaunchScreen.storyboard in Resources */,
+				CCC49D30AE9A409752166283 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8EEA98AC1FB5A1AD00E90861 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EEA98B61FB5A1AD00E90861 /* LoginViewController.swift in Sources */,
+				8EEA98B41FB5A1AD00E90861 /* AppDelegate.swift in Sources */,
+				CCC4903971168773EBA560E4 /* SettingsViewController.swift in Sources */,
+				8E64A1DC2044323300925847 /* SettingsDetailTableViewController.swift in Sources */,
+				CCC49EF1E1DBDE7F6598462C /* Settings.swift in Sources */,
+				CCC49C6056A7AD7A8858EFA5 /* VoxController.swift in Sources */,
+				8E64A1DA204428D700925847 /* SettingTableViewCell.swift in Sources */,
+				CCC490E9B4BE368B70290A44 /* CallKitCallManager.swift in Sources */,
+				8EA9CF08204EAF7400C05397 /* Theme.swift in Sources */,
+				CCC49B74A3381D7361B52CF6 /* CallManager.swift in Sources */,
+				CCC499656A96BEF87DB86BE4 /* MainViewController.swift in Sources */,
+				CCC49C7F300BCAE8F040C8EB /* BaseViewController.swift in Sources */,
+				CCC492F49D7BFF70DC8D60BE /* CallViewController.swift in Sources */,
+				CCC498F59BFC27654895B2F1 /* CustomCamera.swift in Sources */,
+				CCC49035527628A7858EC419 /* CameraPreprocessor.swift in Sources */,
+				CCC49714DABAFC7CAA033F90 /* UIHelper.swift in Sources */,
+				CCC492C1E7A1EDE973F8F396 /* NotificationCallManager.swift in Sources */,
+				CCC49FB0513FDFD9B086E1CD /* Log.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8EEA98C01FB5A1AD00E90861 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8EEA98C11FB5A1AD00E90861 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8EEA98C31FB5A1AD00E90861 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = VoximplantSwiftDemo/VoximplantSwiftDemo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25S6X4YD96;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/VoxImplantSwiftDemo/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/VoximplantSwiftDemo/VoximplantSwiftDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8EEA98C41FB5A1AD00E90861 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = VoximplantSwiftDemo/VoximplantSwiftDemo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25S6X4YD96;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/VoxImplantSwiftDemo/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/VoximplantSwiftDemo/VoximplantSwiftDemo-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8EEA98AB1FB5A1AC00E90861 /* Build configuration list for PBXProject "VoximplantSwiftDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EEA98C01FB5A1AD00E90861 /* Debug */,
+				8EEA98C11FB5A1AD00E90861 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8EEA98C21FB5A1AD00E90861 /* Build configuration list for PBXNativeTarget "VoximplantSwiftDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EEA98C31FB5A1AD00E90861 /* Debug */,
+				8EEA98C41FB5A1AD00E90861 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8EEA98A81FB5A1AC00E90861 /* Project object */;
+}
