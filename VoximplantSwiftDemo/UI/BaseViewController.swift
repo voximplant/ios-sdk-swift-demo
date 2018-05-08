@@ -4,6 +4,7 @@
 
 import UIKit
 import CocoaLumberjack
+import VoxImplant
 
 class BaseViewController: UIViewController, VoxControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +30,10 @@ class BaseViewController: UIViewController, VoxControllerDelegate {
     }
 
     func vox(_ voximplant: VoxController!, ended call: CallDescriptor!, error: Error?) {
+        Log.d("\(#function) called on \(String(describing: self))")
+    }
+
+    func vox(_ voximplant: VoxController!, call: CallDescriptor!, didAdd endpoint: VIEndpoint!) {
         Log.d("\(#function) called on \(String(describing: self))")
     }
 }

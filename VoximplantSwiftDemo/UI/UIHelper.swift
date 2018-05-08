@@ -35,8 +35,11 @@ class UIHelper {
             } catch {
                 Log.e("\(error.localizedDescription)")
             }
-
-            let alertController = UIAlertController(title: "Voximplant", message: String(format: "Incoming %@ call from %@", descriptor.withVideo ? "video" : "audio", descriptor.call!.endpoints!.first!.userDisplayName), preferredStyle: .alert)
+            var userName = "";
+            if let userDisplayName = descriptor.call!.endpoints.first!.userDisplayName {
+                userName = " from \(userDisplayName)"
+            }
+            let alertController = UIAlertController(title: "Voximplant", message: String(format: "Incoming %@ call%@", descriptor.withVideo ? "video" : "audio", userName), preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Reject", style: .destructive) { action in
                 UIHelper.stopPlayer(player)
                 AppDelegate.instance().voxImplant!.rejectCall(call: descriptor, mode: .decline)

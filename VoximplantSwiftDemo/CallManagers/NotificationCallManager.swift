@@ -140,7 +140,12 @@ extension NotificationCallManager {
         if #available(iOS 8.2, *) {
             notification.alertTitle = "Voximplant"
         }
-        notification.alertBody = String(format: "Incoming %@ call from %@", descriptor.withVideo ? "video" : "audio", descriptor.call!.endpoints!.first!.userDisplayName)
+
+        var userName = "";
+        if let userDisplayName = descriptor.call!.endpoints.first!.userDisplayName {
+            userName = " from \(userDisplayName)"
+        }
+        notification.alertBody = String(format: "Incoming %@ call%@", descriptor.withVideo ? "video" : "audio", userName)
         notification.soundName = "ringtone.aiff"
         notification.category = descriptor.withVideo ? CallNotificationCategory.video.rawValue : CallNotificationCategory.audio.rawValue
         notification.userInfo = ["uuid": descriptor.uuid.uuidString]
@@ -182,7 +187,9 @@ extension NotificationCallManager {
         let content = UNMutableNotificationContent()
         content.title = "Voximplant"
         content.subtitle = String(format: "Incoming %@ call", descriptor.withVideo ? "video" : "audio")
-        content.body = String(format: "from %@", descriptor.call!.endpoints!.first!.userDisplayName)
+        if let userName = descriptor.call!.endpoints.first!.userDisplayName {
+            content.body = String(format: "from %@", userName)
+        }
         content.categoryIdentifier = descriptor.withVideo ? CallNotificationCategory.video.rawValue : CallNotificationCategory.audio.rawValue
         content.sound = UNNotificationSound(named: "ringtone.aiff")
         content.userInfo = ["uuid": descriptor.uuid.uuidString]

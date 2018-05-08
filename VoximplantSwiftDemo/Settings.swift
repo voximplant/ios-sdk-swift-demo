@@ -27,7 +27,7 @@ class Settings: NSObject {
         super.init()
         if !defaults.bool(forKey: "initialized") {
             cameraMirroring = true
-#if (arch(i386) || arch(x86_64)) && os(iOS)
+#if targetEnvironment(simulator)
             cameraMode = .Custom
 #endif
             defaults.set(true, forKey: "initialized")

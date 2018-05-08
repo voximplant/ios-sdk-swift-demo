@@ -55,7 +55,11 @@ class CallKitCallManager: NSObject, CallManager {
 
         if descriptor.incoming {
             let update = CXCallUpdate()
-            update.remoteHandle = CXHandle(type: .generic, value: descriptor.call!.endpoints!.first!.userDisplayName)
+            var userName = "Unknown caller";
+            if let userDisplayName = descriptor.call!.endpoints.first!.userDisplayName {
+                userName = userDisplayName
+            }
+            update.remoteHandle = CXHandle(type: .generic, value: userName)
             update.hasVideo = descriptor.withVideo
 
             self.provider?.reportNewIncomingCall(with: descriptor.uuid, update: update) { error in
@@ -206,7 +210,7 @@ extension CallKitCallManager: CXProviderDelegate {
 
 @available(iOS 10.0, *)
 extension CallKitCallManager: VICallDelegate {
-    func call(_ call: VICall!, didFailWithError error: Error!, headers: [AnyHashable: Any]!) {
+    func call(_ call: VICall, didFailWithError error: Error, headers: [AnyHashable: Any]?) {
         if let descriptor = self.call(call: call) {
             self.provider?.reportCall(with: descriptor.uuid, endedAt: Date(), reason: .failed)
         }
@@ -217,11 +221,11 @@ extension CallKitCallManager: VICallDelegate {
         }
     }
 
-    func call(_ call: VICall!, didConnectWithHeaders headers: [AnyHashable: Any]!) {
+    func call(_ call: VICall, didConnectWithHeaders headers: [AnyHashable: Any]?) {
         if let descriptor = self.call(call: call) {
             self.provider?.reportOutgoingCall(with: descriptor.uuid, connectedAt: Date())
 
-            if let userName = call.endpoints?.first?.userDisplayName {
+            if let userName = call.endpoints.first?.userDisplayName {
                 let update = CXCallUpdate()
                 let handle = CXHandle(type: .generic, value: userName)
                 update.remoteHandle = handle

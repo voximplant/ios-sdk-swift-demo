@@ -36,7 +36,7 @@ class SettingsDetailTableViewController: UITableViewController {
         if let settingsOption = SettingsOption(rawValue: self.optionDescriptor["id"] as! String) {
             switch settingsOption {
             case .CallManagerOption:
-                cell.accessoryType = option["value"] as! Bool == AppDelegate.instance().callKit ? .checkmark : .none
+                cell.accessoryType = (option["value"] as! Bool) == AppDelegate.instance().callKit ? .checkmark : .none
                 break
             case .OrientationOption:
                 let orientation = UIDevice.current.userInterfaceIdiom == .phone ?
@@ -44,10 +44,10 @@ class SettingsDetailTableViewController: UITableViewController {
                 cell.accessoryType = orientation.contains(VISupportedDeviceOrientation(rawValue: option["value"] as! Int)) ? .checkmark : .none
                 break
             case .CurrentCameraOption:
-                cell.accessoryType = option["value"] as! Bool == VICameraManager.shared().useBackCamera ? .checkmark : .none
+                cell.accessoryType = (option["value"] as! Bool) == VICameraManager.shared().useBackCamera ? .checkmark : .none
                 break
             case .CameraMirroringOption:
-                cell.accessoryType = option["value"] as! Bool == VICameraManager.shared().shouldMirrorFrontCamera ? .checkmark : .none
+                cell.accessoryType = (option["value"] as! Bool) == VICameraManager.shared().shouldMirrorFrontCamera ? .checkmark : .none
                 break
             case .CameraModeOption:
                 cell.accessoryType = CameraMode(rawValue: option["value"] as! Int) == AppDelegate.instance().cameraMode ? .checkmark : .none
@@ -73,7 +73,7 @@ class SettingsDetailTableViewController: UITableViewController {
                     UIHelper.ShowError(error: "CallKit available on iOS 10.0 and later", action: nil)
                 }
 
-#if (arch(i386) || arch(x86_64)) && os(iOS)
+#if targetEnvironment(simulator)
                 enable = false
                 UIHelper.ShowError(error: "CallKit not available in the Simulator", action: nil)
 #endif
@@ -98,7 +98,7 @@ class SettingsDetailTableViewController: UITableViewController {
                 VICameraManager.shared().shouldMirrorFrontCamera = option["value"] as! Bool
                 break
             case .CameraModeOption:
-#if (arch(i386) || arch(x86_64)) && os(iOS)
+#if targetEnvironment(simulator)
             UIHelper.ShowError(error: "Only Custom camera is available in the Simulator", action: nil)
 #else
                 Settings.shared.cameraMode = CameraMode(rawValue: option["value"] as! Int)

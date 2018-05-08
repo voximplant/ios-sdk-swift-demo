@@ -9,7 +9,7 @@ import CocoaLumberjack
 class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate {
     var call: CallDescriptor?
 
-    @IBOutlet var remoteContainer: UIView?
+    @IBOutlet var remoteContainer: ConferenceView?
     @IBOutlet var localContainer: UIView?
     @IBOutlet var dtfmButton: UIButton?
     @IBOutlet var holdButton: UIButton?
@@ -26,10 +26,8 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
     }
 
     @objc func switchVideoResizeMode() {
-
-        let switchVideoResizeModeInStreams: ([VIVideoStream]!) -> () = { streams in
-
-            for stream in streams {
+        let switchVideoResizeModeInStreams: ([VIVideoStream]?) -> () = { streams in
+            for stream in streams! {
                 for renderer in stream.renderers {
                     if renderer is VIVideoRendererView {
                         let videoRendererView = renderer as! VIVideoRendererView
@@ -57,7 +55,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
         VIAudioManager.shared().delegate = nil
     }
 
-    override open var supportedInterfaceOrientations : UIInterfaceOrientationMask     {
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
     }
 
@@ -68,16 +66,14 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
 
         self.call = self.voximplant.callManager!.activeCall
         self.call!.call.add(self)
-        self.call!.call.endpoints.first!.delegate = self;
+        for endpoint in self.call!.call.endpoints {
+            endpoint.delegate = self
+            self.remoteContainer?.addParticipant(endpoint)
+        }
 
         if let local = self.voximplant.localStream {
             let viewRenderer = VIVideoRendererView(containerView: self.localContainer)
             local.addRenderer(viewRenderer)
-        }
-
-        if let remote = self.voximplant.remoteStream {
-            let viewRenderer = VIVideoRendererView(containerView: self.remoteContainer)
-            remote.addRenderer(viewRenderer)
         }
     }
 
@@ -87,25 +83,25 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
         alertController.addAction(UIAlertAction(title: "Send", style: .default) { _ in
             let textField = alertController.textFields![0]
 
-            let dtfm : String! = textField.text
+            let dtfm: String! = textField.text
 
             Log.d("DTFM code: \(dtfm)")
 
             self.call!.call.sendDTMF(dtfm)
-         })
+        })
         alertController.addTextField { textField in
             textField.placeholder = "*123#"
             textField.keyboardType = .phonePad
-         }
+        }
 
         self.present(alertController, animated: true, completion: nil)
     }
 
     @IBAction func holdButtonTouched(_ sender: AnyObject?) {
-        let current : Bool! = self.holdButton?.isSelected
+        let current: Bool! = self.holdButton?.isSelected
         self.call!.call.setHold(!current) { error in
             Log.d("setHold: \(String(describing: error))")
-         }
+        }
         self.holdButton?.isSelected = !current
     }
 
@@ -116,7 +112,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
         for device in devices! {
             alertSheet.addAction(UIAlertAction(title: String(describing: device), style: device.type == VIAudioManager.shared().currentAudioDevice().type ? .destructive : .default) { action in
                 VIAudioManager.shared().select(device);
-             })
+            })
         }
         alertSheet.popoverPresentationController?.sourceView = self.view;
         alertSheet.popoverPresentationController?.sourceRect = self.view.bounds;
@@ -124,7 +120,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
     }
 
     @IBAction func muteVideoButtonTouched(_ sender: AnyObject?) {
-        let current : Bool! = self.muteVideoButton?.isSelected
+        let current: Bool! = self.muteVideoButton?.isSelected
         self.call!.call.setSendVideo(current) { error in
             guard error == nil else {
                 Log.e("muteVideo: \(String(describing: error))")
@@ -135,7 +131,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
     }
 
     @IBAction func muteAudioButtonTouched(_ sender: AnyObject?) {
-        let current : Bool! = self.muteAudioButton?.isSelected
+        let current: Bool! = self.muteAudioButton?.isSelected
         self.call!.call.sendAudio = current
         self.muteAudioButton?.isSelected = !current
     }
@@ -153,14 +149,35 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
         self.dismiss(animated: true)
     }
 
-    func call(_ call: VICall!, didAddLocalVideoStream videoStream: VIVideoStream!) {
+    override func vox(_ voximplant: VoxController!, call: CallDescriptor!, didAdd endpoint: VIEndpoint!) {
+        Log.d("New endpoint \(endpoint.endpointId)")
+        endpoint.delegate = self
+        self.remoteContainer?.addParticipant(endpoint)
+    }
+
+    func endpointDidRemove(_ endpoint: VIEndpoint) {
+        Log.d("Endpoint removed \(endpoint.endpointId)")
+        self.remoteContainer?.removeParticipant(endpoint)
+    }
+
+    func endpointInfoDidUpdate(_ endpoint: VIEndpoint) {
+        Log.d("Endpoint updated \(endpoint.endpointId)")
+        self.remoteContainer?.updateParticipant(endpoint)
+    }
+
+    func call(_ call: VICall, didAddLocalVideoStream videoStream: VIVideoStream) {
         let viewRenderer = VIVideoRendererView(containerView: self.localContainer)
         videoStream.addRenderer(viewRenderer)
     }
 
-    func endpoint(_ endpoint: VIEndpoint!, didAddRemoteVideoStream videoStream: VIVideoStream!) {
-        let viewRenderer = VIVideoRendererView(containerView: self.remoteContainer)
-        videoStream.addRenderer(viewRenderer)
+    func endpoint(_ endpoint: VIEndpoint, didAddRemoteVideoStream videoStream: VIVideoStream) {
+        Log.d("didAddRemoteVideoStream: \(endpoint.endpointId) \(endpoint.userDisplayName ?? "") \(videoStream.streamId)", context: self)
+        self.remoteContainer?.addVideoStream(endpoint, videoStream: videoStream)
+    }
+
+    func endpoint(_ endpoint: VIEndpoint, didRemoveRemoteVideoStream videoStream: VIVideoStream) {
+        Log.d("didRemoveRemoteVideoStream: \(endpoint.endpointId) \(endpoint.userDisplayName ?? "") \(videoStream.streamId)", context: self)
+        self.remoteContainer?.removeVideoStream(endpoint, videoStream: videoStream)
     }
 }
 

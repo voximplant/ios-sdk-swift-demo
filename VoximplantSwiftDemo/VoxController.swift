@@ -39,7 +39,7 @@ class VoxController: NSObject {
     var failureCompletion: VILoginFailure?
     var completion: ((Error?) -> (Void))?
 
-    var pushNotificationCompletion : (() -> Void)?
+    var pushNotificationCompletion: (() -> Void)?
 
     override init() {
         VIClient.setLogLevel(.info)
@@ -270,7 +270,7 @@ class VoxController: NSObject {
             if let delegate = self.delegate {
                 delegate.vox(self, prepared: descriptor)
             }
-         }
+        }
     }
 
     private func reconnect(completion: ((Error?) -> (Void))?) {
@@ -339,29 +339,37 @@ class VoxController: NSObject {
 }
 
 extension VoxController: VICallDelegate, VIEndpointDelegate, VIClientCallManagerDelegate {
-    func call(_ call: VICall!, didConnectWithHeaders headers: [AnyHashable: Any]!) {
+    func call(_ call: VICall, didConnectWithHeaders headers: [AnyHashable: Any]?) {
         UIHelper.ShowCallScreen()
     }
 
-    func call(_ call: VICall!, didFailWithError error: Error!, headers: [AnyHashable: Any]!) {
+    func call(_ call: VICall, didFailWithError error: Error, headers: [AnyHashable: Any]?) {
         Log.v("Test \(error)")
     }
 
-    func call(_ call: VICall!, didDisconnectWithHeaders headers: [AnyHashable: Any]!, answeredElsewhere: NSNumber!) {
+    func call(_ call: VICall, didDisconnectWithHeaders headers: [AnyHashable: Any]?, answeredElsewhere: NSNumber) {
         if let delegate = self.delegate {
             delegate.vox(self, ended: self.callManager!.call(call: call), error: nil)
         }
     }
 
-    func call(_ call: VICall!, didAddLocalVideoStream videoStream: VIVideoStream!) {
+    func call(_ call: VICall, didAddLocalVideoStream videoStream: VIVideoStream) {
+        Log.d("didAddLocalVideoStream: \(call.callId) \(videoStream.streamId)", context: self)
         self.localStream = videoStream
     }
 
-    func endpoint(_ endpoint: VIEndpoint!, didAddRemoteVideoStream videoStream: VIVideoStream!) {
+    func call(_ call: VICall, didAdd endpoint: VIEndpoint) {
+        if let delegate = self.delegate {
+            delegate.vox(self, call: self.callManager!.call(call: call), didAdd: endpoint);
+        }
+    }
+
+    func endpoint(_ endpoint: VIEndpoint, didAddRemoteVideoStream videoStream: VIVideoStream) {
+        Log.d("didAddRemoteVideoStream: \(endpoint.endpointId) \(endpoint.userDisplayName ?? "") \(videoStream.streamId)", context: self)
         self.remoteStream = videoStream
     }
 
-    func client(_ client: VIClient!, didReceiveIncomingCall call: VICall!, withIncomingVideo video: Bool, headers: [AnyHashable: Any]!) {
+    func client(_ client: VIClient!, didReceiveIncomingCall call: VICall!, withIncomingVideo video: Bool, headers: [AnyHashable: Any]?) {
         let descriptor = CallDescriptor(call: call, uuid: UUID(), video: video, incoming: true)
         self.callManager!.registerCall(descriptor)
 
@@ -486,4 +494,5 @@ protocol VoxControllerDelegate: class {
     func vox(_ voximplant: VoxController!, prepared call: CallDescriptor!)
     func vox(_ voximplant: VoxController!, started call: CallDescriptor!)
     func vox(_ voximplant: VoxController!, ended call: CallDescriptor!, error: Error?)
+    func vox(_ voximplant: VoxController!, call: CallDescriptor!, didAdd endpoint: VIEndpoint!)
 }

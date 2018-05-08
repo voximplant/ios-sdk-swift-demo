@@ -87,7 +87,7 @@ class SettingsViewController: UITableViewController {
             switch settingsOption {
             case .CallManagerOption:
                 for (_, option) in optionValues.enumerated() {
-                    if option["value"] as! Bool == AppDelegate.instance().callKit {
+                    if (option["value"] as! Bool) == AppDelegate.instance().callKit {
                         cell.valueLabel?.text = option["title"] as? String
                     }
                 }
@@ -99,14 +99,14 @@ class SettingsViewController: UITableViewController {
                 break
             case .CurrentCameraOption:
                 for (_, option) in optionValues.enumerated() {
-                    if option["value"] as! Bool == VICameraManager.shared().useBackCamera {
+                    if (option["value"] as! Bool) == VICameraManager.shared().useBackCamera {
                         cell.valueLabel?.text = option["title"] as? String
                     }
                 }
                 break;
             case .CameraMirroringOption:
                 for (_, option) in optionValues.enumerated() {
-                    if option["value"] as! Bool == VICameraManager.shared().shouldMirrorFrontCamera {
+                    if (option["value"] as! Bool) == VICameraManager.shared().shouldMirrorFrontCamera {
                         cell.valueLabel?.text = option["title"] as? String
                     }
                 }

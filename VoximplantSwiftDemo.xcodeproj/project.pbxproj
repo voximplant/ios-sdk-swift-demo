@@ -27,6 +27,7 @@
 		CCC498F59BFC27654895B2F1 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC49D66A2C4F22D7BCD0A8D /* CustomCamera.swift */; };
 		CCC499656A96BEF87DB86BE4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC4957B1C1960994048FF98 /* MainViewController.swift */; };
 		CCC49B74A3381D7361B52CF6 /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC49BF0B0DB536600405A02 /* CallManager.swift */; };
+		CCC49BCE7D8B72E6BC0C0419 /* ConferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC49FD6C8261D664410E4A5 /* ConferenceView.swift */; };
 		CCC49C6056A7AD7A8858EFA5 /* VoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC492D00742D08A53364017 /* VoxController.swift */; };
 		CCC49C7F300BCAE8F040C8EB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC492F2B2E3646CF534F67B /* BaseViewController.swift */; };
 		CCC49D30AE9A409752166283 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCC49B17EE2DA30729AC7FCA /* Main.storyboard */; };
@@ -63,6 +64,7 @@
 		CCC49D66A2C4F22D7BCD0A8D /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		CCC49E089A8C2B508BB41F45 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		CCC49FA3B85C0ADD1004439B /* NotificationCallManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCallManager.swift; sourceTree = "<group>"; };
+		CCC49FD6C8261D664410E4A5 /* ConferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceView.swift; sourceTree = "<group>"; };
 		CCC49FFC14C3B73630F79C99 /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 				8E64A1D9204428D700925847 /* SettingTableViewCell.swift */,
 				8EA9CF07204EAF7400C05397 /* Theme.swift */,
 				CCC49FFC14C3B73630F79C99 /* UIHelper.swift */,
+				CCC49FD6C8261D664410E4A5 /* ConferenceView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -187,7 +190,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Zingaya Ltd.";
 				TargetAttributes = {
 					8EEA98AF1FB5A1AD00E90861 = {
@@ -263,6 +266,7 @@
 				CCC49714DABAFC7CAA033F90 /* UIHelper.swift in Sources */,
 				CCC492C1E7A1EDE973F8F396 /* NotificationCallManager.swift in Sources */,
 				CCC49FB0513FDFD9B086E1CD /* Log.swift in Sources */,
+				CCC49BCE7D8B72E6BC0C0419 /* ConferenceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +287,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -290,6 +295,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -341,6 +347,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -348,6 +355,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

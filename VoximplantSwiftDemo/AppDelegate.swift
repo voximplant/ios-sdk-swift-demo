@@ -25,6 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var preferredCodec: PreferredCodec!
 
     static func instance() -> AppDelegate! {
+        if (!Thread.isMainThread) {
+            var instance : AppDelegate!
+            DispatchQueue.main.sync {
+                instance = AppDelegate.instance();
+            }
+            return instance
+        }
         return UIApplication.shared.delegate as! AppDelegate;
     }
 
