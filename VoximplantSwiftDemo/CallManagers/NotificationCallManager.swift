@@ -16,7 +16,7 @@ enum CallNotificationAction: String {
     case answerAudio = "kAnswerAudioCallNotificationAction"
 }
 
-class NotificationCallManager: CallManager {
+class NotificationCallManager: NSObject, CallManager {
     let kCallNotificationIdentifier = "kCallNotificationIdentifier"
 
     private(set) var activeCall: CallDescriptor? = nil
@@ -83,6 +83,18 @@ class NotificationCallManager: CallManager {
         } else {
             registerCallManagerLegacy()
         }
+    }
+
+    func cancelIncomingCall(_ descriptor: CallDescriptor!) {
+        Log.i("Cancelling current notification")
+
+        if #available(iOS 10.0, *) {
+            cancelIncomingCallCurrent(descriptor)
+        } else {
+            cancelIncomingCallLegacy(descriptor)
+        }
+
+        UIHelper.DismissIncomingCallAlert()
     }
 }
 
@@ -151,6 +163,16 @@ extension NotificationCallManager {
         notification.userInfo = ["uuid": descriptor.uuid.uuidString]
         UIApplication.shared.scheduleLocalNotification(notification)
     }
+
+    func cancelIncomingCallLegacy(_ descriptor: CallDescriptor!) {
+        if let notifications = UIApplication.shared.scheduledLocalNotifications {
+            for notification in notifications {
+                if (notification.userInfo?["uuid"] as? String) == descriptor.uuid.uuidString {
+                    UIApplication.shared.cancelLocalNotification(notification)
+                }
+            }
+        }
+    }
 }
 
 import UserNotifications
@@ -194,7 +216,7 @@ extension NotificationCallManager {
         content.sound = UNNotificationSound(named: "ringtone.aiff")
         content.userInfo = ["uuid": descriptor.uuid.uuidString]
 
-        let request = UNNotificationRequest(identifier: kCallNotificationIdentifier, content: content, trigger: nil)
+        let request = UNNotificationRequest(identifier: descriptor.uuid.uuidString, content: content, trigger: nil)
 
         let center = UNUserNotificationCenter.current()
         center.add(request) { error in
@@ -202,6 +224,20 @@ extension NotificationCallManager {
                 UIHelper.ShowError(error: error!.localizedDescription, action: nil)
                 return
             }
+        }
+    }
+
+    func cancelIncomingCallCurrent(_ descriptor: CallDescriptor!) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [descriptor.uuid.uuidString])
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [descriptor.uuid.uuidString])
+    }
+}
+
+extension NotificationCallManager : VICallDelegate {
+    func call(_ call: VICall, didDisconnectWithHeaders headers: [AnyHashable: Any]?, answeredElsewhere: NSNumber) {
+        if let descriptor = self.call(call: call) {
+            self.registeredCalls.removeValue(forKey: descriptor.uuid)
+            self.cancelIncomingCall(descriptor)
         }
     }
 }

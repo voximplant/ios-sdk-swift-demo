@@ -64,16 +64,20 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
 
         self.voximplant = AppDelegate.instance().voxImplant!;
 
-        self.call = self.voximplant.callManager!.activeCall
-        self.call!.call.add(self)
-        for endpoint in self.call!.call.endpoints {
-            endpoint.delegate = self
-            self.remoteContainer?.addParticipant(endpoint)
-        }
+        if let call = self.voximplant.callManager!.activeCall {
+            self.call = call
+            self.call!.call.addDelegate(self)
+            for endpoint in self.call!.call.endpoints {
+                endpoint.delegate = self
+                self.remoteContainer?.addParticipant(endpoint)
+            }
 
-        if let local = self.voximplant.localStream {
-            let viewRenderer = VIVideoRendererView(containerView: self.localContainer)
-            local.addRenderer(viewRenderer)
+            if let local = self.voximplant.localStream {
+                let viewRenderer = VIVideoRendererView(containerView: self.localContainer)
+                local.addRenderer(viewRenderer)
+            }
+        } else {
+            self.navigationController!.popViewController(animated: false)
         }
     }
 

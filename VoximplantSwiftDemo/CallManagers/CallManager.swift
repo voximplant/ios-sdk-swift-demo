@@ -9,7 +9,7 @@ protocol CallManagerDelegate {
 
 }
 
-protocol CallManager {
+protocol CallManager : VICallDelegate {
     var activeCall: CallDescriptor? { get }
     var pendingCall: CallDescriptor? { get }
 

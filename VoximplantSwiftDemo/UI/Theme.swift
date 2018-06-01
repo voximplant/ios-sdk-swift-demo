@@ -60,6 +60,7 @@ class Button: UIButton {
         self.setBackgroundImage(UIImage.from(color: UIColor.white), for: .normal)
         self.setBackgroundImage(UIImage.from(color: Theme.color), for: .highlighted)
         self.setBackgroundImage(UIImage.from(color: Theme.color), for: .selected)
+        self.setBackgroundImage(UIImage.from(color: Theme.color.withAlphaComponent(0.1)), for: .disabled)
         self.setTitleColor(Theme.color, for: .normal)
         self.setTitleColor(UIColor.white, for: .selected)
         self.setTitleColor(UIColor.white, for: .highlighted)

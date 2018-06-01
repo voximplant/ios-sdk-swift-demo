@@ -340,14 +340,32 @@ class VoxController: NSObject {
 
 extension VoxController: VICallDelegate, VIEndpointDelegate, VIClientCallManagerDelegate {
     func call(_ call: VICall, didConnectWithHeaders headers: [AnyHashable: Any]?) {
+        if let compl = self.pushNotificationCompletion {
+            compl()
+            self.pushNotificationCompletion = nil
+        }
+
         UIHelper.ShowCallScreen()
     }
 
     func call(_ call: VICall, didFailWithError error: Error, headers: [AnyHashable: Any]?) {
-        Log.v("Test \(error)")
+        Log.v("didFailWithError \(error)")
+        if let compl = self.pushNotificationCompletion {
+            compl()
+            self.pushNotificationCompletion = nil
+        }
+
+        if let delegate = self.delegate {
+            delegate.vox(self, ended: self.callManager!.call(call: call), error: error)
+        }
     }
 
     func call(_ call: VICall, didDisconnectWithHeaders headers: [AnyHashable: Any]?, answeredElsewhere: NSNumber) {
+        if let compl = self.pushNotificationCompletion {
+            compl()
+            self.pushNotificationCompletion = nil
+        }
+
         if let delegate = self.delegate {
             delegate.vox(self, ended: self.callManager!.call(call: call), error: nil)
         }
@@ -372,11 +390,7 @@ extension VoxController: VICallDelegate, VIEndpointDelegate, VIClientCallManager
     func client(_ client: VIClient!, didReceiveIncomingCall call: VICall!, withIncomingVideo video: Bool, headers: [AnyHashable: Any]?) {
         let descriptor = CallDescriptor(call: call, uuid: UUID(), video: video, incoming: true)
         self.callManager!.registerCall(descriptor)
-
-        if let compl = self.pushNotificationCompletion {
-            compl()
-            self.pushNotificationCompletion = nil
-        }
+        call.add(self.callManager!)
     }
 }
 
@@ -421,10 +435,7 @@ extension VoxController: PKPushRegistryDelegate {
             Log.i("Remote notifications token: \(tokenString)")
 
             self.imPushToken = token
-
-            if self.client.clientState == .loggedIn {
-                self.client.registerPushNotificationsToken(self.voipPushToken, imToken: self.imPushToken)
-            }
+            self.client.registerPushNotificationsToken(self.voipPushToken, imToken: self.imPushToken)
         }
     }
 
@@ -442,9 +453,7 @@ extension VoxController: PKPushRegistryDelegate {
         Log.i("New push credentials: \(token) for \(type)")
         self.voipPushToken = pushCredentials.token
 
-        if self.client.clientState == .loggedIn {
-            self.client.registerPushNotificationsToken(self.voipPushToken, imToken: self.imPushToken)
-        }
+        self.client.registerPushNotificationsToken(self.voipPushToken, imToken: self.imPushToken)
     }
 
     @available(iOS 11.0, *)
@@ -474,6 +483,10 @@ extension VoxController: VIClientSessionDelegate {
 
     func clientSessionDidDisconnect(_ client: VIClient!) {
         Log.i("Disconnected!")
+
+        if let delegate = self.delegate {
+            delegate.voxDidLoggedOut(self)
+        }
     }
 
     func client(_ client: VIClient!, sessionDidFailConnectWithError error: Error!) {

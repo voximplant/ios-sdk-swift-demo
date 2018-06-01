@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static func instance() -> AppDelegate! {
         if (!Thread.isMainThread) {
-            var instance : AppDelegate!
+            var instance: AppDelegate!
             DispatchQueue.main.sync {
                 instance = AppDelegate.instance();
             }
@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.preferredCodec = Settings.shared.preferredCodec
 
-        voxImplant = VoxController()
+        self.voxImplant = VoxController()
 
         return true
     }
@@ -89,6 +89,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         if let descriptor = self.voxImplant?.callManager?.pendingCall {
             UIHelper.ShowIncomingCallAlert(for: descriptor.uuid)
+        } else if let window = self.window, let navigationController = window.rootViewController as? UINavigationController, navigationController.viewControllers.count > 1 {
+            for vc in navigationController.viewControllers {
+                if let mainViewController = vc as? MainViewController {
+                    navigationController.popToViewController(vc, animated: false)
+                    mainViewController.reconnect()
+                }
+            }
         }
     }
 

@@ -8,6 +8,9 @@ import AVFoundation
 import Dispatch
 
 class UIHelper {
+    fileprivate static var incomingCallAlert: UIAlertController?
+    fileprivate static var player: AVAudioPlayer?
+
     class func ShowError(error: String!, action: UIAlertAction? = nil) {
         if let rootViewController = AppDelegate.instance().window?.rootViewController {
             let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
@@ -25,7 +28,6 @@ class UIHelper {
 
     class func ShowIncomingCallAlert(for uuid: UUID!) {
         if let rootViewController = AppDelegate.instance().window?.rootViewController, let callManager = AppDelegate.instance().voxImplant!.callManager, let descriptor = callManager.call(uuid: uuid) {
-            var player: AVAudioPlayer?
             do {
                 player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: String(format: "%@/ringtone.aiff", Bundle.main.resourcePath!)))
                 player!.numberOfLoops = -1
@@ -39,27 +41,38 @@ class UIHelper {
             if let userDisplayName = descriptor.call!.endpoints.first!.userDisplayName {
                 userName = " from \(userDisplayName)"
             }
-            let alertController = UIAlertController(title: "Voximplant", message: String(format: "Incoming %@ call%@", descriptor.withVideo ? "video" : "audio", userName), preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Reject", style: .destructive) { action in
+            incomingCallAlert = UIAlertController(title: "Voximplant", message: String(format: "Incoming %@ call%@", descriptor.withVideo ? "video" : "audio", userName), preferredStyle: .alert)
+            incomingCallAlert!.addAction(UIAlertAction(title: "Reject", style: .destructive) { action in
                 UIHelper.stopPlayer(player)
                 AppDelegate.instance().voxImplant!.rejectCall(call: descriptor, mode: .decline)
             })
-            alertController.addAction(UIAlertAction(title: descriptor.withVideo ? "Audio" : "Answer", style: .default) { action in
+            incomingCallAlert!.addAction(UIAlertAction(title: descriptor.withVideo ? "Audio" : "Answer", style: .default) { action in
                 UIHelper.stopPlayer(player)
                 descriptor.withVideo = false
                 AppDelegate.instance().voxImplant!.startCall(call: descriptor)
             })
 
             if (descriptor.withVideo) {
-                alertController.addAction(UIAlertAction(title: "Video", style: .default) { action in
+                incomingCallAlert!.addAction(UIAlertAction(title: "Video", style: .default) { action in
                     UIHelper.stopPlayer(player)
                     AppDelegate.instance().voxImplant!.startCall(call: descriptor)
                 })
             }
 
             DispatchQueue.main.async { () -> Void in
-                rootViewController.present(alertController, animated: true, completion: nil)
+                rootViewController.present(incomingCallAlert!, animated: true, completion: nil)
             }
+        }
+    }
+
+    class func DismissIncomingCallAlert() {
+        if let _ = incomingCallAlert, let rootViewController = AppDelegate.instance().window?.rootViewController {
+            rootViewController.dismiss(animated: true) {
+                if let player = player {
+                    UIHelper.stopPlayer(player)
+                }
+            }
+            incomingCallAlert = nil
         }
     }
 

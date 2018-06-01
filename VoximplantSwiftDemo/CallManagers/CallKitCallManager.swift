@@ -239,4 +239,10 @@ extension CallKitCallManager: VICallDelegate {
             self.startCallAction = nil
         }
     }
+
+    func call(_ call: VICall, didDisconnectWithHeaders headers: [AnyHashable: Any]?, answeredElsewhere: NSNumber) {
+        if let descriptor = self.call(call: call) {
+            self.endCall(descriptor)
+        }
+    }
 }
