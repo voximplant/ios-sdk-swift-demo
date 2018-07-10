@@ -55,10 +55,10 @@ class VoxController: NSObject {
 
             Log.v("authParams: \(String(describing: authParams))")
 
-            Settings.shared.refreshExpire = Date(timeIntervalSinceNow: (authParams!["refreshExpire"] as! Double))
-            Settings.shared.accessExpire = Date(timeIntervalSinceNow: (authParams!["accessExpire"] as! Double))
-            Settings.shared.refreshToken = authParams!["refreshToken"] as? String
-            Settings.shared.accessToken = authParams!["accessToken"] as? String
+            Settings.shared.refreshExpire = Date(timeIntervalSinceNow: (authParams["refreshExpire"] as! Double))
+            Settings.shared.accessExpire = Date(timeIntervalSinceNow: (authParams["accessExpire"] as! Double))
+            Settings.shared.refreshToken = authParams["refreshToken"] as? String
+            Settings.shared.accessToken = authParams["accessToken"] as? String
 
             self.client.registerPushNotificationsToken(self.voipPushToken, imToken: self.imPushToken)
 
@@ -198,14 +198,14 @@ class VoxController: NSObject {
         if self.otp {
             Log.i("Logging in with One Time Key")
             if let oneTimeKey = self.oneTimeKey, !oneTimeKey.isEmpty {
-                self.client.login(withUser: String(format: "%@.voximplant.com", arguments: [self.user]), oneTimeKey: self.oneTimeKey, success: self.successCompletion, failure: self.failureCompletion)
+                self.client.login(withUser: String(format: "%@.voximplant.com", arguments: [self.user]), oneTimeKey: oneTimeKey, success: self.successCompletion, failure: self.failureCompletion)
                 self.otp = false
                 self.oneTimeKey = nil
             } else {
                 self.client.requestOneTimeKey(withUser: String(format: "%@.voximplant.com", arguments: [self.user])) { otk in
-                    Log.i("One Time Key received: \(otk ?? "No key")")
+                    Log.i("One Time Key received: \(otk)")
                     self.oneTimeKey = self.MD5(String(format: "%@|%@", arguments: [
-                        otk!,
+                        otk,
                         self.MD5(String(format: "%@:voximplant.com:%@", arguments: [
                             self.user.split(separator: "@").map(String.init).first!,
                             self.password!
@@ -387,7 +387,7 @@ extension VoxController: VICallDelegate, VIEndpointDelegate, VIClientCallManager
         self.remoteStream = videoStream
     }
 
-    func client(_ client: VIClient!, didReceiveIncomingCall call: VICall!, withIncomingVideo video: Bool, headers: [AnyHashable: Any]?) {
+    func client(_ client: VIClient, didReceiveIncomingCall call: VICall, withIncomingVideo video: Bool, headers: [AnyHashable: Any]?) {
         let descriptor = CallDescriptor(call: call, uuid: UUID(), video: video, incoming: true)
         self.callManager!.registerCall(descriptor)
         call.add(self.callManager!)
@@ -475,13 +475,13 @@ extension VoxController: PKPushRegistryDelegate {
 }
 
 extension VoxController: VIClientSessionDelegate {
-    func clientSessionDidConnect(_ client: VIClient!) {
+    func clientSessionDidConnect(_ client: VIClient) {
         Log.i("Connected!")
         Settings.shared.serverGateway = gateway
         self.login()
     }
 
-    func clientSessionDidDisconnect(_ client: VIClient!) {
+    func clientSessionDidDisconnect(_ client: VIClient) {
         Log.i("Disconnected!")
 
         if let delegate = self.delegate {
@@ -489,7 +489,7 @@ extension VoxController: VIClientSessionDelegate {
         }
     }
 
-    func client(_ client: VIClient!, sessionDidFailConnectWithError error: Error!) {
+    func client(_ client: VIClient, sessionDidFailConnectWithError error: Error) {
         Log.i("Failed to connect! \(error)")
 
         if let failure = self.failureCompletion {

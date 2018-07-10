@@ -66,7 +66,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
 
         if let call = self.voximplant.callManager!.activeCall {
             self.call = call
-            self.call!.call.addDelegate(self)
+            self.call!.call.add(self)
             for endpoint in self.call!.call.endpoints {
                 endpoint.delegate = self
                 self.remoteContainer?.addParticipant(endpoint)
