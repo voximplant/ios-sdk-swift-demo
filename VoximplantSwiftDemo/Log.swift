@@ -4,6 +4,7 @@
 
 import Foundation
 import CocoaLumberjack
+import VoxImplant
 
 var ddLogLevel = DDLogLevel.off
 
@@ -17,6 +18,13 @@ class Log {
             DDLog.add(DDTTYLogger.sharedInstance, with: ddLogLevel)
             DDLog.add(DDASLLogger.sharedInstance, with: ddLogLevel)
         }
+
+        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+        let logFileManager : DDLogFileManagerDefault = DDLogFileManagerDefault(logsDirectory: documents)
+        logFileManager.maximumNumberOfLogFiles = 7
+        let fileLogger: DDFileLogger = DDFileLogger(logFileManager: logFileManager) // File Logger
+        fileLogger.rollingFrequency = TimeInterval(60*60*24)  // 24 hours
+        DDLog.add(fileLogger, with: ddLogLevel)
     }
 
     fileprivate class func describe(_ obj : AnyObject!) -> String {
@@ -45,9 +53,9 @@ class Log {
 
     class func d(_ message: @autoclosure() -> String, context: AnyObject? = nil) {
         if let context = context {
-            DDLogDebug("#SD/[\(describe(context))] \(message())")
+            DDLogDebug("#SD/D [\(describe(context))] \(message())")
         } else {
-            DDLogDebug("#SD/[\(currentQueueName()!)] \(message())")
+            DDLogDebug("#SD/D [\(currentQueueName()!)] \(message())")
         }
     }
 

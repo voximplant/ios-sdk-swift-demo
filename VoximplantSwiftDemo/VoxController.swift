@@ -42,10 +42,10 @@ class VoxController: NSObject {
     var pushNotificationCompletion: (() -> Void)?
 
     override init() {
-        VIClient.setLogLevel(.info)
+        VIClient.setLogLevel(.verbose)
         VIClient.saveLogToFileEnable()
 
-        self.client = VIClient(delegateQueue: DispatchQueue.main)
+        self.client = VIClient(delegateQueue: DispatchQueue.main, bundleId: Bundle.main.bundleIdentifier)
 
         super.init()
 
@@ -262,7 +262,7 @@ class VoxController: NSObject {
 
     func startOutgoingCall(_ contact: String!, withVideo: Bool!) {
         self.reconnect { error in
-            let call = self.client.call(toUser: contact, withSendVideo: withVideo, receiveVideo: withVideo, customData: "VoxImplant Demo Custom Data")
+            let call = self.client.call(toUser: contact, withSendVideo: withVideo, receiveVideo: withVideo, customData: "Voximplant swift demo")
             let descriptor = CallDescriptor(call: call, uuid: UUID(), video: withVideo, incoming: false)
 
             self.callManager!.registerCall(descriptor)
@@ -323,7 +323,7 @@ class VoxController: NSObject {
             self.callManager!.startCall(call)
             VIAudioManager.shared().select(VIAudioDevice(type: call.withVideo ? .speaker : .none))
             if (call.incoming) {
-                call.call.answer(withSendVideo: call.withVideo, receiveVideo: call.withVideo, customData: "voximplant swift demo", headers: nil)
+                call.call.answer(withSendVideo: call.withVideo, receiveVideo: call.withVideo, customData: "Voximplant swift demo", headers: nil)
             } else {
                 call.call.start(withHeaders: nil)
             }
@@ -435,7 +435,6 @@ extension VoxController: PKPushRegistryDelegate {
             Log.i("Remote notifications token: \(tokenString)")
 
             self.imPushToken = token
-            self.client.registerPushNotificationsToken(self.voipPushToken, imToken: self.imPushToken)
         }
     }
 
@@ -452,8 +451,6 @@ extension VoxController: PKPushRegistryDelegate {
         }.joined()
         Log.i("New push credentials: \(token) for \(type)")
         self.voipPushToken = pushCredentials.token
-
-        self.client.registerPushNotificationsToken(self.voipPushToken, imToken: self.imPushToken)
     }
 
     @available(iOS 11.0, *)

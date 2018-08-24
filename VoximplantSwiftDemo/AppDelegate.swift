@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Log.enable(level: .verbose)
+        Log.enable(level: DDLogLevel(rawValue: ddLogLevel.rawValue | VILogLevel.debug.rawValue)!)
 
         Theme.applyTheme()
 
