@@ -42,7 +42,7 @@ class VoxController: NSObject {
     var pushNotificationCompletion: (() -> Void)?
 
     override init() {
-        VIClient.setLogLevel(.verbose)
+        VIClient.setLogLevel(.info)
         VIClient.saveLogToFileEnable()
 
         self.client = VIClient(delegateQueue: DispatchQueue.main, bundleId: Bundle.main.bundleIdentifier)
@@ -372,7 +372,7 @@ extension VoxController: VICallDelegate, VIEndpointDelegate, VIClientCallManager
     }
 
     func call(_ call: VICall, didAddLocalVideoStream videoStream: VIVideoStream) {
-        Log.d("didAddLocalVideoStream: \(call.callId) \(videoStream.streamId)", context: self)
+        Log.d("didAddLocalVideoStream: \(call.callId) \(String(describing: videoStream.streamId))", context: self)
         self.localStream = videoStream
     }
 
@@ -383,7 +383,7 @@ extension VoxController: VICallDelegate, VIEndpointDelegate, VIClientCallManager
     }
 
     func endpoint(_ endpoint: VIEndpoint, didAddRemoteVideoStream videoStream: VIVideoStream) {
-        Log.d("didAddRemoteVideoStream: \(endpoint.endpointId) \(endpoint.userDisplayName ?? "") \(videoStream.streamId)", context: self)
+        Log.d("didAddRemoteVideoStream: \(endpoint.endpointId) \(endpoint.userDisplayName ?? "") \(String(describing: videoStream.streamId))", context: self)
         self.remoteStream = videoStream
     }
 
@@ -442,7 +442,7 @@ extension VoxController: PKPushRegistryDelegate {
         let notificationProcessing = VIMessengerPushNotificationProcessing.shared()
 
         let messengerEvent = (notificationProcessing?.processPushNotification(payload) as! VIMessageEvent)
-        Log.i("event = \(messengerEvent.eventType.rawValue), conversation = \(messengerEvent.message.conversation)")
+        Log.i("event = \(messengerEvent.eventType.rawValue), conversation = \(String(describing: messengerEvent.message.conversation))")
     }
 
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {

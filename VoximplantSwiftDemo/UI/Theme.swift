@@ -16,14 +16,14 @@ class Theme {
     static let defaultFont: UIFont! = UIFont(name: "Roboto-Regular", size: 14.0)
     static let titleFont: UIFont! = UIFont(name: "Roboto-Bold", size: 18.0)
 
-    static let titleTextAttributes : [NSAttributedStringKey : Any]! = [NSAttributedStringKey.font: Theme.defaultFont, NSAttributedStringKey.foregroundColor: UIColor.white]
+    static let titleTextAttributes : [NSAttributedString.Key : Any]! = [NSAttributedString.Key.font: Theme.defaultFont, NSAttributedString.Key.foregroundColor: UIColor.white]
 
     static func applyTheme() {
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().barStyle = UIBarStyle.default
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().barTintColor = Theme.headerColor
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: Theme.titleFont, NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: Theme.titleFont, NSAttributedString.Key.foregroundColor: UIColor.white]
 
         UIBarButtonItem.appearance().setTitleTextAttributes(Theme.titleTextAttributes, for: .normal)
         UIBarButtonItem.appearance().setTitleTextAttributes(Theme.titleTextAttributes, for: .highlighted)

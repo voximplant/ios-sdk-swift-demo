@@ -94,10 +94,10 @@ class CallKitCallManager: NSObject, CallManager {
         requestTransaction(transaction)
     }
 
-    private func requestTransaction(_ transaction : CXTransaction!) {
+    private func requestTransaction(_ transaction: CXTransaction!) {
         callController.request(transaction) { error in
             if let error = error {
-               UIHelper.ShowError(error: error.localizedDescription, action: nil)
+                UIHelper.ShowError(error: error.localizedDescription, action: nil)
             }
         }
     }

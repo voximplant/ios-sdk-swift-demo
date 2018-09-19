@@ -29,7 +29,7 @@ class Log {
 
     fileprivate class func describe(_ obj : AnyObject!) -> String {
         if (obj is String) {
-            return "\(currentQueueName()!) | \(obj)"
+            return "\(currentQueueName()!) | \(String(describing: obj))"
         } else {
             return "\(currentQueueName()!) | \(String(describing: type(of: obj!))) <\(Unmanaged.passUnretained(obj).toOpaque())>"
         }

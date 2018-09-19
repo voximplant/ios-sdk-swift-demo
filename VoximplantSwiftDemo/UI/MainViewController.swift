@@ -72,7 +72,7 @@ class MainViewController: BaseViewController {
 
         let contact = self.targetField?.text!
 
-        Log.d("Calling \(String(describing: contact)), with video: \(withVideo)")
+        Log.d("Calling \(String(describing: contact)), with video: \(String(describing: withVideo))")
 
         let voxImplant = AppDelegate.instance().voxImplant!
 

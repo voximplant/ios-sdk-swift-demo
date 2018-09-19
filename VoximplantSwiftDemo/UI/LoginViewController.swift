@@ -25,7 +25,7 @@ class LoginViewController: BaseViewController {
 
         let logoImage = UIImage(named: "Logo")
 
-        let titleView = UIImageView(image: logoImage!.imageWithInsets(insets: UIEdgeInsetsMake(8, 8, 8, 8)))
+        let titleView = UIImageView(image: logoImage!.imageWithInsets(insets: UIEdgeInsets.init(top: 8, left: 8, bottom: 8, right: 8)))
         titleView.contentMode = .scaleAspectFit
 
         let height = self.navigationController?.navigationBar.frame.size.height ?? 0

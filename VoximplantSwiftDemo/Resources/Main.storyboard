@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHC-2I-USg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHC-2I-USg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -335,9 +335,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyq-N9-vrd" customClass="Button" customModule="VoximplantSwiftDemo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="517" width="93" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="DTFM"/>
+                                <state key="normal" title="DTMF"/>
                                 <connections>
-                                    <action selector="dtfmButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="MO2-qc-h7v"/>
+                                    <action selector="dtmfButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="MO2-qc-h7v"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghe-IS-mQ9" customClass="Button" customModule="VoximplantSwiftDemo" customModuleProvider="target">
@@ -470,7 +470,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="dtfmButton" destination="Fyq-N9-vrd" id="l9h-Qy-mj0"/>
+                        <outlet property="dtmfButton" destination="Fyq-N9-vrd" id="l9h-Qy-mj0"/>
                         <outlet property="hangButton" destination="6hQ-Ee-Mtp" id="vs3-sQ-ogb"/>
                         <outlet property="holdButton" destination="ABj-4o-o6f" id="HfA-Gc-agO"/>
                         <outlet property="localContainer" destination="V4e-fi-bG9" id="fNC-Oz-38l"/>

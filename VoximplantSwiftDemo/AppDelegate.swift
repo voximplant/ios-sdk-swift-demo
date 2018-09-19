@@ -32,11 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             return instance
         }
-        return UIApplication.shared.delegate as! AppDelegate;
+        return UIApplication.shared.delegate as? AppDelegate;
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Log.enable(level: DDLogLevel(rawValue: ddLogLevel.rawValue | VILogLevel.debug.rawValue)!)
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Log.enable(level: .debug)
 
         Theme.applyTheme()
 
@@ -170,12 +170,12 @@ extension AppDelegate {
     func processCall(_ action: CallNotificationAction!, forCall descriptor: CallDescriptor!) {
         if let vox = self.voxImplant {
             switch action {
-            case .reject:
+            case .reject?:
                 vox.rejectCall(call: descriptor, mode: .decline)
-            case .answerAudio:
+            case .answerAudio?:
                 descriptor.withVideo = false
                 fallthrough
-            case .answerVideo:
+            case .answerVideo?:
                 vox.startCall(call: descriptor)
             default:
                 break

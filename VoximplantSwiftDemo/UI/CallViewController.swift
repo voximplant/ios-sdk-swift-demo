@@ -11,7 +11,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
 
     @IBOutlet var remoteContainer: ConferenceView?
     @IBOutlet var localContainer: UIView?
-    @IBOutlet var dtfmButton: UIButton?
+    @IBOutlet var dtmfButton: UIButton?
     @IBOutlet var holdButton: UIButton?
     @IBOutlet var loudspeakerButton: UIButton?
     @IBOutlet var muteVideoButton: UIButton?
@@ -22,7 +22,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
 
     override func viewDidLoad() {
         self.localContainer?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(switchCamera)))
-        self.remoteContainer?.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(switchVideoResizeMode)))
+        self.remoteContainer?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(switchVideoResizeMode)))
     }
 
     @objc func switchVideoResizeMode() {
@@ -81,17 +81,17 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
         }
     }
 
-    @IBAction func dtfmButtonTouched(_ sender: AnyObject?) {
-        let alertController = UIAlertController(title: "Send DTFM code", message: "Code to send:", preferredStyle: .alert)
+    @IBAction func dtmfButtonTouched(_ sender: AnyObject?) {
+        let alertController = UIAlertController(title: "Send DTMF code", message: "Code to send:", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "Send", style: .default) { _ in
             let textField = alertController.textFields![0]
 
-            let dtfm: String! = textField.text
+            let dtmf: String! = textField.text
 
-            Log.d("DTFM code: \(dtfm)")
+            Log.d("DTMF code: \(String(describing: dtmf))")
 
-            self.call!.call.sendDTMF(dtfm)
+            self.call!.call.sendDTMF(dtmf)
         })
         alertController.addTextField { textField in
             textField.placeholder = "*123#"
@@ -175,12 +175,12 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
     }
 
     func endpoint(_ endpoint: VIEndpoint, didAddRemoteVideoStream videoStream: VIVideoStream) {
-        Log.d("didAddRemoteVideoStream: \(endpoint.endpointId) \(endpoint.userDisplayName ?? "") \(videoStream.streamId)", context: self)
+        Log.d("didAddRemoteVideoStream: \(endpoint.endpointId) \(endpoint.userDisplayName ?? "") \(String(describing: videoStream.streamId))", context: self)
         self.remoteContainer?.addVideoStream(endpoint, videoStream: videoStream)
     }
 
     func endpoint(_ endpoint: VIEndpoint, didRemoveRemoteVideoStream videoStream: VIVideoStream) {
-        Log.d("didRemoveRemoteVideoStream: \(endpoint.endpointId) \(endpoint.userDisplayName ?? "") \(videoStream.streamId)", context: self)
+        Log.d("didRemoveRemoteVideoStream: \(endpoint.endpointId) \(endpoint.userDisplayName ?? "") \(String(describing: videoStream.streamId))", context: self)
         self.remoteContainer?.removeVideoStream(endpoint, videoStream: videoStream)
     }
 }
@@ -191,7 +191,7 @@ extension CallViewController: VIAudioManagerDelegate {
     }
 
     func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>!) {
-        Log.v("audioDevicesListChanged: \(availableAudioDevices)")
+        Log.v("audioDevicesListChanged: \(String(describing: availableAudioDevices))")
     }
 
     func audioDeviceUnavailable(_ audioDevice: VIAudioDevice!) {
