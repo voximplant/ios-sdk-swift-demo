@@ -13,14 +13,6 @@ enum CameraMode: Int {
     case Normal = 1, Preprocessing = 2, Custom = 3
 }
 
-enum PreferredCodec: String, RawRepresentable {
-    case Auto = ""
-    case VP8 = "VP8"
-    case H264 = "H264"
-
-    static let allValues = [Auto, VP8, H264]
-}
-
 extension VISupportedDeviceOrientation: Hashable {
     public var hashValue: Int {
         return self.rawValue.hashValue;
@@ -120,7 +112,7 @@ class SettingsViewController: UITableViewController {
                 break
             case .PreferredCodecOption:
                 for (_, option) in optionValues.enumerated() {
-                    if option["value"] as! String == AppDelegate.instance().preferredCodec.rawValue {
+                    if option["value"] as! Int == AppDelegate.instance().preferredCodec.rawValue {
                         cell.valueLabel?.text = option["title"] as? String
                     }
                 }

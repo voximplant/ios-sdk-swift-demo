@@ -82,6 +82,10 @@ class MainViewController: BaseViewController {
 
     override func voxDidLoggedOut(_ voximplant: VoxController!) {
         super.voxDidLoggedOut(voximplant)
+
+        if let progress = self.progress {
+            progress.hide(animated: true)
+        }
     }
 
     override func voxDidLoggedIn(_ voximplant: VoxController!) {

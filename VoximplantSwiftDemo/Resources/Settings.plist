@@ -148,19 +148,19 @@
 				<key>title</key>
 				<string>Auto</string>
 				<key>value</key>
-				<string></string>
+				<integer>0</integer>
 			</dict>
 			<dict>
 				<key>title</key>
 				<string>VP8</string>
 				<key>value</key>
-				<string>VP8</string>
+				<integer>1</integer>
 			</dict>
 			<dict>
 				<key>title</key>
 				<string>H264</string>
 				<key>value</key>
-				<string>H264</string>
+				<integer>2</integer>
 			</dict>
 		</array>
 	</dict>

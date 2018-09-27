@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     var cameraMode: CameraMode!
-    var preferredCodec: PreferredCodec!
+    var preferredCodec: VIVideoCodec!
 
     static func instance() -> AppDelegate! {
         if (!Thread.isMainThread) {

@@ -3,6 +3,7 @@
  */
 
 import Foundation
+import VoxImplant
 
 class Settings: NSObject {
     fileprivate let kCallKitEnabledKey = "kCallKitEnabledKey"
@@ -133,12 +134,10 @@ class Settings: NSObject {
             defaults.set(newValue, forKey: kDefaultCamera)
         }
     }
-    var preferredCodec: PreferredCodec! {
+    var preferredCodec: VIVideoCodec! {
         get {
-            if let codec = defaults.string(forKey: kPreferredCodecKey) {
-                return PreferredCodec(rawValue: codec)
-            }
-            return PreferredCodec.Auto
+            let codec = VIVideoCodec(rawValue: defaults.integer(forKey: kPreferredCodecKey))
+            return codec != nil ? codec : .auto
         }
         set {
             defaults.set(newValue.rawValue, forKey: kPreferredCodecKey)

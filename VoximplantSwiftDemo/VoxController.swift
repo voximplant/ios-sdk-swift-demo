@@ -262,7 +262,12 @@ class VoxController: NSObject {
 
     func startOutgoingCall(_ contact: String!, withVideo: Bool!) {
         self.reconnect { error in
-            let call = self.client.call(toUser: contact, withSendVideo: withVideo, receiveVideo: withVideo, customData: "Voximplant swift demo")
+            let settings = VICallSettings()
+            settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: withVideo, sendVideo: withVideo)
+            settings.customData = "Voximplant swift demo"
+            settings.preferredVideoCodec = AppDelegate.instance().preferredCodec
+            let call = self.client.call(contact, settings: settings)
+
             let descriptor = CallDescriptor(call: call, uuid: UUID(), video: withVideo, incoming: false)
 
             self.callManager!.registerCall(descriptor)
@@ -318,14 +323,16 @@ class VoxController: NSObject {
                 }
             }
 
-            call.call.preferredVideoCodec = AppDelegate.instance().preferredCodec.rawValue
-
             self.callManager!.startCall(call)
             VIAudioManager.shared().select(VIAudioDevice(type: call.withVideo ? .speaker : .none))
             if (call.incoming) {
-                call.call.answer(withSendVideo: call.withVideo, receiveVideo: call.withVideo, customData: "Voximplant swift demo", headers: nil)
+                let settings = VICallSettings()
+                settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: call.withVideo, sendVideo: call.withVideo)
+                settings.customData = "Voximplant swift demo"
+                settings.preferredVideoCodec = AppDelegate.instance().preferredCodec
+                call.call.answer(with: settings)
             } else {
-                call.call.start(withHeaders: nil)
+                call.call.start()
             }
         }
 
@@ -374,6 +381,10 @@ extension VoxController: VICallDelegate, VIEndpointDelegate, VIClientCallManager
     func call(_ call: VICall, didAddLocalVideoStream videoStream: VIVideoStream) {
         Log.d("didAddLocalVideoStream: \(call.callId) \(String(describing: videoStream.streamId))", context: self)
         self.localStream = videoStream
+    }
+
+    func call(_ call: VICall, didRemoveLocalVideoStream videoStream: VIVideoStream) {
+        self.localStream = nil
     }
 
     func call(_ call: VICall, didAdd endpoint: VIEndpoint) {

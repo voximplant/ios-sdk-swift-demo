@@ -53,7 +53,7 @@ class SettingsDetailTableViewController: UITableViewController {
                 cell.accessoryType = CameraMode(rawValue: option["value"] as! Int) == AppDelegate.instance().cameraMode ? .checkmark : .none
                 break
             case .PreferredCodecOption:
-                cell.accessoryType = PreferredCodec(rawValue: option["value"] as! String) == AppDelegate.instance().preferredCodec ? .checkmark : .none
+                cell.accessoryType = VIVideoCodec(rawValue: option["value"] as! Int) == AppDelegate.instance().preferredCodec ? .checkmark : .none
             }
         }
 
@@ -106,8 +106,8 @@ class SettingsDetailTableViewController: UITableViewController {
 #endif
                 break
             case .PreferredCodecOption:
-                Settings.shared.preferredCodec = PreferredCodec(rawValue: option["value"] as! String)
-                AppDelegate.instance().preferredCodec = PreferredCodec(rawValue: option["value"] as! String)
+                Settings.shared.preferredCodec = VIVideoCodec(rawValue: option["value"] as! Int)
+                AppDelegate.instance().preferredCodec = VIVideoCodec(rawValue: option["value"] as! Int)
             }
         }
 
