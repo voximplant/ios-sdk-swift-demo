@@ -105,6 +105,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
         let current: Bool! = self.holdButton?.isSelected
         self.call!.call.setHold(!current) { error in
             Log.d("setHold: \(String(describing: error))")
+            UIHelper.ShowError(error: error?.localizedDescription)
         }
         self.holdButton?.isSelected = !current
     }
@@ -128,6 +129,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
         self.call!.call.setSendVideo(current) { error in
             guard error == nil else {
                 Log.e("muteVideo: \(String(describing: error))")
+                UIHelper.ShowError(error: error?.localizedDescription)
                 return
             }
             self.muteVideoButton?.isSelected = !current
@@ -149,7 +151,9 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
 
     override func vox(_ voximplant: VoxController!, ended call: CallDescriptor!, error: Error?) {
         super.vox(voximplant, ended: call, error: error)
-
+        if let err = error {
+            UIHelper.ShowError(error: err.localizedDescription)
+        }
         self.dismiss(animated: true)
     }
 
