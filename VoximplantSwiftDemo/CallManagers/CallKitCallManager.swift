@@ -16,7 +16,7 @@ class CallKitCallManager: NSObject, CallManager {
         providerConfiguration.supportedHandleTypes = [.generic]
         providerConfiguration.ringtoneSound = "ringtone.aiff"
         if let logo = UIImage(named: "CallKitLogo") {
-            providerConfiguration.iconTemplateImageData = UIImagePNGRepresentation(logo)
+            providerConfiguration.iconTemplateImageData = logo.pngData()
         }
 
         return providerConfiguration

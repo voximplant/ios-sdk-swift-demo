@@ -114,7 +114,7 @@ class VoxController: NSObject {
 
         var needAudio = false, needVideo = false
 
-        switch AVAudioSession.sharedInstance().recordPermission() {
+        switch AVAudioSession.sharedInstance().recordPermission {
         case .undetermined:
             self.requestRecordPermission()
             return
@@ -136,7 +136,7 @@ class VoxController: NSObject {
 
         if needAudio || needVideo {
             let action = UIAlertAction(title: "Settings", style: .default) { action in
-                UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
             }
             UIHelper.ShowError(error: "Microphone and Camera permissions required!", action: action)
         }

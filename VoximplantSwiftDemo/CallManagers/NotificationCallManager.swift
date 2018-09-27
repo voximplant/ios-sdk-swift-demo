@@ -213,7 +213,7 @@ extension NotificationCallManager {
             content.body = String(format: "from %@", userName)
         }
         content.categoryIdentifier = descriptor.withVideo ? CallNotificationCategory.video.rawValue : CallNotificationCategory.audio.rawValue
-        content.sound = UNNotificationSound(named: "ringtone.aiff")
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "ringtone.aiff"))
         content.userInfo = ["uuid": descriptor.uuid.uuidString]
 
         let request = UNNotificationRequest(identifier: descriptor.uuid.uuidString, content: content, trigger: nil)

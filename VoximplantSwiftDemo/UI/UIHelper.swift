@@ -31,8 +31,14 @@ class UIHelper {
             do {
                 player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: String(format: "%@/ringtone.aiff", Bundle.main.resourcePath!)))
                 player!.numberOfLoops = -1
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
-                try AVAudioSession.sharedInstance().setActive(true)
+                let audioSession = AVAudioSession.sharedInstance()
+                if #available(iOS 10.0, *) {
+                    try audioSession.setCategory(AVAudioSession.Category.ambient, mode: .default)
+                } else {
+                    // Workaround until https://forums.swift.org/t/using-methods-marked-unavailable-in-swift-4-2/14949 is fixed
+                    audioSession.perform(NSSelectorFromString("setCategory:error:"), with: AVAudioSession.Category.ambient)
+                }
+                try audioSession.setActive(true)
                 player!.play()
             } catch {
                 Log.e("\(error.localizedDescription)")
