@@ -18,7 +18,7 @@ class Settings: NSObject {
     fileprivate let kCameraMirroringKey = "kCameraMirroringKey"
     fileprivate let kSupportedOrientationKey = "kSupportedOrientationKey"
     fileprivate let kDefaultCamera = "kDefaultCamera"
-    fileprivate let kPreferredCodecKey = "kPreferredCodecKey"
+    fileprivate let kPreferredCodecKey = "kVideoCodecKey"
 
     fileprivate let defaults = UserDefaults.standard
 

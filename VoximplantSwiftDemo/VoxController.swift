@@ -45,7 +45,7 @@ class VoxController: NSObject {
         VIClient.setLogLevel(.info)
         VIClient.saveLogToFileEnable()
 
-        self.client = VIClient(delegateQueue: DispatchQueue.main, bundleId: Bundle.main.bundleIdentifier)
+        self.client = VIClient(delegateQueue: DispatchQueue.main)
 
         super.init()
 
