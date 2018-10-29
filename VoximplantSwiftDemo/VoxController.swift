@@ -37,8 +37,9 @@ class VoxController: NSObject {
 
     var successCompletion: VILoginSuccess?
     var failureCompletion: VILoginFailure?
-    var completion: ((Error?) -> (Void))?
 
+    var loginCompletion: ((Error?) -> (Void))?
+    var completion: ((Error?) -> (Void))?
     var pushNotificationCompletion: (() -> Void)?
 
     override init() {
@@ -166,13 +167,92 @@ class VoxController: NSObject {
         self.gateway = gateway
     }
 
-    func login(user: String!, password: String?, otp: Bool?, success: VILoginSuccess?, failure: VILoginFailure?) {
-        self.otp = otp
+    func login(user: String!, password: String!, success: VILoginSuccess?, failure: VILoginFailure?) {
         self.user = user
-        self.password = password
 
         self.loginSuccess = success
         self.loginFailure = failure
+
+        self.loginCompletion = { error in
+            if let error = error {
+                self.failureCompletion?(error)
+            } else {
+                Log.i("Logging in with login and password")
+                self.client.login(withUser: String(format: "%@.voximplant.com", arguments: [self.user]), password: password, success: self.successCompletion, failure: self.failureCompletion)
+            }
+        }
+
+        self.reconnect(completion: nil)
+    }
+
+    func loginWithOneTimeKey(user: String!, password: String!, success: VILoginSuccess?, failure: VILoginFailure?) {
+        self.user = user
+
+        self.loginSuccess = success
+        self.loginFailure = failure
+
+        self.loginCompletion = { error in
+            if let error = error {
+                self.failureCompletion?(error)
+            } else {
+                Log.i("Logging in with login and one time key")
+                self.client.requestOneTimeKey(withUser: String(format: "%@.voximplant.com", arguments: [self.user!])) { otk, error in
+                    if let otk = otk {
+                        Log.i("One Time Key received: \(otk)")
+                        let oneTimeKey = self.MD5(String(format: "%@|%@", arguments: [
+                            otk,
+                            self.MD5(String(format: "%@:voximplant.com:%@", arguments: [
+                                self.user!.split(separator: "@").map(String.init).first!,
+                                password
+                            ]))
+                        ]))
+                        self.client.login(withUser: String(format: "%@.voximplant.com", arguments: [self.user!]), oneTimeKey: oneTimeKey, success: self.successCompletion, failure: self.failureCompletion)
+                    } else {
+                        self.failureCompletion?(error!)
+                    }
+                }
+            }
+        }
+
+        self.reconnect(completion: nil)
+    }
+
+    func loginWithToken(user: String!, success: VILoginSuccess?, failure: VILoginFailure?) {
+        self.user = user
+
+        self.loginSuccess = success
+        self.loginFailure = failure
+
+        self.loginCompletion = { error in
+            if let error = error {
+                self.failureCompletion?(error)
+            } else {
+                Log.i("Logging in with login and access token")
+                if let token = Settings.shared.accessToken, let expire = Settings.shared.accessExpire, !token.isEmpty, Date() < expire {
+                    Log.i("Access token is fresh")
+                    self.client.login(withUser: String(format: "%@.voximplant.com", arguments: [self.user]), token: token, success: self.successCompletion, failure: self.failureCompletion)
+                } else if let token = Settings.shared.refreshToken, let expire = Settings.shared.refreshExpire, !token.isEmpty, Date() < expire {
+                    Log.i("Access token is outdated, refreshing")
+                    self.client.refreshToken(withUser: String(format: "%@.voximplant.com", arguments: [self.user]), token: token) { authParams, error in
+                        Log.v("RefreshToken authParams: \(String(describing: authParams)), error: \(error?.localizedDescription ?? "no error")")
+                        if let err = error {
+                            self.failureCompletion?(err)
+                        } else {
+                            Settings.shared.refreshExpire = Date(timeIntervalSinceNow: (authParams!["refreshExpire"] as! Double))
+                            Settings.shared.accessExpire = Date(timeIntervalSinceNow: (authParams!["accessExpire"] as! Double))
+                            Settings.shared.refreshToken = authParams!["refreshToken"] as? String
+                            Settings.shared.accessToken = authParams!["accessToken"] as? String
+
+                            self.loginWithToken(user: self.user, success: self.successCompletion, failure: self.failureCompletion)
+                        }
+                    }
+                } else {
+                    let error = "Access and refresh tokens are outdated";
+                    Log.e(error)
+                    self.failureCompletion?(NSError(domain: "com.voximplant.demo", code: 401, userInfo: [NSLocalizedDescriptionKey: error]))
+                }
+            }
+        }
 
         self.reconnect(completion: nil)
     }
@@ -190,60 +270,6 @@ class VoxController: NSObject {
         return digestData.map {
             String(format: "%02hhx", $0)
         }.joined()
-    }
-
-    func login() {
-        if self.user == nil {
-            self.user = Settings.shared.userLogin
-        }
-
-        if self.otp {
-            Log.i("Logging in with One Time Key")
-            if let oneTimeKey = self.oneTimeKey, !oneTimeKey.isEmpty {
-                self.client.login(withUser: String(format: "%@.voximplant.com", arguments: [self.user]), oneTimeKey: oneTimeKey, success: self.successCompletion, failure: self.failureCompletion)
-                self.otp = false
-                self.oneTimeKey = nil
-            } else {
-                self.client.requestOneTimeKey(withUser: String(format: "%@.voximplant.com", arguments: [self.user])) { otk in
-                    Log.i("One Time Key received: \(otk)")
-                    self.oneTimeKey = self.MD5(String(format: "%@|%@", arguments: [
-                        otk,
-                        self.MD5(String(format: "%@:voximplant.com:%@", arguments: [
-                            self.user.split(separator: "@").map(String.init).first!,
-                            self.password!
-                        ]))
-                    ]))
-                    self.password = nil
-                    self.login()
-                }
-            }
-        } else if let password = self.password, !password.isEmpty {
-            Log.i("Logging in with login and password")
-            self.client.login(withUser: String(format: "%@.voximplant.com", arguments: [self.user]), password: password, success: self.successCompletion, failure: self.failureCompletion)
-            self.password = nil
-        } else if let token = Settings.shared.accessToken, let expire = Settings.shared.accessExpire, !token.isEmpty, Date() < expire {
-            Log.i("Logging in with login and access token")
-            self.client.login(withUser: String(format: "%@.voximplant.com", arguments: [self.user]), token: token, success: self.successCompletion, failure: self.failureCompletion)
-        } else if let token = Settings.shared.refreshToken, let expire = Settings.shared.refreshExpire, !token.isEmpty, Date() < expire {
-            Log.i("Refreshing access token")
-            self.client.refreshToken(withUser: String(format: "%@.voximplant.com", arguments: [self.user]), token: token) { error, authParams in
-                Log.v("RefreshToken error: \(String(describing: error)), authParams: \(String(describing: authParams))")
-                if let err = error {
-                    self.logout()
-                    self.failureCompletion!(err)
-                } else {
-                    Settings.shared.refreshExpire = Date(timeIntervalSinceNow: (authParams!["refreshExpire"] as! Double))
-                    Settings.shared.accessExpire = Date(timeIntervalSinceNow: (authParams!["accessExpire"] as! Double))
-                    Settings.shared.refreshToken = authParams!["refreshToken"] as? String
-                    Settings.shared.accessToken = authParams!["accessToken"] as? String
-
-                    self.login()
-                }
-            }
-        } else {
-            Log.i("Everything is failed")
-            self.failureCompletion!(NSError(domain: "com.voximplant.voximplantdemo", code: 404))
-        }
     }
 
     func logout() {
@@ -282,17 +308,22 @@ class VoxController: NSObject {
 
     private func reconnect(completion: ((Error?) -> (Void))?) {
         self.completion = completion
-        if (self.client.clientState == .disconnected) {
+        if self.client.clientState == .disconnected {
             if let gateway = self.gateway, !gateway.isEmpty {
-                self.client.connect(withConnectivityCheck: false, gateways: [self.gateway!])
+                self.client.connect(withConnectivityCheck: false, gateways: [gateway])
             } else {
                 self.client.connect(withConnectivityCheck: false, gateways: nil)
             }
-        } else if (self.client.clientState == .connected) {
-            self.login()
-        } else {
+        } else if self.client.clientState == .connected {
+            if let loginCompletion = self.loginCompletion {
+                loginCompletion(nil)
+                self.loginCompletion = nil
+            } else {
+                self.loginWithToken(user: self.user, success: nil, failure: nil)
+            }
+        } else if self.client.clientState == .loggedIn, let completion = self.completion {
+            completion(nil)
             self.completion = nil
-            completion?(nil)
         }
     }
 
@@ -499,8 +530,14 @@ extension VoxController: PKPushRegistryDelegate {
 extension VoxController: VIClientSessionDelegate {
     func clientSessionDidConnect(_ client: VIClient) {
         Log.i("Connected!")
-        Settings.shared.serverGateway = gateway
-        self.login()
+        Settings.shared.serverGateway = self.gateway
+
+        if let completion = self.loginCompletion {
+            completion(nil)
+            self.loginCompletion = nil
+        } else {
+            self.loginWithToken(user: self.user, success: nil, failure: nil)
+        }
     }
 
     func clientSessionDidDisconnect(_ client: VIClient) {
@@ -514,8 +551,9 @@ extension VoxController: VIClientSessionDelegate {
     func client(_ client: VIClient, sessionDidFailConnectWithError error: Error) {
         Log.e("Failed to connect! \(error.localizedDescription)")
 
-        if let failure = self.failureCompletion {
-            failure(error)
+        if let completion = self.loginCompletion {
+            completion(error)
+            self.loginCompletion = nil
         }
 
         UIHelper.ShowError(error: error.localizedDescription)

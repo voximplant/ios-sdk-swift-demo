@@ -81,7 +81,7 @@ class LoginViewController: BaseViewController {
         let voxImplant = AppDelegate.instance().voxImplant!
 
         voxImplant.setGateway(gateway: self.gatewayField?.text)
-        voxImplant.login(user: self.userField?.text!, password: self.passwordField?.text, otp: false, success: { (displayName, authParams) in
+        voxImplant.login(user: self.userField?.text, password: self.passwordField?.text, success: { (displayName, authParams) in
             self.progress?.hide(animated: true)
             self.refreshView()
 
@@ -102,7 +102,7 @@ class LoginViewController: BaseViewController {
         let voxImplant = AppDelegate.instance().voxImplant!
 
         voxImplant.setGateway(gateway: self.gatewayField?.text)
-        voxImplant.login(user: self.userField?.text!, password: nil, otp: false, success: { (displayName, authParams) in
+        voxImplant.loginWithToken(user: self.userField?.text!, success: { (displayName, authParams) in
             self.progress?.hide(animated: true)
         }, failure: { (error) in
             self.progress?.hide(animated: true)
@@ -125,7 +125,7 @@ class LoginViewController: BaseViewController {
         let voxImplant = AppDelegate.instance().voxImplant!
 
         voxImplant.setGateway(gateway: self.gatewayField?.text)
-        voxImplant.login(user: self.userField?.text!, password: self.passwordField?.text, otp: true, success: { (displayName, authParams) in
+        voxImplant.loginWithOneTimeKey(user: self.userField?.text!, password: self.passwordField?.text, success: { (displayName, authParams) in
             self.progress?.hide(animated: true)
             self.refreshView()
 
