@@ -14,13 +14,8 @@ class ConferenceView: UIView {
     var participants: [String: UIImageView] = [:]
     let participantAvatar = UIImage(named: "ic_person")?.withRenderingMode(.alwaysTemplate)
 
-    func addParticipant(_ endpoint: VIEndpoint!) {
-        guard self.participants.count < 25 else {
-            Log.e("Limit!")
-            return
-        }
-
-        if self.participants[endpoint.endpointId] == nil {
+    private func createView(for id: String!) -> UIImageView {
+        if self.participants[id] == nil {
             let participant = UIImageView(image: participantAvatar)
             participant.contentMode = .scaleAspectFit
             participant.tintColor = UIColor.random
@@ -32,10 +27,36 @@ class ConferenceView: UIView {
 
             self.addSubview(participant)
 
-            self.participants[endpoint.endpointId] = participant
+            self.participants[id] = participant
         }
 
-        self.updateParticipant(endpoint)
+        return self.participants[id]!;
+    }
+
+    private func removeView(for id: String!) {
+        if let participant = self.participants[id] {
+            self.participants.removeValue(forKey: id)
+            participant.removeFromSuperview()
+
+            if (id == self.enlargedParticipant) {
+                self.enlargedParticipant = nil
+            }
+        }
+    }
+
+    func addParticipant(_ endpoint: VIEndpoint!) {
+        guard self.participants.count < 25 else {
+            Log.e("Limit!")
+            return
+        }
+
+        if endpoint.remoteVideoStreams.count > 0 {
+            for videoStream in endpoint.remoteVideoStreams {
+                self.addVideoStream(endpoint, videoStream: videoStream)
+            }
+        } else {
+            _ = self.createView(for: endpoint.endpointId)
+        }
 
         self.rearrange()
     }
@@ -43,45 +64,36 @@ class ConferenceView: UIView {
     func updateParticipant(_ endpoint: VIEndpoint!) {
         Log.d("\(#function)")
 
-        if let videoStream = endpoint.remoteVideoStreams.first {
-            self.addVideoStream(endpoint, videoStream: videoStream)
-        }
+        self.rearrange()
     }
 
     func removeParticipant(_ endpoint: VIEndpoint!) {
-        guard self.participants.count > 0 else {
-            Log.e("No participants")
-            return
-        }
+        self.removeView(for: endpoint.endpointId)
 
-        if let participant = self.participants[endpoint.endpointId] {
-            self.participants.removeValue(forKey: endpoint.endpointId)
-            participant.removeFromSuperview()
-
-            if (endpoint.endpointId == self.enlargedParticipant) {
-                self.enlargedParticipant = nil
-            }
-
-            self.rearrange()
-        }
+        self.rearrange()
     }
 
     func addVideoStream(_ endpoint: VIEndpoint!, videoStream: VIVideoStream!) {
-        if let participant = self.participants[endpoint.endpointId] {
-            participant.image = nil
-            let viewRenderer = VIVideoRendererView(containerView: participant)
-            videoStream.addRenderer(viewRenderer)
-        }
+        self.removeView(for: endpoint.endpointId)
+
+        let participant = createView(for: videoStream.streamId)
+        participant.image = nil
+
+        let viewRenderer = VIVideoRendererView(containerView: participant)
+        videoStream.addRenderer(viewRenderer)
+
+        self.rearrange()
     }
 
-    func removeVideoStream(_ endpoint: VIEndpoint!, videoStream: VIVideoStream?) {
-        videoStream?.removeAllRenderers()
-        if let participant = self.participants[endpoint.endpointId] {
-            participant.image = participantAvatar
-            for view in participant.subviews {
-                view.removeFromSuperview()
-            }
+    func removeVideoStream(_ endpoint: VIEndpoint!, videoStream: VIVideoStream!) {
+        videoStream.removeAllRenderers()
+        self.removeView(for: videoStream.streamId)
+
+        if endpoint.remoteVideoStreams.count == 0 {
+            _ = self.createView(for: endpoint.endpointId)
         }
+
+        self.rearrange()
     }
 
     fileprivate func rearrange() {
