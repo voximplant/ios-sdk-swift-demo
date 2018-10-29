@@ -98,7 +98,6 @@ class MainViewController: BaseViewController {
 
     override func vox(_ voximplant: VoxController!, prepared call: CallDescriptor!) {
         super.vox(voximplant, prepared: call)
-
     }
 
     override func vox(_ voximplant: VoxController!, ended call: CallDescriptor!, error: Error?) {

@@ -124,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let call = self.voxImplant?.callManager?.activeCall?.call {
                 call.startReceiveVideo { error in
                     guard error == nil else {
-                        UIHelper.ShowError(error: error!.localizedDescription, action: nil)
+                        UIHelper.ShowError(error: error?.localizedDescription, action: nil)
                         return
                     }
                     call.setSendVideo(true) { error in

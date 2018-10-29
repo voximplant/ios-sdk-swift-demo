@@ -49,6 +49,8 @@ class VoxController: NSObject {
 
         super.init()
 
+        self.user = Settings.shared.userLogin
+
         self.successCompletion = {
             [unowned self] (displayName, authParams) in
             Settings.shared.userLogin = self.user
@@ -302,7 +304,7 @@ class VoxController: NSObject {
 
         let callCompletion = { (error: Error?) in
             if let err = error {
-                UIHelper.ShowError(error: String(describing: err))
+                UIHelper.ShowError(error: err.localizedDescription)
                 return;
             }
             call.call.add(self)
@@ -390,6 +392,18 @@ extension VoxController: VICallDelegate, VIEndpointDelegate, VIClientCallManager
     func call(_ call: VICall, didAdd endpoint: VIEndpoint) {
         if let delegate = self.delegate {
             delegate.vox(self, call: self.callManager!.call(call: call), didAdd: endpoint);
+        }
+    }
+
+    func call(_ call: VICall, startRingingWithHeaders headers: [AnyHashable: Any]?) {
+        if let delegate = self.delegate {
+            delegate.vox(self, startRinging: self.callManager!.call(call: call))
+        }
+    }
+
+    func callDidStartAudio(_ call: VICall) {
+        if let delegate = self.delegate {
+            delegate.vox(self, stopRinging: self.callManager!.call(call: call))
         }
     }
 
@@ -498,13 +512,13 @@ extension VoxController: VIClientSessionDelegate {
     }
 
     func client(_ client: VIClient, sessionDidFailConnectWithError error: Error) {
-        Log.i("Failed to connect! \(error)")
+        Log.e("Failed to connect! \(error.localizedDescription)")
 
         if let failure = self.failureCompletion {
             failure(error)
-        } else {
-            UIHelper.ShowError(error: String(describing: error))
         }
+
+        UIHelper.ShowError(error: error.localizedDescription)
     }
 }
 
@@ -516,4 +530,7 @@ protocol VoxControllerDelegate: class {
     func vox(_ voximplant: VoxController!, started call: CallDescriptor!)
     func vox(_ voximplant: VoxController!, ended call: CallDescriptor!, error: Error?)
     func vox(_ voximplant: VoxController!, call: CallDescriptor!, didAdd endpoint: VIEndpoint!)
+
+    func vox(_ voximplant: VoxController!, startRinging call: CallDescriptor!)
+    func vox(_ voximplant: VoxController!, stopRinging call: CallDescriptor!)
 }

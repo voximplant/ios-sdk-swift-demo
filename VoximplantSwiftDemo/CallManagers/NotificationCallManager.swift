@@ -221,7 +221,7 @@ extension NotificationCallManager {
         let center = UNUserNotificationCenter.current()
         center.add(request) { error in
             guard error == nil else {
-                UIHelper.ShowError(error: error!.localizedDescription, action: nil)
+                UIHelper.ShowError(error: error?.localizedDescription, action: nil)
                 return
             }
         }

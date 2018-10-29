@@ -104,7 +104,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
     @IBAction func holdButtonTouched(_ sender: AnyObject?) {
         let current: Bool! = self.holdButton?.isSelected
         self.call!.call.setHold(!current) { error in
-            Log.d("setHold: \(String(describing: error))")
+            Log.d("setHold: \(error?.localizedDescription ?? "no error")")
             UIHelper.ShowError(error: error?.localizedDescription)
         }
         self.holdButton?.isSelected = !current
@@ -128,7 +128,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
         let current: Bool! = self.muteVideoButton?.isSelected
         self.call!.call.setSendVideo(current) { error in
             guard error == nil else {
-                Log.e("muteVideo: \(String(describing: error))")
+                Log.e("muteVideo: \(error?.localizedDescription ?? "no error")")
                 UIHelper.ShowError(error: error?.localizedDescription)
                 return
             }

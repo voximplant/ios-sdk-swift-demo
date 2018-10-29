@@ -36,6 +36,14 @@ class BaseViewController: UIViewController, VoxControllerDelegate {
     func vox(_ voximplant: VoxController!, call: CallDescriptor!, didAdd endpoint: VIEndpoint!) {
         Log.d("\(#function) called on \(String(describing: self))")
     }
+
+    func vox(_ voximplant: VoxController!, startRinging call: CallDescriptor!) {
+        Log.d("\(#function) called on \(String(describing: self))")
+    }
+
+    func vox(_ voximplant: VoxController!, stopRinging call: CallDescriptor!) {
+        Log.d("\(#function) called on \(String(describing: self))")
+    }
 }
 
 extension UINavigationController {

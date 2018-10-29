@@ -12,7 +12,7 @@ end
 
 def vox_pods
 
-  pod 'VoxImplantSDK', '2.15.0'
+  pod 'VoxImplantSDK', '2.16.1'
 
 end
 

@@ -90,7 +90,7 @@ class LoginViewController: BaseViewController {
             self.progress?.hide(animated: true)
             self.refreshView()
 
-            UIHelper.ShowError(error: "\(String(describing: error))")
+            UIHelper.ShowError(error: error.localizedDescription)
         })
     }
 
@@ -106,7 +106,7 @@ class LoginViewController: BaseViewController {
             self.progress?.hide(animated: true)
         }, failure: { (error) in
             self.progress?.hide(animated: true)
-            UIHelper.ShowError(error: String(describing: error))
+            UIHelper.ShowError(error: error.localizedDescription)
         })
     }
 
@@ -134,7 +134,7 @@ class LoginViewController: BaseViewController {
             self.progress?.hide(animated: true)
             self.refreshView()
 
-            UIHelper.ShowError(error: "\(String(describing: error))")
+            UIHelper.ShowError(error: error.localizedDescription)
         })
     }
 
