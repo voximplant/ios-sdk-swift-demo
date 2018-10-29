@@ -1,10 +1,6 @@
-//
-//  ConferenceCameraView.swift
-//  Conference Camera Layout
-//
-//  Created by Alexander Filippov on 20/03/2018.
-//  Copyright © 2018 Zingaya Ltd. All rights reserved.
-//
+/*
+ *  Copyright (c) 2011-2018, Zingaya, Inc. All rights reserved.
+ */
 
 import UIKit
 import VoxImplant
