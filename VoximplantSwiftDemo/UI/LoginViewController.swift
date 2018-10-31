@@ -95,6 +95,12 @@ class LoginViewController: BaseViewController {
     }
 
     @IBAction func loginWithTokenTouched(sender: AnyObject?) {
+        let login = self.userField?.text
+        if (login!.isEmpty) {
+            UIHelper.ShowError(error: "Login must not be empty")
+            return
+        }
+
         self.progress = MBProgressHUD.showAdded(to: self.view, animated: true)
         self.progress?.label.text = "Connecting"
         self.progress?.detailsLabel.text = "Please wait..."

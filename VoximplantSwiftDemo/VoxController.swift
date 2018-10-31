@@ -249,7 +249,7 @@ class VoxController: NSObject {
                 } else {
                     let error = "Access and refresh tokens are outdated";
                     Log.e(error)
-                    self.failureCompletion?(NSError(domain: "com.voximplant.demo", code: 401, userInfo: [NSLocalizedDescriptionKey: error]))
+                    self.failureCompletion?(NSError(domain: "com.voximplant.demo", code: VILoginError.tokenExpired.rawValue, userInfo: [NSLocalizedDescriptionKey: error]))
                 }
             }
         }
