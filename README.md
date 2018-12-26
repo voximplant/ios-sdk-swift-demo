@@ -5,7 +5,7 @@ This repository contains sample implementation of the Voximplant client applicat
 ## How To
 1. Register a free account at [Voximplant](https://voximplant.com) and create a [Voximplant Application, App Users, an App Rule, and a VoxEngine Scenario](https://voximplant.com/blog/voximplant-p2p-video-chat)
 2. Run `pod install` in the cloned project
-3. Open the `VoximplantSwiftDemo.xcworkspace` workspace
+3. Open the `Swift.xcworkspace` workspace
 4. Run using Xcode
 
 ## Links

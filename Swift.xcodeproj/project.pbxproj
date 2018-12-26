@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8E64A1DA204428D700925847 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E64A1D9204428D700925847 /* SettingTableViewCell.swift */; };
 		8E64A1DC2044323300925847 /* SettingsDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E64A1DB2044323300925847 /* SettingsDetailTableViewController.swift */; };
+		8E87346121D3D292008E75B5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8E87345F21D3D292008E75B5 /* README.md */; };
+		8E87346221D3D292008E75B5 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 8E87346021D3D292008E75B5 /* LICENSE.md */; };
 		8EA9CF08204EAF7400C05397 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9CF07204EAF7400C05397 /* Theme.swift */; };
 		8EEA98B41FB5A1AD00E90861 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA98B31FB5A1AD00E90861 /* AppDelegate.swift */; };
 		8EEA98B61FB5A1AD00E90861 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA98B51FB5A1AD00E90861 /* LoginViewController.swift */; };
@@ -38,10 +40,12 @@
 /* Begin PBXFileReference section */
 		8E64A1D9204428D700925847 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		8E64A1DB2044323300925847 /* SettingsDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailTableViewController.swift; sourceTree = "<group>"; };
-		8E85E3881FBB06E50033831A /* VoximplantSwiftDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoximplantSwiftDemo.entitlements; sourceTree = "<group>"; };
+		8E85E3881FBB06E50033831A /* VoximplantDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoximplantDemo.entitlements; sourceTree = "<group>"; };
+		8E87345F21D3D292008E75B5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8E87346021D3D292008E75B5 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		8EA9CF07204EAF7400C05397 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		8EDEB75B1FD022E4000EC892 /* VoximplantSwiftDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VoximplantSwiftDemo-Bridging-Header.h"; sourceTree = "<group>"; };
-		8EEA98B01FB5A1AD00E90861 /* VoximplantSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoximplantSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EDEB75B1FD022E4000EC892 /* VoximplantDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VoximplantDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		8EEA98B01FB5A1AD00E90861 /* Voximplant Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Voximplant Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EEA98B31FB5A1AD00E90861 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EEA98B51FB5A1AD00E90861 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8EEA98BA1FB5A1AD00E90861 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,24 +112,27 @@
 		8EEA98A71FB5A1AC00E90861 = {
 			isa = PBXGroup;
 			children = (
-				8EEA98B21FB5A1AD00E90861 /* VoximplantSwiftDemo */,
+				8E87345F21D3D292008E75B5 /* README.md */,
+				8E87346021D3D292008E75B5 /* LICENSE.md */,
+				8EEA98B21FB5A1AD00E90861 /* VoximplantDemo */,
 				8EEA98B11FB5A1AD00E90861 /* Products */,
+				CC2152D6B1A7F74C95AD43D3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		8EEA98B11FB5A1AD00E90861 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8EEA98B01FB5A1AD00E90861 /* VoximplantSwiftDemo.app */,
+				8EEA98B01FB5A1AD00E90861 /* Voximplant Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8EEA98B21FB5A1AD00E90861 /* VoximplantSwiftDemo */ = {
+		8EEA98B21FB5A1AD00E90861 /* VoximplantDemo */ = {
 			isa = PBXGroup;
 			children = (
-				8E85E3881FBB06E50033831A /* VoximplantSwiftDemo.entitlements */,
-				8EDEB75B1FD022E4000EC892 /* VoximplantSwiftDemo-Bridging-Header.h */,
+				8E85E3881FBB06E50033831A /* VoximplantDemo.entitlements */,
+				8EDEB75B1FD022E4000EC892 /* VoximplantDemo-Bridging-Header.h */,
 				8EEA98B31FB5A1AD00E90861 /* AppDelegate.swift */,
 				CCC4967DF41EEB4E5BA1A8B5 /* Log.swift */,
 				CCC497500C8EDA589EAD7F10 /* Settings.swift */,
@@ -136,7 +143,14 @@
 				CCC49948470DE24BD407D95B /* Resources */,
 				8E9DA3F3206144C200721415 /* UI */,
 			);
-			path = VoximplantSwiftDemo;
+			path = VoximplantDemo;
+			sourceTree = "<group>";
+		};
+		CC2152D6B1A7F74C95AD43D3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		CCC49948470DE24BD407D95B /* Resources */ = {
@@ -166,9 +180,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8EEA98AF1FB5A1AD00E90861 /* VoximplantSwiftDemo */ = {
+		8EEA98AF1FB5A1AD00E90861 /* Voximplant Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8EEA98C21FB5A1AD00E90861 /* Build configuration list for PBXNativeTarget "VoximplantSwiftDemo" */;
+			buildConfigurationList = 8EEA98C21FB5A1AD00E90861 /* Build configuration list for PBXNativeTarget "Voximplant Demo" */;
 			buildPhases = (
 				8EEA98AC1FB5A1AD00E90861 /* Sources */,
 				8EEA98AD1FB5A1AD00E90861 /* Frameworks */,
@@ -178,9 +192,9 @@
 			);
 			dependencies = (
 			);
-			name = VoximplantSwiftDemo;
+			name = "Voximplant Demo";
 			productName = VoxImplantSwiftDemo;
-			productReference = 8EEA98B01FB5A1AD00E90861 /* VoximplantSwiftDemo.app */;
+			productReference = 8EEA98B01FB5A1AD00E90861 /* Voximplant Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -208,7 +222,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8EEA98AB1FB5A1AC00E90861 /* Build configuration list for PBXProject "VoximplantSwiftDemo" */;
+			buildConfigurationList = 8EEA98AB1FB5A1AC00E90861 /* Build configuration list for PBXProject "Swift" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -221,7 +235,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8EEA98AF1FB5A1AD00E90861 /* VoximplantSwiftDemo */,
+				8EEA98AF1FB5A1AD00E90861 /* Voximplant Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -232,11 +246,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EEA98BB1FB5A1AD00E90861 /* Assets.xcassets in Resources */,
+				8E87346221D3D292008E75B5 /* LICENSE.md in Resources */,
 				CCC4977892FEA43CCA89647A /* Settings.plist in Resources */,
 				CCC49816A01C531BC34CB298 /* ringtone.aiff in Resources */,
 				CCC4927CE761DE13C2DAE8FC /* Roboto-Bold.ttf in Resources */,
 				CCC492F342C5D67A7817583B /* Roboto-Regular.ttf in Resources */,
 				CCC492858EB7282AA47F554F /* LaunchScreen.storyboard in Resources */,
+				8E87346121D3D292008E75B5 /* README.md in Resources */,
 				CCC49D30AE9A409752166283 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,16 +407,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = VoximplantSwiftDemo/VoximplantSwiftDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = VoximplantDemo/VoximplantDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 25S6X4YD96;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/VoxImplantSwiftDemo/Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/VoximplantDemo/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/VoximplantSwiftDemo/VoximplantSwiftDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/VoximplantDemo/VoximplantDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -412,16 +428,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = VoximplantSwiftDemo/VoximplantSwiftDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = VoximplantDemo/VoximplantDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 25S6X4YD96;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/VoxImplantSwiftDemo/Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/VoximplantDemo/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/VoximplantSwiftDemo/VoximplantSwiftDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/VoximplantDemo/VoximplantDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -430,7 +446,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8EEA98AB1FB5A1AC00E90861 /* Build configuration list for PBXProject "VoximplantSwiftDemo" */ = {
+		8EEA98AB1FB5A1AC00E90861 /* Build configuration list for PBXProject "Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8EEA98C01FB5A1AD00E90861 /* Debug */,
@@ -439,7 +455,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8EEA98C21FB5A1AD00E90861 /* Build configuration list for PBXNativeTarget "VoximplantSwiftDemo" */ = {
+		8EEA98C21FB5A1AD00E90861 /* Build configuration list for PBXNativeTarget "Voximplant Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8EEA98C31FB5A1AD00E90861 /* Debug */,
