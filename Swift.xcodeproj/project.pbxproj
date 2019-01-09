@@ -116,7 +116,6 @@
 				8E87346021D3D292008E75B5 /* LICENSE.md */,
 				8EEA98B21FB5A1AD00E90861 /* VoximplantDemo */,
 				8EEA98B11FB5A1AD00E90861 /* Products */,
-				CC2152D6B1A7F74C95AD43D3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,13 +143,6 @@
 				8E9DA3F3206144C200721415 /* UI */,
 			);
 			path = VoximplantDemo;
-			sourceTree = "<group>";
-		};
-		CC2152D6B1A7F74C95AD43D3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		CCC49948470DE24BD407D95B /* Resources */ = {

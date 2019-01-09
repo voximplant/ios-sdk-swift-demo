@@ -2,6 +2,8 @@ platform :ios, '8.0'
 use_frameworks!
 inhibit_all_warnings!
 
+project 'Swift.xcodeproj'
+
 def common_pods
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'CocoaLumberjack/Swift', '~> 3.4.0'
