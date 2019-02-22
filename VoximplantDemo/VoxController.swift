@@ -495,9 +495,7 @@ extension VoxController: PKPushRegistryDelegate {
     }
 
     func didReceiveRemoteNotification(payload: [AnyHashable: Any]) {
-        let notificationProcessing = VIMessengerPushNotificationProcessing.shared()
-
-        let messengerEvent = (notificationProcessing?.processPushNotification(payload) as! VIMessageEvent)
+        let messengerEvent = (VIMessengerPushNotificationProcessing.processPushNotification(payload) as! VIMessageEvent)
         Log.i("event = \(messengerEvent.eventType.rawValue), conversation = \(String(describing: messengerEvent.message.conversation))")
     }
 
