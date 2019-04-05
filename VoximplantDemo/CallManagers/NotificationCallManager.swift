@@ -94,7 +94,9 @@ class NotificationCallManager: NSObject, CallManager {
             cancelIncomingCallLegacy(descriptor)
         }
 
-        UIHelper.DismissIncomingCallAlert()
+        UIHelper.DismissIncomingCallAlert() {
+            UIHelper.StopPlayingRingtone()
+        }
     }
 }
 
@@ -146,6 +148,22 @@ extension NotificationCallManager {
         UIApplication.shared.registerUserNotificationSettings(newNotificationSettings)
     }
 
+    /**
+     `notifyIncomingCallLegacy` is used for
+     showing a local notification with a custom ringtone
+     when the app is in the background:
+     
+     ```
+     ...
+     let notification = UILocalNotification()
+     ...
+     notification.soundName = "ringtone.aiff"
+     ...
+     ```
+     
+     For playing a custom ringtone when the app is in the foreground
+     you should use `StartPlayingRingtone` with `AVAudioPlayer`.
+     */
     func notifyIncomingCallLegacy(_ descriptor: CallDescriptor!) {
         let notification = UILocalNotification()
         notification.fireDate = NSDate(timeIntervalSinceNow: 0) as Date
@@ -204,7 +222,23 @@ extension NotificationCallManager {
             AppDelegate.instance().voxImplant!.registerForPushNotifications()
         }
     }
-
+    
+    /**
+     `notifyIncomingCallCurrent` (available since iOS 10)
+     is used for showing a local notification
+     with a custom ringtone when the app is in the background:
+     
+     ```
+     ...
+     let content = UNMutableNotificationContent()
+     ...
+     content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "ringtone.aiff"))
+     ...
+     ```
+     
+     For playing a custom ringtone when the app is in the foreground
+     you should use `StartPlayingRingtone` with `AVAudioPlayer`.
+     */
     func notifyIncomingCallCurrent(_ descriptor: CallDescriptor!) {
         let content = UNMutableNotificationContent()
         content.title = "Voximplant"

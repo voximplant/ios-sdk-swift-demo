@@ -88,7 +88,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         if let descriptor = self.voxImplant?.callManager?.pendingCall {
-            UIHelper.ShowIncomingCallAlert(for: descriptor.uuid)
+            UIHelper.StartPlayingRingtone()
+            UIHelper.ShowIncomingCallAlert(for: descriptor.uuid) {
+                UIHelper.StopPlayingRingtone()
+            }
         } else if let window = self.window, let navigationController = window.rootViewController as? UINavigationController, navigationController.viewControllers.count > 1 {
             for vc in navigationController.viewControllers {
                 if let mainViewController = vc as? MainViewController {
@@ -153,7 +156,10 @@ extension AppDelegate {
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         if (UIApplication.shared.applicationState == .active) {
             if let content = notification.userInfo {
-                UIHelper.ShowIncomingCallAlert(for: UUID(uuidString: content["uuid"] as! String))
+                UIHelper.StartPlayingRingtone()
+                UIHelper.ShowIncomingCallAlert(for: UUID(uuidString: content["uuid"] as! String)) {
+                    UIHelper.StopPlayingRingtone()
+                }
             }
         }
     }
@@ -189,7 +195,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if (UIApplication.shared.applicationState == .active) {
             let content = notification.request.content.userInfo as [AnyHashable: Any]
-            UIHelper.ShowIncomingCallAlert(for: UUID(uuidString: content["uuid"] as! String))
+            UIHelper.StartPlayingRingtone()
+            UIHelper.ShowIncomingCallAlert(for: UUID(uuidString: content["uuid"] as! String)) {
+                UIHelper.StopPlayingRingtone()
+            }
         }
     }
 
