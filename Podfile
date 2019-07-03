@@ -6,7 +6,7 @@ project 'Swift.xcodeproj'
 
 def common_pods
   pod 'MBProgressHUD', '~> 1.1.0'
-  pod 'CocoaLumberjack/Swift', '~> 3.4.0'
+  pod 'CocoaLumberjack/Swift', '~> 3.5'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
 end
 
@@ -14,7 +14,11 @@ sdk_version = '2.20.6'
 
 target 'Voximplant Demo' do
   common_pods
+  pod 'VoxImplantSDK', sdk_version
+end
 
+target 'AudioCall' do
+  common_pods
   pod 'VoxImplantSDK', sdk_version
 end
 
