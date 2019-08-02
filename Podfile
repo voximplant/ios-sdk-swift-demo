@@ -10,7 +10,7 @@ def common_pods
   pod 'SkyFloatingLabelTextField', '~> 3.0'
 end
 
-sdk_version = '2.21.1'
+sdk_version = '2.21.2'
 
 target 'Voximplant Demo' do
   common_pods
