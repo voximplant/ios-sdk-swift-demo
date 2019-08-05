@@ -3,105 +3,109 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "vox_logo_40x40.png",
+      "filename" : "Icon-42.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "vox_logo_60x60.png",
+      "filename" : "Icon-60.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "vox_logo_58x58.png",
+      "filename" : "Icon-59.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "vox_logo_87x87.png",
+      "filename" : "Icon-87.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "vox_logo_80x80.png",
+      "filename" : "Icon-81.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "vox_logo_120x120.png",
+      "filename" : "Icon-120.png",
       "scale" : "3x"
-    },
-    {
-      "idiom" : "iphone",
-      "size" : "60x60",
-      "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "vox_logo_180x180.png",
+      "filename" : "Icon-121.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "Icon-180.png",
       "scale" : "3x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "vox_logo_20x20.png",
+      "filename" : "Icon-20.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "Icon-41.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "vox_logo_29x29.png",
+      "filename" : "Icon-29.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "Icon-58.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "Icon-40.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "vox_logo_80x80-1.png",
+      "filename" : "Icon-80.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "vox_logo_76x76.png",
+      "filename" : "Icon-76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "vox_logo_152x152.png",
+      "filename" : "Icon-152.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "vox_logo_167x167.png",
+      "filename" : "Icon-167.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "vox_logo_1024x1024.png",
+      "filename" : "Icon-1024.png",
       "scale" : "1x"
     }
   ],
