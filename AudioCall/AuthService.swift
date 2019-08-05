@@ -6,23 +6,23 @@ import Foundation
 import VoxImplant
 
 extension UserDefaults {
-    var lastUserIDKey: String {
-        return "com.voximplant.demos.swift.latestUserID"
+    var lastFullUsername: String {
+        return UIApplication.userDefaultsDomain + "." + "lastFullUsername"
     }
     
-    var lastUserNameKey: String {
-        return "com.voximplant.demos.swift.latestUserDisplayName"
+    var lastDisplayName: String {
+        return UIApplication.userDefaultsDomain + "." + "lastDisplayName"
     }
 }
 
-typealias User = (id: String, displayName: String)
+typealias User = (fullUsername: String, displayName: String)
 
 class AuthService: NSObject, VIClientSessionDelegate {
     fileprivate var userDefaults = UserDefaults.standard
     fileprivate var client: VIClient
     fileprivate var tokensManager = TokenManager()
     fileprivate var connectCompletion: ((Result<(), Error>)->Void)?
-    fileprivate var disconnectCompletion: ((Result<(), Error>) -> Void)?
+    fileprivate var disconnectCompletion: (() -> Void)?
     
     init(_ client: VIClient) {
         self.client = client
@@ -32,69 +32,20 @@ class AuthService: NSObject, VIClientSessionDelegate {
     
     var lastLoggedInUser: User? {
         get {
-            guard let id = userDefaults.string(forKey: userDefaults.lastUserIDKey),
-                  let displayName = userDefaults.string(forKey: userDefaults.lastUserNameKey)
+            guard let fullUsername = userDefaults.string(forKey: userDefaults.lastFullUsername),
+                  let displayName = userDefaults.string(forKey: userDefaults.lastDisplayName)
             else { return nil }
-            return User(id: id, displayName: displayName)
+            return User(fullUsername: fullUsername, displayName: displayName)
         }
         set {
-            userDefaults.set(newValue?.id, forKey: userDefaults.lastUserIDKey)
-            userDefaults.set(newValue?.displayName, forKey: userDefaults.lastUserNameKey)
-        }
-    }
-    
-    // only one current user is supported
-    var currentUser: User? {
-        if client.clientState == .loggedIn {
-            return lastLoggedInUser
-        } else {
-            return nil
-        }
-    }
-    
-    fileprivate func connect(_ completion: @escaping (Result<(), Error>)->Void) {
-        if client.clientState == .disconnected ||
-           client.clientState == .connecting
-        {
-            connectCompletion = completion
-            client.connect()
-        } else {
-            completion(.success(()))
-        }
-    }
-    
-    fileprivate func updateAccessTokenIfNeeded(for user: String, _ completion: @escaping (Result<AccessKey, Error>)->Void) {
-        if let accessKey = tokensManager[user].access { // get access token for user
-            completion(.success(accessKey))
-        } else if let refreshKey = tokensManager[user].refresh { // get refresh token for user
-            client.refreshToken(withUser: refreshKey.user, token: refreshKey.token)
-            { [weak self]
-                (authParams: [AnyHashable: Any]?, error: Error?) in
-                if let error = error {
-                    completion(.failure(error))
-                } else if let tokens = authParams,
-                    let refreshExpire = tokens["refreshExpire"] as? Int,
-                    let refreshToken = tokens["refreshToken"] as? String,
-                    let accessExpire = tokens["accessExpire"] as? Int,
-                    let accessToken = tokens["accessToken"] as? String
-                {
-                    let accessKey = AccessKey(user: user, token: accessToken, expire: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
-                    let refreshKey = RefreshKey(user: user, token: refreshToken, expire: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
-                    self?.tokensManager[user] = (accessKey, refreshKey)
-                    completion(.success(accessKey))
-                } else {
-                    abort() // unreachable branch
-                }
-            }
-            
-        } else { // no refresh token, no access token
-            completion(.failure(NSError(domain: "User password is needed for login", code: 5017, userInfo: nil)))
+            userDefaults.set(newValue?.fullUsername, forKey: userDefaults.lastFullUsername)
+            userDefaults.set(newValue?.displayName, forKey: userDefaults.lastDisplayName)
         }
     }
     
     func login(user: String, password: String, _ completion: @escaping (Result<String, Error>)->Void) {
         disconnect {
-            [weak self] _ in
+            [weak self] in
             self?.connect
             { [weak self]
                 (result: Result<(), Error>) in
@@ -105,14 +56,15 @@ class AuthService: NSObject, VIClientSessionDelegate {
                 
                 self?.client.login(withUser: user, password: password,
                 success: { (displayUserName: String, tokens: [AnyHashable : Any]) in
+                    
                     if let refreshExpire = tokens["refreshExpire"] as? Int,
                         let refreshToken = tokens["refreshToken"] as? String,
                         let accessExpire = tokens["accessExpire"] as? Int,
                         let accessToken = tokens["accessToken"] as? String
                     {
-                        let refreshKey = RefreshKey(user: user, token: refreshToken, expire: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
-                        let accessKey = AccessKey(user: user, token: accessToken, expire: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
-                        self?.tokensManager[user] = (accessKey, refreshKey)
+                        let accessToken = Token(token: accessToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
+                        let refreshToken = Token(token: refreshToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
+                        self?.tokensManager.keys = (accessToken, refreshToken)
                         self?.lastLoggedInUser = User(user,displayUserName)
                     }
                     completion(.success(displayUserName))
@@ -125,15 +77,16 @@ class AuthService: NSObject, VIClientSessionDelegate {
     }
     
     func loginWithAccessToken(user: String, _ completion: @escaping (Result<String, Error>)->Void) {
-        if currentUser?.id == user
-        {
-            completion(.success(currentUser?.displayName ?? "Name did'nt load"))
+        
+        if client.clientState == .loggedIn {
+            completion(.success(lastLoggedInUser?.displayName ?? " "))
             return
         }
         
         disconnect {
-            [weak self] _ in
+            [weak self] in
             self?.connect {
+                
                 [weak self]
                 (result: Result<(), Error>) in
                 if case let .failure(error) = result  {
@@ -143,7 +96,7 @@ class AuthService: NSObject, VIClientSessionDelegate {
                 
                 self?.updateAccessTokenIfNeeded(for: user) {
                     [weak self]
-                    (result: Result<(AccessKey), Error>) in
+                    (result: Result<Token, Error>) in
                     
                     switch result {
                     case let .failure(error):
@@ -152,21 +105,21 @@ class AuthService: NSObject, VIClientSessionDelegate {
                         
                     case let .success(accessKey):
                         self?.client.login(withUser: user, token: accessKey.token,
-                        success: { (displayUserName: String, tokens: [AnyHashable : Any]) in
-                            if let refreshExpire = tokens["refreshExpire"] as? Int,
-                                let refreshToken = tokens["refreshToken"] as? String,
-                                let accessExpire = tokens["accessExpire"] as? Int,
-                                let accessToken = tokens["accessToken"] as? String
-                            {
-                                let refreshKey = RefreshKey(user: user, token: refreshToken, expire: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
-                                let accessKey = AccessKey(user: user, token: accessToken, expire: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
-                                self?.tokensManager[user] = (accessKey, refreshKey)
-                                self?.lastLoggedInUser = User(id: user, displayName: displayUserName)
-                            }
-                            completion(.success(displayUserName))
+                            success: { (displayUserName: String, tokens: [AnyHashable : Any]) in
+                                if let refreshExpire = tokens["refreshExpire"] as? Int,
+                                    let refreshToken = tokens["refreshToken"] as? String,
+                                    let accessExpire = tokens["accessExpire"] as? Int,
+                                    let accessToken = tokens["accessToken"] as? String
+                                {
+                                    let accessToken = Token(token: accessToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
+                                    let refreshToken = Token(token: refreshToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
+                                    self?.tokensManager.keys = (accessToken,refreshToken)
+                                    self?.lastLoggedInUser = User(fullUsername: user, displayName: displayUserName)
+                                }
+                                completion(.success(displayUserName))
                         },
-                        failure: { (error: Error) in
-                            completion(.failure(error))
+                            failure: { (error: Error) in
+                                completion(.failure(error))
                         })
                     }
                 }
@@ -174,13 +127,51 @@ class AuthService: NSObject, VIClientSessionDelegate {
         }
     }
     
-    func possibleToLogin(for user: String) -> Date? {
-        return tokensManager[user].refresh?.expire
+    fileprivate func updateAccessTokenIfNeeded(for user: String, _ completion: @escaping (Result<Token, Error>)->Void) {
+        guard let tokens = tokensManager.keys else {
+            completion(.failure(VoxDemoError.errorRequiredPassword()))
+            return
+        }
+        
+        if tokens.access.isExpired {
+            client.refreshToken(withUser: user, token: tokens.refresh.token)
+            { [weak self] (authParams: [AnyHashable: Any]?, error: Error?) in
+                guard let tokens = authParams,
+                    let refreshExpire = tokens["refreshExpire"] as? Int,
+                    let refreshToken = tokens["refreshToken"] as? String,
+                    let accessExpire = tokens["accessExpire"] as? Int,
+                    let accessToken = tokens["accessToken"] as? String else {
+                        completion(.failure(error!))
+                        return
+                }
+                let vaildAccessToken = Token(token: accessToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
+                let validRefreshToken = Token(token: refreshToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
+                self?.tokensManager.keys = (vaildAccessToken, validRefreshToken)
+                completion(.success(vaildAccessToken))
+            }
+        } else {
+            completion(.success(tokens.access))
+        }
     }
     
-    func disconnect(_ completion: @escaping (Result<(), Error>)->Void) {
-        if client.clientState == .disconnected {
+    fileprivate func connect(_ completion: @escaping (Result<(), Error>)->Void) {
+        if client.clientState == .disconnected ||
+            client.clientState == .connecting
+        {
+            connectCompletion = completion
+            client.connect()
+        } else {
             completion(.success(()))
+        }
+    }
+    
+    func possibleToLogin(for user: String) -> Date? {
+        return tokensManager.keys?.refresh.expireDate
+    }
+    
+    func disconnect(_ completion: @escaping ()->Void) {
+        if client.clientState == .disconnected {
+            completion()
         } else {
             disconnectCompletion = completion
             client.disconnect()
@@ -200,7 +191,7 @@ class AuthService: NSObject, VIClientSessionDelegate {
     }
     
     func clientSessionDidDisconnect(_ client: VIClient) {
-        disconnectCompletion?(.success(()))
+        disconnectCompletion?()
         disconnectCompletion = nil
     }
 }

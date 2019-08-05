@@ -13,6 +13,8 @@
 		8EEA98B41FB5A1AD00E90861 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA98B31FB5A1AD00E90861 /* AppDelegate.swift */; };
 		8EEA98B61FB5A1AD00E90861 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA98B51FB5A1AD00E90861 /* LoginViewController.swift */; };
 		8EEA98BB1FB5A1AD00E90861 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA98BA1FB5A1AD00E90861 /* Assets.xcassets */; };
+		92049F9022DCD177006DB07F /* ColoredButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92049F8F22DCD177006DB07F /* ColoredButton.swift */; };
+		92049F9922DDDD47006DB07F /* ButtonWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92049F9822DDDD47006DB07F /* ButtonWithLabel.swift */; };
 		921A728D22B8DC59001BB4E5 /* IncomingCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921A728C22B8DC59001BB4E5 /* IncomingCallViewController.swift */; };
 		9220152722CA41F60023B5A7 /* LabelWithTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220152622CA41F60023B5A7 /* LabelWithTimer.swift */; };
 		92A6571A22BA3F5D004701D4 /* KeyPadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92A6571922BA3F5D004701D4 /* KeyPadView.xib */; };
@@ -20,15 +22,17 @@
 		92A6571E22BA60EF004701D4 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6571D22BA60EF004701D4 /* CallViewController.swift */; };
 		92AC727722BB9938007CCB93 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AC727622BB9938007CCB93 /* MainViewController.swift */; };
 		92AF8C8322CBA73200888C51 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 92AF8C8222CBA73200888C51 /* README.md */; };
+		92B6829F22F4492A002244B5 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B6829E22F4492A002244B5 /* PermissionManager.swift */; };
+		92C8E1F622E99419006CCCFF /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C8E1F522E99419006CCCFF /* Errors.swift */; };
+		92C8E20122EB4139006CCCFF /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C8E20022EB4139006CCCFF /* Shared.xcassets */; };
+		92C8E20222EB4139006CCCFF /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C8E20022EB4139006CCCFF /* Shared.xcassets */; };
 		92D040B722C4A1DE007B74B4 /* CallFailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D040B622C4A1DE007B74B4 /* CallFailedViewController.swift */; };
 		92F00F9222C60B7F0061AF13 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F00F9122C60B7F0061AF13 /* CustomTextField.swift */; };
 		92F00F9422C610E00061AF13 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F00F9322C610E00061AF13 /* UIExtensions.swift */; };
 		C5551BBD22C4FEC6003A90A9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5551BBA22C4FEC6003A90A9 /* SettingsViewController.swift */; };
 		C5551BBE22C4FEC6003A90A9 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5551BBB22C4FEC6003A90A9 /* SettingTableViewCell.swift */; };
 		C5551BBF22C4FEC6003A90A9 /* SettingsDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5551BBC22C4FEC6003A90A9 /* SettingsDetailTableViewController.swift */; };
-		C58A015222C0FC9A002F328C /* PermissionRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A015122C0FC99002F328C /* PermissionRequester.swift */; };
 		C5A248C322B3F7150008FAF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A248C222B3F7150008FAF4 /* Assets.xcassets */; };
-		C5B6845E22CC922F0063DD9A /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B6845D22CC922F0063DD9A /* Key.swift */; };
 		C5E0CFAF22B77198009C7F2D /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFA522B77197009C7F2D /* UIHelper.swift */; };
 		C5E0CFB522B77198009C7F2D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFAB22B77198009C7F2D /* LoginViewController.swift */; };
 		C5E0CFBB22B771A0009C7F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E0CFB622B771A0009C7F2D /* LaunchScreen.storyboard */; };
@@ -71,6 +75,8 @@
 		8EEA98B31FB5A1AD00E90861 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EEA98B51FB5A1AD00E90861 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8EEA98BA1FB5A1AD00E90861 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		92049F8F22DCD177006DB07F /* ColoredButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColoredButton.swift; path = ../ColoredButton.swift; sourceTree = "<group>"; };
+		92049F9822DDDD47006DB07F /* ButtonWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ButtonWithLabel.swift; path = AudioCall/ButtonWithLabel.swift; sourceTree = SOURCE_ROOT; };
 		921A728C22B8DC59001BB4E5 /* IncomingCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCallViewController.swift; sourceTree = "<group>"; };
 		9220152622CA41F60023B5A7 /* LabelWithTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithTimer.swift; sourceTree = "<group>"; };
 		92A6571922BA3F5D004701D4 /* KeyPadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyPadView.xib; sourceTree = "<group>"; };
@@ -78,17 +84,18 @@
 		92A6571D22BA60EF004701D4 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		92AC727622BB9938007CCB93 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		92AF8C8222CBA73200888C51 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		92B6829E22F4492A002244B5 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
+		92C8E1F522E99419006CCCFF /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		92C8E20022EB4139006CCCFF /* Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Shared.xcassets; sourceTree = "<group>"; };
 		92D040B622C4A1DE007B74B4 /* CallFailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallFailedViewController.swift; sourceTree = "<group>"; };
 		92F00F9122C60B7F0061AF13 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		92F00F9322C610E00061AF13 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		C5551BBA22C4FEC6003A90A9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C5551BBB22C4FEC6003A90A9 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		C5551BBC22C4FEC6003A90A9 /* SettingsDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDetailTableViewController.swift; sourceTree = "<group>"; };
-		C58A015122C0FC99002F328C /* PermissionRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequester.swift; sourceTree = "<group>"; };
 		C5A248B922B3F7140008FAF4 /* AudioCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A248C222B3F7150008FAF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5A248C722B3F7150008FAF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5B6845D22CC922F0063DD9A /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		C5E0CFA522B77197009C7F2D /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		C5E0CFAB22B77198009C7F2D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C5E0CFB622B771A0009C7F2D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -97,7 +104,6 @@
 		C5E0CFBA22B771A0009C7F2D /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		C5E0CFCE22B773BC009C7F2D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5E0CFCF22B773BC009C7F2D /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
-		C5E0CFD622B7747C009C7F2D /* AudioCall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioCall.entitlements; sourceTree = "<group>"; };
 		C5E0CFD722B78633009C7F2D /* TokenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		C5E0CFDA22B78633009C7F2D /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C5E0CFE222B787FC009C7F2D /* CallManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 			children = (
 				8E87345F21D3D292008E75B5 /* README.md */,
 				8E87346021D3D292008E75B5 /* LICENSE.md */,
+				92182AFC22E98F7000E5992B /* Shared */,
 				8EEA98B21FB5A1AD00E90861 /* VoximplantDemo */,
 				C5A248BA22B3F7140008FAF4 /* AudioCall */,
 				8EEA98B11FB5A1AD00E90861 /* Products */,
@@ -211,6 +218,15 @@
 				8E9DA3F3206144C200721415 /* UI */,
 			);
 			path = VoximplantDemo;
+			sourceTree = "<group>";
+		};
+		92182AFC22E98F7000E5992B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				92C8E1F522E99419006CCCFF /* Errors.swift */,
+				92C8E20022EB4139006CCCFF /* Shared.xcassets */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		92B2D61722CB49A3000E6E4B /* Controllers */ = {
@@ -248,14 +264,12 @@
 			isa = PBXGroup;
 			children = (
 				92AF8C8222CBA73200888C51 /* README.md */,
-				C5E0CFD622B7747C009C7F2D /* AudioCall.entitlements */,
 				C5E0CFCE22B773BC009C7F2D /* AppDelegate.swift */,
 				C5E0CFCF22B773BC009C7F2D /* Log.swift */,
 				C5E0CFDA22B78633009C7F2D /* AuthService.swift */,
-				C5B6845D22CC922F0063DD9A /* Key.swift */,
+				92B6829E22F4492A002244B5 /* PermissionManager.swift */,
 				C5E0CFD722B78633009C7F2D /* TokenManager.swift */,
 				C5E0CFE222B787FC009C7F2D /* CallManager.swift */,
-				C58A015122C0FC99002F328C /* PermissionRequester.swift */,
 				C5A248C722B3F7150008FAF4 /* Info.plist */,
 				C5A248C222B3F7150008FAF4 /* Assets.xcassets */,
 				C5E0CFA122B7713B009C7F2D /* UI */,
@@ -281,7 +295,9 @@
 				C5E0CFA522B77197009C7F2D /* UIHelper.swift */,
 				92F00F9322C610E00061AF13 /* UIExtensions.swift */,
 				92F00F9122C60B7F0061AF13 /* CustomTextField.swift */,
+				92049F8F22DCD177006DB07F /* ColoredButton.swift */,
 				9220152622CA41F60023B5A7 /* LabelWithTimer.swift */,
+				92049F9822DDDD47006DB07F /* ButtonWithLabel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -411,6 +427,7 @@
 				CCC49816A01C531BC34CB298 /* ringtone.aiff in Resources */,
 				CCC4927CE761DE13C2DAE8FC /* Roboto-Bold.ttf in Resources */,
 				CCC492F342C5D67A7817583B /* Roboto-Regular.ttf in Resources */,
+				92C8E20122EB4139006CCCFF /* Shared.xcassets in Resources */,
 				CCC492858EB7282AA47F554F /* LaunchScreen.storyboard in Resources */,
 				8E87346121D3D292008E75B5 /* README.md in Resources */,
 				CCC49D30AE9A409752166283 /* Main.storyboard in Resources */,
@@ -423,6 +440,7 @@
 			files = (
 				92A6571A22BA3F5D004701D4 /* KeyPadView.xib in Resources */,
 				C5E0CFBF22B771A0009C7F2D /* Roboto-Regular.ttf in Resources */,
+				92C8E20222EB4139006CCCFF /* Shared.xcassets in Resources */,
 				C5A248C322B3F7150008FAF4 /* Assets.xcassets in Resources */,
 				92AF8C8322CBA73200888C51 /* README.md in Resources */,
 				C5E0CFBB22B771A0009C7F2D /* LaunchScreen.storyboard in Resources */,
@@ -468,18 +486,20 @@
 				C5E0CFB522B77198009C7F2D /* LoginViewController.swift in Sources */,
 				921A728D22B8DC59001BB4E5 /* IncomingCallViewController.swift in Sources */,
 				C5E0CFDB22B78633009C7F2D /* TokenManager.swift in Sources */,
-				C58A015222C0FC9A002F328C /* PermissionRequester.swift in Sources */,
 				C5E0CFDE22B78633009C7F2D /* AuthService.swift in Sources */,
 				C5E0CFD322B773BC009C7F2D /* Log.swift in Sources */,
 				92A6571E22BA60EF004701D4 /* CallViewController.swift in Sources */,
-				C5B6845E22CC922F0063DD9A /* Key.swift in Sources */,
 				92F00F9222C60B7F0061AF13 /* CustomTextField.swift in Sources */,
+				92049F9922DDDD47006DB07F /* ButtonWithLabel.swift in Sources */,
 				C5E0CFD222B773BC009C7F2D /* AppDelegate.swift in Sources */,
 				C5E0CFE422B787FC009C7F2D /* CallManager.swift in Sources */,
+				92049F9022DCD177006DB07F /* ColoredButton.swift in Sources */,
 				92D040B722C4A1DE007B74B4 /* CallFailedViewController.swift in Sources */,
 				9220152722CA41F60023B5A7 /* LabelWithTimer.swift in Sources */,
 				92AC727722BB9938007CCB93 /* MainViewController.swift in Sources */,
+				92C8E1F622E99419006CCCFF /* Errors.swift in Sources */,
 				92A6571C22BA598A004701D4 /* KeyPadView.swift in Sources */,
+				92B6829F22F4492A002244B5 /* PermissionManager.swift in Sources */,
 				C5E0CFAF22B77198009C7F2D /* UIHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,7 +666,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_ENTITLEMENTS = AudioCall/AudioCall.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 25S6X4YD96;
 				INFOPLIST_FILE = AudioCall/Info.plist;
@@ -666,7 +686,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_ENTITLEMENTS = AudioCall/AudioCall.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 25S6X4YD96;
 				INFOPLIST_FILE = AudioCall/Info.plist;

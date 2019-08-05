@@ -14,48 +14,82 @@ let sharedCallManager: CallManager = {
 }()
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate {
     
     var window: UIWindow?
+    var callManager: CallManager = sharedCallManager
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+
         Log.enable(level: .debug)
         VIClient.setLogLevel(.info)
+        
+        callManager.delegate = self
         
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             Log.i("Voximplant Swift Demo v\(version) started", context: self)
         }
+        UIApplication.shared.isStatusBarHidden = false
         UIApplication.shared.isIdleTimerDisabled = true
         
+        
         return true
-    }
-    
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-        UIApplication.shared.isIdleTimerDisabled = false
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        if let navigationController = window?.rootViewController as? UINavigationController,
-            let controllerWithReconnect = navigationController.topViewController as? MainViewController {
-            if controllerWithReconnect.presentedViewController == nil {
-                controllerWithReconnect.reconnect() //reconnect if on the mainviewcontroller only
-            }
-        }
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    // MARK: AppLifeCycle methods:
+    func applicationWillResignActive(_ application: UIApplication) {
+        (window?.rootViewController?.toppestViewController as? AppLifeCycleDelegate)?.applicationWillResignActive(application)
+        UIApplication.shared.isIdleTimerDisabled = false
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        (window?.rootViewController?.toppestViewController as? AppLifeCycleDelegate)?.applicationDidEnterBackground(application)
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        (window?.rootViewController?.toppestViewController as? AppLifeCycleDelegate)?.applicationWillEnterForeground(application)
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        (window?.rootViewController?.toppestViewController as? AppLifeCycleDelegate)?.applicationDidBecomeActive(application)
+    }
+}
+
+// MARK: CallManagerDelegate
+extension AppDelegate {
+    func notifyIncomingCall(_ call: VICall) {
+        (window?.rootViewController?.toppestViewController as? CallManagerDelegate)?.notifyIncomingCall(call)
+    }
+}
+
+// MARK: UIApplication's domain constants
+extension UIApplication {
+    class var errorDomain: String {
+        return Bundle.main.bundleIdentifier!
+    }
+}
+
+extension UIApplication {
+    class var userDefaultsDomain: String {
+        return Bundle.main.bundleIdentifier!
+    }
+}
+
+// MARK: AppLifeCycleDelegate declaration
+protocol AppLifeCycleDelegate {
+    func applicationWillResignActive(_ application: UIApplication)
+    func applicationDidEnterBackground(_ application: UIApplication)
+    func applicationWillEnterForeground(_ application: UIApplication)
+    func applicationDidBecomeActive(_ application: UIApplication)
+}
+
+extension AppLifeCycleDelegate {
+    func applicationWillResignActive(_ application: UIApplication) {}
+    func applicationDidEnterBackground(_ application: UIApplication) {}
+    func applicationWillEnterForeground(_ application: UIApplication) {}
+    func applicationDidBecomeActive(_ application: UIApplication) {}
 }

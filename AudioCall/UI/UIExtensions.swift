@@ -6,7 +6,25 @@ import UIKit
 
 extension UIViewController { // used to call segues with same id as a view controller type
     func performSegue(withIdentifier typeIdentifier: UIViewController.Type, sender: Any?) {
-        return performSegue(withIdentifier: String(describing: typeIdentifier), sender: sender)
+        performSegue(withIdentifier: String(describing: typeIdentifier), sender: sender)
+    }
+    
+    func canPerformSegue(withIdentifier id: String) -> Bool {
+        guard let segues = self.value(forKey: "storyboardSegueTemplates") as? [NSObject] else { return false }
+        return segues.first { $0.value(forKey: "identifier") as? String == id } != nil
+    }
+    
+    func canPerformSegue(withIdentifier typeIdentifier: UIViewController.Type) -> Bool {
+        return canPerformSegue(withIdentifier: String(describing: typeIdentifier))
+    }
+    
+    func performSegueIfPossible(withIdentifier id: String?, sender: Any?) {
+        guard let id = id, canPerformSegue(withIdentifier: id) else { return }
+        performSegue(withIdentifier: id, sender: sender)
+    }
+    
+    func performSegueIfPossible(withIdentifier typeIdentifier: UIViewController.Type, sender: Any?) {
+        performSegueIfPossible(withIdentifier: String(describing: typeIdentifier), sender: sender)
     }
 }
 
@@ -29,22 +47,38 @@ extension UIViewController { // use this method to create UIImage from any color
         UIRectFill(rect)
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        return image
+        return image    
     }
 }
 
-extension UIViewController { // to change status bar color
-    func changeStatusBarStyle(to style: UIStatusBarStyle) {
-        UIApplication.shared.statusBarStyle = style
+extension UIViewController {
+    var topPresentedController: UIViewController {
+        if let presentedViewController = self.presentedViewController {
+            return presentedViewController.topPresentedController
+        } else {
+            return self
+        }
     }
-}
-
-extension UIViewController { // used to convert timeinterval to string
-    func timeString(time: TimeInterval?) -> String { // converting time interval to mm:ss
-        guard let convertableTime = time else { return "" }
-        let minutes = Int(convertableTime) / 60 % 60
-        let seconds = Int(convertableTime) % 60
-        return String(format:"%02i:%02i", minutes, seconds)
+    
+    var toppestViewController: UIViewController {
+        if let navigationvc = self as? UINavigationController {
+            if let navigationsTopViewController = navigationvc.topViewController {
+                return navigationsTopViewController.topPresentedController
+            } else {
+                return navigationvc // no children
+            }
+        } else if let tabbarvc = self as? UITabBarController {
+            if let selectedViewController = tabbarvc.selectedViewController {
+                return selectedViewController.topPresentedController
+            } else {
+                return self // no children
+            }
+        } else if let firstChild = self.children.first {
+            // other container's view controller
+            return firstChild.topPresentedController
+        } else {
+            return self.topPresentedController
+        }
     }
 }
 

@@ -17,15 +17,11 @@ class CustomTextField: UITextField { // this class used to work with textfiled a
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        sharedInit()
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        sharedInit()
-    }
-    
-    func sharedInit() {
         setupUI()
     }
     
@@ -36,6 +32,7 @@ class CustomTextField: UITextField { // this class used to work with textfiled a
         layer.shadowOpacity = 0.03
         rightViewMode = .always
     }
+
     
     @IBAction func nextField(sender: UITextField) {
         becomeFirstResponder()
@@ -49,4 +46,9 @@ class TextFieldWithButton: CustomTextField {
     }
 }
 
+extension UITextField {
+    var textWithVoxDomain: String {
+        return (text ?? "") + ".voximplant.com"
+    }
+}
 

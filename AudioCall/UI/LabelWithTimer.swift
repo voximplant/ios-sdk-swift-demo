@@ -4,7 +4,7 @@
 
 import UIKit
 
-@objc protocol TimerDelegate: class {
+@objc protocol TimerDelegate: AnyObject {
     func updateTime()
 }
 

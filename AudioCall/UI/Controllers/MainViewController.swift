@@ -5,7 +5,7 @@
 import UIKit
 import VoxImplant
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, AppLifeCycleDelegate, CallManagerDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var callButton: UIButton!
@@ -16,68 +16,47 @@ class MainViewController: UIViewController {
     fileprivate var callManager: CallManager = sharedCallManager
     fileprivate var authService: AuthService = sharedAuthService
     
-    var loggedInUser: User!
-    var endpointUsername: String?
-    
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        callManager.delegate = self
-        
+                
         setupUI()
-        
-        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         callButton.isEnabled = true
-        
-        changeStatusBarStyle(to: .lightContent)
     }
     
     // MARK: Setup User Interface
     private func setupUI() {
         navigationItem.titleView = UIHelper.LogoView
 
-        userDisplayName.text = "Logged in as \(loggedInUser.displayName)"
+        userDisplayName.text = "Logged in as \(authService.lastLoggedInUser?.displayName ?? " ")"
         
-        callButton.layer.borderColor = #colorLiteral(red: 0.4, green: 0.1803921569, blue: 1, alpha: 1)
-        callButton.setBackgroundImage(getImageWithColor(color: #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)), for: .highlighted)
-        callButton.setBackgroundImage(getImageWithColor(color: #colorLiteral(red: 0.4, green: 0.1803921569, blue: 1, alpha: 1)), for: .normal)
+        hideKeyboardWhenTappedAround()
     }
     
     // MARK: Actions
     @IBAction func logoutTouch(_ sender: UIBarButtonItem) {
-        authService.disconnect { result in
-            switch (result) {
-            case .success():
-                self.navigationController?.popViewController(animated: true)
-            case let .failure(error):
-                UIHelper.ShowError(error: error.localizedDescription)
-            }
+        authService.disconnect {
+            [weak self] in
+                self?.navigationController?.popViewController(animated: true)
         }
     }
     
     @IBAction func callTouch(_ sender: AnyObject) {
         Log.d("Calling \(String(describing: contactUsernameField.text))")
-        
-        AVCaptureDevice.requestPermissionIfNeeded(for: .audio)
-        
-        guard AVCaptureDevice.authorizationStatus(for: .audio) == .authorized else { return }
-        
-        // Voximplant SDK could handle will empty username.
-        let contactUsername: String = contactUsernameField.text ?? ""
-        callManager.startOutgoingCall(contactUsername)
-        { [weak self] (result: Result<(), Error>) in
-            if case let .failure(error) = result {
-                UIHelper.ShowError(error: error.localizedDescription)
-            } else if let sself = self { // success
-                sself.prepareUIToCall() // block user interaction
-                sself.endpointUsername = sself.contactUsernameField.text
-                sself.performSegue(withIdentifier: CallViewController.self, sender: sself)
+        PermissionsManager.checkAudioPermisson {
+            let contactUsername: String = self.contactUsernameField.text ?? ""
+            self.callManager.startOutgoingCall(contactUsername) { [weak self] (result: Result<(), Error>) in
+                if case let .failure(error) = result {
+                    UIHelper.ShowError(error: error.localizedDescription)
+                } else if let strongSelf = self { // success
+                    strongSelf.prepareUIToCall() // block user interaction
+                    strongSelf.performSegue(withIdentifier: CallViewController.self, sender: strongSelf)
+                }
             }
         }
     }
@@ -90,40 +69,36 @@ class MainViewController: UIViewController {
         callButton.isEnabled = false
         view.endEditing(true)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? CallViewController {
-            controller.endpointUsername = endpointUsername ?? ""
-        }
-    }
-    
-    // MARK: Supporting methods
+
     func reconnect() {
+        Log.d("Reconnecting")
         UIHelper.ShowProgress(title: "Reconnecting", details: "Please wait...", viewController: self)
-        
-        authService.loginWithAccessToken(user: loggedInUser.id + ".voximplant.com")
+        authService.loginWithAccessToken(user: authService.lastLoggedInUser?.fullUsername ?? "")
         { [weak self] result in
-            UIHelper.HideProgress(on: self!)
-            self?.callButton.isEnabled = true
-            
-            switch(result) {
-            case let .failure(error):
-                UIHelper.ShowError(error: error.localizedDescription, controller: self)
-            case let .success(userDisplayName):
-                self?.userDisplayName.text = "Logged in as \(userDisplayName)"
+            if let strongSelf = self {
+                strongSelf.callButton.isEnabled = true
+                
+                switch(result) {
+                case let .failure(error):
+                    UIHelper.ShowError(error: error.localizedDescription, controller: strongSelf)
+                case let .success(userDisplayName):
+                    strongSelf.userDisplayName.text = "Logged in as \(userDisplayName)"
+                }
+                UIHelper.HideProgress(on: strongSelf)
             }
         }
     }
-}
-
-// MARK: CallManager delegate
-extension MainViewController: CallManagerDelegate {
-    func notifyIncomingCall(_ descriptor: VICall) {
-        performSegue(withIdentifier: IncomingCallViewController.self, sender: self)
+    
+    // MARK: AppLifeCycleDelegate
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        reconnect()
     }
     
-    func cancelIncomingCall(_ descriptor: VICall) {
-        presentedViewController?.dismiss(animated: false, completion: nil)
+}
+
+extension UINavigationController {
+    override open var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 

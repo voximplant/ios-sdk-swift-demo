@@ -7,10 +7,7 @@ import AVFoundation
 import Dispatch
 import MBProgressHUD
 
-class UIHelper {
-    fileprivate static var incomingCallAlert: UIAlertController?
-    fileprivate static var player: AVAudioPlayer?
-    
+class UIHelper {    
     class var LogoView: UIImageView? { // used to return logo for nav bar
         let image = #imageLiteral(resourceName: "Logo").imageWithInsets(insets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
         let imageView = UIImageView(image: image)
@@ -21,7 +18,7 @@ class UIHelper {
     
     
     // MARK: Show errors methods
-    class func ShowError(error: String!, action: UIAlertAction? = nil, controller: UIViewController? = nil) {
+    class func ShowError(error: String, action: UIAlertAction? = nil, controller: UIViewController? = nil) {
         DispatchQueue.main.async {
             if let rootViewController = UIApplication.shared.keyWindow?.rootViewController  {
                 
@@ -35,7 +32,7 @@ class UIHelper {
                 if let specifiedController = controller {
                     specifiedController.present(alert, animated: true, completion: nil)
                 } else {
-                    let controllerToUse = UIHelper.topPresentedController(controller: rootViewController)
+                    let controllerToUse = rootViewController.toppestViewController
                     controllerToUse.present(alert, animated: true, completion: nil)
                 }
             }
@@ -46,6 +43,7 @@ class UIHelper {
     // Shows or hides progress UI Elelment with animated cirle to indicate user that something is happening
     class func ShowProgress(title:String, details: String, viewController: UIViewController) {
         DispatchQueue.main.async {
+            guard viewController.view.subviews.first(where: { $0 is MBProgressHUD }) == nil else { return }
             let progress = MBProgressHUD.showAdded(to: viewController.view, animated: true)
             progress.label.text = title
             progress.detailsLabel.text = details
@@ -58,9 +56,14 @@ class UIHelper {
         }
     }
     
-    class func topPresentedController(controller: UIViewController) -> UIViewController { // used to get most top controller of the screen
-        guard let presentedController = controller.presentedViewController else { return controller }
-        return topPresentedController(controller: presentedController)
+    class func getImageWithColor(color: UIColor) -> UIImage { // use this method to create UIImage from any color
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(color.cgColor)
+        context?.fill(rect)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
     }
-    
 }

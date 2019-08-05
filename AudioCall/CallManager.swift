@@ -14,9 +14,8 @@ enum CallNotificationAction: String {
     case answerAudio = "kAnswerAudioCallNotificationAction"
 }
 
-protocol CallManagerDelegate {
-    func notifyIncomingCall(_ descriptor: VICall)
-    func cancelIncomingCall(_ descriptor: VICall)
+protocol CallManagerDelegate: AnyObject {
+    func notifyIncomingCall(_ call: VICall)
 }
 
 class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
@@ -43,10 +42,10 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
         super.init()
         self.client.callManagerDelegate = self
     }
-        
+    
     func startOutgoingCall(_ contact: String, _ completion: @escaping (Result<(), Error>) -> Void) {
         if let lastLoggedInUser = authService.lastLoggedInUser {
-            authService.loginWithAccessToken(user: lastLoggedInUser.id)
+            authService.loginWithAccessToken(user: lastLoggedInUser.fullUsername)
             { [weak self] (result: Result<String, Error>) in
                 switch result {
                 case let .failure(error):
@@ -67,12 +66,10 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
                             call.start()
                             completion(.success(()))
                         } else {
-                            let error = NSError(domain: "Can't start an outgoing call: couldn't create a VICall instance.", code: 5030, userInfo: nil)
-                            completion(.failure(error))
+                            completion(.failure(VoxDemoError.errorCouldntCreateCall()))
                         }
                     } else {
-                        let error = NSError(domain: "Can't start an outgoing call: CallManager already has a manage call or nil.", code: 5091, userInfo: nil)
-                        completion(.failure(error))
+                        completion(.failure(VoxDemoError.errorAlreadyHasCall()))
                     }
                 }
             }
@@ -82,16 +79,14 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
     func makeIncomingCallActive() {
         // assert(self.hasManagedCall())
         // assert(client.clientState == .loggedIn)
-        
+
         // In this sample we don't need to check the client state in this method - here we are sure we are already logged in to the Voximplant Cloud.
-        
         let settings = VICallSettings()
         settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: false, sendVideo: false)
         managedCall?.answer(with: settings)
     }
 
     // MARK: VIClientCallManagerDelegate
-
     func client(_ client: VIClient, didReceiveIncomingCall call: VICall, withIncomingVideo video: Bool, headers: [AnyHashable: Any]?) {
         if self.hasManagedCall() {
             call.reject(with: .busy, headers: nil)
@@ -103,7 +98,6 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
     }
     
     // MARK: VICallDelegate
-
     func call(_ call: VICall, didDisconnectWithHeaders headers: [AnyHashable: Any]?, answeredElsewhere: NSNumber) {
         if case call.callId? = managedCall?.callId {
             call.remove(self)

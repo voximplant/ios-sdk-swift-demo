@@ -3,26 +3,28 @@
  */
 
 import UIKit
+import VoxImplant
 
-class CallFailedViewController: UIViewController {
+class CallFailedViewController: UIViewController, CallManagerDelegate {
     
     @IBOutlet weak var endpointDisplayNameLabel: UILabel!
     @IBOutlet weak var failReason: UILabel!
     
-    var failingReason: String?
-    var endpointDisplayName: String?
+    var callFailedInfo: (username: String, reasonToFail: String)!  // this piece of code receives info from CallVC to update labels on CallFailedVC.
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        failReason.text = failingReason
-        endpointDisplayNameLabel.text = endpointDisplayName
+        failReason.text = callFailedInfo.reasonToFail
+        endpointDisplayNameLabel.text = callFailedInfo.username
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        changeStatusBarStyle(to: .default)
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
     }
     
+    // MARK: CallManagerDelegate
+    func notifyIncomingCall(_ descriptor: VICall) {
+        self.performSegue(withIdentifier: MainViewController.self, sender: self)
+    }
 }

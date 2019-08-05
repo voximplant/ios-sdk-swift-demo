@@ -26,7 +26,7 @@ class KeyPadView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        guard let view = loadViewFromNib() else { return }
+        guard let view = loadViewFromNib() else { return nil }
         
         view.frame = self.bounds
         self.addSubview(view)
