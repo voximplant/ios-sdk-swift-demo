@@ -4,14 +4,10 @@
 
 import UIKit
 import VoxImplant
-import CocoaLumberjack
 
 let sharedClient: VIClient = VIClient(delegateQueue: DispatchQueue.main)
 let sharedAuthService: AuthService = AuthService(sharedClient)
-let sharedCallManager: CallManager = {
-    let callManager = CallManager(sharedClient, sharedAuthService)
-    return callManager
-}()
+let sharedCallManager: CallManager = CallManager(sharedClient, sharedAuthService)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate {
@@ -64,32 +60,4 @@ extension AppDelegate {
     func notifyIncomingCall(_ call: VICall) {
         (window?.rootViewController?.toppestViewController as? CallManagerDelegate)?.notifyIncomingCall(call)
     }
-}
-
-// MARK: UIApplication's domain constants
-extension UIApplication {
-    class var errorDomain: String {
-        return Bundle.main.bundleIdentifier!
-    }
-}
-
-extension UIApplication {
-    class var userDefaultsDomain: String {
-        return Bundle.main.bundleIdentifier!
-    }
-}
-
-// MARK: AppLifeCycleDelegate declaration
-protocol AppLifeCycleDelegate {
-    func applicationWillResignActive(_ application: UIApplication)
-    func applicationDidEnterBackground(_ application: UIApplication)
-    func applicationWillEnterForeground(_ application: UIApplication)
-    func applicationDidBecomeActive(_ application: UIApplication)
-}
-
-extension AppLifeCycleDelegate {
-    func applicationWillResignActive(_ application: UIApplication) {}
-    func applicationDidEnterBackground(_ application: UIApplication) {}
-    func applicationWillEnterForeground(_ application: UIApplication) {}
-    func applicationDidBecomeActive(_ application: UIApplication) {}
 }

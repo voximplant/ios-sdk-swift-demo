@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHC-2I-USg">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="AudioCallKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P4L-Mk-TlQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nl5-7b-THW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUH-cd-1xk" customClass="ColoredButton" customModule="AudioCallKit" customModuleProvider="target">
+                                <rect key="frame" x="36" y="196.5" width="248" height="44"/>
+                                <color key="backgroundColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="E9e-4w-bJn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="LOGIN">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginTouchWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="udc-GN-noO"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VoximplantSDK ios - 2.20.6 WebRTC 66.0.3" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gi-OE-6tk">
+                                <rect key="frame" x="32" y="475" width="256" height="33"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Audio call demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJr-lA-k3n">
+                                <rect key="frame" x="36" y="40" width="248" height="22.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ikW-Hj-I21">
+                                <rect key="frame" x="34" y="466.5" width="252" height="0.5"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="dO2-OJ-a4M"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="USER@APP.ACCOUNT" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mIz-ag-HWk" customClass="CustomTextField" customModule="AudioCallKit" customModuleProvider="target">
+                                <rect key="frame" x="18" y="78.5" width="284" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="fye-qA-tRv"/>
+                                </constraints>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                <connections>
+                                    <action selector="nextFieldWithSender:" destination="TLr-1T-D1p" eventType="editingDidEndOnExit" id="BSZ-Ro-cFd"/>
+                                    <outlet property="rightView" destination="xtq-Km-tK1" id="8uG-Jx-cpe"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PASSWORD" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TLr-1T-D1p" customClass="CustomTextField" customModule="AudioCallKit" customModuleProvider="target">
+                                <rect key="frame" x="18" y="132.5" width="284" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="xmC-pU-S8O"/>
+                                </constraints>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
+                                <connections>
+                                    <action selector="loginTouchWithSender:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="9eo-Jh-tW3"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" fixedFrame="YES" text=".voximplant.com " lineBreakMode="clip" baselineAdjustment="none" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="xtq-Km-tK1">
+                                <rect key="frame" x="201" y="81" width="101" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GML-wE-f0M">
+                                <rect key="frame" x="36" y="240.5" width="248" height="100"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1b-wZ-Dhy">
+                                        <rect key="frame" x="64" y="16" width="120" height="0.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLe-Fg-gYU">
+                                                <rect key="frame" x="45" y="-6.5" width="30" height="13"/>
+                                                <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="3Ep-WZ-PfT"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="rLe-Fg-gYU" firstAttribute="centerX" secondItem="p1b-wZ-Dhy" secondAttribute="centerX" id="CRi-g2-oHn"/>
+                                            <constraint firstAttribute="bottom" secondItem="rLe-Fg-gYU" secondAttribute="bottom" constant="-6" id="Oau-BV-ceM"/>
+                                            <constraint firstAttribute="height" constant="0.5" id="ZdE-97-bqD"/>
+                                            <constraint firstItem="rLe-Fg-gYU" firstAttribute="top" secondItem="p1b-wZ-Dhy" secondAttribute="top" constant="-6.5" id="v2I-ri-oX7"/>
+                                        </constraints>
+                                    </view>
+                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8c-j4-ihH" customClass="ColoredButton" customModule="AudioCallKit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="32" width="248" height="44"/>
+                                        <color key="backgroundColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="A0O-X5-HhK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                        <state key="normal" title="LOGIN WITH ACCESS TOKEN">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <real key="value" value="1.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loginWithTokenTouchWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LLZ-G9-d3C"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token will expire in 2d" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elw-bk-cj6">
+                                        <rect key="frame" x="16" y="84" width="216" height="15.5"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="F8c-j4-ihH" firstAttribute="leading" secondItem="GML-wE-f0M" secondAttribute="leading" id="1Yu-1o-Zs1"/>
+                                    <constraint firstItem="F8c-j4-ihH" firstAttribute="top" secondItem="p1b-wZ-Dhy" secondAttribute="top" constant="16" id="31z-zz-70l"/>
+                                    <constraint firstItem="p1b-wZ-Dhy" firstAttribute="top" secondItem="GML-wE-f0M" secondAttribute="top" constant="16" id="59N-da-B7O"/>
+                                    <constraint firstItem="Elw-bk-cj6" firstAttribute="leading" secondItem="GML-wE-f0M" secondAttribute="leading" constant="16" id="C0e-AZ-p8A"/>
+                                    <constraint firstAttribute="height" constant="100" id="FJW-uQ-OCE"/>
+                                    <constraint firstAttribute="trailing" secondItem="Elw-bk-cj6" secondAttribute="trailing" constant="16" id="Gos-fF-l0y"/>
+                                    <constraint firstAttribute="trailing" secondItem="p1b-wZ-Dhy" secondAttribute="trailing" constant="64" id="Ozt-fD-PUZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="F8c-j4-ihH" secondAttribute="trailing" id="Zvy-OK-iuG"/>
+                                    <constraint firstItem="Elw-bk-cj6" firstAttribute="top" secondItem="F8c-j4-ihH" secondAttribute="bottom" constant="8" id="cda-wt-FWN"/>
+                                    <constraint firstItem="p1b-wZ-Dhy" firstAttribute="leading" secondItem="GML-wE-f0M" secondAttribute="leading" constant="64" id="iRk-OT-xqK"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="GML-wE-f0M" secondAttribute="trailing" constant="20" id="3ka-os-UWO"/>
+                            <constraint firstItem="ZJr-lA-k3n" firstAttribute="top" secondItem="P4L-Mk-TlQ" secondAttribute="bottom" constant="40" id="4y3-gQ-Dhp"/>
+                            <constraint firstAttribute="trailing" secondItem="mIz-ag-HWk" secondAttribute="trailing" constant="18" id="4y5-aa-GnP"/>
+                            <constraint firstItem="TLr-1T-D1p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="18" id="9LW-xA-mWp"/>
+                            <constraint firstItem="TLr-1T-D1p" firstAttribute="top" secondItem="mIz-ag-HWk" secondAttribute="bottom" constant="10" id="F9a-qi-dCe"/>
+                            <constraint firstAttribute="trailing" secondItem="TLr-1T-D1p" secondAttribute="trailing" constant="18" id="Qgt-v0-Yw5"/>
+                            <constraint firstAttribute="trailing" secondItem="hUH-cd-1xk" secondAttribute="trailing" constant="36" id="RCw-yE-RDj"/>
+                            <constraint firstItem="Nl5-7b-THW" firstAttribute="top" secondItem="5Gi-OE-6tk" secondAttribute="bottom" constant="16" id="STO-e9-IUs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZJr-lA-k3n" secondAttribute="trailing" constant="20" id="XwL-hz-yhh"/>
+                            <constraint firstItem="ZJr-lA-k3n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="Zdm-fc-8nP"/>
+                            <constraint firstItem="GML-wE-f0M" firstAttribute="top" secondItem="hUH-cd-1xk" secondAttribute="bottom" id="bHX-tk-MNW"/>
+                            <constraint firstItem="mIz-ag-HWk" firstAttribute="top" secondItem="ZJr-lA-k3n" secondAttribute="bottom" constant="16" id="eg7-hK-SSx"/>
+                            <constraint firstItem="hUH-cd-1xk" firstAttribute="top" secondItem="TLr-1T-D1p" secondAttribute="bottom" constant="20" id="fno-sx-bhF"/>
+                            <constraint firstItem="GML-wE-f0M" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="gAm-rM-Xxm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Gi-OE-6tk" secondAttribute="trailing" constant="16" id="gz6-GX-pKR"/>
+                            <constraint firstItem="mIz-ag-HWk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="18" id="hev-ZB-Amj"/>
+                            <constraint firstItem="5Gi-OE-6tk" firstAttribute="top" secondItem="ikW-Hj-I21" secondAttribute="bottom" constant="8" id="hx4-fZ-bo4"/>
+                            <constraint firstItem="ikW-Hj-I21" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="18" id="jWy-9B-Vxx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ikW-Hj-I21" secondAttribute="trailing" constant="18" id="qBI-JS-hv1"/>
+                            <constraint firstItem="hUH-cd-1xk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="36" id="qDU-gu-Eh6"/>
+                            <constraint firstItem="5Gi-OE-6tk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="v9Q-X0-fVT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="PxG-xP-JkA"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="loginPasswordField" destination="TLr-1T-D1p" id="aIZ-kx-MDZ"/>
+                        <outlet property="loginUserField" destination="mIz-ag-HWk" id="0aL-Zs-rFS"/>
+                        <outlet property="loginWithTokenButton" destination="F8c-j4-ihH" id="ypL-Eu-t8r"/>
+                        <outlet property="tokenContainerView" destination="GML-wE-f0M" id="fZv-Ls-Bpx"/>
+                        <outlet property="tokenLabel" destination="Elw-bk-cj6" id="lUh-aB-aXJ"/>
+                        <outlet property="versionLabel" destination="5Gi-OE-6tk" id="tos-vq-qqj"/>
+                        <segue destination="Afn-Nw-kKQ" kind="show" identifier="MainViewController" id="mQr-B9-Ei8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="367.5" y="-657.04225352112678"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="QyJ-F5-qli">
+            <objects>
+                <viewController id="Afn-Nw-kKQ" customClass="MainViewController" customModule="AudioCallKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Wx-Nw-CLS"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Jf-7z-pL3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4h9-Nc-pJu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CALL TO" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-La-uaS" customClass="TextFieldWithButton" customModule="AudioCallKit" customModuleProvider="target">
+                                <rect key="frame" x="18" y="240" width="284" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="HhR-vM-QPX"/>
+                                </constraints>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go"/>
+                                <connections>
+                                    <action selector="callTouch:" destination="Afn-Nw-kKQ" eventType="editingDidEndOnExit" id="fhg-5x-m5T"/>
+                                    <outlet property="rightView" destination="iso-DP-Krb" id="4dC-OT-239"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged in as" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJU-Kr-dcH">
+                                <rect key="frame" x="32" y="201.5" width="256" height="22.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iso-DP-Krb" customClass="ColoredButton" customModule="AudioCallKit" customModuleProvider="target">
+                                <rect key="frame" x="226" y="246" width="70" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                <state key="normal" title="CALL">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="callTouch:" destination="Afn-Nw-kKQ" eventType="touchUpInside" id="cdk-nR-3Q3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2eE-La-uaS" secondAttribute="trailing" constant="18" id="WoM-ej-vyJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xJU-Kr-dcH" secondAttribute="trailing" constant="16" id="eB0-G6-x05"/>
+                            <constraint firstItem="2eE-La-uaS" firstAttribute="leading" secondItem="4h9-Nc-pJu" secondAttribute="leading" constant="18" id="fuu-ES-cxN"/>
+                            <constraint firstItem="xJU-Kr-dcH" firstAttribute="leading" secondItem="4h9-Nc-pJu" secondAttribute="leadingMargin" constant="16" id="iMV-kA-TxS"/>
+                            <constraint firstItem="2eE-La-uaS" firstAttribute="top" secondItem="xJU-Kr-dcH" secondAttribute="bottom" constant="16" id="iNU-Mt-Tb4"/>
+                            <constraint firstItem="2eE-La-uaS" firstAttribute="centerY" secondItem="4h9-Nc-pJu" secondAttribute="centerY" id="liw-xL-QdH"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="LyO-sZ-4F2">
+                        <barButtonItem key="leftBarButtonItem" image="logout" id="PrG-zE-RKo">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="logoutTouch:" destination="Afn-Nw-kKQ" id="bkJ-XT-CLQ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="logout" id="jNm-zP-uGi">
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="hidesBackButton" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="callButton" destination="iso-DP-Krb" id="YPM-Jr-v7L"/>
+                        <outlet property="contactUsernameField" destination="2eE-La-uaS" id="WV0-Vd-XoP"/>
+                        <outlet property="userDisplayName" destination="xJU-Kr-dcH" id="XoB-0j-3pW"/>
+                        <segue destination="sio-MA-7IW" kind="showDetail" identifier="CallViewController" animates="NO" id="azq-cY-Zsn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qo4-Nc-jyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1140" y="-657"/>
+        </scene>
+        <!--Delegate-->
+        <scene sceneID="wOB-il-oNA">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" id="sio-MA-7IW" customClass="CallViewController" customModule="AudioCallKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kzc-FP-Fl4"/>
+                        <viewControllerLayoutGuide type="bottom" id="1xK-Te-sYy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RJn-EJ-gd9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outgoing Сall" textAlignment="center" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNY-ee-L68">
+                                <rect key="frame" x="26" y="40" width="268" height="40"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="34"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ei6-dG-UUT" customClass="LabelWithTimer" customModule="AudioCallKit" customModuleProvider="target">
+                                <rect key="frame" x="21" y="88" width="278" height="20"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sio-MA-7IW" id="vIG-KN-hhL"/>
+                                </connections>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRs-Fu-w19">
+                                <rect key="frame" x="122.5" y="312" width="75" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUi-ac-omr" customClass="ButtonWithLabel" customModule="AudioCallKit" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="12" width="65" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <state key="normal" title="Button" image="hold"/>
+                                        <state key="selected" image="resume"/>
+                                        <state key="highlighted" image="holdP"/>
+                                        <connections>
+                                            <action selector="holdTouch:" destination="sio-MA-7IW" eventType="touchUpInside" id="FmI-tk-C2I"/>
+                                            <outlet property="label" destination="zd6-Pd-gF9" id="bRQ-mQ-e41"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd6-Pd-gF9">
+                                        <rect key="frame" x="0.0" y="82" width="75" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="JuJ-za-yKE"/>
+                                    <constraint firstAttribute="width" constant="75" id="aqr-s1-fSE"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IY2-b4-bMw">
+                                <rect key="frame" x="127.5" y="478" width="65" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="9RI-VJ-EBP"/>
+                                    <constraint firstAttribute="height" constant="65" id="Dsb-zI-Zvi"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="declineCall"/>
+                                <state key="highlighted" image="declineCallP"/>
+                                <connections>
+                                    <action selector="hangupTouch:" destination="sio-MA-7IW" eventType="touchUpInside" id="P7F-ea-ens"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ijR-FQ-3Fo">
+                                <rect key="frame" x="28.5" y="209" width="263" height="100"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLU-HV-J55">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mute" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osz-uq-QYG">
+                                                <rect key="frame" x="0.0" y="82" width="75" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hI7-yg-ukP" customClass="ButtonWithLabel" customModule="AudioCallKit" customModuleProvider="target">
+                                                <rect key="frame" x="5" y="12" width="65" height="65"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="mic"/>
+                                                <state key="selected" image="micP"/>
+                                                <state key="highlighted" image="micP"/>
+                                                <connections>
+                                                    <action selector="muteTouch:" destination="sio-MA-7IW" eventType="touchUpInside" id="ARc-29-LAC"/>
+                                                    <outlet property="label" destination="osz-uq-QYG" id="coQ-4h-7HZ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GzC-vo-Ns2">
+                                        <rect key="frame" x="188" y="0.0" width="75" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xz-SQ-STq" customClass="ButtonWithLabel" customModule="AudioCallKit" customModuleProvider="target">
+                                                <rect key="frame" x="5" y="12" width="65" height="65"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="speaker"/>
+                                                <state key="selected" image="speakerP"/>
+                                                <state key="highlighted" image="speakerP"/>
+                                                <connections>
+                                                    <action selector="audioDeviceTouch:" destination="sio-MA-7IW" eventType="touchUpInside" id="rYQ-4n-1rw"/>
+                                                    <outlet property="label" destination="9fC-bB-cGj" id="cmz-p3-NXf"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="audio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fC-bB-cGj">
+                                                <rect key="frame" x="0.0" y="82" width="75" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N4h-Xq-6nd">
+                                        <rect key="frame" x="94" y="0.0" width="75" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFn-we-nrx" customClass="ButtonWithLabel" customModule="AudioCallKit" customModuleProvider="target">
+                                                <rect key="frame" x="5" y="12" width="65" height="65"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="pinpad"/>
+                                                <state key="selected" image="pinpadP"/>
+                                                <state key="highlighted" image="pinpadP"/>
+                                                <connections>
+                                                    <action selector="dtmfTouch:" destination="sio-MA-7IW" eventType="touchUpInside" id="US5-P3-uOK"/>
+                                                    <outlet property="label" destination="3yQ-00-i87" id="6eo-ci-q4V"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="keypad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yQ-00-i87">
+                                                <rect key="frame" x="0.0" y="82" width="75" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="263" id="Kop-WL-bdP"/>
+                                    <constraint firstAttribute="height" constant="100" id="y33-Mn-uBH"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9O-ga-DGJ" customClass="KeyPadView" customModule="AudioCallKit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="140.5" width="320" height="327.5"/>
+                                <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="327.5" id="731-wG-DKq"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="sio-MA-7IW" id="HjM-L5-gkU"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gNY-ee-L68" secondAttribute="trailing" constant="26" id="3Pf-su-BBt"/>
+                            <constraint firstItem="Ei6-dG-UUT" firstAttribute="top" secondItem="gNY-ee-L68" secondAttribute="bottom" constant="8" id="79c-aN-XQt"/>
+                            <constraint firstItem="Ei6-dG-UUT" firstAttribute="leading" secondItem="RJn-EJ-gd9" secondAttribute="leadingMargin" constant="5" id="7Ii-dd-zoo"/>
+                            <constraint firstItem="1xK-Te-sYy" firstAttribute="top" secondItem="IY2-b4-bMw" secondAttribute="bottom" constant="25" id="8Ps-Jz-bw1"/>
+                            <constraint firstItem="ijR-FQ-3Fo" firstAttribute="centerX" secondItem="RJn-EJ-gd9" secondAttribute="centerX" id="9Cd-vS-UWc"/>
+                            <constraint firstItem="I9O-ga-DGJ" firstAttribute="leading" secondItem="RJn-EJ-gd9" secondAttribute="leading" id="EdC-hq-yAC"/>
+                            <constraint firstItem="hRs-Fu-w19" firstAttribute="top" secondItem="ijR-FQ-3Fo" secondAttribute="bottom" constant="3" id="FcN-Ok-bIe"/>
+                            <constraint firstItem="IY2-b4-bMw" firstAttribute="top" secondItem="I9O-ga-DGJ" secondAttribute="bottom" constant="10" id="FnU-EN-MLJ"/>
+                            <constraint firstItem="gNY-ee-L68" firstAttribute="leading" secondItem="RJn-EJ-gd9" secondAttribute="leading" constant="26" id="J6Z-jF-lLH"/>
+                            <constraint firstItem="IY2-b4-bMw" firstAttribute="top" secondItem="hRs-Fu-w19" secondAttribute="bottom" constant="66" id="Uqb-iY-rQj"/>
+                            <constraint firstItem="gNY-ee-L68" firstAttribute="top" secondItem="kzc-FP-Fl4" secondAttribute="bottom" constant="40" id="WhW-Vu-tfv"/>
+                            <constraint firstAttribute="trailing" secondItem="I9O-ga-DGJ" secondAttribute="trailing" id="bP2-iC-uX9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ei6-dG-UUT" secondAttribute="trailing" constant="5" id="hCX-Sb-Ck3"/>
+                            <constraint firstItem="IY2-b4-bMw" firstAttribute="centerX" secondItem="RJn-EJ-gd9" secondAttribute="centerX" id="meW-A1-J8i"/>
+                            <constraint firstItem="hRs-Fu-w19" firstAttribute="centerX" secondItem="RJn-EJ-gd9" secondAttribute="centerX" id="pxU-dU-eUE"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="callStateLabel" destination="Ei6-dG-UUT" id="buf-Ng-7OF"/>
+                        <outlet property="dtmfButton" destination="dFn-we-nrx" id="j76-9n-x4a"/>
+                        <outlet property="endpointDisplayNameLabel" destination="gNY-ee-L68" id="xcy-lR-rhz"/>
+                        <outlet property="holdButton" destination="KUi-ac-omr" id="gvn-vW-p1N"/>
+                        <outlet property="keyPadView" destination="I9O-ga-DGJ" id="1ol-vp-Gh0"/>
+                        <outlet property="muteButton" destination="hI7-yg-ukP" id="3Y0-aY-cz2"/>
+                        <outlet property="speakerButton" destination="5Xz-SQ-STq" id="lz0-w0-Yok"/>
+                        <segue destination="yDh-Te-vwk" kind="unwind" identifier="MainViewController" animates="NO" unwindAction="unwindSegueWithSegue:" id="Zpz-L9-rLl"/>
+                        <segue destination="yDh-Te-vwk" kind="unwind" identifier="MainViewController" unwindAction="unwindSegueWithSegue:" id="C9e-Ms-O4Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q1L-xw-tJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yDh-Te-vwk" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1931" y="-657"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UIJ-2o-41t">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xHC-2I-USg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="zRq-HF-HTN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rp5-H6-ixQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qXj-yd-tC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="368" y="-1413"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="declineCall" width="145" height="145"/>
+        <image name="declineCallP" width="145" height="145"/>
+        <image name="hold" width="145" height="145"/>
+        <image name="holdP" width="145" height="145"/>
+        <image name="logout" width="25" height="25"/>
+        <image name="mic" width="145" height="145"/>
+        <image name="micP" width="145" height="145"/>
+        <image name="pinpad" width="145" height="145"/>
+        <image name="pinpadP" width="145" height="145"/>
+        <image name="resume" width="145" height="145"/>
+        <image name="speaker" width="145" height="145"/>
+        <image name="speakerP" width="145" height="145"/>
+    </resources>
+    <color key="tintColor" red="0.22352941179999999" green="0.16862745100000001" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+</document>

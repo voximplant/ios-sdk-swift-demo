@@ -32,6 +32,10 @@ class IncomingCallViewController: UIViewController, VICallDelegate {
         return .default
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        call?.remove(self)
+    }
+    
     // MARK: Actions
     @IBAction func declineTouch(_ sender: UIButton) {
         Log.d("Rejecting call")

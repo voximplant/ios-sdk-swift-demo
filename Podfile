@@ -10,7 +10,7 @@ def common_pods
   pod 'SkyFloatingLabelTextField', '~> 3.0'
 end
 
-sdk_version = '2.21.2'
+sdk_version = '2.21.3'
 
 target 'Voximplant Demo' do
   common_pods
@@ -18,6 +18,11 @@ target 'Voximplant Demo' do
 end
 
 target 'AudioCall' do
+  common_pods
+  pod 'VoxImplantSDK', sdk_version
+end
+
+target 'AudioCallKit' do
   common_pods
   pod 'VoxImplantSDK', sdk_version
 end

@@ -119,6 +119,8 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
             guard let infoAboutFail = callFailedInfo else { return }
             controller.callFailedInfo = infoAboutFail
         }
+        
+        call?.remove(self)
     }
     
 }
