@@ -212,12 +212,6 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
     }
     
     func provider(_ provider: CXProvider, perform action: CXSetHeldCallAction) {
-        if action.isOnHold {
-            VIAudioManager.shared().callKitStopAudio()
-        } else {
-            VIAudioManager.shared().callKitStartAudio()
-        }
-        
         managedCall?.call?.setHold(action.isOnHold)
         { error in
             if let error = error {
