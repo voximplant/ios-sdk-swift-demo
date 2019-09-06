@@ -7,10 +7,8 @@ import PushKit
 import VoxImplant
 
 protocol PushCallNotifierDelegate: AnyObject {
-    func handlePushIncomingCall(_ callDescription: [AnyHashable: Any], _ completion: @escaping (Result<(), Error>)->Void)
+    func didReceiveIncomingCall(_ uuid: UUID, from fullUsername: String, withDisplayName userDisplayName: String, withPushCompletion pushProcessingCompletion: (()->Void)?)
 }
-
-var pushNotificationCompletion: (()->Void)?
 
 // Create the PushCallNotifier instance on application launch
 // This is obligatory to receive incoming calls via VoIP push from not launched application state
@@ -20,6 +18,8 @@ class PushCallNotifier: NSObject, PKPushRegistryDelegate {
     fileprivate var client: VIClient
     fileprivate var authService: AuthService
     
+    weak var delegate: PushCallNotifierDelegate?
+
     init(_ client: VIClient, _ authService: AuthService) {
         self.client = client
         self.authService = authService
@@ -46,18 +46,17 @@ class PushCallNotifier: NSObject, PKPushRegistryDelegate {
     }
     
     @available(iOS 11.0, *)
-    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
+    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion pushProcessingCompletion: @escaping () -> Void) {
         Log.i("\(type) Push Received: \(payload)")
         
-        pushNotificationCompletion = completion
-        handlePushNotification(payload.dictionaryPayload)
+        handlePushNotification(payload.dictionaryPayload, withPushCompletion: pushProcessingCompletion)
     }
     
-    @available(iOS, introduced: 8.0, obsoleted: 11.0)
+    @available(iOS, introduced: 8.0, deprecated: 11.0)
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) {
         Log.i("\(type) Push Received: \(payload)")
         
-        handlePushNotification(payload.dictionaryPayload)
+        handlePushNotification(payload.dictionaryPayload, withPushCompletion: nil)
     }
     
     func pushRegistry(_ registry: PKPushRegistry, didInvalidatePushTokenFor type: PKPushType) {
@@ -65,22 +64,27 @@ class PushCallNotifier: NSObject, PKPushRegistryDelegate {
     }
     
     // MARK: PushCallNotifierDelegate
-    func handlePushNotification(_ payload: [AnyHashable : Any]) {
-        // To check that the push notification is sent from the Voximplant Cloud
-        // guard payload["voximplant"] != nil else { return }
+    func handlePushNotification(_ pushPayload: [AnyHashable : Any], withPushCompletion pushProcessingCompletion: (()->Void)?) {
+        let callUUID: UUID = client.handlePushNotification(pushPayload)!
+        let userDisplayName: String = pushPayload.displayName
+        let fullUsername: String = pushPayload.fullUsername
         
-        if let user = authService.lastLoggedInUser {
-            authService.loginWithAccessToken(user: user.fullUsername)
-            { [weak client] (result: Result<String, Error>) in
-                if case let .failure(error) = result {
-                    Log.e(error.localizedDescription)
-                    pushNotificationCompletion?()
-                } else {
-                    client?.handlePushNotification(payload)
-                }
-            }
-        } else {
-            pushNotificationCompletion?()
-        }
+        delegate?.didReceiveIncomingCall(callUUID, from: fullUsername, withDisplayName: userDisplayName, withPushCompletion: pushProcessingCompletion)
+    }
+}
+
+
+fileprivate extension Dictionary where Key == AnyHashable {
+    var isVoximplantPushPayload: Bool {
+        return self["voximplant"] != nil
+    }
+    
+    var displayName: String {
+        let voximplantContent = self["voximplant"] as! [String:String]
+        return voximplantContent["display_name"]!
+    }
+    
+    var fullUsername: String {
+        return self.displayName
     }
 }

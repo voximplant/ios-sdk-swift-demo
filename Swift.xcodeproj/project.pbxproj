@@ -50,6 +50,7 @@
 		C5551BBD22C4FEC6003A90A9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5551BBA22C4FEC6003A90A9 /* SettingsViewController.swift */; };
 		C5551BBE22C4FEC6003A90A9 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5551BBB22C4FEC6003A90A9 /* SettingTableViewCell.swift */; };
 		C5551BBF22C4FEC6003A90A9 /* SettingsDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5551BBC22C4FEC6003A90A9 /* SettingsDetailTableViewController.swift */; };
+		C590E7C32322E0F300E112D7 /* CallWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590E7C22322E0F300E112D7 /* CallWrapper.swift */; };
 		C5A248C322B3F7150008FAF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A248C222B3F7150008FAF4 /* Assets.xcassets */; };
 		C5A8B61422D33569007DC646 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8B61322D33569007DC646 /* AppDelegate.swift */; };
 		C5A8B61D22D3356A007DC646 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A8B61C22D3356A007DC646 /* Assets.xcassets */; };
@@ -125,6 +126,7 @@
 		C5551BBA22C4FEC6003A90A9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C5551BBB22C4FEC6003A90A9 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		C5551BBC22C4FEC6003A90A9 /* SettingsDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDetailTableViewController.swift; sourceTree = "<group>"; };
+		C590E7C22322E0F300E112D7 /* CallWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallWrapper.swift; sourceTree = "<group>"; };
 		C5A248B922B3F7140008FAF4 /* AudioCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A248C222B3F7150008FAF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5A248C722B3F7150008FAF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				C5A8B61322D33569007DC646 /* AppDelegate.swift */,
 				C5A8B65C22D36D94007DC646 /* PushCallNotifier.swift */,
 				C5A8B62822D35A0D007DC646 /* CallManager.swift */,
+				C590E7C22322E0F300E112D7 /* CallWrapper.swift */,
 				C54DB018230147CB00415EF3 /* AuthService.swift */,
 				C5A8B63722D35A84007DC646 /* CXExtensions.swift */,
 				C5A8B65822D35CF5007DC646 /* Info.plist */,
@@ -676,6 +679,7 @@
 				C5491E6222F98EA8001D9601 /* Log.swift in Sources */,
 				C5A8B64722D35AC0007DC646 /* CallViewController.swift in Sources */,
 				C5491E6D22F99AF3001D9601 /* ColoredButton.swift in Sources */,
+				C590E7C32322E0F300E112D7 /* CallWrapper.swift in Sources */,
 				C5491E6722F99230001D9601 /* CustomTextField.swift in Sources */,
 				C5A8B64922D35AC0007DC646 /* MainViewController.swift in Sources */,
 				C5491E6422F98EBE001D9601 /* PermissionManager.swift in Sources */,
@@ -818,7 +822,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = VoximplantDemo/VoximplantDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 25S6X4YD96;
+				DEVELOPMENT_TEAM = W9BHJBL635;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/VoximplantDemo/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -839,7 +843,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = VoximplantDemo/VoximplantDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 25S6X4YD96;
+				DEVELOPMENT_TEAM = W9BHJBL635;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/VoximplantDemo/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -898,13 +902,13 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = AudioCallKit/AudioCallKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 25S6X4YD96;
+				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = AudioCallKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift.AudioCallKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -918,12 +922,12 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = AudioCallKit/AudioCallKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 25S6X4YD96;
+				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = AudioCallKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift.AudioCallKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

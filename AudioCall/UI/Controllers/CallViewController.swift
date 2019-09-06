@@ -248,24 +248,44 @@ extension CallViewController {
     }
 }
 
-// Work with Timer happens here
 // MARK: TimerDelegate
 extension CallViewController {
     func updateTime() {
-        let time: String
-        if let timeString: String = call?.duration().toString() {
-            time = timeString + " - "
-        } else {
-            time = ""
-        }
-        callStateLabel.text = time + "Call in progress"
+        callStateLabel.setTime(call?.duration())
     }
 }
 
-fileprivate extension TimeInterval { // used to convert timeinterval to string
-    func toString() -> String { // converting time interval to mm:ss
-        let minutes = Int(self) / 60 % 60
-        let seconds = Int(self) % 60
+fileprivate extension LabelWithTimer {
+    func setTime(_ time: TimeInterval?) {
+        let text: String
+        if let time = time {
+            if let timeString = time.toString() {
+                text = timeString + " - "
+            } else {
+                text = ""
+            }
+        } else {
+            text = ""
+        }
+        self.text = text + "Call in progress"
+    }
+}
+
+fileprivate extension TimeInterval {
+    // mm:ss format
+    func toString() -> String? {
+        guard let durationInt = self.toInt() else { return nil }
+        let minutes = durationInt / 60 % 60
+        let seconds = durationInt % 60
         return String(format:"%02i:%02i", minutes, seconds)
+    }
+}
+fileprivate extension Double {
+    func toInt() -> Int? {
+        if self > Double(Int.min) && self < Double(Int.max) {
+            return Int(self)
+        } else {
+            return nil
+        }
     }
 }

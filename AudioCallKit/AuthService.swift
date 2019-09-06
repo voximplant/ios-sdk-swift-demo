@@ -9,13 +9,7 @@ extension UserDefaults {
     var lastFullUsername: String {
         return UIApplication.userDefaultsDomain + "." + "lastFullUsername"
     }
-    
-    var lastDisplayName: String {
-        return UIApplication.userDefaultsDomain + "." + "lastDisplayName"
-    }
 }
-
-typealias User = (fullUsername: String, displayName: String)
 
 class AuthService: NSObject, VIClientSessionDelegate {
     fileprivate var userDefaults = UserDefaults.standard
@@ -36,105 +30,102 @@ class AuthService: NSObject, VIClientSessionDelegate {
         super.init()
         client.sessionDelegate = self
     }
-    
-    var lastLoggedInUser: User? {
+        
+    var loggedInUser: String? {
         get {
-            guard let fullUsername = userDefaults.string(forKey: userDefaults.lastFullUsername),
-                  let displayName = userDefaults.string(forKey: userDefaults.lastDisplayName)
-            else { return nil }
-            return User(fullUsername: fullUsername, displayName: displayName)
+            return userDefaults.string(forKey: userDefaults.lastFullUsername)
         }
         set {
-            userDefaults.set(newValue?.fullUsername, forKey: userDefaults.lastFullUsername)
-            userDefaults.set(newValue?.displayName, forKey: userDefaults.lastDisplayName)
+            userDefaults.set(newValue, forKey: userDefaults.lastFullUsername)
         }
     }
     
-    func login(user: String, password: String, _ completion: @escaping (Result<String, Error>)->Void) {
-        disconnect {
-            [weak self] in
-            self?.connect
-            { [weak self]
-                (result: Result<(), Error>) in
-                if case let .failure(error) = result  {
-                    completion(.failure(error))
-                    return
-                }
-                
-                self?.client.login(withUser: user, password: password,
-                success: { (displayUserName: String, tokens: [AnyHashable : Any]) in
-                    
-                    if let refreshExpire = tokens["refreshExpire"] as? Int,
-                        let refreshToken = tokens["refreshToken"] as? String,
-                        let accessExpire = tokens["accessExpire"] as? Int,
-                        let accessToken = tokens["accessToken"] as? String
-                    {
-                        let accessToken = Token(token: accessToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
-                        let refreshToken = Token(token: refreshToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
-                        self?.tokensManager.keys = (accessToken, refreshToken)
-                        self?.lastLoggedInUser = User(user,displayUserName)
-                    }
-                    if let pushToken = self?.pushToken {
-                        self?.client.registerPushNotificationsToken(pushToken, imToken: nil)
-                    }
-                    completion(.success(displayUserName))
-                },
-                failure: { (error: Error) in
-                    completion(.failure(error))
-                })
-            }
-        }
+    var loggedInUserDisplayName: String?
+    var state: VIClientState {
+        return client.clientState
     }
-    
-    func loginWithAccessToken(user: String, _ completion: @escaping (Result<String, Error>)->Void) {
         
-        if client.clientState == .loggedIn {
-            completion(.success(lastLoggedInUser?.displayName ?? " "))
+    func login(user: String, password: String, _ completion: @escaping (Result<String, Error>)->Void) {
+        connect()
+        { [weak self]
+            (result: Result<(), Error>) in
+            if case let .failure(error) = result  {
+                completion(.failure(error))
+                return
+            }
+            
+            self?.client.login(withUser: user, password: password,
+            success: { (displayUserName: String, tokens: [AnyHashable : Any]) in
+                if let refreshToken = tokens.refreshToken,
+                   let accessToken = tokens.accessToken
+                {
+                    self?.tokensManager.keys = (accessToken, refreshToken)
+                    self?.loggedInUser = user
+                    self?.loggedInUserDisplayName = displayUserName
+                }
+                if let pushToken = self?.pushToken {
+                    self?.client.registerPushNotificationsToken(pushToken, imToken: nil)
+                }
+                completion(.success(displayUserName))
+            },
+            failure: { (error: Error) in
+                completion(.failure(error))
+            })
+        }
+    }
+    
+    func loginWithAccessToken(_ completion: @escaping (Result<String, Error>)->Void) {
+        
+        guard let user = self.loggedInUser else {
+            let error = VoxDemoError.errorRequiredPassword()
+            completion(.failure(error))
             return
         }
         
-        disconnect {
-            [weak self] in
-            self?.connect {
-                
+        if client.clientState == .loggedIn,
+           let loggedInUserDisplayName = self.loggedInUserDisplayName,
+           let keys = tokensManager.keys,
+           !keys.refresh.isExpired
+        {
+            completion(.success(loggedInUserDisplayName))
+            return
+        }
+    
+        connect() {
+            [weak self]
+            (result: Result<(), Error>) in
+            if case let .failure(error) = result  {
+                completion(.failure(error))
+                return
+            }
+            
+            self?.updateAccessTokenIfNeeded(for: user) {
                 [weak self]
-                (result: Result<(), Error>) in
-                if case let .failure(error) = result  {
+                (result: Result<Token, Error>) in
+                
+                switch result {
+                case let .failure(error):
                     completion(.failure(error))
                     return
-                }
-                
-                self?.updateAccessTokenIfNeeded(for: user) {
-                    [weak self]
-                    (result: Result<Token, Error>) in
                     
-                    switch result {
-                    case let .failure(error):
-                        completion(.failure(error))
-                        return
-                        
-                    case let .success(accessKey):
-                        self?.client.login(withUser: user, token: accessKey.token,
-                            success: { (displayUserName: String, tokens: [AnyHashable : Any]) in
-                                if let refreshExpire = tokens["refreshExpire"] as? Int,
-                                    let refreshToken = tokens["refreshToken"] as? String,
-                                    let accessExpire = tokens["accessExpire"] as? Int,
-                                    let accessToken = tokens["accessToken"] as? String
-                                {
-                                    let accessToken = Token(token: accessToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
-                                    let refreshToken = Token(token: refreshToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
-                                    self?.tokensManager.keys = (accessToken,refreshToken)
-                                    self?.lastLoggedInUser = User(fullUsername: user, displayName: displayUserName)
-                                }
-                                if let pushToken = self?.pushToken {
-                                    self?.client.registerPushNotificationsToken(pushToken, imToken: nil)
-                                }
-                                completion(.success(displayUserName))
-                        },
-                            failure: { (error: Error) in
-                                completion(.failure(error))
-                        })
-                    }
+                case let .success(accessKey):
+                    self?.client.login(withUser: user, token: accessKey.token,
+                        success: { (displayUserName: String, tokens: [AnyHashable : Any]) in
+                            if let accessToken = tokens.accessToken,
+                               let refreshToken = tokens.refreshToken
+                            {
+                                self?.tokensManager.keys = (accessToken,refreshToken)
+                                self?.loggedInUser = user
+                                self?.loggedInUserDisplayName = displayUserName
+                            }
+                            if let pushToken = self?.pushToken {
+                                self?.client.registerPushNotificationsToken(pushToken, imToken: nil)
+                            }
+                            completion(.success(displayUserName))
+                    },
+                        failure: { (error: Error) in
+                            completion(.failure(error))
+                    })
                 }
             }
         }
@@ -150,17 +141,14 @@ class AuthService: NSObject, VIClientSessionDelegate {
             client.refreshToken(withUser: user, token: tokens.refresh.token)
             { [weak self] (authParams: [AnyHashable: Any]?, error: Error?) in
                 guard let tokens = authParams,
-                    let refreshExpire = tokens["refreshExpire"] as? Int,
-                    let refreshToken = tokens["refreshToken"] as? String,
-                    let accessExpire = tokens["accessExpire"] as? Int,
-                    let accessToken = tokens["accessToken"] as? String else {
+                      let refreshToken = tokens.refreshToken,
+                      let accessToken = tokens.accessToken
+                else {
                         completion(.failure(error!))
                         return
                 }
-                let vaildAccessToken = Token(token: accessToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
-                let validRefreshToken = Token(token: refreshToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
-                self?.tokensManager.keys = (vaildAccessToken, validRefreshToken)
-                completion(.success(vaildAccessToken))
+                self?.tokensManager.keys = (accessToken, refreshToken)
+                completion(.success(accessToken))
             }
         } else {
             completion(.success(tokens.access))
@@ -173,6 +161,7 @@ class AuthService: NSObject, VIClientSessionDelegate {
         {
             connectCompletion = completion
             client.connect()
+
         } else {
             completion(.success(()))
         }
@@ -212,5 +201,64 @@ class AuthService: NSObject, VIClientSessionDelegate {
     func clientSessionDidDisconnect(_ client: VIClient) {
         disconnectCompletion?()
         disconnectCompletion = nil
+    }
+}
+
+
+fileprivate extension Dictionary where Key == AnyHashable {
+    var refreshExpire: Date? {
+        get {
+            if let refreshExpire = self["refreshExpire"] as? Int {
+                return Date(timeIntervalSinceNow: TimeInterval(refreshExpire))
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    var refreshTokenContent: String? {
+        get {
+            return self["refreshToken"] as? String
+        }
+    }
+    
+    var accessExpire: Date? {
+        get {
+            if let accessExpire = self["accessExpire"] as? Int {
+                return Date(timeIntervalSinceNow: TimeInterval(accessExpire))
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    var accessTokenContent: String? {
+        get {
+            return self["accessToken"] as? String
+        }
+    }
+    
+    var accessToken: Token? {
+        get {
+            if let accessExpire = self.accessExpire,
+               let accessTokenContent = self.accessTokenContent
+            {
+                return Token(token: accessTokenContent, expireDate: accessExpire)
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    var refreshToken: Token? {
+        get {
+            if let refreshExpire = self.refreshExpire,
+               let refreshTokenContent = self.refreshTokenContent
+            {
+                return Token(token: refreshTokenContent, expireDate: refreshExpire)
+            } else {
+                return nil
+            }
+        }
     }
 }

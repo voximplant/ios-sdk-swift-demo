@@ -8,7 +8,8 @@ import CallKit
 
 class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate, KeyPadDelegate, VIAudioManagerDelegate, VICallDelegate {
     
-    private var user: User? = nil
+    private var userName: String?
+    private var userDisplayName: String?
     
     private var audioDevices: Set<VIAudioDevice>? {
         return VIAudioManager.shared().availableAudioDevices()
@@ -52,15 +53,13 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
            let callinfo = call.info
         {
             let endpoint = callinfo.endpoints.first
-            switch (endpoint?.user, endpoint?.userDisplayName) {
-            case let (fullUsername?, displayName?):
-                self.user = User(fullUsername: fullUsername, displayName: displayName)
-            case let (fullUsername?, nil):
-                self.user = User(fullUsername: fullUsername, displayName: fullUsername)
-            default:
-                self.user = nil
+            if let userName = endpoint?.user {
+                self.userName = userName
             }
-            endpointDisplayNameLabel.setUser(user)
+            if let userDisplayName = endpoint?.userDisplayName {
+                self.userDisplayName = userDisplayName
+            }
+            endpointDisplayNameLabel.setUser(userDisplayName, userName)
             
             if call.hasConnected {
                 dtmfButton.isEnabled = true // show call duration and unblock buttons
@@ -251,7 +250,7 @@ extension CallViewController {
     
     func keypadDidHide() {
         // show the endpoint display name instead of DTMFs
-        endpointDisplayNameLabel.setUser(user)
+        endpointDisplayNameLabel.setUser(userDisplayName, userName)
     }
 }
 
@@ -266,7 +265,11 @@ fileprivate extension LabelWithTimer {
     func setTime(_ time: TimeInterval?) {
         let text: String
         if let time = time {
-            text = time.toString() + " - "
+            if let timeString = time.toString() {
+                text = timeString + " - "
+            } else {
+                text = ""
+            }
         } else {
             text = ""
         }
@@ -276,9 +279,10 @@ fileprivate extension LabelWithTimer {
 
 fileprivate extension TimeInterval {
     // mm:ss format
-    func toString() -> String {
-        let minutes = Int(self) / 60 % 60
-        let seconds = Int(self) % 60
+    func toString() -> String? {
+        guard let durationInt = self.toInt() else { return nil }
+        let minutes = durationInt / 60 % 60
+        let seconds = durationInt % 60
         return String(format:"%02i:%02i", minutes, seconds)
     }
 }
@@ -286,15 +290,23 @@ fileprivate extension TimeInterval {
 typealias EndpointLabel = UILabel
 
 fileprivate extension EndpointLabel {
-    func setUser(_ user: User?) {
-        if let user = user {
-            if user.displayName != "" {
-                self.text = user.displayName
-            } else {
-                self.text = user.fullUsername
-            }
+    func setUser(_ userDisplayName: String?, _ userName: String?) {
+        if let user = userDisplayName {
+            self.text = user
+        } else if let user = userName {
+            self.text = user
         } else {
-            self.text = "Calling"
+            self.text = "Calling..."
+        }
+    }
+}
+
+fileprivate extension Double {
+    func toInt() -> Int? {
+        if self > Double(Int.min) && self < Double(Int.max) {
+            return Int(self)
+        } else {
+            return nil
         }
     }
 }

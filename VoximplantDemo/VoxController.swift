@@ -456,7 +456,6 @@ extension VoxController: PKPushRegistryDelegate {
         // VoIP
         let voipRegistry = PKPushRegistry(queue: DispatchQueue.main)
         voipRegistry.delegate = self
-        voipRegistry.desiredPushTypes = [.voIP]
 
         // IM
         if #available(iOS 10.0, *) {

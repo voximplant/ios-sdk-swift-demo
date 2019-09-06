@@ -6,7 +6,7 @@ import UIKit
 import VoxImplant
 import CallKit
 
-class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallManagerDelegate {
+class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallManagerDelegate, PushCallNotifierDelegate {
     fileprivate var client: VIClient
     fileprivate var authService: AuthService
     fileprivate var pushCallNotifier: PushCallNotifier
@@ -14,12 +14,13 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
     // Voximplant SDK supports multiple calls at the same time, however
     // this demo app demonstrates only one managed call at the moment,
     // so it rejects new incoming call, if there is already a call.
-    fileprivate(set) var managedCall: (VICall, uuid: UUID, isOutgoing: Bool, hasConnected: Bool)? {
+    fileprivate(set) var managedCall: CallWrapper?
+    {
         willSet {
-            managedCall?.0.remove(self)
+            managedCall?.delegate = nil // old managedCall
         }
         didSet {
-            managedCall?.0.add(self)
+            managedCall?.delegate = self // new managedCall
         }
     }
 
@@ -49,68 +50,143 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
         
         self.client.callManagerDelegate = self
         self.callProvider.setDelegate(self, queue: nil)
+        self.pushCallNotifier.delegate = self
     }
     
     deinit {
-        // The CXProvider documentation said: "The provider must be invalidated before it is deallocated."
+        // According to the CXProvider documentation: "The provider must be invalidated before it is deallocated."
         callProvider.invalidate()
     }
     
-    fileprivate func startOutgoingCall(_ contact: String, _ completion: @escaping (Result<VICall, Error>) -> Void) {
-        if let lastLoggedInUser = authService.lastLoggedInUser {
-            authService.loginWithAccessToken(user: lastLoggedInUser.fullUsername)
-            { [weak self] (result: Result<String, Error>) in
-                switch result {
-                case let .failure(error):
-                    Log.e("Can't start outgoing call: \(error.localizedDescription)")
-                    completion(.failure(error))
-                case .success(_):
-                    if let sself = self,
-                       let client = self?.client,
-                       !sself.hasManagedCall()
-                    {
-                        let settings = VICallSettings()
-                        settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: false, sendVideo: false)
-                        
-                        // could be nil only if the client is not logged in:
-                        if let call: VICall = client.call(contact, settings: settings) {
-                            call.start()
-                            completion(.success(call))
-                        } else {
-                            completion(.failure(VoxDemoError.errorCouldntCreateCall()))
-                        }
-                    } else {
-                        completion(.failure(VoxDemoError.errorAlreadyHasCall()))
+    // MARK: CXProviderDelegate
+    func endCall(_ uuid: UUID) {
+        if let call = managedCall, call.uuid == uuid {
+            if !call.hasConnected && !call.isOutgoing {
+                call.call?.reject(with: .decline, headers: nil)
+            } else {
+                call.call?.hangup(withHeaders: nil)
+            }
+            
+            VIAudioManager.shared().callKitStopAudio()
+            VIAudioManager.shared().callKitReleaseAudioSession()
+        }
+        // SDK will invoke VICallDelegate methods (didDisconnectWithHeaders or didFailWithError)
+    }
+    
+    func reportCallEnded(_ uuid: UUID, _ endReason: CXCallEndedReason) {
+        if let managedCall = self.managedCall, managedCall.uuid == uuid {
+            let pendingActions: [CXAction] = callProvider.pendingCallActions(of: CXAction.self, withCall: uuid)
+            if !pendingActions.isEmpty {
+                // no matter what the endReason is
+                pendingActions.forEach({ $0.fail() })
+            } else {
+                callProvider.reportCall(with: managedCall.uuid, endedAt: Date(), reason: endReason)
+            }
+            
+            // Ensure the push processing is completed in cases:
+            // 1. login issues
+            // 2. call is rejected before the user is logged in
+            // in all other cases completePushProcessing should be called in VICallDelegate methods
+            self.managedCall?.completePushProcessing()
+            
+            self.managedCall = nil
+        }
+    }
+    
+    func updateOutgoingCall(_ vicall: VICall) {
+        if let managedCall = self.managedCall,
+           managedCall.call == nil,
+           managedCall.uuid == vicall.callKitUUID
+        {
+            managedCall.call = vicall
+            vicall.start()
+            callProvider.reportOutgoingCall(with: managedCall.uuid, startedConnectingAt: nil)
+        }
+    }
+
+    func updateIncomingCall(_ vicall: VICall) {
+        if let managedCall = self.managedCall,
+           managedCall.call == nil,
+           managedCall.uuid == vicall.callKitUUID
+        {
+            managedCall.call = vicall
+        }
+    }
+    
+    func createOutgoingCall(_ callUUID: UUID) {
+        guard !self.hasManagedCall() else { return }
+        self.managedCall = CallWrapper(uuid: callUUID, isOutgoing: true)
+    }
+        
+    func createIncomingCall(_ newUUID: UUID, from fullUsername: String, withDisplayName userDisplayName: String, withPushCompletion pushProcessingCompletion: (()->Void)? = nil) {
+        guard !self.hasManagedCall() else { return }
+
+        self.managedCall = CallWrapper(uuid: newUUID, isOutgoing: false, withPushCompletion: pushProcessingCompletion)
+        
+        let callinfo = CXCallUpdate()
+        callinfo.remoteHandle = CXHandle(type: .generic, value: fullUsername)
+        callinfo.supportsHolding = true
+        callinfo.supportsGrouping = false
+        callinfo.supportsUngrouping = false
+        callinfo.supportsDTMF = true
+        callinfo.hasVideo = false
+        callinfo.localizedCallerName = userDisplayName
+        
+        callProvider.reportNewIncomingCall(with: newUUID, update: callinfo)
+        { [reportedCallUUID = newUUID, weak self]
+          (error: Error?) in
+            if let error = error {
+                // CallKit can reject new incoming call in the following cases (CXErrorCodeIncomingCallError):
+                // - "Do Not Disturb" mode is on
+                // - the caller is in the system black list
+                // - ...
+                self?.endCall(reportedCallUUID)
+            }
+        }
+    }
+    
+    func provider(_ provider: CXProvider, execute transaction: CXTransaction) -> Bool {
+        if authService.state == .loggedIn {
+            return false
+        } else {
+            if authService.state == .disconnected {
+                authService.loginWithAccessToken()
+                { [weak self] (result: Result<String, Error>) in
+                    guard let sself = self else { return }
+                    if case .success(_) = result {
+                        sself.callProvider.commitTransactions(sself)
+                    } else if let managedCallUUID = sself.managedCall?.uuid {
+                        sself.reportCallEnded(managedCallUUID, .failed)
                     }
                 }
             }
+            return true
         }
     }
     
-    // MARK: CXProviderDelegate
-    
-    // for outgoing call only
     func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
-        provider.reportOutgoingCall(with: action.callUUID, startedConnectingAt: nil)
+        guard !self.hasManagedCall()
+        else {
+            action.fail()
+            Log.i("CallManager startcall: tried to start the call \(action.callUUID) while already managed the call \(String(describing: self.managedCall?.uuid))")
+            return
+        }
+        createOutgoingCall(action.callUUID)
+        Log.i("CallManager startcall: created new outgoing call \(action.callUUID)")
         
-        // callKitConfigureAudioSession should be called before VICall.start() method
-        VIAudioManager.shared().callKitConfigureAudioSession(nil)
-        
-        startOutgoingCall(action.handle.value)
-        { [weak self] (result: Result<VICall, Error>) in
-            switch (result, self) {
-            case let (.success(call), sself?):
-                sself.managedCall = (call, uuid: action.callUUID, isOutgoing: true, hasConnected: false)
-                action.fulfill()
-            case let (.failure(error), _):
-                Log.e(error.localizedDescription)
-                fallthrough
-            default:
-                action.fail()
-            }
+        let settings = VICallSettings()
+        settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: false, sendVideo: false)
+        if let call: VICall = client.call(action.handle.value, settings: settings) {
+            call.callKitUUID = action.callUUID
+            VIAudioManager.shared().callKitConfigureAudioSession(nil)
+            self.updateOutgoingCall(call)
+            Log.i("CallManager startcall: updated outgoing call \(call.callKitUUID!)")
+            action.fulfill()
+        } else {
+            action.fail()
         }
     }
-    
+
     func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
         VIAudioManager.shared().callKitStartAudio()
     }
@@ -119,23 +195,30 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
         VIAudioManager.shared().callKitStopAudio()
     }
     
+    // method caused by the CXProvider.invalidate()
     func providerDidReset(_ provider: CXProvider) {
+        if let uuid = self.managedCall?.uuid {
+            endCall(uuid)
+        }
     }
     
     func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
-        // In this sample we don't need to check the client state in this method - here we are sure we are already logged in to the Voximplant Cloud.
-        
-        // callKitConfigureAudioSession should be called before VICall.answer(with:) method
         VIAudioManager.shared().callKitConfigureAudioSession(nil)
         
         let settings = VICallSettings()
         settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: false, sendVideo: false)
-        managedCall?.0.answer(with: settings)
+        managedCall?.call?.answer(with: settings)
         action.fulfill()
     }
     
     func provider(_ provider: CXProvider, perform action: CXSetHeldCallAction) {
-        managedCall?.0.setHold(action.isOnHold)
+        if action.isOnHold {
+            VIAudioManager.shared().callKitStopAudio()
+        } else {
+            VIAudioManager.shared().callKitStartAudio()
+        }
+        
+        managedCall?.call?.setHold(action.isOnHold)
         { error in
             if let error = error {
                 Log.e(error.localizedDescription)
@@ -146,56 +229,35 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
         }
     }
     
-    // the method is called if the user rejects an incoming call or ends a call
+    // the method is called if the user rejects an incoming call or hangup an active call
     func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
-        if let call = managedCall {
-            if !call.hasConnected && !call.isOutgoing {
-                call.0.reject(with: .decline, headers: nil)
-            } else {
-                call.0.hangup(withHeaders: nil)
-            }
-        }
-        // If we have reported the call to CallKit, we should invoke callKitReleaseAudioSession method after hangup or reject
-        VIAudioManager.shared().callKitReleaseAudioSession()
+        endCall(action.callUUID)
         action.fulfill(withDateEnded: Date())
     }
     
     func provider(_ provider: CXProvider, perform action: CXPlayDTMFCallAction) {
-        managedCall?.0.sendDTMF(action.digits)
+        managedCall?.call?.sendDTMF(action.digits)
         action.fulfill()
     }
     
     func provider(_ provider: CXProvider, perform action: CXSetMutedCallAction) {
-        managedCall?.0.sendAudio = !action.isMuted
+        managedCall?.call?.sendAudio = !action.isMuted
         action.fulfill()
     }
     
     // MARK: VICallDelegate
     
     func call(_ call: VICall, didFailWithError error: Error, headers: [AnyHashable : Any]?) {
-        if let managedCall = self.managedCall,
-           managedCall.0.callId == call.callId
-        {
-            callProvider.reportCall(with: managedCall.uuid, endedAt: Date(), reason: .failed)
-            self.managedCall = nil
-        }
+        reportCallEnded(call.callKitUUID!, .failed)
         
-        pushNotificationCompletion?()
-        pushNotificationCompletion = nil
+        self.managedCall?.completePushProcessing()
     }
     
     func call(_ call: VICall, didDisconnectWithHeaders headers: [AnyHashable : Any]?, answeredElsewhere: NSNumber) {
-        if let managedCall = self.managedCall,
-           managedCall.0.callId == call.callId
-        {
-            let endReason: CXCallEndedReason = answeredElsewhere.boolValue ? .answeredElsewhere : .remoteEnded
-            callProvider.reportCall(with: managedCall.uuid, endedAt: Date(), reason: endReason)
-            
-            self.managedCall = nil
-        }
+        let endReason: CXCallEndedReason = answeredElsewhere.boolValue ? .answeredElsewhere : .remoteEnded
+        reportCallEnded(call.callKitUUID!, endReason)
         
-        pushNotificationCompletion?()
-        pushNotificationCompletion = nil
+        self.managedCall?.completePushProcessing()
     }
     
     func call(_ call: VICall, didConnectWithHeaders headers: [AnyHashable : Any]?) {
@@ -219,39 +281,50 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
             self.managedCall?.hasConnected = true
         }
         
-        pushNotificationCompletion?()
-        pushNotificationCompletion = nil
+        self.managedCall?.completePushProcessing()
     }
 
     // MARK: VIClientCallManagerDelegate
     
     func client(_ client: VIClient, didReceiveIncomingCall call: VICall, withIncomingVideo video: Bool, headers: [AnyHashable: Any]?) {
-        if self.hasManagedCall() {
-            // We don't need to invoke callKitReleaseAudioSession here
-            call.reject(with: .busy, headers: nil)
-        } else {
-            let callinfo = CXCallUpdate()
-            callinfo.remoteHandle = CXHandle(type: .generic, value: call.endpoints.first!.user!)
-            callinfo.hasVideo = false
-            callinfo.supportsHolding = true
-            callinfo.supportsGrouping = false
-            callinfo.supportsUngrouping = false
-            callinfo.supportsDTMF = true
-            callinfo.localizedCallerName = call.endpoints.first?.userDisplayName
-            
-            let newUUID = UUID()
-            
-            callProvider.reportNewIncomingCall(with: newUUID, update: callinfo)
-            { [weak self] (error: Error?) in
-                if let error = error {
-                    // CallKit can reject new incoming call in the following cases:
-                    // - "Do Not Disturb" mode is on
-                    // - the caller is in the system black list
-                    Log.e(error.localizedDescription)
-                } else if let sself = self {
-                    sself.managedCall = (call, uuid: newUUID, isOutgoing: false, hasConnected: false)
-                }
+        
+        if let managedCall = self.managedCall {
+            if managedCall.uuid == call.callKitUUID {
+                updateIncomingCall(call)
+                callProvider.commitTransactions(self)
+                Log.i("CallManager  sdk rcv: updated already managed incoming call \(call.callKitUUID!)")
+            } else {
+                // another call has been reported, reject a new one:
+                call.reject(with: .decline, headers: nil)
+                Log.i("CallManager  sdk rcv: rejected new incoming call \(call.callKitUUID!) while has already managed call \(managedCall.uuid)")
             }
+        } else {
+            createIncomingCall(call.callKitUUID!, from: call.endpoints.first!.user!, withDisplayName: call.endpoints.first!.userDisplayName!)
+            updateIncomingCall(call)
+            Log.i("CallManager  sdk rcv: created and updated new incoming call \(call.callKitUUID!)")
+        }
+    }
+
+    // MARK: PushCallNotifierDelegate
+    
+    func didReceiveIncomingCall(_ newUUID: UUID, from fullUsername: String, withDisplayName userDisplayName: String, withPushCompletion pushProcessingCompletion: (()->Void)?) {
+        if self.hasManagedCall() {
+            // another call has been reported, skipped a new one:
+            Log.i("CallManager push rcv: skipped new incoming call \(newUUID) while has already managed call \(String(describing: self.managedCall?.uuid))")
+            return
+        } else {
+            createIncomingCall(newUUID, from: fullUsername, withDisplayName: userDisplayName, withPushCompletion: pushProcessingCompletion)
+            Log.i("CallManager push rcv: created new incoming call \(newUUID)")
+        }
+        
+        authService.loginWithAccessToken()
+        { [reportedCallUUID = newUUID, weak self]
+          (result: Result<String, Error>) in
+            guard let sself = self else { return }
+            if case let .failure(error) = result {
+                sself.reportCallEnded(reportedCallUUID, .failed)
+            }
+            // in case of success we will receive VICall instance via VICallManagerDelegate
         }
     }
 }

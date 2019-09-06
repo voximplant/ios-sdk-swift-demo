@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
     }
     
     private func refreshUI() {
-        loginUserField.text = authService.lastLoggedInUser?.fullUsername.replacingOccurrences(of: ".voximplant.com", with: "")
+        loginUserField.text = authService.loggedInUser?.replacingOccurrences(of: ".voximplant.com", with: "")
         
         if let expireDate = tokenExpireDate {
             tokenContainerView.isHidden = false
@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return false
     }
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
@@ -98,7 +98,7 @@ class LoginViewController: UIViewController {
         Log.d("Logging in with token")
         UIHelper.ShowProgress(title: "Connecting", details: "Please wait...", viewController: self)
         
-        authService.loginWithAccessToken(user: loginUserField.textWithVoxDomain)
+        authService.loginWithAccessToken()
         { [weak self] result in
             
             guard let sself = self else { return }
@@ -123,6 +123,10 @@ class LoginViewController: UIViewController {
 extension LoginViewController: CXCallObserverDelegate {
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
         performSegue(withIdentifier: MainViewController.self, sender: self)
+        { [weak self] in
+            let mainViewController = self?.parent?.toppestViewController as? MainViewController
+            mainViewController?.callObserver(callObserver, callChanged: call)
+        }
     }
 }
 

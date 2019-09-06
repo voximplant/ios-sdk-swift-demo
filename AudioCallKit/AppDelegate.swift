@@ -6,6 +6,7 @@ import UIKit
 import VoxImplant
 import CocoaLumberjack
 import CallKit
+import Intents
 
 let sharedClient: VIClient = VIClient(delegateQueue: DispatchQueue.main)
 let sharedAuthService: AuthService = AuthService(sharedClient)
@@ -19,20 +20,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var callManager = sharedCallManager
     var callController = sharedCallController
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+    override init() {
+        super.init()
         callController.callObserver.setDelegate(self, queue: .main)
         
+        // Configure logs:
         Log.enable(level: .debug)
+        // VIClient.writeLogsToFile()
         VIClient.setLogLevel(.info)
-        
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             Log.i("AudioCallKit Swift Demo v\(version) started", context: self)
         }
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         UIApplication.shared.isIdleTimerDisabled = true
         
         return true
     }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        guard let startAudioCallIntent = userActivity.interaction?.intent as? INStartAudioCallIntent else { return false }
+        guard let usernameToCall = startAudioCallIntent.contacts?.first?.personHandle?.value else { return false }
+        
+        let startOutgoingCall = CXStartCallAction(call: UUID(), handle: CXHandle(type: .generic, value: usernameToCall))
+        self.callController.requestTransaction(with: startOutgoingCall)
+        { (error: Error?) in
+            if let error = error {
+                UIHelper.ShowError(error: error.localizedDescription)
+                Log.e(error.localizedDescription)
+            }
+        }
+        return true
+    }   
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -59,7 +80,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: CXCallObserverDelegate {
-    func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
-        (window?.rootViewController?.toppestViewController as? CXCallObserverDelegate)?.callObserver(callObserver, callChanged: call)
+    func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {        (window?.rootViewController?.toppestViewController as? CXCallObserverDelegate)?.callObserver(callObserver, callChanged: call)
     }
 }

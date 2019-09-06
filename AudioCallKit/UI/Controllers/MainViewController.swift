@@ -12,7 +12,7 @@ extension UINavigationController {
     }
 }
 
-class MainViewController: UIViewController, AppLifeCycleDelegate, CXCallObserverDelegate {
+class MainViewController: UIViewController, CXCallObserverDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var callButton: ColoredButton!
@@ -41,7 +41,7 @@ class MainViewController: UIViewController, AppLifeCycleDelegate, CXCallObserver
         navigationItem.titleView = UIHelper.LogoView
 
         var loggedInAsDisplayName: String? = nil
-        if let displayName = authService.lastLoggedInUser?.displayName {
+        if let displayName = authService.loggedInUserDisplayName {
             loggedInAsDisplayName = "Logged in as \(displayName)"
         }
         userDisplayName.text = loggedInAsDisplayName
@@ -81,33 +81,6 @@ class MainViewController: UIViewController, AppLifeCycleDelegate, CXCallObserver
         callButton.isEnabled = false
         view.endEditing(true)
     }
-    
-    func reconnect() {
-        Log.d("Reconnecting")
-        UIHelper.ShowProgress(title: "Reconnecting", details: "Please wait...", viewController: self)
-        
-        authService.loginWithAccessToken(user: authService.lastLoggedInUser?.fullUsername ?? "")
-        { [weak self] result in
-            if let sself = self {
-                sself.callButton.isEnabled = true
-                
-                switch(result) {
-                case let .failure(error):
-                    UIHelper.ShowError(error: error.localizedDescription, controller: sself)
-                case let .success(userDisplayName):
-                    sself.userDisplayName.text = "Logged in as \(userDisplayName)"
-                }
-                UIHelper.HideProgress(on: sself)
-            }
-        }
-    }
-    
-    // MARK: AppLifeCycleDelegate
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        reconnect()
-    }
-    
 }
 
 
@@ -115,9 +88,10 @@ class MainViewController: UIViewController, AppLifeCycleDelegate, CXCallObserver
 
 extension MainViewController {
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
-        if call.hasConnected {
-            performSegue(withIdentifier: CallViewController.self, sender: self)
+        performSegue(withIdentifier: CallViewController.self, sender: self)
+        { [weak self] in
+            let callViewController = self?.parent?.toppestViewController as? CallViewController
+            callViewController?.callObserver(callObserver, callChanged: call)
         }
     }
 }
-

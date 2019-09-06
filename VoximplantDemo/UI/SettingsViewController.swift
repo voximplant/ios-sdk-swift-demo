@@ -52,6 +52,7 @@ class SettingsViewController: UITableViewController {
         if let settings = NSArray(contentsOfFile: Bundle.main.path(forResource: "Settings", ofType: "plist")!) {
             self.options = settings as! [Dictionary<String, Any>]
         }
+        view.backgroundColor = .white
     }
 
     override func viewWillAppear(_ animated: Bool) {

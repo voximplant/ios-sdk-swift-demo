@@ -39,6 +39,7 @@ class CustomTextField: UITextField { // this class used to work with textfiled a
     }
     
     private func setupUI() {
+        setValue(UIColor.darkGray, forKeyPath: "placeholderLabel.textColor")
         layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor
         layer.shadowRadius = 15
         layer.shadowOffset = CGSize(width: 0, height: 0)

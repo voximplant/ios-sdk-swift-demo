@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHC-2I-USg">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHC-2I-USg">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--voximplant-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="voximplant" id="BYZ-38-t0r" customClass="LoginViewController" customModule="VoximplantSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="voximplant" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Voximplant_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P4L-Mk-TlQ"/>
                         <viewControllerLayoutGuide type="bottom" id="Nl5-7b-THW"/>
@@ -21,26 +19,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gateway" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="14Y-9i-uZX" customClass="InputField" customModule="VoximplantSwiftDemo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="80" width="343" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gateway" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="14Y-9i-uZX" customClass="InputField" customModule="Voximplant_Demo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="60" width="343" height="34"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="URL" returnKeyType="next" textContentType="url"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mIz-ag-HWk" customClass="InputField" customModule="VoximplantSwiftDemo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="126" width="219" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mIz-ag-HWk" customClass="InputField" customModule="Voximplant_Demo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="110" width="219" height="34"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="TLr-1T-D1p" customClass="InputField" customModule="VoximplantSwiftDemo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="172" width="343" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="TLr-1T-D1p" customClass="InputField" customModule="Voximplant_Demo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="160" width="343" height="34"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUH-cd-1xk" customClass="FilledButton" customModule="VoximplantSwiftDemo" customModuleProvider="target">
-                                <rect key="frame" x="47" y="218" width="281" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUH-cd-1xk" customClass="FilledButton" customModule="Voximplant_Demo" customModuleProvider="target">
+                                <rect key="frame" x="47" y="210" width="281" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
@@ -53,8 +51,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vX9-32-Y7h" customClass="FilledButton" customModule="VoximplantSwiftDemo" customModuleProvider="target">
-                                <rect key="frame" x="47" y="318" width="281" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vX9-32-Y7h" customClass="FilledButton" customModule="Voximplant_Demo" customModuleProvider="target">
+                                <rect key="frame" x="47" y="310" width="281" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Login with Access Token"/>
                                 <connections>
@@ -62,13 +60,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token will expire in 2d" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OT7-jc-APO">
-                                <rect key="frame" x="112.5" y="360" width="150.5" height="18"/>
+                                <rect key="frame" x="112.5" y="352" width="150.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UMY-Oy-5Wh" customClass="FilledButton" customModule="VoximplantSwiftDemo" customModuleProvider="target">
-                                <rect key="frame" x="47" y="268" width="281" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UMY-Oy-5Wh" customClass="FilledButton" customModule="Voximplant_Demo" customModuleProvider="target">
+                                <rect key="frame" x="47" y="260" width="281" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Login with One Time Key"/>
                                 <connections>
@@ -76,9 +74,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text=".voximplant.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtq-Km-tK1">
-                                <rect key="frame" x="235" y="129" width="124" height="21"/>
+                                <rect key="frame" x="235" y="115" width="124" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -129,26 +127,27 @@
         <!--Settings-->
         <scene sceneID="SHg-2W-zxM">
             <objects>
-                <tableViewController title="Settings" id="hc8-xR-NKe" customClass="SettingsViewController" customModule="VoximplantSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Settings" id="hc8-xR-NKe" customClass="SettingsViewController" customModule="Voximplant_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y4V-cI-xGL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="options-table-cell" id="2LM-tJ-i8E" customClass="SettingTableViewCell" customModule="VoximplantSwiftDemo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="options-table-cell" id="2LM-tJ-i8E" customClass="SettingTableViewCell" customModule="Voximplant_Demo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="65.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2LM-tJ-i8E" id="Fw3-F7-yP2">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="347.5" height="65.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDc-S0-5t1">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDc-S0-5t1">
                                             <rect key="frame" x="16" y="8" width="33.5" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWp-na-cKT">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWp-na-cKT">
                                             <rect key="frame" x="16" y="35.5" width="42" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -165,6 +164,7 @@
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tWp-na-cKT" secondAttribute="trailing" constant="16" id="v8j-nX-vU5"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="ValueLabel" destination="tWp-na-cKT" id="3NU-Fh-K05"/>
                                     <outlet property="titleLabel" destination="GDc-S0-5t1" id="yxo-eC-Lxb"/>
@@ -188,19 +188,21 @@
         <!--Settings Detail Table View Controller-->
         <scene sceneID="Sba-gt-Xu6">
             <objects>
-                <tableViewController id="kkd-6l-65N" customClass="SettingsDetailTableViewController" customModule="VoximplantSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="kkd-6l-65N" customClass="SettingsDetailTableViewController" customModule="Voximplant_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="6HA-0y-Fqk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detail-option-cell" id="ecX-Xj-z1v">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="detail-option-cell" focusStyle="custom" id="ecX-Xj-z1v">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ecX-Xj-z1v" id="pfZ-np-43L">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -216,7 +218,7 @@
         <!--Title-->
         <scene sceneID="QyJ-F5-qli">
             <objects>
-                <viewController id="Afn-Nw-kKQ" customClass="MainViewController" customModule="VoximplantSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Afn-Nw-kKQ" customClass="MainViewController" customModule="Voximplant_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Wx-Nw-CLS"/>
                         <viewControllerLayoutGuide type="bottom" id="5Jf-7z-pL3"/>
@@ -225,22 +227,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contact login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-La-uaS" customClass="InputField" customModule="VoximplantSwiftDemo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="80" width="343" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contact login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-La-uaS" customClass="InputField" customModule="Voximplant_Demo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="60" width="343" height="34"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="go" textContentType="email"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iso-DP-Krb" customClass="Button" customModule="VoximplantSwiftDemo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="126" width="163.5" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iso-DP-Krb" customClass="Button" customModule="Voximplant_Demo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="110" width="163.5" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Audio Call"/>
                                 <connections>
                                     <action selector="audioCallTouchedWithSender:" destination="Afn-Nw-kKQ" eventType="touchUpInside" id="Z9e-A1-JhK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJ2-2F-EDs" customClass="Button" customModule="VoximplantSwiftDemo" customModuleProvider="target">
-                                <rect key="frame" x="195.5" y="126" width="163.5" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJ2-2F-EDs" customClass="Button" customModule="Voximplant_Demo" customModuleProvider="target">
+                                <rect key="frame" x="195.5" y="110" width="163.5" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Video Call"/>
                                 <connections>
@@ -284,7 +286,7 @@
         <!--Call View Controller-->
         <scene sceneID="CRz-3e-YE1">
             <objects>
-                <viewController id="17U-po-6Lk" customClass="CallViewController" customModule="VoximplantSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="17U-po-6Lk" customClass="CallViewController" customModule="Voximplant_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B1K-l7-XxG"/>
                         <viewControllerLayoutGuide type="bottom" id="9eP-go-Wed"/>
@@ -293,19 +295,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Gca-pR-MzU" userLabel="Remote View" customClass="ConferenceView" customModule="VoximplantSwiftDemo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="36" width="343" height="257.5"/>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Gca-pR-MzU" userLabel="Remote View" customClass="ConferenceView" customModule="Voximplant_Demo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="16" width="343" height="257.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Gca-pR-MzU" secondAttribute="height" multiplier="640:480" id="AR6-Ng-IZD"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="V4e-fi-bG9" userLabel="Local View">
-                                <rect key="frame" x="125" y="309.5" width="234" height="175.5"/>
+                                <rect key="frame" x="125" y="289.5" width="234" height="175.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="V4e-fi-bG9" secondAttribute="height" multiplier="640:480" id="6My-fq-iV3"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hQ-Ee-Mtp" customClass="CancelButton" customModule="VoximplantSwiftDemo" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hQ-Ee-Mtp" customClass="CancelButton" customModule="Voximplant_Demo" customModuleProvider="target">
                                 <rect key="frame" x="125" y="617" width="234" height="34"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Hangup"/>
@@ -313,7 +315,7 @@
                                     <action selector="hangupButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="5oj-NW-zhW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABj-4o-o6f" customClass="Button" customModule="VoximplantSwiftDemo" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABj-4o-o6f" customClass="Button" customModule="Voximplant_Demo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="617" width="93" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Hold"/>
@@ -321,7 +323,7 @@
                                     <action selector="holdButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="7eh-1p-YQS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDH-Db-cqV" customClass="Button" customModule="VoximplantSwiftDemo" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDH-Db-cqV" customClass="Button" customModule="Voximplant_Demo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="567" width="93" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Audio"/>
@@ -329,7 +331,7 @@
                                     <action selector="loudspeakerButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="7af-K6-dT1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyq-N9-vrd" customClass="Button" customModule="VoximplantSwiftDemo" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyq-N9-vrd" customClass="Button" customModule="Voximplant_Demo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="517" width="93" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="DTMF"/>
@@ -337,7 +339,7 @@
                                     <action selector="dtmfButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="MO2-qc-h7v"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghe-IS-mQ9" customClass="Button" customModule="VoximplantSwiftDemo" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghe-IS-mQ9" customClass="Button" customModule="Voximplant_Demo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="467" width="93" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Mute Video"/>
@@ -345,7 +347,7 @@
                                     <action selector="muteVideoButtonTouched:" destination="17U-po-6Lk" eventType="touchUpInside" id="q7d-bU-1L7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpq-is-bQu" customClass="Button" customModule="VoximplantSwiftDemo" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpq-is-bQu" customClass="Button" customModule="Voximplant_Demo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="417" width="93" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Mute Audio"/>
@@ -487,13 +489,14 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xHC-2I-USg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zRq-HF-HTN">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rp5-H6-ixQ"/>
-                        <segue destination="17U-po-6Lk" kind="presentation" identifier="CallController" id="gzB-Tp-FEE"/>
+                        <segue destination="17U-po-6Lk" kind="presentation" identifier="CallController" modalPresentationStyle="fullScreen" id="gzB-Tp-FEE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXj-yd-tC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
