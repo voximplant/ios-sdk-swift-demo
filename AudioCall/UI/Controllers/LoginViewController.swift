@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
     private var tokenExpireDate: String?  { // used to get correct access token expire date
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        guard let date = authService.possibleToLogin(for: loginUserField.textWithVoxDomain) else { return nil }
+        guard let date = authService.possibleToLogin() else { return nil }
         return formatter.string(from: date)
     }
     private var SDKVersion: String { // used to generate string with current versions of sdk and webrtc used
@@ -53,8 +53,8 @@ class LoginViewController: UIViewController {
     }
     
     private func refreshUI() {
-        loginUserField.text = authService.lastLoggedInUser?.fullUsername.replacingOccurrences(of: ".voximplant.com", with: "")
-        
+        loginUserField.text = authService.loggedInUser?.replacingOccurrences(of: ".voximplant.com", with: "")
+        loginPasswordField.text = ""
         if let expireDate = tokenExpireDate {
             tokenContainerView.isHidden = false
             tokenLabel.text = "Token will expire at:\n\(expireDate)"
@@ -89,7 +89,7 @@ class LoginViewController: UIViewController {
         Log.d("Logging in with token")
         UIHelper.ShowProgress(title: "Connecting", details: "Please wait...", viewController: self)
         
-        authService.loginWithAccessToken(user: loginUserField.textWithVoxDomain) { [weak self] result in
+        authService.loginWithAccessToken { [weak self] result in
             
             UIHelper.HideProgress(on: self!)
             

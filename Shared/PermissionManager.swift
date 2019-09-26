@@ -18,7 +18,9 @@ class PermissionsManager {
                 } else {
                     let action = UIAlertAction(title: "Settings", style: .default)
                     { action in
-                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                        let settings = URL(string: UIApplication.openSettingsURLString)!
+                        if #available(iOS 10.0, *) { UIApplication.shared.open(settings) }
+                        else { UIApplication.shared.openURL(settings) }
                     }
                     UIHelper.ShowError(error: "Audio permissions required", action: action)
                 }

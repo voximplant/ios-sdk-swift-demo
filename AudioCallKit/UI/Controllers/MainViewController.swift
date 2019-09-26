@@ -3,50 +3,43 @@
  */
 
 import UIKit
-import VoxImplant
 import CallKit
-
-extension UINavigationController {
-    override open var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-}
 
 class MainViewController: UIViewController, CXCallObserverDelegate {
     
-    // MARK: Outlets
     @IBOutlet weak var callButton: ColoredButton!
     @IBOutlet weak var contactUsernameField: UITextField!
     @IBOutlet weak var userDisplayName: UILabel!
     
-    // MARK: Properties
     fileprivate var callController: CXCallController = sharedCallController
     fileprivate var authService: AuthService = sharedAuthService
     
-    // MARK: LifeCycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-                
         setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        showSelfDisplayName()
         callButton.isEnabled = true
     }
     
-    // MARK: Setup User Interface
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showSelfDisplayName()
+    }
+    
+    // MARK: - Setup User Interface
     private func setupUI() {
         navigationItem.titleView = UIHelper.LogoView
-
-        var loggedInAsDisplayName: String? = nil
-        if let displayName = authService.loggedInUserDisplayName {
-            loggedInAsDisplayName = "Logged in as \(displayName)"
-        }
-        userDisplayName.text = loggedInAsDisplayName
-        
         hideKeyboardWhenTappedAround()
+    }
+    
+    private func showSelfDisplayName() {
+        guard let displayName = authService.loggedInUserDisplayName else { return }
+        userDisplayName.text = "Logged in as \(displayName)"
     }
     
     // MARK: Actions
@@ -75,17 +68,10 @@ class MainViewController: UIViewController, CXCallObserverDelegate {
     
     @IBAction func unwindSegue(segue: UIStoryboardSegue) {
     }
-    
-    // MARK: Call
-    private func prepareUIToCall() {
-        callButton.isEnabled = false
-        view.endEditing(true)
-    }
 }
 
 
-// MARK: CXCallObserverDelegate
-
+// MARK: - CXCallObserverDelegate
 extension MainViewController {
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
         performSegue(withIdentifier: CallViewController.self, sender: self)

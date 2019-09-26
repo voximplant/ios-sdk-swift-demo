@@ -32,15 +32,18 @@ class MainViewController: UIViewController, AppLifeCycleDelegate, CallManagerDel
     // MARK: Setup User Interface
     private func setupUI() {
         navigationItem.titleView = UIHelper.LogoView
-
-        userDisplayName.text = "Logged in as \(authService.lastLoggedInUser?.displayName ?? " ")"
-        
         hideKeyboardWhenTappedAround()
+        showSelfDisplayName()
+    }
+    
+    private func showSelfDisplayName() {
+        guard let displayName = authService.loggedInUserDisplayName else { return }
+        userDisplayName.text = "Logged in as \(displayName)"
     }
     
     // MARK: Actions
     @IBAction func logoutTouch(_ sender: UIBarButtonItem) {
-        authService.disconnect {
+        authService.logout {
             [weak self] in
                 self?.navigationController?.popViewController(animated: true)
         }
@@ -61,7 +64,13 @@ class MainViewController: UIViewController, AppLifeCycleDelegate, CallManagerDel
         }
     }
     
-    @IBAction func unwindSegue(segue: UIStoryboardSegue) {
+    @IBAction func unwindSegueToMainController(_ unwindSegue: UIStoryboardSegue) {
+    }
+    
+    @IBAction func unwindFromIncomingCall(_ unwindSegue: UIStoryboardSegue) {
+        DispatchQueue.main.async {
+            self.performSegueIfPossible(withIdentifier: IncomingCallViewController.self, sender: self)
+        }
     }
     
     // MARK: Call
@@ -73,7 +82,7 @@ class MainViewController: UIViewController, AppLifeCycleDelegate, CallManagerDel
     func reconnect() {
         Log.d("Reconnecting")
         UIHelper.ShowProgress(title: "Reconnecting", details: "Please wait...", viewController: self)
-        authService.loginWithAccessToken(user: authService.lastLoggedInUser?.fullUsername ?? "")
+        authService.loginWithAccessToken
         { [weak self] result in
             if let strongSelf = self {
                 strongSelf.callButton.isEnabled = true
@@ -93,7 +102,6 @@ class MainViewController: UIViewController, AppLifeCycleDelegate, CallManagerDel
     func applicationDidBecomeActive(_ application: UIApplication) {
         reconnect()
     }
-    
 }
 
 extension UINavigationController {

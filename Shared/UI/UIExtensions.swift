@@ -109,12 +109,3 @@ extension UIImage { // used to create logo image with insets
         return imageWithInsets
     }
 }
-
-// align UIApplication API to open URL for all iOS versions (>= 2.0):
-// openURL() was deprecated in iOS 10
-@available(iOS, introduced: 2.0, obsoleted: 10.0)
-extension UIApplication {
-    func open(_ url: URL) {
-        openURL(url)
-    }
-}

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHC-2I-USg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHC-2I-USg">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -41,7 +41,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="6"/>
+                                        <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                         <real key="value" value="1.5"/>
@@ -70,7 +70,7 @@
                                     <constraint firstAttribute="height" constant="0.5" id="dO2-OJ-a4M"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="USER@APP.ACCOUNT" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mIz-ag-HWk" customClass="CustomTextField" customModule="AudioCallKit" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="USER@APP.ACCOUNT" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mIz-ag-HWk" customClass="CustomTextField" customModule="AudioCallKit" customModuleProvider="target">
                                 <rect key="frame" x="18" y="78.5" width="284" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -78,14 +78,14 @@
                                     <constraint firstAttribute="height" constant="44" id="fye-qA-tRv"/>
                                 </constraints>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                 <connections>
                                     <action selector="nextFieldWithSender:" destination="TLr-1T-D1p" eventType="editingDidEndOnExit" id="BSZ-Ro-cFd"/>
                                     <outlet property="rightView" destination="xtq-Km-tK1" id="8uG-Jx-cpe"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PASSWORD" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TLr-1T-D1p" customClass="CustomTextField" customModule="AudioCallKit" customModuleProvider="target">
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PASSWORD" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TLr-1T-D1p" customClass="CustomTextField" customModule="AudioCallKit" customModuleProvider="target">
                                 <rect key="frame" x="18" y="132.5" width="284" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -93,7 +93,7 @@
                                     <constraint firstAttribute="height" constant="44" id="xmC-pU-S8O"/>
                                 </constraints>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                 <connections>
                                     <action selector="loginTouchWithSender:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="9eo-Jh-tW3"/>
@@ -107,10 +107,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GML-wE-f0M">
-                                <rect key="frame" x="36" y="240.5" width="248" height="100"/>
+                                <rect key="frame" x="36" y="240.5" width="248" height="92"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1b-wZ-Dhy">
-                                        <rect key="frame" x="64" y="16" width="120" height="0.5"/>
+                                        <rect key="frame" x="64" y="12" width="120" height="0.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLe-Fg-gYU">
                                                 <rect key="frame" x="45" y="-6.5" width="30" height="13"/>
@@ -132,7 +132,7 @@
                                         </constraints>
                                     </view>
                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8c-j4-ihH" customClass="ColoredButton" customModule="AudioCallKit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="32" width="248" height="44"/>
+                                        <rect key="frame" x="0.0" y="24" width="248" height="44"/>
                                         <color key="backgroundColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="A0O-X5-HhK"/>
@@ -146,7 +146,7 @@
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="6"/>
+                                                <integer key="value" value="12"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                                 <real key="value" value="1.5"/>
@@ -157,7 +157,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token will expire in 2d" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elw-bk-cj6">
-                                        <rect key="frame" x="16" y="84" width="216" height="15.5"/>
+                                        <rect key="frame" x="16" y="76" width="216" height="15.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -166,10 +166,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="F8c-j4-ihH" firstAttribute="leading" secondItem="GML-wE-f0M" secondAttribute="leading" id="1Yu-1o-Zs1"/>
-                                    <constraint firstItem="F8c-j4-ihH" firstAttribute="top" secondItem="p1b-wZ-Dhy" secondAttribute="top" constant="16" id="31z-zz-70l"/>
-                                    <constraint firstItem="p1b-wZ-Dhy" firstAttribute="top" secondItem="GML-wE-f0M" secondAttribute="top" constant="16" id="59N-da-B7O"/>
+                                    <constraint firstItem="F8c-j4-ihH" firstAttribute="top" secondItem="p1b-wZ-Dhy" secondAttribute="top" constant="12" id="31z-zz-70l"/>
+                                    <constraint firstItem="p1b-wZ-Dhy" firstAttribute="top" secondItem="GML-wE-f0M" secondAttribute="top" constant="12" id="59N-da-B7O"/>
                                     <constraint firstItem="Elw-bk-cj6" firstAttribute="leading" secondItem="GML-wE-f0M" secondAttribute="leading" constant="16" id="C0e-AZ-p8A"/>
-                                    <constraint firstAttribute="height" constant="100" id="FJW-uQ-OCE"/>
+                                    <constraint firstAttribute="height" constant="92" id="FJW-uQ-OCE"/>
                                     <constraint firstAttribute="trailing" secondItem="Elw-bk-cj6" secondAttribute="trailing" constant="16" id="Gos-fF-l0y"/>
                                     <constraint firstAttribute="trailing" secondItem="p1b-wZ-Dhy" secondAttribute="trailing" constant="64" id="Ozt-fD-PUZ"/>
                                     <constraint firstAttribute="trailing" secondItem="F8c-j4-ihH" secondAttribute="trailing" id="Zvy-OK-iuG"/>
@@ -231,7 +231,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CALL TO" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-La-uaS" customClass="TextFieldWithButton" customModule="AudioCallKit" customModuleProvider="target">
+                            <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CALL TO" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-La-uaS" customClass="TextFieldWithButton" customModule="AudioCallKit" customModuleProvider="target">
                                 <rect key="frame" x="18" y="240" width="284" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -245,14 +245,14 @@
                                     <outlet property="rightView" destination="iso-DP-Krb" id="4dC-OT-239"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged in as" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJU-Kr-dcH">
-                                <rect key="frame" x="32" y="201.5" width="256" height="22.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJU-Kr-dcH">
+                                <rect key="frame" x="32" y="224" width="256" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iso-DP-Krb" customClass="ColoredButton" customModule="AudioCallKit" customModuleProvider="target">
-                                <rect key="frame" x="226" y="246" width="70" height="32"/>
+                                <rect key="frame" x="226" y="235" width="70" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
@@ -264,7 +264,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="6"/>
+                                        <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                         <real key="value" value="1.5"/>

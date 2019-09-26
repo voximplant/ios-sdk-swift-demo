@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate {
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             Log.i("Voximplant Swift Demo v\(version) started", context: self)
         }
-        UIApplication.shared.isStatusBarHidden = false
         UIApplication.shared.isIdleTimerDisabled = true
         
         

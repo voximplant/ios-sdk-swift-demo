@@ -136,6 +136,7 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
         { [reportedCallUUID = newUUID, weak self]
           (error: Error?) in
             if let error = error {
+                Log.e("reportNewIncomingCall error - \(error.localizedDescription)")
                 // CallKit can reject new incoming call in the following cases (CXErrorCodeIncomingCallError):
                 // - "Do Not Disturb" mode is on
                 // - the caller is in the system black list
@@ -315,7 +316,7 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
         { [reportedCallUUID = newUUID, weak self]
           (result: Result<String, Error>) in
             guard let sself = self else { return }
-            if case let .failure(error) = result {
+            if case .failure(_) = result {
                 sself.reportCallEnded(reportedCallUUID, .failed)
             }
             // in case of success we will receive VICall instance via VICallManagerDelegate

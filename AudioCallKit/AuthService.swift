@@ -167,7 +167,7 @@ class AuthService: NSObject, VIClientSessionDelegate {
         }
     }
     
-    func possibleToLogin(for user: String) -> Date? {
+    func possibleToLogin() -> Date? {
         return tokensManager.keys?.refresh.expireDate
     }
     

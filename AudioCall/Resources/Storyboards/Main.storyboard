@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHC-2I-USg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHC-2I-USg">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUH-cd-1xk" customClass="ColoredButton" customModule="AudioCall" customModuleProvider="target">
-                                <rect key="frame" x="36" y="196.5" width="248" height="44"/>
+                                <rect key="frame" x="36" y="224.5" width="248" height="44"/>
                                 <color key="backgroundColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="E9e-4w-bJn"/>
@@ -41,7 +41,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="6"/>
+                                        <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                         <real key="value" value="1.5"/>
@@ -58,7 +58,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Audio call demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJr-lA-k3n">
-                                <rect key="frame" x="36" y="40" width="248" height="22.5"/>
+                                <rect key="frame" x="36" y="60" width="248" height="22.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -70,8 +70,8 @@
                                     <constraint firstAttribute="height" constant="0.5" id="dO2-OJ-a4M"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="USER@APP.ACCOUNT" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mIz-ag-HWk" customClass="CustomTextField" customModule="AudioCall" customModuleProvider="target">
-                                <rect key="frame" x="18" y="78.5" width="284" height="44"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="USER@APP.ACCOUNT" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mIz-ag-HWk" customClass="CustomTextField" customModule="AudioCall" customModuleProvider="target">
+                                <rect key="frame" x="18" y="106.5" width="284" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -85,8 +85,8 @@
                                     <outlet property="rightView" destination="xtq-Km-tK1" id="8uG-Jx-cpe"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PASSWORD" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TLr-1T-D1p" customClass="CustomTextField" customModule="AudioCall" customModuleProvider="target">
-                                <rect key="frame" x="18" y="132.5" width="284" height="44"/>
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PASSWORD" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TLr-1T-D1p" customClass="CustomTextField" customModule="AudioCall" customModuleProvider="target">
+                                <rect key="frame" x="18" y="160.5" width="284" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -107,10 +107,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GML-wE-f0M">
-                                <rect key="frame" x="36" y="240.5" width="248" height="100"/>
+                                <rect key="frame" x="36" y="268.5" width="248" height="92"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1b-wZ-Dhy">
-                                        <rect key="frame" x="64" y="16" width="120" height="0.5"/>
+                                        <rect key="frame" x="64" y="12" width="120" height="0.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLe-Fg-gYU">
                                                 <rect key="frame" x="45" y="-6.5" width="30" height="13"/>
@@ -132,7 +132,7 @@
                                         </constraints>
                                     </view>
                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8c-j4-ihH" customClass="ColoredButton" customModule="AudioCall" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="32" width="248" height="44"/>
+                                        <rect key="frame" x="0.0" y="24" width="248" height="44"/>
                                         <color key="backgroundColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="A0O-X5-HhK"/>
@@ -146,7 +146,7 @@
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="6"/>
+                                                <integer key="value" value="12"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                                 <real key="value" value="1.5"/>
@@ -157,7 +157,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token will expire in 2d" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elw-bk-cj6">
-                                        <rect key="frame" x="16" y="84" width="216" height="15.5"/>
+                                        <rect key="frame" x="16" y="76" width="216" height="15.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -166,11 +166,12 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="F8c-j4-ihH" firstAttribute="leading" secondItem="GML-wE-f0M" secondAttribute="leading" id="1Yu-1o-Zs1"/>
-                                    <constraint firstItem="F8c-j4-ihH" firstAttribute="top" secondItem="p1b-wZ-Dhy" secondAttribute="top" constant="16" id="31z-zz-70l"/>
-                                    <constraint firstItem="p1b-wZ-Dhy" firstAttribute="top" secondItem="GML-wE-f0M" secondAttribute="top" constant="16" id="59N-da-B7O"/>
+                                    <constraint firstItem="F8c-j4-ihH" firstAttribute="top" secondItem="p1b-wZ-Dhy" secondAttribute="top" constant="12" id="31z-zz-70l"/>
+                                    <constraint firstItem="p1b-wZ-Dhy" firstAttribute="top" secondItem="GML-wE-f0M" secondAttribute="top" constant="12" id="59N-da-B7O"/>
                                     <constraint firstItem="Elw-bk-cj6" firstAttribute="leading" secondItem="GML-wE-f0M" secondAttribute="leading" constant="16" id="C0e-AZ-p8A"/>
-                                    <constraint firstAttribute="height" constant="100" id="FJW-uQ-OCE"/>
+                                    <constraint firstAttribute="height" constant="92" id="FJW-uQ-OCE"/>
                                     <constraint firstAttribute="trailing" secondItem="Elw-bk-cj6" secondAttribute="trailing" constant="16" id="Gos-fF-l0y"/>
+                                    <constraint firstItem="F8c-j4-ihH" firstAttribute="centerY" secondItem="GML-wE-f0M" secondAttribute="centerY" id="MJ1-VJ-CWV"/>
                                     <constraint firstAttribute="trailing" secondItem="p1b-wZ-Dhy" secondAttribute="trailing" constant="64" id="Ozt-fD-PUZ"/>
                                     <constraint firstAttribute="trailing" secondItem="F8c-j4-ihH" secondAttribute="trailing" id="Zvy-OK-iuG"/>
                                     <constraint firstItem="Elw-bk-cj6" firstAttribute="top" secondItem="F8c-j4-ihH" secondAttribute="bottom" constant="8" id="cda-wt-FWN"/>
@@ -181,7 +182,6 @@
                         <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="GML-wE-f0M" secondAttribute="trailing" constant="20" id="3ka-os-UWO"/>
-                            <constraint firstItem="ZJr-lA-k3n" firstAttribute="top" secondItem="P4L-Mk-TlQ" secondAttribute="bottom" constant="40" id="4y3-gQ-Dhp"/>
                             <constraint firstAttribute="trailing" secondItem="mIz-ag-HWk" secondAttribute="trailing" constant="18" id="4y5-aa-GnP"/>
                             <constraint firstItem="TLr-1T-D1p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="18" id="9LW-xA-mWp"/>
                             <constraint firstItem="TLr-1T-D1p" firstAttribute="top" secondItem="mIz-ag-HWk" secondAttribute="bottom" constant="10" id="F9a-qi-dCe"/>
@@ -191,7 +191,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="ZJr-lA-k3n" secondAttribute="trailing" constant="20" id="XwL-hz-yhh"/>
                             <constraint firstItem="ZJr-lA-k3n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="Zdm-fc-8nP"/>
                             <constraint firstItem="GML-wE-f0M" firstAttribute="top" secondItem="hUH-cd-1xk" secondAttribute="bottom" id="bHX-tk-MNW"/>
-                            <constraint firstItem="mIz-ag-HWk" firstAttribute="top" secondItem="ZJr-lA-k3n" secondAttribute="bottom" constant="16" id="eg7-hK-SSx"/>
+                            <constraint firstItem="mIz-ag-HWk" firstAttribute="top" secondItem="ZJr-lA-k3n" secondAttribute="bottom" constant="24" id="eg7-hK-SSx"/>
                             <constraint firstItem="hUH-cd-1xk" firstAttribute="top" secondItem="TLr-1T-D1p" secondAttribute="bottom" constant="20" id="fno-sx-bhF"/>
                             <constraint firstItem="GML-wE-f0M" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="gAm-rM-Xxm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5Gi-OE-6tk" secondAttribute="trailing" constant="16" id="gz6-GX-pKR"/>
@@ -201,6 +201,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="ikW-Hj-I21" secondAttribute="trailing" constant="18" id="qBI-JS-hv1"/>
                             <constraint firstItem="hUH-cd-1xk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="36" id="qDU-gu-Eh6"/>
                             <constraint firstItem="5Gi-OE-6tk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="v9Q-X0-fVT"/>
+                            <constraint firstItem="ZJr-lA-k3n" firstAttribute="top" secondItem="P4L-Mk-TlQ" secondAttribute="bottom" constant="60" id="zcw-GZ-mn8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PxG-xP-JkA"/>
@@ -231,7 +232,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CALL TO" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-La-uaS" customClass="TextFieldWithButton" customModule="AudioCall" customModuleProvider="target">
+                            <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CALL TO" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-La-uaS" customClass="TextFieldWithButton" customModule="AudioCall" customModuleProvider="target">
                                 <rect key="frame" x="18" y="240" width="284" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -264,7 +265,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="6"/>
+                                        <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                         <real key="value" value="1.5"/>
@@ -344,7 +345,6 @@
                                         <connections>
                                             <action selector="declineTouch:" destination="ohs-YB-3La" eventType="touchUpInside" id="B3t-wR-OcQ"/>
                                             <outlet property="label" destination="HYC-sP-Z6M" id="my6-hc-4HR"/>
-                                            <segue destination="rGt-ep-gPL" kind="unwind" animates="NO" unwindAction="unwindSegueWithSegue:" id="Yl1-eR-KXj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVa-z6-1Hm" customClass="ButtonWithLabel" customModule="AudioCall" customModuleProvider="target">
@@ -413,7 +413,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="endpointDisplayNameLabel" destination="dTf-83-8Cc" id="w2P-Nl-3Dv"/>
-                        <segue destination="rGt-ep-gPL" kind="unwind" identifier="MainViewController" animates="NO" unwindAction="unwindSegueWithSegue:" id="7yn-ZL-11l"/>
+                        <segue destination="rGt-ep-gPL" kind="unwind" identifier="MainViewController" animates="NO" unwindAction="unwindSegueToMainController:" id="7yn-ZL-11l"/>
                         <segue destination="sio-MA-7IW" kind="presentation" identifier="CallViewController" animates="NO" modalPresentationStyle="fullScreen" id="3Cj-h9-21c"/>
                     </connections>
                 </viewController>
@@ -451,7 +451,7 @@
                                         <state key="normal" image="cross"/>
                                         <state key="highlighted" image="crossP"/>
                                         <connections>
-                                            <segue destination="y06-Bl-MFQ" kind="unwind" identifier="MainViewController" animates="NO" unwindAction="unwindSegueWithSegue:" id="QKR-EB-SGt"/>
+                                            <segue destination="y06-Bl-MFQ" kind="unwind" animates="NO" unwindAction="unwindSegueToMainController:" id="gem-Ct-2lb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bV7-em-Zp4">
@@ -520,6 +520,7 @@
                     <connections>
                         <outlet property="endpointDisplayNameLabel" destination="8sw-xL-JKc" id="h7T-ZI-0RJ"/>
                         <outlet property="failReason" destination="Csr-MI-9fB" id="UsD-29-deK"/>
+                        <segue destination="y06-Bl-MFQ" kind="unwind" identifier="MainViewController" animates="NO" unwindAction="unwindFromIncomingCall:" id="fXT-cg-Dkx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IFj-cO-SoC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -720,9 +721,8 @@
                         <outlet property="keyPadView" destination="I9O-ga-DGJ" id="1ol-vp-Gh0"/>
                         <outlet property="muteButton" destination="hI7-yg-ukP" id="3Y0-aY-cz2"/>
                         <outlet property="speakerButton" destination="5Xz-SQ-STq" id="lz0-w0-Yok"/>
-                        <segue destination="yDh-Te-vwk" kind="unwind" identifier="MainViewController" animates="NO" unwindAction="unwindSegueWithSegue:" id="Zpz-L9-rLl"/>
                         <segue destination="jDM-0Q-Ko6" kind="presentation" identifier="CallFailedViewController" animates="NO" modalPresentationStyle="fullScreen" id="l2F-oh-gg8"/>
-                        <segue destination="yDh-Te-vwk" kind="unwind" identifier="MainViewController" unwindAction="unwindSegueWithSegue:" id="C9e-Ms-O4Q"/>
+                        <segue destination="yDh-Te-vwk" kind="unwind" identifier="MainViewController" unwindAction="unwindSegueToMainController:" id="e61-7I-ZXn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1L-xw-tJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -769,7 +769,7 @@
         <image name="speakerP" width="145" height="145"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3Cj-h9-21c"/>
+        <segue reference="azq-cY-Zsn"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.22352941179999999" green="0.16862745100000001" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -14,7 +14,7 @@ let sharedCallController: CXCallController = CXCallController(queue: .main)
 let sharedCallManager: CallManager = CallManager(sharedClient, sharedAuthService)
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate {
     
     var window: UIWindow?
     var callManager = sharedCallManager
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override init() {
         super.init()
         callController.callObserver.setDelegate(self, queue: .main)
-        
+
         // Configure logs:
         Log.enable(level: .debug)
         // VIClient.writeLogsToFile()
@@ -41,19 +41,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        guard let startAudioCallIntent = userActivity.interaction?.intent as? INStartAudioCallIntent else { return false }
-        guard let usernameToCall = startAudioCallIntent.contacts?.first?.personHandle?.value else { return false }
+        if callManager.hasManagedCall() { return false }
+        guard let startCallIntent = userActivity.interaction?.intent else { return false }
+        var username: String?
         
-        let startOutgoingCall = CXStartCallAction(call: UUID(), handle: CXHandle(type: .generic, value: usernameToCall))
-        self.callController.requestTransaction(with: startOutgoingCall)
-        { (error: Error?) in
-            if let error = error {
-                UIHelper.ShowError(error: error.localizedDescription)
-                Log.e(error.localizedDescription)
-            }
+        if #available(iOS 13.0, *) { username = (startCallIntent as? INStartCallIntent)?.contacts?.first?.personHandle?.value }
+        else { username = (startCallIntent as? INStartAudioCallIntent)?.contacts?.first?.personHandle?.value }
+        
+        guard username != nil else { return false }
+        let startOutgoingCall = CXStartCallAction(call: UUID(), handle: CXHandle(type: .generic, value: username!))
+        
+        self.callController.requestTransaction(with: startOutgoingCall) { error in
+            guard let error = error else { return }
+            UIHelper.ShowError(error: error.localizedDescription)
+            Log.e(error.localizedDescription)
         }
         return true
-    }   
+    }
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -79,7 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: CXCallObserverDelegate {
-    func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {        (window?.rootViewController?.toppestViewController as? CXCallObserverDelegate)?.callObserver(callObserver, callChanged: call)
+// MARK: - CXCallObserverDelegate
+extension AppDelegate {
+    func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
+        (window?.rootViewController?.toppestViewController as? CXCallObserverDelegate)?.callObserver(callObserver, callChanged: call)
     }
 }

@@ -12,12 +12,18 @@ class LabelWithTimer: UILabel {
     
     @IBOutlet weak var delegate: TimerDelegate?
     private var timer: Timer?
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        formatter.dateFormat = "HH:mm:ss"
+        return formatter
+    }()
     
     deinit {
         timer?.invalidate()
     }
     
-    open func runTimer() {
+    func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1,
                                      target: self,
                                      selector: (#selector(updateTimer)),
@@ -27,6 +33,12 @@ class LabelWithTimer: UILabel {
     
     @objc private func updateTimer() {
         delegate?.updateTime()
+    }
+    
+    func buildStringTimeToDisplay(timeInterval: TimeInterval) -> String {
+        let date = Date(timeIntervalSince1970: timeInterval)
+        let formattedDate = dateFormatter.string(from: date)
+        return formattedDate.starts(with: "00") ? String(formattedDate.dropFirst(3)) : formattedDate
     }
 }
 

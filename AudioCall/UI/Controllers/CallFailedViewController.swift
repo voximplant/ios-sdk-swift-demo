@@ -20,7 +20,8 @@ class CallFailedViewController: UIViewController, CallManagerDelegate {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
+        if #available(iOS 13.0, *) { return .darkContent }
+        else { return .default }
     }
     
     // MARK: CallManagerDelegate

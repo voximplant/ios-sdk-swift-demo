@@ -27,8 +27,6 @@ extension CXCall {
 }
 
 extension CXProvider {
-    // TODO: dynamic dispatch
-    // TODO: only our UUID call
     func commitTransactions(_ delegate: CXProviderDelegate) {
         for transaction in self.pendingTransactions {
             for action in transaction.actions {

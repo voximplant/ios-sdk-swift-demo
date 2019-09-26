@@ -7,16 +7,23 @@ import VoxImplant
 
 class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAudioManagerDelegate, VICallDelegate {
     
-    private var endpoint = User("","")
-    private var callFailedInfo: (username: String, reasonToFail: String)? // this piece of code sends info to CallFailedVC after callDidFail.
+    @IBOutlet weak var endpointDisplayNameLabel: UILabel!
+    @IBOutlet weak var keyPadView: KeyPadView!
+    @IBOutlet weak var dtmfButton: ButtonWithLabel!
+    @IBOutlet weak var muteButton: ButtonWithLabel!
+    @IBOutlet weak var holdButton: ButtonWithLabel!
+    @IBOutlet weak var speakerButton: ButtonWithLabel!
+    @IBOutlet weak var callStateLabel: LabelWithTimer!
+    
+    private var userName: String?
+    private var userDisplayName: String?
+    private var callFailedInfo: (username: String, reasonToFail: String)?
+    private let callManager: CallManager = sharedCallManager
+    private var authService: AuthService = sharedAuthService
+    private var call: VICall? { return callManager.managedCall }
     private var audioDevices: Set<VIAudioDevice>? {
         return VIAudioManager.shared().availableAudioDevices()
     }
-    private var call: VICall? {
-        return callManager.managedCall
-    }
-    private let callManager: CallManager = sharedCallManager
-    private var authService: AuthService = sharedAuthService
     private var isMuted = false {
         willSet {
             muteButton.isSelected = newValue
@@ -25,32 +32,31 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
         }
     }
     
-    // MARK: Outlets
-    @IBOutlet weak var endpointDisplayNameLabel: UILabel! //shows endpoint name
-    @IBOutlet weak var keyPadView: KeyPadView! //hidden view with dtmf buttons
-    @IBOutlet weak var dtmfButton: ButtonWithLabel! //button used to show dtmf view
-    @IBOutlet weak var muteButton: ButtonWithLabel!
-    @IBOutlet weak var holdButton: ButtonWithLabel! //button used to hold and resume call
-    @IBOutlet weak var speakerButton: ButtonWithLabel!
-    @IBOutlet weak var callStateLabel: LabelWithTimer! //shows current call state and in-call time
-    
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        endpoint.fullUsername = callManager.managedCall!.endpoints.first!.user!
-        endpointDisplayNameLabel.text = endpoint.fullUsername
         setupDelegates()
     }
     
-    // MARK: Setup
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateEndpointLabel()
+    }
+    
     private func setupDelegates() {
-        call?.add(self) //used to work with call events
-        VIAudioManager.shared().delegate = self //used to work with audio devices events
+        VIAudioManager.shared().delegate = self
+        call?.add(self)
+    }
+    
+    private func updateEndpointLabel() {
+        guard let endpoint = call?.endpoints.first else { return }
+        endpointDisplayNameLabel.text = endpoint.userDisplayName != nil
+            ? endpoint.userDisplayName : endpoint.user
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
+        if #available(iOS 13.0, *) { return .darkContent }
+        else { return .default }
     }
     
     // MARK: Actions
@@ -95,11 +101,11 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
     
     @IBAction func hangupTouch(_ sender: UIButton) {
         Log.d("Call hangup called");
-        call?.hangup(withHeaders: nil) // stop call if call exists
+        call?.hangup(withHeaders: nil)
     }
     
     // MARK: Call failed segues
-    @IBAction func unwindWithCallBack(segue: UIStoryboardSegue) { //this method triggered if user tapped on CallBack from Fail Screen
+    @IBAction func unwindWithCallBack(segue: UIStoryboardSegue) {
         Log.d("Calling \(String(describing: callFailedInfo!.username))")
         
         callManager.startOutgoingCall(callFailedInfo!.username) {
@@ -136,13 +142,7 @@ extension CallViewController {
     func call(_ call: VICall, didConnectWithHeaders headers: [AnyHashable : Any]?) {
         Log.d("\(#function) called on \(String(describing: self))")
         
-        if let username = call.endpoints.first?.user,
-            let displayName = call.endpoints.first?.userDisplayName {
-            endpoint.fullUsername = username
-            endpoint.displayName = displayName
-        }
-        
-        endpointDisplayNameLabel.text = endpoint.displayName
+        updateEndpointLabel()
         dtmfButton.isEnabled = true // show call duration and unblock buttons
         holdButton.isEnabled = true
         
@@ -244,48 +244,24 @@ extension CallViewController {
     }
     
     func keypadDidHide() {
-        endpointDisplayNameLabel.text = endpoint.displayName // if dtmf keyboard been closed - show endpoint name instead of numbers
+        updateEndpointLabel() // if dtmf keyboard been closed - show endpoint name instead of numbers
     }
 }
 
 // MARK: TimerDelegate
 extension CallViewController {
     func updateTime() {
-        callStateLabel.setTime(call?.duration())
+        callStateLabel.updateCallStatus(call?.duration())
     }
 }
 
 fileprivate extension LabelWithTimer {
-    func setTime(_ time: TimeInterval?) {
-        let text: String
-        if let time = time {
-            if let timeString = time.toString() {
-                text = timeString + " - "
-            } else {
-                text = ""
-            }
+    func updateCallStatus(_ time: TimeInterval?) {
+        if let timeInterval = time {
+            let text = self.buildStringTimeToDisplay(timeInterval: timeInterval)
+            self.text = "\(text) - Call in progress"
         } else {
-            text = ""
-        }
-        self.text = text + "Call in progress"
-    }
-}
-
-fileprivate extension TimeInterval {
-    // mm:ss format
-    func toString() -> String? {
-        guard let durationInt = self.toInt() else { return nil }
-        let minutes = durationInt / 60 % 60
-        let seconds = durationInt % 60
-        return String(format:"%02i:%02i", minutes, seconds)
-    }
-}
-fileprivate extension Double {
-    func toInt() -> Int? {
-        if self > Double(Int.min) && self < Double(Int.max) {
-            return Int(self)
-        } else {
-            return nil
+            self.text = "Call in progress"
         }
     }
 }

@@ -6,14 +6,14 @@ import UIKit
 import VoxImplant
 import CallKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, CXCallObserverDelegate {
     
     // MARK: Properties
     private let authService: AuthService = sharedAuthService
     private var tokenExpireDate: String?  {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        guard let date = authService.possibleToLogin(for: loginUserField.textWithVoxDomain) else { return nil }
+        guard let date = authService.possibleToLogin() else { return nil }
         return formatter.string(from: date)
     }
     private var SDKVersion: String {
@@ -55,21 +55,13 @@ class LoginViewController: UIViewController {
     
     private func refreshUI() {
         loginUserField.text = authService.loggedInUser?.replacingOccurrences(of: ".voximplant.com", with: "")
-        
+        loginPasswordField.text = ""
         if let expireDate = tokenExpireDate {
             tokenContainerView.isHidden = false
             tokenLabel.text = "Token will expire at:\n\(expireDate)"
         } else {
             tokenContainerView.isHidden = true
         }
-    }
-    
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
     }
     
     // MARK: Actions
@@ -119,8 +111,7 @@ class LoginViewController: UIViewController {
 }
 
 // MARK: CXCallObserverDelegate
-
-extension LoginViewController: CXCallObserverDelegate {
+extension LoginViewController {
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
         performSegue(withIdentifier: MainViewController.self, sender: self)
         { [weak self] in
@@ -131,7 +122,6 @@ extension LoginViewController: CXCallObserverDelegate {
 }
 
 extension UINavigationController {
-    open override var prefersStatusBarHidden: Bool {
-        return false
-    }
+    open override var prefersStatusBarHidden: Bool { return false }
+    override open var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
 }

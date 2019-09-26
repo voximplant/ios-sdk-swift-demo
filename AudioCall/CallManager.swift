@@ -44,8 +44,7 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
     }
     
     func startOutgoingCall(_ contact: String, _ completion: @escaping (Result<(), Error>) -> Void) {
-        if let lastLoggedInUser = authService.lastLoggedInUser {
-            authService.loginWithAccessToken(user: lastLoggedInUser.fullUsername)
+        authService.loginWithAccessToken
             { [weak self] (result: Result<String, Error>) in
                 switch result {
                 case let .failure(error):
@@ -53,8 +52,8 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
                     completion(.failure(error))
                 case .success(_):
                     if let sself = self,
-                       let client = self?.client,
-                       !sself.hasManagedCall()
+                        let client = self?.client,
+                        !sself.hasManagedCall()
                     {
                         let settings = VICallSettings()
                         settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: false, sendVideo: false)
@@ -72,10 +71,9 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
                         completion(.failure(VoxDemoError.errorAlreadyHasCall()))
                     }
                 }
-            }
         }
     }
-
+    
     func makeIncomingCallActive() {
         // assert(self.hasManagedCall())
         // assert(client.clientState == .loggedIn)

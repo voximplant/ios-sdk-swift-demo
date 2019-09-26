@@ -6,29 +6,8 @@ import UIKit
 import VoxImplant
 import CallKit
 
-class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate, KeyPadDelegate, VIAudioManagerDelegate, VICallDelegate {
+class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate, KeyPadDelegate, VIAudioManagerDelegate, CXCallObserverDelegate {
     
-    private var userName: String?
-    private var userDisplayName: String?
-    
-    private var audioDevices: Set<VIAudioDevice>? {
-        return VIAudioManager.shared().availableAudioDevices()
-    }
-
-    private var authService: AuthService = sharedAuthService
-    private var callController: CXCallController = sharedCallController
-    private var call: CXCall? { //returns current call
-        return callController.callObserver.calls.first
-    }
-
-    private var isMuted = false {
-        willSet {
-            muteButton.isSelected = newValue
-            muteButton.label.text = newValue ? "unmute" : "mute"
-        }
-    }
-    
-    // MARK: Outlets
     @IBOutlet weak var endpointDisplayNameLabel: EndpointLabel!
     @IBOutlet weak var keyPadView: KeyPadView!
     @IBOutlet weak var dtmfButton: ButtonWithLabel!
@@ -37,7 +16,22 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
     @IBOutlet weak var speakerButton: ButtonWithLabel!
     @IBOutlet weak var callStateLabel: LabelWithTimer!
     
-    // MARK: LifeCycle
+    private var userName: String?
+    private var userDisplayName: String?
+    private var callController: CXCallController = sharedCallController
+    private var call: CXCall? { return callController.callObserver.calls.first }
+    
+    private var audioDevices: Set<VIAudioDevice>? {
+        return VIAudioManager.shared().availableAudioDevices()
+    }
+    private var isMuted = false {
+        willSet {
+            muteButton.isSelected = newValue
+            muteButton.label.text = newValue ? "unmute" : "mute"
+        }
+    }
+    
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         VIAudioManager.shared().delegate = self
@@ -85,7 +79,8 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
+        if #available(iOS 13.0, *) { return .darkContent }
+        else { return .default }
     }
     
     // MARK: Actions
@@ -114,6 +109,7 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
     }
     
     @IBAction func holdTouch(_ sender: UIButton) {
+        sender.isEnabled = false
         if let call = self.call {
             let setHeld = CXSetHeldCallAction(call: call.uuid, onHold: !sender.isSelected)
             callController.requestTransaction(with: setHeld)
@@ -121,6 +117,7 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
                 if let error = error {
                     Log.e("setHold error: \(error.localizedDescription)")
                     UIHelper.ShowError(error: error.localizedDescription)
+                    sender.isEnabled.toggle()
                 } else {
                     if sender.isSelected {
                         self?.holdButton.label.text = "hold"
@@ -130,6 +127,7 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
                         sender.setImage(#imageLiteral(resourceName: "resumeP"), for: .normal)
                     }
                     sender.isSelected.toggle()
+                    sender.isEnabled.toggle()
                 }
             }
         }
@@ -137,6 +135,7 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
     
     @IBAction func hangupTouch(_ sender: UIButton) {
         Log.d("Call hangup called")
+        sender.isEnabled = false
         if let call = self.call {
             // stop call if call exists
             let doEndCall = CXEndCallAction(call: call.uuid)
@@ -146,20 +145,19 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
                     UIHelper.ShowError(error: error.localizedDescription)
                     Log.e(error.localizedDescription)
                 }
+                sender.isEnabled = true
             }
         }
     }
 }
 
 // MARK: CXCallObserverDelegate
-extension CallViewController: CXCallObserverDelegate {
+extension CallViewController {
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
-        
         updateContent()
-        
         if call.hasEnded {
             Log.d("\(#function) called on \(String(describing: self))")
-            performSegue(withIdentifier: MainViewController.self, sender: self)
+            performSegueIfPossible(withIdentifier: MainViewController.self, sender: self)
         }
     }
 }
@@ -254,36 +252,21 @@ extension CallViewController {
     }
 }
 
-// MARK: TimerDelegate
+// MARK: - TimerDelegate
 extension CallViewController {
     func updateTime() {
-        callStateLabel.setTime(call?.info?.duration())
+        callStateLabel.updateCallStatus(call?.info?.duration())
     }
 }
 
 fileprivate extension LabelWithTimer {
-    func setTime(_ time: TimeInterval?) {
-        let text: String
-        if let time = time {
-            if let timeString = time.toString() {
-                text = timeString + " - "
-            } else {
-                text = ""
-            }
+    func updateCallStatus(_ time: TimeInterval?) {
+        if let timeInterval = time {
+            let text = self.buildStringTimeToDisplay(timeInterval: timeInterval)
+            self.text = "\(text) - Call in progress"
         } else {
-            text = ""
+            self.text = "Call in progress"
         }
-        self.text = text + "Call in progress"
-    }
-}
-
-fileprivate extension TimeInterval {
-    // mm:ss format
-    func toString() -> String? {
-        guard let durationInt = self.toInt() else { return nil }
-        let minutes = durationInt / 60 % 60
-        let seconds = durationInt % 60
-        return String(format:"%02i:%02i", minutes, seconds)
     }
 }
 
@@ -297,16 +280,6 @@ fileprivate extension EndpointLabel {
             self.text = user
         } else {
             self.text = "Calling..."
-        }
-    }
-}
-
-fileprivate extension Double {
-    func toInt() -> Int? {
-        if self > Double(Int.min) && self < Double(Int.max) {
-            return Int(self)
-        } else {
-            return nil
         }
     }
 }

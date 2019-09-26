@@ -27,6 +27,9 @@ class CustomTextField: UITextField { // this class used to work with textfiled a
             super.rightView = newValue
         }
     }
+    var padding: UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 100)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,9 +47,24 @@ class CustomTextField: UITextField { // this class used to work with textfiled a
         layer.shadowRadius = 15
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowOpacity = 0.03
+        layer.masksToBounds = true
+        layer.cornerRadius = 8
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 0.3
         rightViewMode = .always
     }
-
+    
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    
+    
     
     @IBAction func nextField(sender: UITextField) {
         becomeFirstResponder()
