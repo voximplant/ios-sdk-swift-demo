@@ -24,6 +24,11 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
         self.localContainer?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(switchCamera)))
         self.remoteContainer?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(switchVideoResizeMode)))
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) { return .darkContent }
+        else { return .default }
+    }
 
     @objc func switchVideoResizeMode() {
         let switchVideoResizeModeInStreams: ([VIVideoStream]?) -> () = { streams in

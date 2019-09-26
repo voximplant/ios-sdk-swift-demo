@@ -453,8 +453,10 @@ import PushKit
 
 extension VoxController: PKPushRegistryDelegate {
     func registerForPushNotifications() {
+        if #available(iOS 13.0, *) { return }
         // VoIP
         let voipRegistry = PKPushRegistry(queue: DispatchQueue.main)
+        voipRegistry.desiredPushTypes = [.voIP]
         voipRegistry.delegate = self
 
         // IM

@@ -25,6 +25,7 @@ class UIHelper {
             }
         }
     }
+    
 
     class func ShowIncomingCallAlert(for uuid: UUID!, completion: @escaping ()-> Void) {
         if let rootViewController = AppDelegate.instance().window?.rootViewController, let callManager = AppDelegate.instance().voxImplant!.callManager, let descriptor = callManager.call(uuid: uuid) {
@@ -70,9 +71,11 @@ class UIHelper {
             rootViewController.performSegue(withIdentifier: "CallController", sender: nil)
         }
     }
+
 }
 
 //MARK: - Playing call ringtone
+
 extension UIHelper {
     
     /**
@@ -93,6 +96,7 @@ extension UIHelper {
      ...
      ```
      */
+    
     class func StartPlayingRingtone() {
         do {
             player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: String(format: "%@/ringtone.aiff", Bundle.main.resourcePath!)))
@@ -115,6 +119,7 @@ extension UIHelper {
     /**
      Opposite to `StartPlayingRingtone`
      */
+    
     class func StopPlayingRingtone() {
         guard let player = player else { return }
         player.stop()
@@ -124,4 +129,5 @@ extension UIHelper {
             Log.e("\(error.localizedDescription)")
         }
     }
+
 }

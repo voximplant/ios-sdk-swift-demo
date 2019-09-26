@@ -164,6 +164,7 @@ extension NotificationCallManager {
      For playing a custom ringtone when the app is in the foreground
      you should use `StartPlayingRingtone` with `AVAudioPlayer`.
      */
+
     func notifyIncomingCallLegacy(_ descriptor: CallDescriptor!) {
         let notification = UILocalNotification()
         notification.fireDate = NSDate(timeIntervalSinceNow: 0) as Date
@@ -239,6 +240,7 @@ extension NotificationCallManager {
      For playing a custom ringtone when the app is in the foreground
      you should use `StartPlayingRingtone` with `AVAudioPlayer`.
      */
+
     func notifyIncomingCallCurrent(_ descriptor: CallDescriptor!) {
         let content = UNMutableNotificationContent()
         content.title = "Voximplant"
