@@ -1,4 +1,4 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 inhibit_all_warnings!
 
@@ -10,7 +10,7 @@ def common_pods
   pod 'SkyFloatingLabelTextField', '~> 3.0'
 end
 
-sdk_version = '2.23.0'
+sdk_version = '2.24.0'
 
 target 'Voximplant Demo' do
   common_pods
