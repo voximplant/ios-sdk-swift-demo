@@ -281,6 +281,10 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
 
     // MARK: VIClientCallManagerDelegate
     
+    func client(_ client: VIClient, pushDidExpire callKitUUID: UUID) {
+        reportCallEnded(callKitUUID, .failed)
+    }
+    
     func client(_ client: VIClient, didReceiveIncomingCall call: VICall, withIncomingVideo video: Bool, headers: [AnyHashable: Any]?) {
         
         if let managedCall = self.managedCall {

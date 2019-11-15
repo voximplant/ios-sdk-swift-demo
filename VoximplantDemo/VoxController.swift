@@ -57,10 +57,10 @@ class VoxController: NSObject {
 
             Log.v("authParams: \(String(describing: authParams))")
 
-            Settings.shared.refreshExpire = Date(timeIntervalSinceNow: (authParams["refreshExpire"] as! Double))
-            Settings.shared.accessExpire = Date(timeIntervalSinceNow: (authParams["accessExpire"] as! Double))
-            Settings.shared.refreshToken = authParams["refreshToken"] as? String
-            Settings.shared.accessToken = authParams["accessToken"] as? String
+            Settings.shared.refreshExpire = Date(timeIntervalSinceNow: authParams.refreshExpire)
+            Settings.shared.accessExpire = Date(timeIntervalSinceNow: authParams.accessExpire)
+            Settings.shared.refreshToken = authParams.refreshToken
+            Settings.shared.accessToken = authParams.accessToken
 
             self.client.registerPushNotificationsToken(self.voipPushToken, imToken: self.imPushToken)
 
@@ -237,10 +237,10 @@ class VoxController: NSObject {
                         if let err = error {
                             self.failureCompletion?(err)
                         } else {
-                            Settings.shared.refreshExpire = Date(timeIntervalSinceNow: (authParams!["refreshExpire"] as! Double))
-                            Settings.shared.accessExpire = Date(timeIntervalSinceNow: (authParams!["accessExpire"] as! Double))
-                            Settings.shared.refreshToken = authParams!["refreshToken"] as? String
-                            Settings.shared.accessToken = authParams!["accessToken"] as? String
+                            Settings.shared.refreshExpire = Date(timeIntervalSinceNow: authParams!.refreshExpire)
+                            Settings.shared.accessExpire = Date(timeIntervalSinceNow: authParams!.accessExpire)
+                            Settings.shared.refreshToken = authParams!.refreshToken
+                            Settings.shared.accessToken = authParams!.accessToken
 
                             self.loginWithToken(user: self.user, success: self.successCompletion, failure: self.failureCompletion)
                         }

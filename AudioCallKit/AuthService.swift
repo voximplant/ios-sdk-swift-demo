@@ -55,22 +55,19 @@ class AuthService: NSObject, VIClientSessionDelegate {
             }
             
             self?.client.login(withUser: user, password: password,
-            success: { (displayUserName: String, tokens: [AnyHashable : Any]) in
-                if let refreshToken = tokens.refreshToken,
-                   let accessToken = tokens.accessToken
-                {
-                    self?.tokensManager.keys = (accessToken, refreshToken)
+                success: { (displayUserName: String, tokens: VIAuthParams) in
+                    self?.tokensManager.keys = (tokens.access, tokens.refresh)
                     self?.loggedInUser = user
                     self?.loggedInUserDisplayName = displayUserName
+                    if let pushToken = self?.pushToken {
+                        self?.client.registerPushNotificationsToken(pushToken, imToken: nil)
+                    }
+                    completion(.success(displayUserName))
+                },
+                failure: { (error: Error) in
+                    completion(.failure(error))
                 }
-                if let pushToken = self?.pushToken {
-                    self?.client.registerPushNotificationsToken(pushToken, imToken: nil)
-                }
-                completion(.success(displayUserName))
-            },
-            failure: { (error: Error) in
-                completion(.failure(error))
-            })
+            )
         }
     }
     
@@ -110,22 +107,19 @@ class AuthService: NSObject, VIClientSessionDelegate {
                     
                 case let .success(accessKey):
                     self?.client.login(withUser: user, token: accessKey.token,
-                        success: { (displayUserName: String, tokens: [AnyHashable : Any]) in
-                            if let accessToken = tokens.accessToken,
-                               let refreshToken = tokens.refreshToken
-                            {
-                                self?.tokensManager.keys = (accessToken,refreshToken)
-                                self?.loggedInUser = user
-                                self?.loggedInUserDisplayName = displayUserName
-                            }
+                        success: { (displayUserName: String, tokens: VIAuthParams) in
+                            self?.tokensManager.keys = (tokens.access, tokens.refresh)
+                            self?.loggedInUser = user
+                            self?.loggedInUserDisplayName = displayUserName
                             if let pushToken = self?.pushToken {
                                 self?.client.registerPushNotificationsToken(pushToken, imToken: nil)
                             }
                             completion(.success(displayUserName))
-                    },
+                        },
                         failure: { (error: Error) in
                             completion(.failure(error))
-                    })
+                        }
+                    )
                 }
             }
         }
@@ -139,16 +133,14 @@ class AuthService: NSObject, VIClientSessionDelegate {
         
         if tokens.access.isExpired {
             client.refreshToken(withUser: user, token: tokens.refresh.token)
-            { [weak self] (authParams: [AnyHashable: Any]?, error: Error?) in
-                guard let tokens = authParams,
-                      let refreshToken = tokens.refreshToken,
-                      let accessToken = tokens.accessToken
+            { [weak self] (authParams: VIAuthParams?, error: Error?) in
+                guard let tokens = authParams
                 else {
-                        completion(.failure(error!))
-                        return
+                    completion(.failure(error!))
+                    return
                 }
-                self?.tokensManager.keys = (accessToken, refreshToken)
-                completion(.success(accessToken))
+                self?.tokensManager.keys = (tokens.access, tokens.refresh)
+                completion(.success(tokens.access))
             }
         } else {
             completion(.success(tokens.access))
@@ -205,60 +197,22 @@ class AuthService: NSObject, VIClientSessionDelegate {
 }
 
 
-fileprivate extension Dictionary where Key == AnyHashable {
-    var refreshExpire: Date? {
+fileprivate extension VIAuthParams {
+    var access: Token {
         get {
-            if let refreshExpire = self["refreshExpire"] as? Int {
-                return Date(timeIntervalSinceNow: TimeInterval(refreshExpire))
-            } else {
-                return nil
-            }
+            let accessExpire = self.accessExpire
+            let accessTokenContent = self.accessToken
+            let accessExpireDate = Date(timeIntervalSinceNow: accessExpire)
+            return Token(token: accessTokenContent, expireDate: accessExpireDate)
         }
     }
     
-    var refreshTokenContent: String? {
+    var refresh: Token {
         get {
-            return self["refreshToken"] as? String
-        }
-    }
-    
-    var accessExpire: Date? {
-        get {
-            if let accessExpire = self["accessExpire"] as? Int {
-                return Date(timeIntervalSinceNow: TimeInterval(accessExpire))
-            } else {
-                return nil
-            }
-        }
-    }
-    
-    var accessTokenContent: String? {
-        get {
-            return self["accessToken"] as? String
-        }
-    }
-    
-    var accessToken: Token? {
-        get {
-            if let accessExpire = self.accessExpire,
-               let accessTokenContent = self.accessTokenContent
-            {
-                return Token(token: accessTokenContent, expireDate: accessExpire)
-            } else {
-                return nil
-            }
-        }
-    }
-    
-    var refreshToken: Token? {
-        get {
-            if let refreshExpire = self.refreshExpire,
-               let refreshTokenContent = self.refreshTokenContent
-            {
-                return Token(token: refreshTokenContent, expireDate: refreshExpire)
-            } else {
-                return nil
-            }
+            let refreshExpire = self.refreshExpire
+            let refreshTokenContent = self.refreshToken
+            let refreshExpireDate = Date(timeIntervalSinceNow: refreshExpire)
+            return Token(token: refreshTokenContent, expireDate: refreshExpireDate)
         }
     }
 }

@@ -51,24 +51,18 @@ class AuthService: NSObject, VIClientSessionDelegate {
                 }
                 
                 self?.client.login(withUser: user, password: password,
-                success: { (displayUserName: String, tokens: [AnyHashable : Any]) in
-                    
-                    if let refreshExpire = tokens["refreshExpire"] as? Int,
-                        let refreshToken = tokens["refreshToken"] as? String,
-                        let accessExpire = tokens["accessExpire"] as? Int,
-                        let accessToken = tokens["accessToken"] as? String
-                    {
-                        let accessToken = Token(token: accessToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
-                        let refreshToken = Token(token: refreshToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
+                    success: { (displayUserName: String, tokens: VIAuthParams) in
+                        let accessToken = Token(token: tokens.accessToken, expireDate: Date(timeIntervalSinceNow: tokens.accessExpire))
+                        let refreshToken = Token(token: tokens.refreshToken, expireDate: Date(timeIntervalSinceNow: tokens.refreshExpire))
                         self?.tokensManager.keys = (accessToken, refreshToken)
                         self?.loggedInUser = user
                         self?.loggedInUserDisplayName = displayUserName
+                        completion(.success(displayUserName))
+                    },
+                    failure: { (error: Error) in
+                        completion(.failure(error))
                     }
-                    completion(.success(displayUserName))
-                },
-                failure: { (error: Error) in
-                    completion(.failure(error))
-                })
+                )
             }
         }
     }
@@ -109,23 +103,18 @@ class AuthService: NSObject, VIClientSessionDelegate {
                         
                     case let .success(accessKey):
                         self?.client.login(withUser: user, token: accessKey.token,
-                            success: { (displayUserName: String, tokens: [AnyHashable : Any]) in
-                                if let refreshExpire = tokens["refreshExpire"] as? Int,
-                                    let refreshToken = tokens["refreshToken"] as? String,
-                                    let accessExpire = tokens["accessExpire"] as? Int,
-                                    let accessToken = tokens["accessToken"] as? String
-                                {
-                                    let accessToken = Token(token: accessToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
-                                    let refreshToken = Token(token: refreshToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
-                                    self?.tokensManager.keys = (accessToken,refreshToken)
-                                    self?.loggedInUser = user
-                                    self?.loggedInUserDisplayName = displayUserName
-                                }
+                            success: { (displayUserName: String, tokens: VIAuthParams) in
+                                let accessToken = Token(token: tokens.accessToken, expireDate: Date(timeIntervalSinceNow: tokens.accessExpire))
+                                let refreshToken = Token(token: tokens.refreshToken, expireDate: Date(timeIntervalSinceNow: tokens.refreshExpire))
+                                self?.tokensManager.keys = (accessToken,refreshToken)
+                                self?.loggedInUser = user
+                                self?.loggedInUserDisplayName = displayUserName
                                 completion(.success(displayUserName))
-                        },
+                            },
                             failure: { (error: Error) in
                                 completion(.failure(error))
-                        })
+                            }
+                        )
                     }
                 }
             }
@@ -139,17 +128,14 @@ class AuthService: NSObject, VIClientSessionDelegate {
         
         if tokens.access.isExpired {
             client.refreshToken(withUser: user, token: tokens.refresh.token)
-            { [weak self] (authParams: [AnyHashable: Any]?, error: Error?) in
-                guard let tokens = authParams,
-                    let refreshExpire = tokens["refreshExpire"] as? Int,
-                    let refreshToken = tokens["refreshToken"] as? String,
-                    let accessExpire = tokens["accessExpire"] as? Int,
-                    let accessToken = tokens["accessToken"] as? String else {
+            { [weak self] (authParams: VIAuthParams?, error: Error?) in
+                guard let tokens = authParams
+                else {
                         completion(.failure(error!))
                         return
                 }
-                let vaildAccessToken = Token(token: accessToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(accessExpire)))
-                let validRefreshToken = Token(token: refreshToken, expireDate: Date(timeIntervalSinceNow: TimeInterval(refreshExpire)))
+                let vaildAccessToken = Token(token: tokens.accessToken, expireDate: Date(timeIntervalSinceNow: tokens.accessExpire))
+                let validRefreshToken = Token(token: tokens.refreshToken, expireDate: Date(timeIntervalSinceNow: tokens.refreshExpire))
                 self?.tokensManager.keys = (vaildAccessToken, validRefreshToken)
                 completion(.success(vaildAccessToken))
             }
