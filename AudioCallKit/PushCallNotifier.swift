@@ -80,8 +80,8 @@ fileprivate extension Dictionary where Key == AnyHashable {
     }
     
     var displayName: String {
-        let voximplantContent = self["voximplant"] as! [String:String]
-        return voximplantContent["display_name"]!
+        let voximplantContent = self["voximplant"] as! [String:Any]
+        return voximplantContent["display_name"] as! String
     }
     
     var fullUsername: String {
