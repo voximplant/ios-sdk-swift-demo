@@ -4,7 +4,7 @@
 
 import Foundation
 import CallKit
-import VoxImplant
+import VoxImplantSDK
 
 @available(iOS 10.0, *)
 class CallKitCallManager: NSObject, CallManager {

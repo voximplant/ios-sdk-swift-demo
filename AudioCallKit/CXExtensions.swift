@@ -3,7 +3,7 @@
  */
 
 import CallKit
-import VoxImplant
+import VoxImplantSDK
 
 // align CallKit API for transaction request for all iOS versions (>= 10.0):
 // requestTransaction(with: completion:) was introduced in iOS 11

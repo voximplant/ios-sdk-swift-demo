@@ -3,7 +3,7 @@
  */
 
 import UIKit
-import VoxImplant
+import VoxImplantSDK
 
 class IncomingCallViewController: UIViewController, VICallDelegate {
 

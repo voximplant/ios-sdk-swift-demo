@@ -3,7 +3,7 @@
  */
 
 import UIKit
-import VoxImplant
+import VoxImplantSDK
 
 class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAudioManagerDelegate, VICallDelegate {
     

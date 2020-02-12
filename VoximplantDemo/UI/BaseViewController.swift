@@ -4,7 +4,7 @@
 
 import UIKit
 import CocoaLumberjack
-import VoxImplant
+import VoxImplantSDK
 
 class BaseViewController: UIViewController, VoxControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {

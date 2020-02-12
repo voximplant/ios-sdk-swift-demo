@@ -4,7 +4,7 @@
 
 import Foundation
 import Dispatch
-import VoxImplant
+import VoxImplantSDK
 import UserNotifications
 
 class VoxController: NSObject {

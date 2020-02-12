@@ -3,7 +3,7 @@
  */
 
 import Foundation
-import VoxImplant
+import VoxImplantSDK
 
 extension UserDefaults {
     var lastFullUsername: String {

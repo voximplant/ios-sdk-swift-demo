@@ -4,7 +4,7 @@
 
 import Foundation
 import CocoaLumberjack
-import VoxImplant
+import VoxImplantSDK
 
 var ddLogLevel = DDLogLevel.off
 

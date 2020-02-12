@@ -3,7 +3,7 @@
  */
 
 import UIKit
-import VoxImplant
+import VoxImplantSDK
 
 class SettingsDetailTableViewController: UITableViewController {
     var optionDescriptor: Dictionary<String, Any> = [:]

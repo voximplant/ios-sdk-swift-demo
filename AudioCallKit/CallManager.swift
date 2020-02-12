@@ -3,7 +3,7 @@
  */
 
 import UIKit
-import VoxImplant
+import VoxImplantSDK
 import CallKit
 
 class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallManagerDelegate, PushCallNotifierDelegate {

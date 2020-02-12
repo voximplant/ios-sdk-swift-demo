@@ -3,7 +3,7 @@
  */
 
 import UIKit
-import VoxImplant
+import VoxImplantSDK
 import CocoaLumberjack
 import CallKit
 import Intents

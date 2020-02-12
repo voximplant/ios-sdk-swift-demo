@@ -3,7 +3,7 @@
  */
 
 import UIKit
-import VoxImplant
+import VoxImplantSDK
 
 enum CallNotificationCategory: String {
     case video = "kVideoCallNotificationCategory"

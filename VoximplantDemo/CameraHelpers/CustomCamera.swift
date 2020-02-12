@@ -4,7 +4,7 @@
 
 import UIKit
 import CocoaLumberjack
-import VoxImplant
+import VoxImplantSDK
 
 class CustomCamera: NSObject {
     public let customVideoSource: VICustomVideoSource

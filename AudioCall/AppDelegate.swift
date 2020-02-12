@@ -3,7 +3,7 @@
  */
 
 import UIKit
-import VoxImplant
+import VoxImplantSDK
 
 let sharedClient: VIClient = VIClient(delegateQueue: DispatchQueue.main)
 let sharedAuthService: AuthService = AuthService(sharedClient)

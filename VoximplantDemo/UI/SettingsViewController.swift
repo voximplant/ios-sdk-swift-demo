@@ -3,7 +3,7 @@
  */
 
 import UIKit
-import VoxImplant
+import VoxImplantSDK
 
 enum SettingsOption: String, RawRepresentable {
     case CallManagerOption, OrientationOption, CurrentCameraOption, CameraMirroringOption, CameraModeOption, PreferredCodecOption

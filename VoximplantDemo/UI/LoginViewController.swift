@@ -6,7 +6,7 @@ import UIKit;
 import Dispatch;
 import MBProgressHUD;
 import CocoaLumberjack;
-import VoxImplant;
+import VoxImplantSDK;
 
 class LoginViewController: BaseViewController {
     var progress : MBProgressHUD?

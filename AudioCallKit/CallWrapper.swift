@@ -3,7 +3,7 @@
 */
 
 import Foundation
-import VoxImplant
+import VoxImplantSDK
 
 class CallWrapper {
     var isOutgoing: Bool

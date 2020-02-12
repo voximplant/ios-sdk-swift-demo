@@ -4,7 +4,7 @@
 
 import Foundation
 import PushKit
-import VoxImplant
+import VoxImplantSDK
 
 protocol PushCallNotifierDelegate: AnyObject {
     func didReceiveIncomingCall(_ uuid: UUID, from fullUsername: String, withDisplayName userDisplayName: String, withPushCompletion pushProcessingCompletion: (()->Void)?)
