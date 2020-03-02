@@ -36,6 +36,24 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
         return managedCall != nil
     }
     
+    fileprivate var ringtone: LoudAudioFile? = {
+        let ringtone = (name: "noisecollector-beam", extension: "aiff")
+        if let ringtonePath = Bundle.main.path(forResource: ringtone.name, ofType: ringtone.extension) {
+            return LoudAudioFile(url: URL(fileURLWithPath: ringtonePath), looped: true)
+        } else {
+            return nil
+        }
+    }()
+    
+    fileprivate var progresstone: VIAudioFile? = {
+        let progresstone = (name: "fennelliott-beeping", extension: "wav")
+        if let progresstonePath = Bundle.main.path(forResource: progresstone.name, ofType: progresstone.extension) {
+            return VIAudioFile(url: URL(fileURLWithPath: progresstonePath), looped: true)
+        } else {
+            return nil
+        }
+    }()
+    
     init(_ client: VIClient, _ authService: AuthService) {
         self.client = client
         self.authService = authService
@@ -77,6 +95,8 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
     func makeIncomingCallActive() {
         // assert(self.hasManagedCall())
         // assert(client.clientState == .loggedIn)
+        
+        ringtone?.stop()
 
         // In this sample we don't need to check the client state in this method - here we are sure we are already logged in to the Voximplant Cloud.
         let settings = VICallSettings()
@@ -92,6 +112,9 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
             managedCall = call
             call.add(self)
             delegate?.notifyIncomingCall(call)
+            
+            ringtone?.configureAudioBeforePlaying()
+            ringtone?.play()
         }
     }
     
@@ -100,6 +123,9 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
         if case call.callId? = managedCall?.callId {
             call.remove(self)
             managedCall = nil
+            
+            ringtone?.stop()
+            progresstone?.stop()
         }
     }
     
@@ -107,6 +133,17 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
         if case call.callId? = managedCall?.callId {
             call.remove(self)
             managedCall = nil
+            
+            ringtone?.stop()
+            progresstone?.stop()
         }
+    }
+    
+    func call(_ call: VICall, startRingingWithHeaders headers: [AnyHashable : Any]?) {
+        progresstone?.play()
+    }
+    
+    func callDidStartAudio(_ call: VICall) {
+        progresstone?.stop()
     }
 }

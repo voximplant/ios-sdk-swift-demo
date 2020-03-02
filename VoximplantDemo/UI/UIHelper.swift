@@ -30,29 +30,30 @@ class UIHelper {
     class func ShowIncomingCallAlert(for uuid: UUID!, completion: @escaping ()-> Void) {
         if let rootViewController = AppDelegate.instance().window?.rootViewController, let callManager = AppDelegate.instance().voxImplant!.callManager, let descriptor = callManager.call(uuid: uuid) {
             var userName = "";
-            if let userDisplayName = descriptor.call!.endpoints.first!.userDisplayName {
+            if let userDisplayName = descriptor.call?.endpoints.first?.userDisplayName {
                 userName = " from \(userDisplayName)"
             }
-            incomingCallAlert = UIAlertController(title: "Voximplant", message: String(format: "Incoming %@ call%@", descriptor.withVideo ? "video" : "audio", userName), preferredStyle: .alert)
-            incomingCallAlert!.addAction(UIAlertAction(title: "Reject", style: .destructive) { action in
+            let incomingCallAlert: UIAlertController = UIAlertController(title: "Voximplant", message: String(format: "Incoming %@ call%@", descriptor.withVideo ? "video" : "audio", userName), preferredStyle: .alert)
+            self.incomingCallAlert = incomingCallAlert
+            incomingCallAlert.addAction(UIAlertAction(title: "Reject", style: .destructive) { action in
                 completion()
                 AppDelegate.instance().voxImplant!.rejectCall(call: descriptor, mode: .decline)
             })
-            incomingCallAlert!.addAction(UIAlertAction(title: descriptor.withVideo ? "Audio" : "Answer", style: .default) { action in
+            incomingCallAlert.addAction(UIAlertAction(title: descriptor.withVideo ? "Audio" : "Answer", style: .default) { action in
                 completion()
                 descriptor.withVideo = false
                 AppDelegate.instance().voxImplant!.startCall(call: descriptor)
             })
 
             if (descriptor.withVideo) {
-                incomingCallAlert!.addAction(UIAlertAction(title: "Video", style: .default) { action in
+                incomingCallAlert.addAction(UIAlertAction(title: "Video", style: .default) { action in
                     completion()
                     AppDelegate.instance().voxImplant!.startCall(call: descriptor)
                 })
             }
 
             DispatchQueue.main.async { () -> Void in
-                rootViewController.present(incomingCallAlert!, animated: true, completion: nil)
+                rootViewController.present(incomingCallAlert, animated: true, completion: nil)
             }
         }
     }

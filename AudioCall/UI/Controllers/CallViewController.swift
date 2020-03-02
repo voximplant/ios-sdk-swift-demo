@@ -167,7 +167,7 @@ extension CallViewController {
                 UIHelper.ShowError(error: error.localizedDescription)
             }
         } else {
-            callFailedInfo = (call.endpoints.first!.user!, error.localizedDescription)
+            callFailedInfo = (call.endpoints.first?.user ?? "unknown", error.localizedDescription)
             performSegue(withIdentifier: CallFailedViewController.self, sender: self)
         }
     }

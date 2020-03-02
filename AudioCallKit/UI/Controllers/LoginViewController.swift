@@ -21,6 +21,7 @@ class LoginViewController: UIViewController, CXCallObserverDelegate {
                       arguments: [VIClient.clientVersion(),
                                   VIClient.webrtcVersion()])
     }
+    
     var userDisplayName: String?
     
     // MARK: Outlets

@@ -15,7 +15,11 @@ class Log {
         if #available(iOS 10.0, *) {
             DDLog.add(DDOSLogger.sharedInstance, with: ddLogLevel)
         } else {
-            DDLog.add(DDTTYLogger.sharedInstance, with: ddLogLevel)
+            if let ddttylogger = DDTTYLogger.sharedInstance {
+                DDLog.add(ddttylogger, with: ddLogLevel)
+            } else {
+                print("DDTTYLogger fails!")
+            }
             DDLog.add(DDASLLogger.sharedInstance, with: ddLogLevel)
         }
 

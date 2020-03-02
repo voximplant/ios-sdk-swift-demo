@@ -33,14 +33,23 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
         providerConfiguration.supportsVideo = false
         providerConfiguration.maximumCallsPerCallGroup = 1
         providerConfiguration.supportedHandleTypes = [.generic]
-        providerConfiguration.ringtoneSound = "ringtone.aiff"
+        providerConfiguration.ringtoneSound = "noisecollector-beam.aiff"
         if let logo = UIImage(named: "CallKitLogo") {
             providerConfiguration.iconTemplateImageData = logo.pngData()
         }
         
         return CXProvider(configuration: providerConfiguration)
     }()
-    
+        
+    fileprivate var progresstone: CXAudioFile? = {
+        let progresstone = (name: "fennelliott-beeping", extension: "wav")
+        if let progresstonePath = Bundle.main.path(forResource: progresstone.name, ofType: progresstone.extension) {
+            return CXAudioFile(url: URL(fileURLWithPath: progresstonePath), looped: true)
+        } else {
+            return nil
+        }
+    }()
+
     init(_ client: VIClient, _ authService: AuthService) {
         self.client = client
         self.authService = authService
@@ -190,12 +199,14 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
 
     func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
         VIAudioManager.shared().callKitStartAudio()
+        progresstone?.didActivateAudioSession()
     }
     
     func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
         VIAudioManager.shared().callKitStopAudio()
+        progresstone?.didDeactivateAudioSession()
     }
-    
+
     // method caused by the CXProvider.invalidate()
     func providerDidReset(_ provider: CXProvider) {
         if let uuid = self.managedCall?.uuid {
@@ -245,6 +256,8 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
     func call(_ call: VICall, didFailWithError error: Error, headers: [AnyHashable : Any]?) {
         reportCallEnded(call.callKitUUID!, .failed)
         
+        progresstone?.stop()
+        
         self.managedCall?.completePushProcessing()
     }
     
@@ -252,10 +265,13 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
         let endReason: CXCallEndedReason = answeredElsewhere.boolValue ? .answeredElsewhere : .remoteEnded
         reportCallEnded(call.callKitUUID!, endReason)
         
+        progresstone?.stop()
+        
         self.managedCall?.completePushProcessing()
     }
     
     func call(_ call: VICall, didConnectWithHeaders headers: [AnyHashable : Any]?) {
+
         if let managedCall = self.managedCall {
             if managedCall.isOutgoing {
                 // notify CallKit that the outgoing call is connected
@@ -277,6 +293,14 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
         }
         
         self.managedCall?.completePushProcessing()
+    }
+
+    func call(_ call: VICall, startRingingWithHeaders headers: [AnyHashable : Any]?) {
+        progresstone?.play()
+    }
+    
+    func callDidStartAudio(_ call: VICall) {
+        progresstone?.stop()
     }
 
     // MARK: VIClientCallManagerDelegate
