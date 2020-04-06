@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConferenceParticipantView" customModule="Conference" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundImage" destination="ehu-hQ-HRC" id="5Bz-8I-u6y"/>
+                <outlet property="labelContainer" destination="btL-ne-mNm" id="Qma-FY-Ol3"/>
+                <outlet property="nameLabel" destination="tMh-g5-4jg" id="S5Y-BZ-GcP"/>
+                <outlet property="streamView" destination="lUs-RH-WTQ" id="rh0-3X-FYy"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="235"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="videoOff" translatesAutoresizingMaskIntoConstraints="NO" id="ehu-hQ-HRC">
+                    <rect key="frame" x="2" y="2" width="410" height="231"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUs-RH-WTQ">
+                    <rect key="frame" x="2" y="2" width="410" height="231"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="btL-ne-mNm">
+                    <rect key="frame" x="4" y="4" width="8" height="20"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMh-g5-4jg">
+                            <rect key="frame" x="4" y="4" width="0.0" height="12"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.13333333333333333" green="0.062745098039215685" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="6wj-AJ-cDN"/>
+                        <constraint firstAttribute="trailing" secondItem="tMh-g5-4jg" secondAttribute="trailing" constant="4" id="VBa-uK-am4"/>
+                        <constraint firstAttribute="bottom" secondItem="tMh-g5-4jg" secondAttribute="bottom" constant="4" id="b0O-Zt-gsV"/>
+                        <constraint firstItem="tMh-g5-4jg" firstAttribute="top" secondItem="btL-ne-mNm" secondAttribute="top" constant="4" id="kDk-WD-cfD"/>
+                        <constraint firstItem="tMh-g5-4jg" firstAttribute="leading" secondItem="btL-ne-mNm" secondAttribute="leading" constant="4" id="v40-ah-4ul"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ehu-hQ-HRC" secondAttribute="trailing" constant="2" id="2ZA-ba-DQg"/>
+                <constraint firstItem="ehu-hQ-HRC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="873-6z-ShQ"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="btL-ne-mNm" secondAttribute="bottom" constant="4" id="IVu-yp-rM2"/>
+                <constraint firstItem="lUs-RH-WTQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="Qcg-hu-MoQ"/>
+                <constraint firstItem="ehu-hQ-HRC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="Sk0-85-XOR"/>
+                <constraint firstAttribute="bottom" secondItem="ehu-hQ-HRC" secondAttribute="bottom" constant="2" id="Zds-e7-M5O"/>
+                <constraint firstAttribute="bottom" secondItem="lUs-RH-WTQ" secondAttribute="bottom" constant="2" id="cZh-4Y-k7f"/>
+                <constraint firstItem="btL-ne-mNm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="cgJ-8G-qgX"/>
+                <constraint firstAttribute="trailing" secondItem="lUs-RH-WTQ" secondAttribute="trailing" constant="2" id="leS-Vh-xCr"/>
+                <constraint firstItem="lUs-RH-WTQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="luq-Ev-sV4"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="btL-ne-mNm" secondAttribute="trailing" constant="4" id="vaa-II-Ve1"/>
+                <constraint firstItem="btL-ne-mNm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="4" id="zv4-19-LCA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="137.68115942028987" y="-68.638392857142847"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="videoOff" width="32" height="32"/>
+    </resources>
+</document>

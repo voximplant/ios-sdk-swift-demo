@@ -7,6 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E5442A7243BA58A00450A73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E544280243BA58A00450A73 /* Main.storyboard */; };
+		7E5442A8243BA58A00450A73 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E544282243BA58A00450A73 /* Storyboard.swift */; };
+		7E5442A9243BA58A00450A73 /* ConferenceParticipantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E544285243BA58A00450A73 /* ConferenceParticipantView.xib */; };
+		7E5442AA243BA58A00450A73 /* ConferenceParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E544286243BA58A00450A73 /* ConferenceParticipantView.swift */; };
+		7E5442AB243BA58A00450A73 /* ConferenceCallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E544288243BA58A00450A73 /* ConferenceCallButton.swift */; };
+		7E5442AC243BA58A00450A73 /* ConferenceCallButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E544289243BA58A00450A73 /* ConferenceCallButton.xib */; };
+		7E5442AD243BA58A00450A73 /* ConferenceCallButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54428A243BA58A00450A73 /* ConferenceCallButtonModel.swift */; };
+		7E5442AE243BA58A00450A73 /* ConferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54428B243BA58A00450A73 /* ConferenceView.swift */; };
+		7E5442AF243BA58A00450A73 /* ConferenceCallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54428C243BA58A00450A73 /* ConferenceCallModel.swift */; };
+		7E5442B0243BA58A00450A73 /* ConferenceCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54428D243BA58A00450A73 /* ConferenceCallViewController.swift */; };
+		7E5442B1243BA58A00450A73 /* StoryAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54428E243BA58A00450A73 /* StoryAssembler.swift */; };
+		7E5442B2243BA58A00450A73 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E544290243BA58A00450A73 /* LoginView.swift */; };
+		7E5442B3243BA58A00450A73 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E544291243BA58A00450A73 /* LoginViewController.swift */; };
+		7E5442B4243BA58A00450A73 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E544292243BA58A00450A73 /* LoginTextField.swift */; };
+		7E5442B5243BA58A00450A73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E544294243BA58A00450A73 /* Assets.xcassets */; };
+		7E5442B6243BA58A00450A73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E544295243BA58A00450A73 /* LaunchScreen.storyboard */; };
+		7E5442B8243BA58A00450A73 /* LeaveConferenceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E544299243BA58A00450A73 /* LeaveConferenceUseCase.swift */; };
+		7E5442B9243BA58A00450A73 /* ManageConferenceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54429A243BA58A00450A73 /* ManageConferenceUseCase.swift */; };
+		7E5442BA243BA58A00450A73 /* JoinConferenceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54429B243BA58A00450A73 /* JoinConferenceUseCase.swift */; };
+		7E5442BB243BA58A00450A73 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54429D243BA58A00450A73 /* AlertHelper.swift */; };
+		7E5442BC243BA58A00450A73 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54429E243BA58A00450A73 /* Errors.swift */; };
+		7E5442BD243BA58A00450A73 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54429F243BA58A00450A73 /* NibLoadable.swift */; };
+		7E5442BE243BA58A00450A73 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7E5442A0243BA58A00450A73 /* README.md */; };
+		7E5442BF243BA58A00450A73 /* VoximplantConferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5442A2243BA58A00450A73 /* VoximplantConferenceService.swift */; };
+		7E5442C0243BA58A00450A73 /* VoximplantAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5442A3243BA58A00450A73 /* VoximplantAuthService.swift */; };
+		7E5442C1243BA58A00450A73 /* VoximplantAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5442A4243BA58A00450A73 /* VoximplantAPIService.swift */; };
+		7E5442C2243BA58A00450A73 /* PermissionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5442A5243BA58A00450A73 /* PermissionsService.swift */; };
+		7E5442C3243BA58A00450A73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5442A6243BA58A00450A73 /* AppDelegate.swift */; };
+		7E5442C4243BA60F00450A73 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C8E20022EB4139006CCCFF /* Shared.xcassets */; };
 		8E87346121D3D292008E75B5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8E87345F21D3D292008E75B5 /* README.md */; };
 		8E87346221D3D292008E75B5 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 8E87346021D3D292008E75B5 /* LICENSE.md */; };
 		8EA9CF08204EAF7400C05397 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9CF07204EAF7400C05397 /* Theme.swift */; };
@@ -104,6 +133,36 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E54426B243BA52800450A73 /* Conference.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Conference.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E544281243BA58A00450A73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7E544282243BA58A00450A73 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
+		7E544285243BA58A00450A73 /* ConferenceParticipantView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConferenceParticipantView.xib; sourceTree = "<group>"; };
+		7E544286243BA58A00450A73 /* ConferenceParticipantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceParticipantView.swift; sourceTree = "<group>"; };
+		7E544288243BA58A00450A73 /* ConferenceCallButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceCallButton.swift; sourceTree = "<group>"; };
+		7E544289243BA58A00450A73 /* ConferenceCallButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConferenceCallButton.xib; sourceTree = "<group>"; };
+		7E54428A243BA58A00450A73 /* ConferenceCallButtonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceCallButtonModel.swift; sourceTree = "<group>"; };
+		7E54428B243BA58A00450A73 /* ConferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceView.swift; sourceTree = "<group>"; };
+		7E54428C243BA58A00450A73 /* ConferenceCallModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceCallModel.swift; sourceTree = "<group>"; };
+		7E54428D243BA58A00450A73 /* ConferenceCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceCallViewController.swift; sourceTree = "<group>"; };
+		7E54428E243BA58A00450A73 /* StoryAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAssembler.swift; sourceTree = "<group>"; };
+		7E544290243BA58A00450A73 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7E544291243BA58A00450A73 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7E544292243BA58A00450A73 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		7E544294243BA58A00450A73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7E544296243BA58A00450A73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7E544297243BA58A00450A73 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E544299243BA58A00450A73 /* LeaveConferenceUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaveConferenceUseCase.swift; sourceTree = "<group>"; };
+		7E54429A243BA58A00450A73 /* ManageConferenceUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageConferenceUseCase.swift; sourceTree = "<group>"; };
+		7E54429B243BA58A00450A73 /* JoinConferenceUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinConferenceUseCase.swift; sourceTree = "<group>"; };
+		7E54429D243BA58A00450A73 /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
+		7E54429E243BA58A00450A73 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		7E54429F243BA58A00450A73 /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		7E5442A0243BA58A00450A73 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7E5442A2243BA58A00450A73 /* VoximplantConferenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoximplantConferenceService.swift; sourceTree = "<group>"; };
+		7E5442A3243BA58A00450A73 /* VoximplantAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoximplantAuthService.swift; sourceTree = "<group>"; };
+		7E5442A4243BA58A00450A73 /* VoximplantAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoximplantAPIService.swift; sourceTree = "<group>"; };
+		7E5442A5243BA58A00450A73 /* PermissionsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionsService.swift; sourceTree = "<group>"; };
+		7E5442A6243BA58A00450A73 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E85E3881FBB06E50033831A /* VoximplantDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoximplantDemo.entitlements; sourceTree = "<group>"; };
 		8E87345F21D3D292008E75B5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8E87346021D3D292008E75B5 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
@@ -191,6 +250,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7E544268243BA52800450A73 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8EEA98AD1FB5A1AD00E90861 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,6 +296,114 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7E54426C243BA52800450A73 /* Conference */ = {
+			isa = PBXGroup;
+			children = (
+				7E5442A6243BA58A00450A73 /* AppDelegate.swift */,
+				7E5442A0243BA58A00450A73 /* README.md */,
+				7E54427F243BA58A00450A73 /* Stories */,
+				7E544298243BA58A00450A73 /* UseCases */,
+				7E5442A1243BA58A00450A73 /* Services */,
+				7E54429C243BA58A00450A73 /* Utils */,
+				7E544293243BA58A00450A73 /* Resources */,
+			);
+			path = Conference;
+			sourceTree = "<group>";
+		};
+		7E54427F243BA58A00450A73 /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				7E544280243BA58A00450A73 /* Main.storyboard */,
+				7E544282243BA58A00450A73 /* Storyboard.swift */,
+				7E54428E243BA58A00450A73 /* StoryAssembler.swift */,
+				7E54428F243BA58A00450A73 /* Login */,
+				7E544283243BA58A00450A73 /* ConferenceCall */,
+			);
+			path = Stories;
+			sourceTree = "<group>";
+		};
+		7E544283243BA58A00450A73 /* ConferenceCall */ = {
+			isa = PBXGroup;
+			children = (
+				7E544284243BA58A00450A73 /* ConferenceParticipantView */,
+				7E544287243BA58A00450A73 /* ConferenceCallButton */,
+				7E54428B243BA58A00450A73 /* ConferenceView.swift */,
+				7E54428C243BA58A00450A73 /* ConferenceCallModel.swift */,
+				7E54428D243BA58A00450A73 /* ConferenceCallViewController.swift */,
+			);
+			path = ConferenceCall;
+			sourceTree = "<group>";
+		};
+		7E544284243BA58A00450A73 /* ConferenceParticipantView */ = {
+			isa = PBXGroup;
+			children = (
+				7E544285243BA58A00450A73 /* ConferenceParticipantView.xib */,
+				7E544286243BA58A00450A73 /* ConferenceParticipantView.swift */,
+			);
+			path = ConferenceParticipantView;
+			sourceTree = "<group>";
+		};
+		7E544287243BA58A00450A73 /* ConferenceCallButton */ = {
+			isa = PBXGroup;
+			children = (
+				7E544288243BA58A00450A73 /* ConferenceCallButton.swift */,
+				7E544289243BA58A00450A73 /* ConferenceCallButton.xib */,
+				7E54428A243BA58A00450A73 /* ConferenceCallButtonModel.swift */,
+			);
+			path = ConferenceCallButton;
+			sourceTree = "<group>";
+		};
+		7E54428F243BA58A00450A73 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7E544290243BA58A00450A73 /* LoginView.swift */,
+				7E544291243BA58A00450A73 /* LoginViewController.swift */,
+				7E544292243BA58A00450A73 /* LoginTextField.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7E544293243BA58A00450A73 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7E544294243BA58A00450A73 /* Assets.xcassets */,
+				7E544295243BA58A00450A73 /* LaunchScreen.storyboard */,
+				7E544297243BA58A00450A73 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7E544298243BA58A00450A73 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				7E54429B243BA58A00450A73 /* JoinConferenceUseCase.swift */,
+				7E54429A243BA58A00450A73 /* ManageConferenceUseCase.swift */,
+				7E544299243BA58A00450A73 /* LeaveConferenceUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		7E54429C243BA58A00450A73 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7E54429D243BA58A00450A73 /* AlertHelper.swift */,
+				7E54429E243BA58A00450A73 /* Errors.swift */,
+				7E54429F243BA58A00450A73 /* NibLoadable.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7E5442A1243BA58A00450A73 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7E5442A2243BA58A00450A73 /* VoximplantConferenceService.swift */,
+				7E5442A3243BA58A00450A73 /* VoximplantAuthService.swift */,
+				7E5442A4243BA58A00450A73 /* VoximplantAPIService.swift */,
+				7E5442A5243BA58A00450A73 /* PermissionsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		8E9DA3F2206144A500721415 /* CameraHelpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +439,7 @@
 				8EEA98B21FB5A1AD00E90861 /* VoximplantDemo */,
 				C5A248BA22B3F7140008FAF4 /* AudioCall */,
 				C5A8B61222D33569007DC646 /* AudioCallKit */,
+				7E54426C243BA52800450A73 /* Conference */,
 				8EEA98B11FB5A1AD00E90861 /* Products */,
 				369334A608BD108D7AD7AA32 /* Pods */,
 				1DD0F974DCACD349A4CA3C60 /* Frameworks */,
@@ -277,6 +452,7 @@
 				8EEA98B01FB5A1AD00E90861 /* Voximplant Demo.app */,
 				C5A248B922B3F7140008FAF4 /* AudioCall.app */,
 				C5A8B61122D33569007DC646 /* AudioCallKit.app */,
+				7E54426B243BA52800450A73 /* Conference.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -492,6 +668,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7E54426A243BA52800450A73 /* Conference */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E54427E243BA52900450A73 /* Build configuration list for PBXNativeTarget "Conference" */;
+			buildPhases = (
+				7E544267243BA52800450A73 /* Sources */,
+				7E544268243BA52800450A73 /* Frameworks */,
+				7E544269243BA52800450A73 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Conference;
+			productName = Conference;
+			productReference = 7E54426B243BA52800450A73 /* Conference.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8EEA98AF1FB5A1AD00E90861 /* Voximplant Demo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8EEA98C21FB5A1AD00E90861 /* Build configuration list for PBXNativeTarget "Voximplant Demo" */;
@@ -549,10 +742,15 @@
 		8EEA98A81FB5A1AC00E90861 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Zingaya Ltd.";
 				TargetAttributes = {
+					7E54426A243BA52800450A73 = {
+						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
+						ProvisioningStyle = Automatic;
+					};
 					8EEA98AF1FB5A1AD00E90861 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 1000;
@@ -597,11 +795,26 @@
 				8EEA98AF1FB5A1AD00E90861 /* Voximplant Demo */,
 				C5A248B822B3F7140008FAF4 /* AudioCall */,
 				C5A8B61022D33569007DC646 /* AudioCallKit */,
+				7E54426A243BA52800450A73 /* Conference */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7E544269243BA52800450A73 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E5442A9243BA58A00450A73 /* ConferenceParticipantView.xib in Resources */,
+				7E5442AC243BA58A00450A73 /* ConferenceCallButton.xib in Resources */,
+				7E5442C4243BA60F00450A73 /* Shared.xcassets in Resources */,
+				7E5442BE243BA58A00450A73 /* README.md in Resources */,
+				7E5442B5243BA58A00450A73 /* Assets.xcassets in Resources */,
+				7E5442B6243BA58A00450A73 /* LaunchScreen.storyboard in Resources */,
+				7E5442A7243BA58A00450A73 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8EEA98AE1FB5A1AD00E90861 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -658,6 +871,35 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7E544267243BA52800450A73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E5442C3243BA58A00450A73 /* AppDelegate.swift in Sources */,
+				7E5442C2243BA58A00450A73 /* PermissionsService.swift in Sources */,
+				7E5442AA243BA58A00450A73 /* ConferenceParticipantView.swift in Sources */,
+				7E5442BD243BA58A00450A73 /* NibLoadable.swift in Sources */,
+				7E5442B8243BA58A00450A73 /* LeaveConferenceUseCase.swift in Sources */,
+				7E5442B9243BA58A00450A73 /* ManageConferenceUseCase.swift in Sources */,
+				7E5442C0243BA58A00450A73 /* VoximplantAuthService.swift in Sources */,
+				7E5442BB243BA58A00450A73 /* AlertHelper.swift in Sources */,
+				7E5442BC243BA58A00450A73 /* Errors.swift in Sources */,
+				7E5442A8243BA58A00450A73 /* Storyboard.swift in Sources */,
+				7E5442B0243BA58A00450A73 /* ConferenceCallViewController.swift in Sources */,
+				7E5442B2243BA58A00450A73 /* LoginView.swift in Sources */,
+				7E5442AB243BA58A00450A73 /* ConferenceCallButton.swift in Sources */,
+				7E5442AF243BA58A00450A73 /* ConferenceCallModel.swift in Sources */,
+				7E5442B4243BA58A00450A73 /* LoginTextField.swift in Sources */,
+				7E5442AE243BA58A00450A73 /* ConferenceView.swift in Sources */,
+				7E5442B1243BA58A00450A73 /* StoryAssembler.swift in Sources */,
+				7E5442B3243BA58A00450A73 /* LoginViewController.swift in Sources */,
+				7E5442AD243BA58A00450A73 /* ConferenceCallButtonModel.swift in Sources */,
+				7E5442BA243BA58A00450A73 /* JoinConferenceUseCase.swift in Sources */,
+				7E5442C1243BA58A00450A73 /* VoximplantAPIService.swift in Sources */,
+				7E5442BF243BA58A00450A73 /* VoximplantConferenceService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8EEA98AC1FB5A1AD00E90861 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -743,7 +985,70 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		7E544280243BA58A00450A73 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E544281243BA58A00450A73 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7E544295243BA58A00450A73 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E544296243BA58A00450A73 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		7E54427C243BA52900450A73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = W9BHJBL635;
+				INFOPLIST_FILE = "$(SRCROOT)/Conference/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.Conference;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7E54427D243BA52900450A73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = W9BHJBL635;
+				INFOPLIST_FILE = "$(SRCROOT)/Conference/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.1;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.Conference;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		8EEA98C01FB5A1AD00E90861 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -995,6 +1300,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7E54427E243BA52900450A73 /* Build configuration list for PBXNativeTarget "Conference" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E54427C243BA52900450A73 /* Debug */,
+				7E54427D243BA52900450A73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8EEA98AB1FB5A1AC00E90861 /* Build configuration list for PBXProject "Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
