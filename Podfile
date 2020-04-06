@@ -7,8 +7,8 @@ project 'Swift.xcodeproj'
 def common_pods
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'CocoaLumberjack/Swift', '~> 3.5'
-  pod 'VoxImplantSDK/CocoaLumberjackLogger', '2.28.0'
-  pod 'VoxImplantSDK', '2.28.0'
+  pod 'VoxImplantSDK/CocoaLumberjackLogger', '2.30.0'
+  pod 'VoxImplantSDK', '2.30.0'
 end
 
 target 'Voximplant Demo' do
