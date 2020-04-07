@@ -26,7 +26,6 @@
 		7E5442B8243BA58A00450A73 /* LeaveConferenceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E544299243BA58A00450A73 /* LeaveConferenceUseCase.swift */; };
 		7E5442B9243BA58A00450A73 /* ManageConferenceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54429A243BA58A00450A73 /* ManageConferenceUseCase.swift */; };
 		7E5442BA243BA58A00450A73 /* JoinConferenceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54429B243BA58A00450A73 /* JoinConferenceUseCase.swift */; };
-		7E5442BB243BA58A00450A73 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54429D243BA58A00450A73 /* AlertHelper.swift */; };
 		7E5442BC243BA58A00450A73 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54429E243BA58A00450A73 /* Errors.swift */; };
 		7E5442BD243BA58A00450A73 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54429F243BA58A00450A73 /* NibLoadable.swift */; };
 		7E5442BE243BA58A00450A73 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7E5442A0243BA58A00450A73 /* README.md */; };
@@ -36,6 +35,10 @@
 		7E5442C2243BA58A00450A73 /* PermissionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5442A5243BA58A00450A73 /* PermissionsService.swift */; };
 		7E5442C3243BA58A00450A73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5442A6243BA58A00450A73 /* AppDelegate.swift */; };
 		7E5442C4243BA60F00450A73 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C8E20022EB4139006CCCFF /* Shared.xcassets */; };
+		7E9F20E8243C7812002B5700 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F20E6243C77A7002B5700 /* AlertHelper.swift */; };
+		7E9F20E9243C7813002B5700 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F20E6243C77A7002B5700 /* AlertHelper.swift */; };
+		7E9F20EA243C7813002B5700 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F20E6243C77A7002B5700 /* AlertHelper.swift */; };
+		7E9F20EB243C7817002B5700 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F00F9322C610E00061AF13 /* UIExtensions.swift */; };
 		8E87346121D3D292008E75B5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8E87345F21D3D292008E75B5 /* README.md */; };
 		8E87346221D3D292008E75B5 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 8E87346021D3D292008E75B5 /* LICENSE.md */; };
 		8EA9CF08204EAF7400C05397 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9CF07204EAF7400C05397 /* Theme.swift */; };
@@ -154,7 +157,6 @@
 		7E544299243BA58A00450A73 /* LeaveConferenceUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaveConferenceUseCase.swift; sourceTree = "<group>"; };
 		7E54429A243BA58A00450A73 /* ManageConferenceUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageConferenceUseCase.swift; sourceTree = "<group>"; };
 		7E54429B243BA58A00450A73 /* JoinConferenceUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinConferenceUseCase.swift; sourceTree = "<group>"; };
-		7E54429D243BA58A00450A73 /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		7E54429E243BA58A00450A73 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		7E54429F243BA58A00450A73 /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		7E5442A0243BA58A00450A73 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		7E5442A4243BA58A00450A73 /* VoximplantAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoximplantAPIService.swift; sourceTree = "<group>"; };
 		7E5442A5243BA58A00450A73 /* PermissionsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionsService.swift; sourceTree = "<group>"; };
 		7E5442A6243BA58A00450A73 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7E9F20E6243C77A7002B5700 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		8E85E3881FBB06E50033831A /* VoximplantDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoximplantDemo.entitlements; sourceTree = "<group>"; };
 		8E87345F21D3D292008E75B5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8E87346021D3D292008E75B5 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
@@ -386,7 +389,6 @@
 		7E54429C243BA58A00450A73 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				7E54429D243BA58A00450A73 /* AlertHelper.swift */,
 				7E54429E243BA58A00450A73 /* Errors.swift */,
 				7E54429F243BA58A00450A73 /* NibLoadable.swift */,
 			);
@@ -522,6 +524,7 @@
 				9220152622CA41F60023B5A7 /* LabelWithTimer.swift */,
 				92F00F9322C610E00061AF13 /* UIExtensions.swift */,
 				C5E0CFA522B77197009C7F2D /* UIHelper.swift */,
+				7E9F20E6243C77A7002B5700 /* AlertHelper.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -878,11 +881,12 @@
 				7E5442C3243BA58A00450A73 /* AppDelegate.swift in Sources */,
 				7E5442C2243BA58A00450A73 /* PermissionsService.swift in Sources */,
 				7E5442AA243BA58A00450A73 /* ConferenceParticipantView.swift in Sources */,
+				7E9F20EB243C7817002B5700 /* UIExtensions.swift in Sources */,
 				7E5442BD243BA58A00450A73 /* NibLoadable.swift in Sources */,
+				7E9F20E8243C7812002B5700 /* AlertHelper.swift in Sources */,
 				7E5442B8243BA58A00450A73 /* LeaveConferenceUseCase.swift in Sources */,
 				7E5442B9243BA58A00450A73 /* ManageConferenceUseCase.swift in Sources */,
 				7E5442C0243BA58A00450A73 /* VoximplantAuthService.swift in Sources */,
-				7E5442BB243BA58A00450A73 /* AlertHelper.swift in Sources */,
 				7E5442BC243BA58A00450A73 /* Errors.swift in Sources */,
 				7E5442A8243BA58A00450A73 /* Storyboard.swift in Sources */,
 				7E5442B0243BA58A00450A73 /* ConferenceCallViewController.swift in Sources */,
@@ -942,6 +946,7 @@
 				92F00F9222C60B7F0061AF13 /* CustomTextField.swift in Sources */,
 				92049F9922DDDD47006DB07F /* ButtonWithLabel.swift in Sources */,
 				C5E0CFD222B773BC009C7F2D /* AppDelegate.swift in Sources */,
+				7E9F20EA243C7813002B5700 /* AlertHelper.swift in Sources */,
 				C5E0CFE422B787FC009C7F2D /* CallManager.swift in Sources */,
 				92049F9022DCD177006DB07F /* ColoredButton.swift in Sources */,
 				92D040B722C4A1DE007B74B4 /* CallFailedViewController.swift in Sources */,
@@ -962,6 +967,7 @@
 				C5393E9D240D38420064006F /* CXAudioFile.swift in Sources */,
 				C5491E6222F98EA8001D9601 /* Log.swift in Sources */,
 				C5A8B64722D35AC0007DC646 /* CallViewController.swift in Sources */,
+				7E9F20E9243C7813002B5700 /* AlertHelper.swift in Sources */,
 				C5491E6D22F99AF3001D9601 /* ColoredButton.swift in Sources */,
 				C590E7C32322E0F300E112D7 /* CallWrapper.swift in Sources */,
 				C5491E6722F99230001D9601 /* CustomTextField.swift in Sources */,
@@ -1012,12 +1018,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/Conference/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.Conference;
@@ -1035,12 +1041,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/Conference/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.Conference;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1100,7 +1106,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1154,7 +1160,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1258,12 +1264,12 @@
 				CODE_SIGN_ENTITLEMENTS = AudioCallKit/AudioCallKit.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = AudioCallKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift.AudioCallKit;
@@ -1282,12 +1288,12 @@
 				CODE_SIGN_ENTITLEMENTS = AudioCallKit/AudioCallKit.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = AudioCallKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.6;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift.AudioCallKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";

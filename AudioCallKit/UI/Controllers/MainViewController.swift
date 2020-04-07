@@ -59,7 +59,7 @@ class MainViewController: UIViewController, CXCallObserverDelegate {
             self.callController.requestTransaction(with: startOutgoingCall)
             { (error: Error?) in
                 if let error = error {
-                    UIHelper.ShowError(error: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription)
                     Log.e(error.localizedDescription)
                 }
             }

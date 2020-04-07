@@ -78,7 +78,7 @@ class LoginViewController: UIViewController, CXCallObserverDelegate {
             
             switch(result) {
             case let .failure(error):
-                UIHelper.ShowError(error: error.localizedDescription)
+                AlertHelper.showError(message: error.localizedDescription)
             case let .success(userDisplayName):
                 sself.refreshUI()
                 sself.userDisplayName = userDisplayName
@@ -101,7 +101,7 @@ class LoginViewController: UIViewController, CXCallObserverDelegate {
             
             switch(result) {
             case let .failure(error):
-                UIHelper.ShowError(error: error.localizedDescription)
+                AlertHelper.showError(message: error.localizedDescription)
             case let .success(userDisplayName):
                 sself.userDisplayName = userDisplayName
                 sself.performSegue(withIdentifier: MainViewController.self, sender: sself)

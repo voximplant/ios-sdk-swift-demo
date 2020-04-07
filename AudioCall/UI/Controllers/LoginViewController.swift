@@ -76,7 +76,7 @@ class LoginViewController: UIViewController {
             
             switch(result) {
             case let .failure(error):
-                UIHelper.ShowError(error: error.localizedDescription)
+                AlertHelper.showError(message: error.localizedDescription)
             case let .success(userDisplayName):
                 strongSelf.refreshUI()
                 strongSelf.userDisplayName = userDisplayName
@@ -97,7 +97,7 @@ class LoginViewController: UIViewController {
             
             switch(result) {
             case let .failure(error):
-                UIHelper.ShowError(error: error.localizedDescription)
+                AlertHelper.showError(message: error.localizedDescription)
             case let .success(userDisplayName):
                 self?.userDisplayName = userDisplayName
                 self?.performSegue(withIdentifier: MainViewController.self, sender: self)

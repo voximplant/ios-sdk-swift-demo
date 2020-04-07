@@ -78,9 +78,12 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
         sender.isEnabled = false
         
         call?.setHold(!sender.isSelected, completion: { [weak self] error in
-            if error == nil {
+            if let error = error {
+                Log.d("setHold: \(error.localizedDescription)")
+                AlertHelper.showError(message: error.localizedDescription)
+                sender.isEnabled.toggle()
+            } else {
                 Log.d("setHold: no errors)")
-                
                 if sender.isSelected {
                     self?.holdButton.label.text = "hold"
                     sender.setImage(#imageLiteral(resourceName: "hold"), for: .normal)
@@ -88,12 +91,7 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
                     self?.holdButton.label.text = "resume"
                     sender.setImage(#imageLiteral(resourceName: "resumeP"), for: .normal)
                 }
-                
                 sender.isSelected.toggle()
-                sender.isEnabled.toggle()
-            } else {
-                Log.d("setHold: \(error!.localizedDescription)")
-                UIHelper.ShowError(error: error!.localizedDescription)
                 sender.isEnabled.toggle()
             }
         })
@@ -112,7 +110,7 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
             (result: Result<(), Error>) in
             if case let .failure(error) = result {
                 self.dismiss(animated: false) {
-                    UIHelper.ShowError(error: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription)
                 }
             } else {
                 self.setupDelegates()
@@ -164,7 +162,7 @@ extension CallViewController {
         
         if (error as NSError).code == VICallFailError.invalidNumber.rawValue {
             self.dismiss(animated: false) {
-                UIHelper.ShowError(error: error.localizedDescription)
+                AlertHelper.showError(message: error.localizedDescription)
             }
         } else {
             callFailedInfo = (call.endpoints.first?.user ?? "unknown", error.localizedDescription)
@@ -206,26 +204,22 @@ extension CallViewController {
     // MARK: AudioManager supporting methods
     // This method used to show/hide audio devices list
     private func showAudioDevices() {
-        let alertSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        for device in audioDevices! {
-            alertSheet.addAction(UIAlertAction(title: generateDeviceTitle(device), style: .default) { action in
-                VIAudioManager.shared().select(device)
-            })
-        }
-        
-        alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
-            alertSheet.dismiss(animated: true, completion: nil)
-        }))
-        
-        present(alertSheet, animated: true, completion: nil) // show alertsheet with audio devices
+        guard let audioDevices = audioDevices else { return }
+        let currentDevice = VIAudioManager.shared()?.currentAudioDevice()
+        AlertHelper.showActionSheet(
+            actions: audioDevices.map { device in
+                UIAlertAction(title: makeFormattedString(from: device, isCurrent: currentDevice == device), style: .default) { _ in
+                    VIAudioManager.shared().select(device)
+                }
+            },
+            sourceView: speakerButton,
+            on: self
+        )
     }
     
-    // This method used to generate clear device name from VIAudioDevice
-    private func generateDeviceTitle(_ device: VIAudioDevice) -> String { // generates fromatted string from VIAudioDevice names
-        let deviceString = String(describing: device)
-        let clearDeviceName = deviceString.replacingOccurrences(of: "VIAudioDevice", with: "")
-        return clearDeviceName
+    private func makeFormattedString(from device: VIAudioDevice, isCurrent: Bool) -> String {
+        let formattedString = String(describing: device).replacingOccurrences(of: "VIAudioDevice", with: "")
+        return isCurrent ? "\(formattedString) (Current)" : formattedString
     }
     
     // This method changes speaker button states given by audiodevice delegate

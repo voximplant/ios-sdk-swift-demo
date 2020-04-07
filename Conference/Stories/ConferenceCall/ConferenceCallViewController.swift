@@ -121,7 +121,7 @@ final class ConferenceCallViewController: UIViewController {
                     VIAudioManager.shared().select(device)
                 }
             },
-            defaultAction: true,
+            sourceView: chooseAudioButton,
             on: self
         )
     }

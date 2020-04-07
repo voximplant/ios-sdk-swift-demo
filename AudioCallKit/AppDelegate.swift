@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate {
         
         self.callController.requestTransaction(with: startOutgoingCall) { error in
             guard let error = error else { return }
-            UIHelper.ShowError(error: error.localizedDescription)
+            AlertHelper.showError(message: error.localizedDescription)
             Log.e(error.localizedDescription)
         }
         return true

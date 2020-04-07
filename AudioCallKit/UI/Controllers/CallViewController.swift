@@ -93,7 +93,7 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
             { (error: Error?) in
                 if let error = error {
                     Log.e(error.localizedDescription)
-                    UIHelper.ShowError(error: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription)
                 }
             }
         }
@@ -116,7 +116,7 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
             { [weak self] (error: Error?) in
                 if let error = error {
                     Log.e("setHold error: \(error.localizedDescription)")
-                    UIHelper.ShowError(error: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription)
                     sender.isEnabled.toggle()
                 } else {
                     if sender.isSelected {
@@ -142,7 +142,7 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
             callController.requestTransaction(with: doEndCall)
             { (error: Error?) in
                 if let error = error {
-                    UIHelper.ShowError(error: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription)
                     Log.e(error.localizedDescription)
                 }
                 sender.isEnabled = true
@@ -194,25 +194,22 @@ extension CallViewController {
     
     // MARK: AudioManager supporting methods
     private func showAudioDevices() {
-        let alertSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        for device in audioDevices! {
-            alertSheet.addAction(UIAlertAction(title: generateDeviceTitle(device), style: .default) { action in
-                VIAudioManager.shared().select(device)
-            })
-        }
-        
-        alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
-            alertSheet.dismiss(animated: true, completion: nil)
-        }))
-        
-        present(alertSheet, animated: true, completion: nil) // show alertsheet with audio devices
+        guard let audioDevices = audioDevices else { return }
+        let currentDevice = VIAudioManager.shared()?.currentAudioDevice()
+        AlertHelper.showActionSheet(
+            actions: audioDevices.map { device in
+                UIAlertAction(title: makeFormattedString(from: device, isCurrent: currentDevice == device), style: .default) { _ in
+                    VIAudioManager.shared().select(device)
+                }
+            },
+            sourceView: speakerButton,
+            on: self
+        )
     }
     
-    private func generateDeviceTitle(_ device: VIAudioDevice) -> String { // generates fromatted string from VIAudioDevice names
-        let deviceString = String(describing: device)
-        let clearDeviceName = deviceString.replacingOccurrences(of: "VIAudioDevice", with: "")
-        return clearDeviceName
+    private func makeFormattedString(from device: VIAudioDevice, isCurrent: Bool) -> String {
+        let formattedString = String(describing: device).replacingOccurrences(of: "VIAudioDevice", with: "")
+        return isCurrent ? "\(formattedString) (Current)" : formattedString
     }
     
     private func changeAudioDeviceButtonState(isSelected: Bool, image: UIImage) {
@@ -239,7 +236,7 @@ extension CallViewController {
             callController.requestTransaction(with: sendDTMF)
             { (error: Error?) in
                 if let error = error {
-                    UIHelper.ShowError(error: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription)
                     Log.e(error.localizedDescription)
                 }
             }

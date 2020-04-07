@@ -55,7 +55,7 @@ class MainViewController: UIViewController, AppLifeCycleDelegate, CallManagerDel
             let contactUsername: String = self.contactUsernameField.text ?? ""
             self.callManager.startOutgoingCall(contactUsername) { [weak self] (result: Result<(), Error>) in
                 if case let .failure(error) = result {
-                    UIHelper.ShowError(error: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription)
                 } else if let strongSelf = self { // success
                     strongSelf.prepareUIToCall() // block user interaction
                     strongSelf.performSegue(withIdentifier: CallViewController.self, sender: strongSelf)
@@ -89,7 +89,7 @@ class MainViewController: UIViewController, AppLifeCycleDelegate, CallManagerDel
                 
                 switch(result) {
                 case let .failure(error):
-                    UIHelper.ShowError(error: error.localizedDescription, controller: strongSelf)
+                    AlertHelper.showError(message: error.localizedDescription, on: strongSelf)
                 case let .success(userDisplayName):
                     strongSelf.userDisplayName.text = "Logged in as \(userDisplayName)"
                 }
