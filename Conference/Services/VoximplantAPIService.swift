@@ -32,8 +32,8 @@ final class VoximplantAPIService {
                 do {
                     let loginInformation = try JSONDecoder().decode(LoginInformation.self, from: data)
                     completion(.success(loginInformation))
-                } catch (let error) {
-                    completion(.failure(error))
+                } catch {
+                    completion(.failure(Errors.jsonDecodingFailed))
                 }
             }
             if case .failure (let error) = result { completion(.failure(error)) }

@@ -54,8 +54,12 @@ final class VoximplantConferenceService: NSObject, ConferenceService, VICallDele
         self.managedConference = conference
         
         try callOrThrow().start()
-        VIAudioManager.shared()?.select(VIAudioDevice(type: .speaker))
         try callOrThrow().add(self)
+        if let availableAudioDevices = VIAudioManager.shared()?.availableAudioDevices() {
+            if !availableAudioDevices.contains(where: { $0.type == .bluetooth || $0.type == .wired }) {
+                VIAudioManager.shared()?.select(VIAudioDevice(type: .speaker))
+            }
+        }
     }
     
     func leaveConference() throws {
