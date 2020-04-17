@@ -28,7 +28,13 @@ protocol ConferenceService {
 
 let myId = "me"
 
-final class VoximplantConferenceService: NSObject, ConferenceService, VICallDelegate, VIEndpointDelegate {
+final class VoximplantConferenceService:
+    NSObject,
+    ConferenceService,
+    VICallDelegate,
+    VIEndpointDelegate,
+    VIAudioManagerDelegate
+{
     private let client: VIClient
     private var managedConference: VICall?
     
@@ -43,6 +49,8 @@ final class VoximplantConferenceService: NSObject, ConferenceService, VICallDele
     
     required init(client: VIClient) {
         self.client = client
+        super.init()
+        VIAudioManager.shared().delegate = self
     }
     
     func joinConference(withID id: String, sendVideo video: Bool) throws {
@@ -56,9 +64,7 @@ final class VoximplantConferenceService: NSObject, ConferenceService, VICallDele
         try callOrThrow().start()
         try callOrThrow().add(self)
         if let availableAudioDevices = VIAudioManager.shared()?.availableAudioDevices() {
-            if !availableAudioDevices.contains(where: { $0.type == .bluetooth || $0.type == .wired }) {
-                VIAudioManager.shared()?.select(VIAudioDevice(type: .speaker))
-            }
+            selectAudioDevice(from: availableAudioDevices)
         }
     }
     
@@ -146,5 +152,25 @@ final class VoximplantConferenceService: NSObject, ConferenceService, VICallDele
     func endpoint(_ endpoint: VIEndpoint, didRemoveRemoteVideoStream videoStream: VIVideoStream) {
         remoteVideoStreamRemovedHandler?(endpoint.endpointId)
         videoStream.removeAllRenderers()
+    }
+    
+    // MARK: - VIAudioManagerDelegate -
+    func audioDeviceChanged(_ audioDevice: VIAudioDevice!) { }
+    
+    func audioDeviceUnavailable(_ audioDevice: VIAudioDevice!) { }
+    
+    func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>!) {
+        selectAudioDevice(from: availableAudioDevices)
+    }
+    
+    // MARK: - Private -
+    private func selectAudioDevice(from availableAudioDevices: Set<VIAudioDevice>) {
+        if !headphonesConnected(availableAudioDevices) {
+            VIAudioManager.shared()?.select(VIAudioDevice(type: .speaker))
+        }
+    }
+    
+    private func headphonesConnected(_ audioDevices: Set<VIAudioDevice>) -> Bool {
+        audioDevices.contains { $0.type == .bluetooth || $0.type == .wired }
     }
 }
