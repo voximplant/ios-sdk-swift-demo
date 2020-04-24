@@ -24,13 +24,13 @@ final class MainViewController:
         
         mainView.callTouchHandler = { username in
             Log.d("Calling \(String(describing: username))")
-            PermissionsHelper.requestRecordPermissions(includingVideo: true) { error in
+            PermissionsHelper.requestRecordPermissions(includingVideo: true) { [weak self] error in
                 if let error = error {
-                    self.handleError(error)
+                    self?.handleError(error)
                     return
                 }
                 let startCallAction = CXStartCallAction(call: UUID(), handle: CXHandle(type: .generic, value: username ?? ""))
-                self.callController.requestTransaction(with: startCallAction) { [weak self] error in
+                self?.callController.requestTransaction(with: startCallAction) { [weak self] error in
                     guard let self = self else { return }
                     if let error = error {
                         AlertHelper.showError(message: error.localizedDescription, on: self)
@@ -40,8 +40,8 @@ final class MainViewController:
             }
         }
         
-        mainView.logoutTouchHandler = {
-            self.authService.logout { [weak self] in
+        mainView.logoutTouchHandler = { [weak self] in
+            self?.authService.logout { [weak self] in
                 self?.dismiss(animated: true)
             }
         }

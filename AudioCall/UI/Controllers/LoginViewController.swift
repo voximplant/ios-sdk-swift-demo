@@ -14,10 +14,10 @@ final class LoginViewController: UIViewController, LoadingShowable {
         super.viewDidLoad()
         
         loginView.setTitle(text: "Audio call demo")
-        loginView.loginTouchHandler = { username, password in
+        loginView.loginTouchHandler = { [weak self] username, password in
             Log.d("Logging in")
-            self.showLoading(title: "Connecting", details: "Please wait...")
-            self.authService.login(user: username.appendingVoxDomain, password: password) {
+            self?.showLoading(title: "Connecting", details: "Please wait...")
+            self?.authService.login(user: username.appendingVoxDomain, password: password) {
                 [weak self] result in self?.handleLogin(result)
             }
         }

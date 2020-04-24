@@ -26,21 +26,24 @@ final class MainViewController:
         
         mainView.callTouchHandler = { username in
             Log.d("Calling \(String(describing: username))")
-            PermissionsHelper.requestRecordPermissions(includingVideo: false) { error in
-                if let error = error { self.handleError(error) }
-                self.callManager.startOutgoingCall(username ?? "") { [weak self] result in
+            PermissionsHelper.requestRecordPermissions(includingVideo: false) { [weak self] error in
+                if let error = error {
+                    self?.handleError(error)
+                    return
+                }
+                self?.callManager.startOutgoingCall(username ?? "") { [weak self] result in
                     if case let .failure(error) = result {
                         AlertHelper.showError(message: error.localizedDescription, on: self)
-                    } else if let strongSelf = self { // success
-                        strongSelf.view.endEditing(true)
-                        strongSelf.performSegue(withIdentifier: CallViewController.self, sender: strongSelf)
+                    } else if let self = self { // success
+                        self.view.endEditing(true)
+                        self.performSegue(withIdentifier: CallViewController.self, sender: self)
                     }
                 }
             }
         }
 
-        mainView.logoutTouchHandler = {
-             self.authService.logout { [weak self] in
+        mainView.logoutTouchHandler = { [weak self] in
+             self?.authService.logout { [weak self] in
                  self?.dismiss(animated: true)
              }
          }
