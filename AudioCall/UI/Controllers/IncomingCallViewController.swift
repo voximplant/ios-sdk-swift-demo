@@ -1,26 +1,19 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import UIKit
 import VoxImplantSDK
 
-class IncomingCallViewController: UIViewController, VICallDelegate {
-
-    // MARK: Properties
+final class IncomingCallViewController: UIViewController, VICallDelegate, ErrorHandling {
     private let callManager: CallManager = sharedCallManager
-    private var call: VICall? {
-        return callManager.managedCall
-    }
+    private var call: VICall? { callManager.managedCall }
     
-    // MARK: Outlets
     @IBOutlet weak var endpointDisplayNameLabel: UILabel!
     
-    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        call?.add(self) // add call delegate to current call
+        call?.add(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,36 +30,30 @@ class IncomingCallViewController: UIViewController, VICallDelegate {
         call?.remove(self)
     }
     
-    // MARK: Actions
     @IBAction func declineTouch(_ sender: UIButton) {
         Log.d("Rejecting call")
-        call?.reject(with: .decline, headers: nil) // decline call
+        call?.reject(with: .decline, headers: nil)
     }
     
     @IBAction func acceptTouch(_ sender: UIButton) {
-        PermissionsManager.checkAudioPermisson {
-            Log.d("Accepting call")
-            self.callManager.makeIncomingCallActive() // answer call
-            self.call?.remove(self)
-            self.performSegue(withIdentifier: CallViewController.self, sender: self)
+        PermissionsHelper.requestRecordPermissions(includingVideo: false) { error in
+            if let error = error { self.handleError(error) } else {
+                Log.d("Accepting call")
+                self.callManager.makeIncomingCallActive() // answer call
+                self.call?.remove(self)
+                self.performSegue(withIdentifier: CallViewController.self, sender: self)
+            }
         }
     }
     
-}
-
-// MARK: VICall Delegate
-extension IncomingCallViewController {
+    // MARK: - VICallDelegate -
     func call(_ call: VICall, didDisconnectWithHeaders headers: [AnyHashable : Any]?, answeredElsewhere: NSNumber) {
-  
-        
         self.call?.remove(self)
         performSegue(withIdentifier: MainViewController.self, sender: self)
     }
     
     func call(_ call: VICall, didFailWithError error: Error, headers: [AnyHashable : Any]?) {
-        
         self.call?.remove(self)
-        
         performSegue(withIdentifier: MainViewController.self, sender: self)
     }
 }

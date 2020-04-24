@@ -1,15 +1,17 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import UIKit
 
 extension UIViewController { // used to call segues with same id as a view controller type
     func performSegue(withIdentifier typeIdentifier: UIViewController.Type, sender: Any?) {
-        performSegue(withIdentifier: String(describing: typeIdentifier), sender: sender)
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: String(describing: typeIdentifier), sender: sender)
+        }
     }
     
-    func performSegue(withIdentifier typeIdentifier: UIViewController.Type, sender: Any?, _ completion: @escaping ()->Void) {
+    func performSegue(withIdentifier typeIdentifier: UIViewController.Type, sender: Any?, _ completion: @escaping () -> Void) {
         self.performSegue(withIdentifier: typeIdentifier, sender: sender)
         DispatchQueue.main.async {
             completion()
@@ -32,36 +34,6 @@ extension UIViewController { // used to call segues with same id as a view contr
     
     func performSegueIfPossible(withIdentifier typeIdentifier: UIViewController.Type, sender: Any?) {
         performSegueIfPossible(withIdentifier: String(describing: typeIdentifier), sender: sender)
-    }
-}
-
-extension UIStoryboard {
-    func instantiateViewController(withIdentifier typeIdentifier: UIViewController.Type) -> UIViewController {
-        return instantiateViewController(withIdentifier: String(describing: typeIdentifier))
-    }
-}
-
-extension UIViewController { // use this method to hide keyboard on tap on specific VC
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
-extension UIViewController { // use this method to create UIImage from any color
-    func getImageWithColor(color: UIColor) -> UIImage {
-        let rect = CGRect(x: 0, y: 0, width: 1000, height: 1000)
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 1000, height: 1000), true, 0)
-        color.setFill()
-        UIRectFill(rect)
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return image    
     }
 }
 
@@ -96,16 +68,21 @@ extension UIViewController {
     }
 }
 
-extension UIImage { // used to create logo image with insets
-    func imageWithInsets(insets: UIEdgeInsets) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(
-            CGSize(width: self.size.width + insets.left + insets.right,
-                   height: self.size.height + insets.top + insets.bottom), false, self.scale)
-        let _ = UIGraphicsGetCurrentContext()
-        let origin = CGPoint(x: insets.left, y: insets.top)
-        self.draw(at: origin)
-        let imageWithInsets = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return imageWithInsets
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+
+extension UIStoryboard {
+    func instantiateViewController<Type: UIViewController>(of type: Type.Type) -> Type {
+        instantiateViewController(withIdentifier: String(describing: type)) as! Type
     }
 }

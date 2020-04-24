@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xHC-2I-USg">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -16,204 +17,16 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="AudioCall" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="P4L-Mk-TlQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="Nl5-7b-THW"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="DefaultLoginView" customModule="AudioCall" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUH-cd-1xk" customClass="ColoredButton" customModule="AudioCall" customModuleProvider="target">
-                                <rect key="frame" x="36" y="224.5" width="248" height="44"/>
-                                <color key="backgroundColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="E9e-4w-bJn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="LOGIN">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <real key="value" value="1.5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="loginTouchWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="udc-GN-noO"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VoximplantSDK ios - 2.20.6 WebRTC 66.0.3" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gi-OE-6tk">
-                                <rect key="frame" x="32" y="475" width="256" height="33"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Audio call demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJr-lA-k3n">
-                                <rect key="frame" x="36" y="60" width="248" height="22.5"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ikW-Hj-I21">
-                                <rect key="frame" x="34" y="466.5" width="252" height="0.5"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="0.5" id="dO2-OJ-a4M"/>
-                                </constraints>
-                            </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="USER@APP.ACCOUNT" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mIz-ag-HWk" customClass="CustomTextField" customModule="AudioCall" customModuleProvider="target">
-                                <rect key="frame" x="18" y="106.5" width="284" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="fye-qA-tRv"/>
-                                </constraints>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
-                                <connections>
-                                    <action selector="nextFieldWithSender:" destination="TLr-1T-D1p" eventType="editingDidEndOnExit" id="BSZ-Ro-cFd"/>
-                                    <outlet property="rightView" destination="xtq-Km-tK1" id="8uG-Jx-cpe"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PASSWORD" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TLr-1T-D1p" customClass="CustomTextField" customModule="AudioCall" customModuleProvider="target">
-                                <rect key="frame" x="18" y="160.5" width="284" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="xmC-pU-S8O"/>
-                                </constraints>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
-                                <connections>
-                                    <action selector="loginTouchWithSender:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="9eo-Jh-tW3"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" fixedFrame="YES" text=".voximplant.com " lineBreakMode="clip" baselineAdjustment="none" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="xtq-Km-tK1">
-                                <rect key="frame" x="201" y="81" width="101" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GML-wE-f0M">
-                                <rect key="frame" x="36" y="268.5" width="248" height="92"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1b-wZ-Dhy">
-                                        <rect key="frame" x="64" y="12" width="120" height="0.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLe-Fg-gYU">
-                                                <rect key="frame" x="45" y="-6.5" width="30" height="13"/>
-                                                <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="30" id="3Ep-WZ-PfT"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="rLe-Fg-gYU" firstAttribute="centerX" secondItem="p1b-wZ-Dhy" secondAttribute="centerX" id="CRi-g2-oHn"/>
-                                            <constraint firstAttribute="bottom" secondItem="rLe-Fg-gYU" secondAttribute="bottom" constant="-6" id="Oau-BV-ceM"/>
-                                            <constraint firstAttribute="height" constant="0.5" id="ZdE-97-bqD"/>
-                                            <constraint firstItem="rLe-Fg-gYU" firstAttribute="top" secondItem="p1b-wZ-Dhy" secondAttribute="top" constant="-6.5" id="v2I-ri-oX7"/>
-                                        </constraints>
-                                    </view>
-                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8c-j4-ihH" customClass="ColoredButton" customModule="AudioCall" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24" width="248" height="44"/>
-                                        <color key="backgroundColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="A0O-X5-HhK"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                        <state key="normal" title="LOGIN WITH ACCESS TOKEN">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="12"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                <real key="value" value="1.5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="loginWithTokenTouchWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LLZ-G9-d3C"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token will expire in 2d" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elw-bk-cj6">
-                                        <rect key="frame" x="16" y="76" width="216" height="15.5"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="F8c-j4-ihH" firstAttribute="leading" secondItem="GML-wE-f0M" secondAttribute="leading" id="1Yu-1o-Zs1"/>
-                                    <constraint firstItem="F8c-j4-ihH" firstAttribute="top" secondItem="p1b-wZ-Dhy" secondAttribute="top" constant="12" id="31z-zz-70l"/>
-                                    <constraint firstItem="p1b-wZ-Dhy" firstAttribute="top" secondItem="GML-wE-f0M" secondAttribute="top" constant="12" id="59N-da-B7O"/>
-                                    <constraint firstItem="Elw-bk-cj6" firstAttribute="leading" secondItem="GML-wE-f0M" secondAttribute="leading" constant="16" id="C0e-AZ-p8A"/>
-                                    <constraint firstAttribute="height" constant="92" id="FJW-uQ-OCE"/>
-                                    <constraint firstAttribute="trailing" secondItem="Elw-bk-cj6" secondAttribute="trailing" constant="16" id="Gos-fF-l0y"/>
-                                    <constraint firstItem="F8c-j4-ihH" firstAttribute="centerY" secondItem="GML-wE-f0M" secondAttribute="centerY" id="MJ1-VJ-CWV"/>
-                                    <constraint firstAttribute="trailing" secondItem="p1b-wZ-Dhy" secondAttribute="trailing" constant="64" id="Ozt-fD-PUZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="F8c-j4-ihH" secondAttribute="trailing" id="Zvy-OK-iuG"/>
-                                    <constraint firstItem="Elw-bk-cj6" firstAttribute="top" secondItem="F8c-j4-ihH" secondAttribute="bottom" constant="8" id="cda-wt-FWN"/>
-                                    <constraint firstItem="p1b-wZ-Dhy" firstAttribute="leading" secondItem="GML-wE-f0M" secondAttribute="leading" constant="64" id="iRk-OT-xqK"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="GML-wE-f0M" secondAttribute="trailing" constant="20" id="3ka-os-UWO"/>
-                            <constraint firstAttribute="trailing" secondItem="mIz-ag-HWk" secondAttribute="trailing" constant="18" id="4y5-aa-GnP"/>
-                            <constraint firstItem="TLr-1T-D1p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="18" id="9LW-xA-mWp"/>
-                            <constraint firstItem="TLr-1T-D1p" firstAttribute="top" secondItem="mIz-ag-HWk" secondAttribute="bottom" constant="10" id="F9a-qi-dCe"/>
-                            <constraint firstAttribute="trailing" secondItem="TLr-1T-D1p" secondAttribute="trailing" constant="18" id="Qgt-v0-Yw5"/>
-                            <constraint firstAttribute="trailing" secondItem="hUH-cd-1xk" secondAttribute="trailing" constant="36" id="RCw-yE-RDj"/>
-                            <constraint firstItem="Nl5-7b-THW" firstAttribute="top" secondItem="5Gi-OE-6tk" secondAttribute="bottom" constant="16" id="STO-e9-IUs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZJr-lA-k3n" secondAttribute="trailing" constant="20" id="XwL-hz-yhh"/>
-                            <constraint firstItem="ZJr-lA-k3n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="Zdm-fc-8nP"/>
-                            <constraint firstItem="GML-wE-f0M" firstAttribute="top" secondItem="hUH-cd-1xk" secondAttribute="bottom" id="bHX-tk-MNW"/>
-                            <constraint firstItem="mIz-ag-HWk" firstAttribute="top" secondItem="ZJr-lA-k3n" secondAttribute="bottom" constant="24" id="eg7-hK-SSx"/>
-                            <constraint firstItem="hUH-cd-1xk" firstAttribute="top" secondItem="TLr-1T-D1p" secondAttribute="bottom" constant="20" id="fno-sx-bhF"/>
-                            <constraint firstItem="GML-wE-f0M" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="gAm-rM-Xxm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5Gi-OE-6tk" secondAttribute="trailing" constant="16" id="gz6-GX-pKR"/>
-                            <constraint firstItem="mIz-ag-HWk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="18" id="hev-ZB-Amj"/>
-                            <constraint firstItem="5Gi-OE-6tk" firstAttribute="top" secondItem="ikW-Hj-I21" secondAttribute="bottom" constant="8" id="hx4-fZ-bo4"/>
-                            <constraint firstItem="ikW-Hj-I21" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="18" id="jWy-9B-Vxx"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ikW-Hj-I21" secondAttribute="trailing" constant="18" id="qBI-JS-hv1"/>
-                            <constraint firstItem="hUH-cd-1xk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="36" id="qDU-gu-Eh6"/>
-                            <constraint firstItem="5Gi-OE-6tk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="v9Q-X0-fVT"/>
-                            <constraint firstItem="ZJr-lA-k3n" firstAttribute="top" secondItem="P4L-Mk-TlQ" secondAttribute="bottom" constant="60" id="zcw-GZ-mn8"/>
-                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5FF-Lv-C9R"/>
                     </view>
-                    <navigationItem key="navigationItem" id="PxG-xP-JkA"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="loginPasswordField" destination="TLr-1T-D1p" id="aIZ-kx-MDZ"/>
-                        <outlet property="loginUserField" destination="mIz-ag-HWk" id="0aL-Zs-rFS"/>
-                        <outlet property="loginWithTokenButton" destination="F8c-j4-ihH" id="ypL-Eu-t8r"/>
-                        <outlet property="tokenContainerView" destination="GML-wE-f0M" id="fZv-Ls-Bpx"/>
-                        <outlet property="tokenLabel" destination="Elw-bk-cj6" id="lUh-aB-aXJ"/>
-                        <outlet property="versionLabel" destination="5Gi-OE-6tk" id="tos-vq-qqj"/>
-                        <segue destination="Afn-Nw-kKQ" kind="show" identifier="MainViewController" id="mQr-B9-Ei8"/>
+                        <outlet property="loginView" destination="8bC-Xf-vdC" id="i56-ia-kRh"/>
+                        <segue destination="Afn-Nw-kKQ" kind="presentation" identifier="MainViewController" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="mQr-B9-Ei8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -224,90 +37,19 @@
         <scene sceneID="QyJ-F5-qli">
             <objects>
                 <viewController id="Afn-Nw-kKQ" customClass="MainViewController" customModule="AudioCall" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9Wx-Nw-CLS"/>
-                        <viewControllerLayoutGuide type="bottom" id="5Jf-7z-pL3"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4h9-Nc-pJu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                    <view key="view" contentMode="scaleToFill" id="4h9-Nc-pJu" customClass="DefaultMainView" customModule="AudioCall" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CALL TO" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-La-uaS" customClass="TextFieldWithButton" customModule="AudioCall" customModuleProvider="target">
-                                <rect key="frame" x="18" y="240" width="284" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="HhR-vM-QPX"/>
-                                </constraints>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go"/>
-                                <connections>
-                                    <action selector="callTouch:" destination="Afn-Nw-kKQ" eventType="editingDidEndOnExit" id="fhg-5x-m5T"/>
-                                    <outlet property="rightView" destination="iso-DP-Krb" id="4dC-OT-239"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged in as" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJU-Kr-dcH">
-                                <rect key="frame" x="32" y="201.5" width="256" height="22.5"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iso-DP-Krb" customClass="ColoredButton" customModule="AudioCall" customModuleProvider="target">
-                                <rect key="frame" x="226" y="246" width="70" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                <state key="normal" title="CALL">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <real key="value" value="1.5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="callTouch:" destination="Afn-Nw-kKQ" eventType="touchUpInside" id="cdk-nR-3Q3"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="2eE-La-uaS" secondAttribute="trailing" constant="18" id="WoM-ej-vyJ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xJU-Kr-dcH" secondAttribute="trailing" constant="16" id="eB0-G6-x05"/>
-                            <constraint firstItem="2eE-La-uaS" firstAttribute="leading" secondItem="4h9-Nc-pJu" secondAttribute="leading" constant="18" id="fuu-ES-cxN"/>
-                            <constraint firstItem="xJU-Kr-dcH" firstAttribute="leading" secondItem="4h9-Nc-pJu" secondAttribute="leadingMargin" constant="16" id="iMV-kA-TxS"/>
-                            <constraint firstItem="2eE-La-uaS" firstAttribute="top" secondItem="xJU-Kr-dcH" secondAttribute="bottom" constant="16" id="iNU-Mt-Tb4"/>
-                            <constraint firstItem="2eE-La-uaS" firstAttribute="centerY" secondItem="4h9-Nc-pJu" secondAttribute="centerY" id="liw-xL-QdH"/>
-                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2ub-XP-mAp"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="LyO-sZ-4F2">
-                        <barButtonItem key="leftBarButtonItem" image="logout" id="PrG-zE-RKo">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="logoutTouch:" destination="Afn-Nw-kKQ" id="bkJ-XT-CLQ"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="logout" id="jNm-zP-uGi">
-                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="hidesBackButton" value="YES"/>
-                        </userDefinedRuntimeAttributes>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Iwr-JK-8fF"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="callButton" destination="iso-DP-Krb" id="YPM-Jr-v7L"/>
-                        <outlet property="contactUsernameField" destination="2eE-La-uaS" id="WV0-Vd-XoP"/>
-                        <outlet property="userDisplayName" destination="xJU-Kr-dcH" id="XoB-0j-3pW"/>
-                        <segue destination="ohs-YB-3La" kind="presentation" identifier="IncomingCallViewController" animates="NO" modalPresentationStyle="fullScreen" id="xrK-QW-Rsu"/>
-                        <segue destination="sio-MA-7IW" kind="presentation" identifier="CallViewController" animates="NO" modalPresentationStyle="fullScreen" id="azq-cY-Zsn"/>
+                        <outlet property="mainView" destination="4h9-Nc-pJu" id="BPt-Wh-enk"/>
+                        <segue destination="ohs-YB-3La" kind="presentation" identifier="IncomingCallViewController" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="xrK-QW-Rsu"/>
+                        <segue destination="sio-MA-7IW" kind="presentation" identifier="CallViewController" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="azq-cY-Zsn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qo4-Nc-jyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -318,22 +60,18 @@
         <scene sceneID="C4B-TB-T0M">
             <objects>
                 <viewController id="ohs-YB-3La" customClass="IncomingCallViewController" customModule="AudioCall" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KJd-xu-AAc"/>
-                        <viewControllerLayoutGuide type="bottom" id="ZEy-ID-0HH"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Vt5-qi-51s">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incoming call" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Znc-T3-sRc">
-                                <rect key="frame" x="21" y="88" width="278" height="20"/>
+                                <rect key="frame" x="25" y="132" width="364" height="20"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CeR-de-f1d" userLabel="ContainerView">
-                                <rect key="frame" x="38" y="403" width="244" height="65"/>
+                                <rect key="frame" x="42" y="697" width="330" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efV-IL-yIN" customClass="ButtonWithLabel" customModule="AudioCall" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
@@ -348,7 +86,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVa-z6-1Hm" customClass="ButtonWithLabel" customModule="AudioCall" customModuleProvider="target">
-                                        <rect key="frame" x="179" y="0.0" width="65" height="65"/>
+                                        <rect key="frame" x="265" y="0.0" width="65" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="qVa-z6-1Hm" secondAttribute="height" multiplier="1:1" id="sLd-mI-LM3"/>
                                         </constraints>
@@ -372,19 +110,19 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYq-4p-C0b">
-                                <rect key="frame" x="217" y="478" width="65" height="18"/>
+                                <rect key="frame" x="307" y="772" width="65" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User DisplayName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dTf-83-8Cc">
-                                <rect key="frame" x="26" y="40" width="268" height="40"/>
+                                <rect key="frame" x="26" y="84" width="362" height="40"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="34"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Decline" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYC-sP-Z6M">
-                                <rect key="frame" x="38" y="478" width="65" height="18"/>
+                                <rect key="frame" x="42" y="772" width="65" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -399,22 +137,23 @@
                             <constraint firstAttribute="trailingMargin" secondItem="rYq-4p-C0b" secondAttribute="trailing" constant="22" id="PwY-rS-GPh"/>
                             <constraint firstItem="HYC-sP-Z6M" firstAttribute="width" secondItem="efV-IL-yIN" secondAttribute="width" id="Q3j-r0-70V"/>
                             <constraint firstItem="Znc-T3-sRc" firstAttribute="top" secondItem="dTf-83-8Cc" secondAttribute="bottom" constant="8" id="QAc-gv-6Sp"/>
-                            <constraint firstItem="dTf-83-8Cc" firstAttribute="leading" secondItem="Vt5-qi-51s" secondAttribute="leading" constant="26" id="W3c-2s-AqE"/>
-                            <constraint firstAttribute="trailing" secondItem="dTf-83-8Cc" secondAttribute="trailing" constant="26" id="dW6-2m-g7D"/>
+                            <constraint firstItem="dTf-83-8Cc" firstAttribute="leading" secondItem="ROZ-kf-d8v" secondAttribute="leading" constant="26" id="W3c-2s-AqE"/>
+                            <constraint firstItem="ROZ-kf-d8v" firstAttribute="trailing" secondItem="dTf-83-8Cc" secondAttribute="trailing" constant="26" id="dW6-2m-g7D"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CeR-de-f1d" secondAttribute="trailing" constant="22" id="evI-Qy-pDQ"/>
-                            <constraint firstItem="ZEy-ID-0HH" firstAttribute="top" secondItem="CeR-de-f1d" secondAttribute="bottom" constant="100" id="hGx-hu-hok"/>
+                            <constraint firstItem="ROZ-kf-d8v" firstAttribute="bottom" secondItem="CeR-de-f1d" secondAttribute="bottom" constant="100" id="hGx-hu-hok"/>
                             <constraint firstItem="rYq-4p-C0b" firstAttribute="width" secondItem="qVa-z6-1Hm" secondAttribute="width" id="kMk-gK-UkR"/>
-                            <constraint firstItem="dTf-83-8Cc" firstAttribute="top" secondItem="KJd-xu-AAc" secondAttribute="bottom" constant="40" id="l59-58-Neg"/>
+                            <constraint firstItem="dTf-83-8Cc" firstAttribute="top" secondItem="ROZ-kf-d8v" secondAttribute="top" constant="40" id="l59-58-Neg"/>
                             <constraint firstItem="HYC-sP-Z6M" firstAttribute="top" secondItem="CeR-de-f1d" secondAttribute="bottom" constant="10" id="md1-Gg-7BW"/>
                             <constraint firstItem="rYq-4p-C0b" firstAttribute="top" secondItem="CeR-de-f1d" secondAttribute="bottom" constant="10" id="pR3-F7-fVd"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="ROZ-kf-d8v"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="endpointDisplayNameLabel" destination="dTf-83-8Cc" id="w2P-Nl-3Dv"/>
                         <segue destination="rGt-ep-gPL" kind="unwind" identifier="MainViewController" animates="NO" unwindAction="unwindSegueToMainController:" id="7yn-ZL-11l"/>
-                        <segue destination="sio-MA-7IW" kind="presentation" identifier="CallViewController" animates="NO" modalPresentationStyle="fullScreen" id="3Cj-h9-21c"/>
+                        <segue destination="sio-MA-7IW" kind="presentation" identifier="CallViewController" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="3Cj-h9-21c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8O-Vo-rgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -426,22 +165,18 @@
         <scene sceneID="h6k-fZ-4FQ">
             <objects>
                 <viewController id="jDM-0Q-Ko6" customClass="CallFailedViewController" customModule="AudioCall" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="UC2-Cw-hiq"/>
-                        <viewControllerLayoutGuide type="bottom" id="xTR-v8-3c6"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="L1h-Dz-s58">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Busy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Csr-MI-9fB">
-                                <rect key="frame" x="21" y="88" width="278" height="20"/>
+                                <rect key="frame" x="25" y="132" width="364" height="20"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CM1-1b-nMN" userLabel="ContainerView">
-                                <rect key="frame" x="38" y="403" width="244" height="65"/>
+                                <rect key="frame" x="42" y="697" width="330" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lhc-JN-nhx">
                                         <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
@@ -455,7 +190,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bV7-em-Zp4">
-                                        <rect key="frame" x="179" y="0.0" width="65" height="65"/>
+                                        <rect key="frame" x="265" y="0.0" width="65" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="bV7-em-Zp4" secondAttribute="height" multiplier="1:1" id="2vz-zu-eeG"/>
                                         </constraints>
@@ -478,19 +213,19 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Call back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYc-dz-Epm">
-                                <rect key="frame" x="217" y="478" width="65" height="18"/>
+                                <rect key="frame" x="307" y="772" width="65" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outgoing Call" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8sw-xL-JKc">
-                                <rect key="frame" x="26" y="40" width="268" height="40"/>
+                                <rect key="frame" x="26" y="84" width="362" height="40"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="34"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ew4-af-dDz">
-                                <rect key="frame" x="38" y="478" width="65" height="18"/>
+                                <rect key="frame" x="42" y="772" width="65" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -498,11 +233,11 @@
                         </subviews>
                         <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="8sw-xL-JKc" secondAttribute="trailing" constant="26" id="2T4-qT-F9r"/>
+                            <constraint firstItem="ZQ8-Rp-W9G" firstAttribute="trailing" secondItem="8sw-xL-JKc" secondAttribute="trailing" constant="26" id="2T4-qT-F9r"/>
                             <constraint firstItem="ew4-af-dDz" firstAttribute="top" secondItem="CM1-1b-nMN" secondAttribute="bottom" constant="10" id="2d4-a7-Cid"/>
                             <constraint firstItem="VYc-dz-Epm" firstAttribute="width" secondItem="bV7-em-Zp4" secondAttribute="width" id="4Ag-Lo-GWD"/>
-                            <constraint firstItem="xTR-v8-3c6" firstAttribute="top" secondItem="CM1-1b-nMN" secondAttribute="bottom" constant="100" id="KU6-Mt-FHm"/>
-                            <constraint firstItem="8sw-xL-JKc" firstAttribute="leading" secondItem="L1h-Dz-s58" secondAttribute="leading" constant="26" id="LeB-ob-0bb"/>
+                            <constraint firstItem="ZQ8-Rp-W9G" firstAttribute="bottom" secondItem="CM1-1b-nMN" secondAttribute="bottom" constant="100" id="KU6-Mt-FHm"/>
+                            <constraint firstItem="8sw-xL-JKc" firstAttribute="leading" secondItem="ZQ8-Rp-W9G" secondAttribute="leading" constant="26" id="LeB-ob-0bb"/>
                             <constraint firstItem="Csr-MI-9fB" firstAttribute="leading" secondItem="L1h-Dz-s58" secondAttribute="leadingMargin" constant="5" id="Ltl-FX-pVU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VYc-dz-Epm" secondAttribute="trailing" constant="22" id="Nos-xn-LD1"/>
                             <constraint firstItem="ew4-af-dDz" firstAttribute="leading" secondItem="L1h-Dz-s58" secondAttribute="leadingMargin" constant="22" id="SFF-GV-iyL"/>
@@ -512,8 +247,9 @@
                             <constraint firstItem="CM1-1b-nMN" firstAttribute="leading" secondItem="L1h-Dz-s58" secondAttribute="leadingMargin" constant="22" id="j06-g2-qU5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CM1-1b-nMN" secondAttribute="trailing" constant="22" id="l7w-La-fHT"/>
                             <constraint firstItem="VYc-dz-Epm" firstAttribute="top" secondItem="CM1-1b-nMN" secondAttribute="bottom" constant="10" id="o2m-un-FRj"/>
-                            <constraint firstItem="8sw-xL-JKc" firstAttribute="top" secondItem="UC2-Cw-hiq" secondAttribute="bottom" constant="40" id="xfk-xy-4Qx"/>
+                            <constraint firstItem="8sw-xL-JKc" firstAttribute="top" secondItem="ZQ8-Rp-W9G" secondAttribute="top" constant="40" id="xfk-xy-4Qx"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZQ8-Rp-W9G"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -528,26 +264,22 @@
             </objects>
             <point key="canvasLocation" x="2934" y="-287"/>
         </scene>
-        <!--Delegate-->
+        <!--Call View Controller-->
         <scene sceneID="wOB-il-oNA">
             <objects>
                 <viewController modalTransitionStyle="crossDissolve" id="sio-MA-7IW" customClass="CallViewController" customModule="AudioCall" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kzc-FP-Fl4"/>
-                        <viewControllerLayoutGuide type="bottom" id="1xK-Te-sYy"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RJn-EJ-gd9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outgoing Сall" textAlignment="center" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gNY-ee-L68">
-                                <rect key="frame" x="26" y="40" width="268" height="40"/>
+                                <rect key="frame" x="26" y="84" width="362" height="40"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="34"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ei6-dG-UUT" customClass="LabelWithTimer" customModule="AudioCall" customModuleProvider="target">
-                                <rect key="frame" x="21" y="88" width="278" height="20"/>
+                                <rect key="frame" x="25" y="132" width="364" height="20"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -556,7 +288,7 @@
                                 </connections>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRs-Fu-w19">
-                                <rect key="frame" x="122.5" y="312" width="75" height="100"/>
+                                <rect key="frame" x="169.5" y="606" width="75" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUi-ac-omr" customClass="ButtonWithLabel" customModule="AudioCall" customModuleProvider="target">
                                         <rect key="frame" x="5" y="12" width="65" height="65"/>
@@ -585,7 +317,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IY2-b4-bMw">
-                                <rect key="frame" x="127.5" y="478" width="65" height="65"/>
+                                <rect key="frame" x="174.5" y="772" width="65" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="9RI-VJ-EBP"/>
                                     <constraint firstAttribute="height" constant="65" id="Dsb-zI-Zvi"/>
@@ -597,7 +329,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ijR-FQ-3Fo">
-                                <rect key="frame" x="28.5" y="209" width="263" height="100"/>
+                                <rect key="frame" x="75.5" y="503" width="263" height="100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLU-HV-J55">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="100"/>
@@ -682,7 +414,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9O-ga-DGJ" customClass="KeyPadView" customModule="AudioCall" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="140.5" width="320" height="327.5"/>
+                                <rect key="frame" x="0.0" y="434.5" width="414" height="327.5"/>
                                 <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="327.5" id="731-wG-DKq"/>
@@ -694,22 +426,23 @@
                         </subviews>
                         <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="gNY-ee-L68" secondAttribute="trailing" constant="26" id="3Pf-su-BBt"/>
+                            <constraint firstItem="2BC-uT-gu5" firstAttribute="trailing" secondItem="gNY-ee-L68" secondAttribute="trailing" constant="26" id="3Pf-su-BBt"/>
                             <constraint firstItem="Ei6-dG-UUT" firstAttribute="top" secondItem="gNY-ee-L68" secondAttribute="bottom" constant="8" id="79c-aN-XQt"/>
                             <constraint firstItem="Ei6-dG-UUT" firstAttribute="leading" secondItem="RJn-EJ-gd9" secondAttribute="leadingMargin" constant="5" id="7Ii-dd-zoo"/>
-                            <constraint firstItem="1xK-Te-sYy" firstAttribute="top" secondItem="IY2-b4-bMw" secondAttribute="bottom" constant="25" id="8Ps-Jz-bw1"/>
-                            <constraint firstItem="ijR-FQ-3Fo" firstAttribute="centerX" secondItem="RJn-EJ-gd9" secondAttribute="centerX" id="9Cd-vS-UWc"/>
-                            <constraint firstItem="I9O-ga-DGJ" firstAttribute="leading" secondItem="RJn-EJ-gd9" secondAttribute="leading" id="EdC-hq-yAC"/>
+                            <constraint firstItem="2BC-uT-gu5" firstAttribute="bottom" secondItem="IY2-b4-bMw" secondAttribute="bottom" constant="25" id="8Ps-Jz-bw1"/>
+                            <constraint firstItem="ijR-FQ-3Fo" firstAttribute="centerX" secondItem="2BC-uT-gu5" secondAttribute="centerX" id="9Cd-vS-UWc"/>
+                            <constraint firstItem="I9O-ga-DGJ" firstAttribute="leading" secondItem="2BC-uT-gu5" secondAttribute="leading" id="EdC-hq-yAC"/>
                             <constraint firstItem="hRs-Fu-w19" firstAttribute="top" secondItem="ijR-FQ-3Fo" secondAttribute="bottom" constant="3" id="FcN-Ok-bIe"/>
                             <constraint firstItem="IY2-b4-bMw" firstAttribute="top" secondItem="I9O-ga-DGJ" secondAttribute="bottom" constant="10" id="FnU-EN-MLJ"/>
-                            <constraint firstItem="gNY-ee-L68" firstAttribute="leading" secondItem="RJn-EJ-gd9" secondAttribute="leading" constant="26" id="J6Z-jF-lLH"/>
+                            <constraint firstItem="gNY-ee-L68" firstAttribute="leading" secondItem="2BC-uT-gu5" secondAttribute="leading" constant="26" id="J6Z-jF-lLH"/>
                             <constraint firstItem="IY2-b4-bMw" firstAttribute="top" secondItem="hRs-Fu-w19" secondAttribute="bottom" constant="66" id="Uqb-iY-rQj"/>
-                            <constraint firstItem="gNY-ee-L68" firstAttribute="top" secondItem="kzc-FP-Fl4" secondAttribute="bottom" constant="40" id="WhW-Vu-tfv"/>
-                            <constraint firstAttribute="trailing" secondItem="I9O-ga-DGJ" secondAttribute="trailing" id="bP2-iC-uX9"/>
+                            <constraint firstItem="gNY-ee-L68" firstAttribute="top" secondItem="2BC-uT-gu5" secondAttribute="top" constant="40" id="WhW-Vu-tfv"/>
+                            <constraint firstItem="2BC-uT-gu5" firstAttribute="trailing" secondItem="I9O-ga-DGJ" secondAttribute="trailing" id="bP2-iC-uX9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ei6-dG-UUT" secondAttribute="trailing" constant="5" id="hCX-Sb-Ck3"/>
-                            <constraint firstItem="IY2-b4-bMw" firstAttribute="centerX" secondItem="RJn-EJ-gd9" secondAttribute="centerX" id="meW-A1-J8i"/>
-                            <constraint firstItem="hRs-Fu-w19" firstAttribute="centerX" secondItem="RJn-EJ-gd9" secondAttribute="centerX" id="pxU-dU-eUE"/>
+                            <constraint firstItem="IY2-b4-bMw" firstAttribute="centerX" secondItem="2BC-uT-gu5" secondAttribute="centerX" id="meW-A1-J8i"/>
+                            <constraint firstItem="hRs-Fu-w19" firstAttribute="centerX" secondItem="2BC-uT-gu5" secondAttribute="centerX" id="pxU-dU-eUE"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="2BC-uT-gu5"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -721,7 +454,7 @@
                         <outlet property="keyPadView" destination="I9O-ga-DGJ" id="1ol-vp-Gh0"/>
                         <outlet property="muteButton" destination="hI7-yg-ukP" id="3Y0-aY-cz2"/>
                         <outlet property="speakerButton" destination="5Xz-SQ-STq" id="lz0-w0-Yok"/>
-                        <segue destination="jDM-0Q-Ko6" kind="presentation" identifier="CallFailedViewController" animates="NO" modalPresentationStyle="fullScreen" id="l2F-oh-gg8"/>
+                        <segue destination="jDM-0Q-Ko6" kind="presentation" identifier="CallFailedViewController" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="l2F-oh-gg8"/>
                         <segue destination="yDh-Te-vwk" kind="unwind" identifier="MainViewController" unwindAction="unwindSegueToMainController:" id="e61-7I-ZXn"/>
                     </connections>
                 </viewController>
@@ -730,26 +463,11 @@
             </objects>
             <point key="canvasLocation" x="2106" y="-287"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="UIJ-2o-41t">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xHC-2I-USg" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="zRq-HF-HTN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rp5-H6-ixQ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qXj-yd-tC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="368" y="-1413"/>
-        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3Cj-h9-21c"/>
+    </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.22352941179999999" green="0.16862745100000001" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="acceptCall" width="145" height="145"/>
         <image name="acceptCallP" width="145" height="145"/>
@@ -757,9 +475,8 @@
         <image name="crossP" width="145" height="145"/>
         <image name="declineCall" width="145" height="145"/>
         <image name="declineCallP" width="145" height="145"/>
-        <image name="hold" width="145" height="145"/>
+        <image name="hold" width="33.333332061767578" height="33.333332061767578"/>
         <image name="holdP" width="145" height="145"/>
-        <image name="logout" width="25" height="25"/>
         <image name="mic" width="145" height="145"/>
         <image name="micP" width="145" height="145"/>
         <image name="pinpad" width="145" height="145"/>
@@ -768,8 +485,4 @@
         <image name="speaker" width="145" height="145"/>
         <image name="speakerP" width="145" height="145"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="azq-cY-Zsn"/>
-    </inferredMetricsTieBreakers>
-    <color key="tintColor" red="0.22352941179999999" green="0.16862745100000001" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

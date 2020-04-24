@@ -1,12 +1,17 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
-import UIKit
 import VoxImplantSDK
 import CallKit
 
-class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallManagerDelegate, PushCallNotifierDelegate {
+final class CallManager:
+    NSObject,
+    CXProviderDelegate,
+    VICallDelegate,
+    VIClientCallManagerDelegate,
+    PushCallNotifierDelegate
+{
     fileprivate var client: VIClient
     fileprivate var authService: AuthService
     fileprivate var pushCallNotifier: PushCallNotifier
@@ -23,10 +28,9 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
             managedCall?.delegate = self // new managedCall
         }
     }
-
-    func hasManagedCall() -> Bool {
-        return managedCall != nil
-    }
+    
+    var hasManagedCall: Bool { managedCall != nil }
+    private var hasNoManagedCalls: Bool { !hasManagedCall }
     
     fileprivate let callProvider: CXProvider = {
         let providerConfiguration = CXProviderConfiguration(localizedName: "AudioCallKit")
@@ -76,7 +80,6 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
                 call.call?.hangup(withHeaders: nil)
             }
             
-            VIAudioManager.shared().callKitStopAudio()
             VIAudioManager.shared().callKitReleaseAudioSession()
         }
         // SDK will invoke VICallDelegate methods (didDisconnectWithHeaders or didFailWithError)
@@ -123,12 +126,12 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
     }
     
     func createOutgoingCall(_ callUUID: UUID) {
-        guard !self.hasManagedCall() else { return }
+        guard hasNoManagedCalls else { return }
         self.managedCall = CallWrapper(uuid: callUUID, isOutgoing: true)
     }
         
     func createIncomingCall(_ newUUID: UUID, from fullUsername: String, withDisplayName userDisplayName: String, withPushCompletion pushProcessingCompletion: (()->Void)? = nil) {
-        guard !self.hasManagedCall() else { return }
+        guard hasNoManagedCalls else { return }
 
         self.managedCall = CallWrapper(uuid: newUUID, isOutgoing: false, withPushCompletion: pushProcessingCompletion)
         
@@ -175,7 +178,7 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
     }
     
     func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
-        guard !self.hasManagedCall()
+        guard hasNoManagedCalls
         else {
             action.fail()
             Log.i("CallManager startcall: tried to start the call \(action.callUUID) while already managed the call \(String(describing: self.managedCall?.uuid))")
@@ -187,11 +190,11 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
         let settings = VICallSettings()
         settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: false, sendVideo: false)
         if let call: VICall = client.call(action.handle.value, settings: settings) {
+            action.fulfill()
             call.callKitUUID = action.callUUID
             VIAudioManager.shared().callKitConfigureAudioSession(nil)
             self.updateOutgoingCall(call)
             Log.i("CallManager startcall: updated outgoing call \(call.callKitUUID!)")
-            action.fulfill()
         } else {
             action.fail()
         }
@@ -251,14 +254,11 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
         action.fulfill()
     }
     
-    // MARK: VICallDelegate
-    
+    // MARK: - VICallDelegate -
     func call(_ call: VICall, didFailWithError error: Error, headers: [AnyHashable : Any]?) {
         reportCallEnded(call.callKitUUID!, .failed)
         
         progresstone?.stop()
-        
-        self.managedCall?.completePushProcessing()
     }
     
     func call(_ call: VICall, didDisconnectWithHeaders headers: [AnyHashable : Any]?, answeredElsewhere: NSNumber) {
@@ -266,8 +266,6 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
         reportCallEnded(call.callKitUUID!, endReason)
         
         progresstone?.stop()
-        
-        self.managedCall?.completePushProcessing()
     }
     
     func call(_ call: VICall, didConnectWithHeaders headers: [AnyHashable : Any]?) {
@@ -321,7 +319,7 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
                 call.reject(with: .decline, headers: nil)
                 Log.i("CallManager  sdk rcv: rejected new incoming call \(call.callKitUUID!) while has already managed call \(managedCall.uuid)")
             }
-        } else {
+        } else {            
             createIncomingCall(call.callKitUUID!, from: call.endpoints.first!.user!, withDisplayName: call.endpoints.first!.userDisplayName!)
             updateIncomingCall(call)
             Log.i("CallManager  sdk rcv: created and updated new incoming call \(call.callKitUUID!)")
@@ -331,7 +329,7 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
     // MARK: PushCallNotifierDelegate
     
     func didReceiveIncomingCall(_ newUUID: UUID, from fullUsername: String, withDisplayName userDisplayName: String, withPushCompletion pushProcessingCompletion: (()->Void)?) {
-        if self.hasManagedCall() {
+        if hasManagedCall {
             // another call has been reported, skipped a new one:
             Log.i("CallManager push rcv: skipped new incoming call \(newUUID) while has already managed call \(String(describing: self.managedCall?.uuid))")
             return
@@ -349,5 +347,17 @@ class CallManager: NSObject, CXProviderDelegate, VICallDelegate, VIClientCallMan
             }
             // in case of success we will receive VICall instance via VICallManagerDelegate
         }
+    }
+}
+
+extension CXCall {
+    var info: VICall? {
+        if let managedCall = sharedCallManager.managedCall,
+           self.uuid == managedCall.uuid
+        {
+            return managedCall.call
+        }
+        
+        return nil
     }
 }

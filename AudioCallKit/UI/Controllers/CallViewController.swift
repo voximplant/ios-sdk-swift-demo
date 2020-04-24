@@ -1,13 +1,20 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import UIKit
 import VoxImplantSDK
 import CallKit
 
-class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate, KeyPadDelegate, VIAudioManagerDelegate, CXCallObserverDelegate {
-    
+final class CallViewController:
+    UIViewController,
+    AppLifeCycleDelegate,
+    TimerDelegate,
+    KeyPadDelegate,
+    AudioDeviceSelecting,
+    VIAudioManagerDelegate,
+    CXCallObserverDelegate
+{
     @IBOutlet weak var endpointDisplayNameLabel: EndpointLabel!
     @IBOutlet weak var keyPadView: KeyPadView!
     @IBOutlet weak var dtmfButton: ButtonWithLabel!
@@ -18,12 +25,9 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
     
     private var userName: String?
     private var userDisplayName: String?
-    private var callController: CXCallController = sharedCallController
-    private var call: CXCall? { return callController.callObserver.calls.first }
+    private let callController: CXCallController = sharedCallController
+    private var call: CXCall? { callController.callObserver.calls.first }
     
-    private var audioDevices: Set<VIAudioDevice>? {
-        return VIAudioManager.shared().availableAudioDevices()
-    }
     private var isMuted = false {
         willSet {
             muteButton.isSelected = newValue
@@ -31,10 +35,9 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
         }
     }
     
-    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        VIAudioManager.shared().delegate = self
+        VIAudioManager.shared()?.delegate = self
     }
         
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +86,6 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
         else { return .default }
     }
     
-    // MARK: Actions
     @IBAction func muteTouch(_ sender: UIButton) {
         Log.d("Changing mute state")
         if let call = self.call {
@@ -93,7 +95,7 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
             { (error: Error?) in
                 if let error = error {
                     Log.e(error.localizedDescription)
-                    AlertHelper.showError(message: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription, on: self)
                 }
             }
         }
@@ -105,7 +107,8 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
     }
     
     @IBAction func audioDeviceTouch(_ sender: UIButton) {
-        showAudioDevices()
+        Log.d("Showing audio devices actionSheet")
+        showAudioDevicesActionSheet(sourceView: sender)
     }
     
     @IBAction func holdTouch(_ sender: UIButton) {
@@ -116,7 +119,7 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
             { [weak self] (error: Error?) in
                 if let error = error {
                     Log.e("setHold error: \(error.localizedDescription)")
-                    AlertHelper.showError(message: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription, on: self)
                     sender.isEnabled.toggle()
                 } else {
                     if sender.isSelected {
@@ -142,7 +145,7 @@ class CallViewController: UIViewController, AppLifeCycleDelegate, TimerDelegate,
             callController.requestTransaction(with: doEndCall)
             { (error: Error?) in
                 if let error = error {
-                    AlertHelper.showError(message: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription, on: self)
                     Log.e(error.localizedDescription)
                 }
                 sender.isEnabled = true
@@ -192,26 +195,6 @@ extension CallViewController {
         Log.v("audioDevicesListChanged: \(String(describing: availableAudioDevices))")
     }
     
-    // MARK: AudioManager supporting methods
-    private func showAudioDevices() {
-        guard let audioDevices = audioDevices else { return }
-        let currentDevice = VIAudioManager.shared()?.currentAudioDevice()
-        AlertHelper.showActionSheet(
-            actions: audioDevices.map { device in
-                UIAlertAction(title: makeFormattedString(from: device, isCurrent: currentDevice == device), style: .default) { _ in
-                    VIAudioManager.shared().select(device)
-                }
-            },
-            sourceView: speakerButton,
-            on: self
-        )
-    }
-    
-    private func makeFormattedString(from device: VIAudioDevice, isCurrent: Bool) -> String {
-        let formattedString = String(describing: device).replacingOccurrences(of: "VIAudioDevice", with: "")
-        return isCurrent ? "\(formattedString) (Current)" : formattedString
-    }
-    
     private func changeAudioDeviceButtonState(isSelected: Bool, image: UIImage) {
         speakerButton.setImage(image, for: .selected)
         speakerButton.isSelected = isSelected
@@ -236,7 +219,7 @@ extension CallViewController {
             callController.requestTransaction(with: sendDTMF)
             { (error: Error?) in
                 if let error = error {
-                    AlertHelper.showError(message: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription, on: self)
                     Log.e(error.localizedDescription)
                 }
             }

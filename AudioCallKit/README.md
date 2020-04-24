@@ -14,6 +14,7 @@ The application supports audio calls between this iOS app and other apps that us
 #### Features
 The application is able to:
 - log in to the Voximplant Cloud
+- auto login using access tokens
 - make an audio call
 - receive an incoming call
 - put a call on hold / take it off hold
@@ -84,7 +85,7 @@ After each successful login the demo app registers the VoIP push token via [VICl
 See the following classes for code details:
 * [AuthService.swift](AuthService.swift)
 * [LoginViewController.swift](UI/Controllers/LoginViewController.swift)
-* [PushCallNotifier.swift](PushCallNotifier.swift)
+* [PushCallNotifier.swift](../Shared/PushCallNotifier.swift)
 
 ### CallKit integration architecture
 

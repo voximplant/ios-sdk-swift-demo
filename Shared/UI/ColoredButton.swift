@@ -1,11 +1,11 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import UIKit
 
-class ColoredButton: UIButton {
-    
+@IBDesignable
+final class ColoredButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         sharedInit()
@@ -16,9 +16,26 @@ class ColoredButton: UIButton {
         sharedInit()
     }
     
-    func sharedInit() {
-        layer.borderColor = #colorLiteral(red: 0.4, green: 0.1803921569, blue: 1, alpha: 1)
-        self.setBackgroundImage(UIHelper.getImageWithColor(color: #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)), for: .highlighted)
-        self.setBackgroundImage(UIHelper.getImageWithColor(color: #colorLiteral(red: 0.4, green: 0.1803921569, blue: 1, alpha: 1)), for: .normal)
+    private func sharedInit() {
+        backgroundColor = Color.button
+        layer.cornerRadius = Theme.defaultCornerRadius
+        addTarget(self, action: #selector(backToNormalSize(_:)), for: [.touchUpInside,
+                                                                       .touchDragOutside,
+                                                                       .touchCancel,
+                                                                       .touchUpOutside])
+        addTarget(self, action: #selector(decreaseButtonSize(_:)), for: [.touchDown,
+                                                                         .touchDragInside])
+    }
+    
+    @objc private func decreaseButtonSize(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1) {
+            sender.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        }
+    }
+    
+    @objc private func backToNormalSize(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1) {
+            sender.transform = CGAffineTransform.identity
+        }
     }
 }

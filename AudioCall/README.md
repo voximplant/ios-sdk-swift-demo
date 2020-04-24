@@ -7,6 +7,7 @@ This demo demonstrates basic audio call functionality of the Voximplant iOS SDK.
 #### Features
 The application is able to:
 - log in to the Voximplant Cloud
+- auto login using access tokens
 - make an audio call
 - receive an incoming call
 - put a call on hold / take it off hold

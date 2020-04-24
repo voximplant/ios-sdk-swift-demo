@@ -1,10 +1,9 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import UIKit
 import VoxImplantSDK
-import CocoaLumberjack
 import CallKit
 import Intents
 
@@ -41,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate {
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if callManager.hasManagedCall() { return false }
+        if callManager.hasManagedCall { return false }
         guard let startCallIntent = userActivity.interaction?.intent else { return false }
         var username: String?
         
@@ -59,12 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate {
         return true
     }
     
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    // MARK: AppLifeCycle methods:
-    
+    // MARK: - AppLifeCycle -
     func applicationWillResignActive(_ application: UIApplication) {
         (window?.rootViewController?.toppestViewController as? AppLifeCycleDelegate)?.applicationWillResignActive(application)
         UIApplication.shared.isIdleTimerDisabled = false
@@ -81,10 +75,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         (window?.rootViewController?.toppestViewController as? AppLifeCycleDelegate)?.applicationDidBecomeActive(application)
     }
-}
-
-// MARK: - CXCallObserverDelegate
-extension AppDelegate {
+    
+    // MARK: - CXCallObserverDelegate
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
         (window?.rootViewController?.toppestViewController as? CXCallObserverDelegate)?.callObserver(callObserver, callChanged: call)
     }

@@ -12,6 +12,17 @@ final class AlertHelper {
         )
     }
     
+    static private var accessSettingsAction: UIAlertAction {
+        UIAlertAction(
+            title: "Open settings",
+            style: .default
+        ) { _ in
+            let settings = URL(string: UIApplication.openSettingsURLString)!
+            if #available(iOS 10.0, *) { UIApplication.shared.open(settings) }
+            else { UIApplication.shared.openURL(settings) }
+        }
+    }
+    
     static func showActionSheet(
         actions: [UIAlertAction],
         sourceView: UIView,
@@ -52,6 +63,14 @@ final class AlertHelper {
                     .present(alertController, animated: true)
             }
         }
+    }
+    
+    static func showErrorWithSettingsAction(
+        title: String = "Something went wrong",
+        message: String,
+        on viewController: UIViewController? = nil
+    ) {
+        showError(message: title, action: accessSettingsAction, on: viewController)
     }
     
     static func showAlert(

@@ -8,13 +8,12 @@ fileprivate let client = VIClient(delegateQueue: DispatchQueue.main)
 fileprivate let authService: AuthService = VoximplantAuthService(client: client)
 fileprivate let conferenceService: ConferenceService = VoximplantConferenceService(client: client)
 fileprivate let apiService: VoximplantAPIService = VoximplantAPIService()
-fileprivate let permissionsService: PermissionsService = PermissionsService()
 
 final class StoryAssembler {
     static func assembleLogin() -> LoginViewController {
         let controller = Storyboard.main.instantiateViewController(of: LoginViewController.self)
         controller.joinConference = JoinConferenceUseCase(authService: authService, conferenceService: conferenceService,
-                                                          apiService: apiService, permissionsService: permissionsService)
+                                                          apiService: apiService)
         return controller
     }
     

@@ -1,12 +1,18 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import UIKit
 import VoxImplantSDK
 
-class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAudioManagerDelegate, VICallDelegate {
-    
+final class CallViewController:
+    UIViewController,
+    TimerDelegate,
+    KeyPadDelegate,
+    VIAudioManagerDelegate,
+    VICallDelegate,
+    AudioDeviceSelecting
+{
     @IBOutlet weak var endpointDisplayNameLabel: UILabel!
     @IBOutlet weak var keyPadView: KeyPadView!
     @IBOutlet weak var dtmfButton: ButtonWithLabel!
@@ -20,10 +26,7 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
     private var callFailedInfo: (username: String, reasonToFail: String)?
     private let callManager: CallManager = sharedCallManager
     private var authService: AuthService = sharedAuthService
-    private var call: VICall? { return callManager.managedCall }
-    private var audioDevices: Set<VIAudioDevice>? {
-        return VIAudioManager.shared().availableAudioDevices()
-    }
+    private var call: VICall? { callManager.managedCall }
     private var isMuted = false {
         willSet {
             muteButton.isSelected = newValue
@@ -32,10 +35,10 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
         }
     }
     
-    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDelegates()
+        VIAudioManager.shared().delegate = self
+        call?.add(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,15 +46,11 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
         updateEndpointLabel()
     }
     
-    private func setupDelegates() {
-        VIAudioManager.shared().delegate = self
-        call?.add(self)
-    }
-    
     private func updateEndpointLabel() {
-        guard let endpoint = call?.endpoints.first else { return }
-        endpointDisplayNameLabel.text = endpoint.userDisplayName != nil
-            ? endpoint.userDisplayName : endpoint.user
+        if let endpoint = call?.endpoints.first {
+            endpointDisplayNameLabel.text = endpoint.userDisplayName != nil
+                ? endpoint.userDisplayName : endpoint.user
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -59,7 +58,6 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
         else { return .default }
     }
     
-    // MARK: Actions
     @IBAction func muteTouch(_ sender: UIButton) {
         Log.d("Changing mute state")
         isMuted.toggle() //changes mute state
@@ -71,7 +69,8 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
     }
     
     @IBAction func audioDeviceTouch(_ sender: UIButton) {
-        showAudioDevices()
+        Log.d("Showing audio devices actionSheet")
+        showAudioDevicesActionSheet(sourceView: sender)
     }
     
     @IBAction func holdTouch(_ sender: UIButton) {
@@ -80,10 +79,11 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
         call?.setHold(!sender.isSelected, completion: { [weak self] error in
             if let error = error {
                 Log.d("setHold: \(error.localizedDescription)")
-                AlertHelper.showError(message: error.localizedDescription)
+                AlertHelper.showError(message: error.localizedDescription, on: self)
                 sender.isEnabled.toggle()
             } else {
                 Log.d("setHold: no errors)")
+                
                 if sender.isSelected {
                     self?.holdButton.label.text = "hold"
                     sender.setImage(#imageLiteral(resourceName: "hold"), for: .normal)
@@ -91,6 +91,7 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
                     self?.holdButton.label.text = "resume"
                     sender.setImage(#imageLiteral(resourceName: "resumeP"), for: .normal)
                 }
+                
                 sender.isSelected.toggle()
                 sender.isEnabled.toggle()
             }
@@ -110,10 +111,10 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
             (result: Result<(), Error>) in
             if case let .failure(error) = result {
                 self.dismiss(animated: false) {
-                    AlertHelper.showError(message: error.localizedDescription)
+                    AlertHelper.showError(message: error.localizedDescription, on: self)
                 }
             } else {
-                self.setupDelegates()
+                self.call?.add(self)
             }
         }
     }
@@ -126,7 +127,6 @@ class CallViewController: UIViewController, TimerDelegate, KeyPadDelegate, VIAud
         
         call?.remove(self)
     }
-    
 }
 
 // MARK: VICallDelegate
@@ -162,21 +162,17 @@ extension CallViewController {
         
         if (error as NSError).code == VICallFailError.invalidNumber.rawValue {
             self.dismiss(animated: false) {
-                AlertHelper.showError(message: error.localizedDescription)
+                AlertHelper.showError(message: error.localizedDescription, on: self)
             }
         } else {
             callFailedInfo = (call.endpoints.first?.user ?? "unknown", error.localizedDescription)
             performSegue(withIdentifier: CallFailedViewController.self, sender: self)
         }
     }
-}
-
-// MARK: VIAudioManagerDelegate
-extension CallViewController {
     
+    // MARK: - VIAudioManagerDelegate -
     func audioDeviceChanged(_ audioDevice: VIAudioDevice!) {
         Log.v("audioDeviceBecomeDefault: \(String(describing: audioDevice))")
-        
         switch audioDevice.type {
         case .none:
             changeAudioDeviceButtonState(isSelected: false, image: #imageLiteral(resourceName: "speakerP"))
@@ -200,54 +196,29 @@ extension CallViewController {
     func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>!) {
         Log.v("audioDevicesListChanged: \(String(describing: availableAudioDevices))")
     }
-    
-    // MARK: AudioManager supporting methods
-    // This method used to show/hide audio devices list
-    private func showAudioDevices() {
-        guard let audioDevices = audioDevices else { return }
-        let currentDevice = VIAudioManager.shared()?.currentAudioDevice()
-        AlertHelper.showActionSheet(
-            actions: audioDevices.map { device in
-                UIAlertAction(title: makeFormattedString(from: device, isCurrent: currentDevice == device), style: .default) { _ in
-                    VIAudioManager.shared().select(device)
-                }
-            },
-            sourceView: speakerButton,
-            on: self
-        )
-    }
-    
-    private func makeFormattedString(from device: VIAudioDevice, isCurrent: Bool) -> String {
-        let formattedString = String(describing: device).replacingOccurrences(of: "VIAudioDevice", with: "")
-        return isCurrent ? "\(formattedString) (Current)" : formattedString
-    }
-    
-    // This method changes speaker button states given by audiodevice delegate
+
     private func changeAudioDeviceButtonState(isSelected: Bool, image: UIImage) {
         speakerButton.setImage(image, for: .selected)
         speakerButton.isSelected = isSelected
     }
-}
-
-// MARK: KeyPadDelegate
-extension CallViewController {
+    
+    // MARK: - KeyPadDelegate -
     func DTMFButtonTouched(symbol: String) {
         Log.d("DTMF code: \(symbol)")
-        endpointDisplayNameLabel.text! += symbol // saves all buttons touched in dtmf to label instead of endpoint name
-        call?.sendDTMF(symbol) // sending dtmf to sdk
+        endpointDisplayNameLabel.text! += symbol
+        call?.sendDTMF(symbol)
     }
     
     func keypadDidHide() {
-        updateEndpointLabel() // if dtmf keyboard been closed - show endpoint name instead of numbers
+        updateEndpointLabel()
     }
-}
-
-// MARK: TimerDelegate
-extension CallViewController {
+    
+    // MARK: - TimerDelegate -
     func updateTime() {
         callStateLabel.updateCallStatus(call?.duration())
     }
 }
+
 
 fileprivate extension LabelWithTimer {
     func updateCallStatus(_ time: TimeInterval?) {

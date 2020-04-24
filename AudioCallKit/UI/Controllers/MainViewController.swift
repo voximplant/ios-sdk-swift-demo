@@ -1,78 +1,56 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import UIKit
 import CallKit
 
-class MainViewController: UIViewController, CXCallObserverDelegate {
+final class MainViewController:
+    UIViewController,
+    CXCallObserverDelegate,
+    LoadingShowable,
+    ErrorHandling
+{
+    @IBOutlet private var mainView: DefaultMainView!
+    private let callController: CXCallController = sharedCallController
+    private let authService: AuthService = sharedAuthService
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
-    @IBOutlet weak var callButton: ColoredButton!
-    @IBOutlet weak var contactUsernameField: UITextField!
-    @IBOutlet weak var userDisplayName: UILabel!
-    
-    fileprivate var callController: CXCallController = sharedCallController
-    fileprivate var authService: AuthService = sharedAuthService
-    
-    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        showSelfDisplayName()
-        callButton.isEnabled = true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        showSelfDisplayName()
-    }
-    
-    // MARK: - Setup User Interface
-    private func setupUI() {
-        navigationItem.titleView = UIHelper.LogoView
-        hideKeyboardWhenTappedAround()
-    }
-    
-    private func showSelfDisplayName() {
-        guard let displayName = authService.loggedInUserDisplayName else { return }
-        userDisplayName.text = "Logged in as \(displayName)"
-    }
-    
-    // MARK: Actions
-    @IBAction func logoutTouch(_ sender: UIBarButtonItem) {
-        authService.logout
-        { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+        
+        if let displayName = authService.loggedInUserDisplayName {
+            mainView.setDisplayName(text: "Logged in as \(displayName)")
         }
-    }
-    
-    @IBAction func callTouch(_ sender: AnyObject) {
-        Log.d("Calling \(String(describing: contactUsernameField.text))")
-        PermissionsManager.checkAudioPermisson {
-            let contactUsername: String = self.contactUsernameField.text ?? ""
-            let startOutgoingCall = CXStartCallAction(call: UUID(), handle: CXHandle(type: .generic, value: contactUsername))
-
-            self.callController.requestTransaction(with: startOutgoingCall)
-            { (error: Error?) in
-                if let error = error {
-                    AlertHelper.showError(message: error.localizedDescription)
-                    Log.e(error.localizedDescription)
+        
+        mainView.callTouchHandler = { username in
+             Log.d("Calling \(String(describing: username))")
+             PermissionsHelper.requestRecordPermissions(includingVideo: false) { error in
+                 if let error = error {
+                    self.handleError(error)
+                    return
                 }
+                 let startCallAction = CXStartCallAction(call: UUID(), handle: CXHandle(type: .generic, value: username ?? ""))
+                 self.callController.requestTransaction(with: startCallAction) { [weak self] error in
+                    guard let self = self else { return }
+                     if let error = error {
+                         AlertHelper.showError(message: error.localizedDescription, on: self)
+                         Log.e(error.localizedDescription)
+                     }
+                 }
+             }
+         }
+        
+        mainView.logoutTouchHandler = {
+            self.authService.logout { [weak self] in
+                self?.dismiss(animated: true)
             }
         }
     }
     
-    @IBAction func unwindSegue(segue: UIStoryboardSegue) {
-    }
-}
-
-
-// MARK: - CXCallObserverDelegate
-extension MainViewController {
+    @IBAction func unwindSegue(segue: UIStoryboardSegue) { }
+    
+    // MARK: - CXCallObserverDelegate -
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
         performSegue(withIdentifier: CallViewController.self, sender: self)
         { [weak self] in

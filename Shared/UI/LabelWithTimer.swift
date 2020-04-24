@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import UIKit
@@ -8,8 +8,7 @@ import UIKit
     func updateTime()
 }
 
-class LabelWithTimer: UILabel {
-    
+final class LabelWithTimer: UILabel {
     @IBOutlet weak var delegate: TimerDelegate?
     private var timer: Timer?
     private let dateFormatter: DateFormatter = {

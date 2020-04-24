@@ -1,28 +1,31 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
-import Foundation
 import VoxImplantSDK
 
-extension UserDefaults {
-    var lastFullUsername: String {
-        return UIApplication.userDefaultsDomain + "." + "lastFullUsername"
-    }
-}
+typealias ConnectCompletion = (Error?) -> Void
+typealias DisconnectCompletion = () -> Void
+typealias LoginResult = Result<String, Error>
+typealias LoginCompletion = (LoginResult) -> Void
 
-class AuthService: NSObject, VIClientSessionDelegate {
-    fileprivate var userDefaults = UserDefaults.standard
+final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
     fileprivate var client: VIClient
-    fileprivate var tokensManager = TokenManager()
-    fileprivate var connectCompletion: ((Result<(), Error>)->Void)?
-    fileprivate var disconnectCompletion: (() -> Void)?
+    fileprivate var connectCompletion: ConnectCompletion?
+    fileprivate var disconnectCompletion: DisconnectCompletion?
+    var possibleToLogin: Bool { Tokens.areExist && !Tokens.areExpired }
     var pushToken: Data? {
         willSet {
             if pushToken != nil && newValue == nil {
                 client.unregisterPushNotificationsToken(pushToken, imToken: nil)
             }
         }
+    }
+    @UserDefault("lastFullUsername")
+    var loggedInUser: String?
+    var loggedInUserDisplayName: String?
+    var state: VIClientState {
+        client.clientState
     }
     
     init(_ client: VIClient) {
@@ -31,32 +34,16 @@ class AuthService: NSObject, VIClientSessionDelegate {
         client.sessionDelegate = self
     }
         
-    var loggedInUser: String? {
-        get {
-            return userDefaults.string(forKey: userDefaults.lastFullUsername)
-        }
-        set {
-            userDefaults.set(newValue, forKey: userDefaults.lastFullUsername)
-        }
-    }
-    
-    var loggedInUserDisplayName: String?
-    var state: VIClientState {
-        return client.clientState
-    }
-        
-    func login(user: String, password: String, _ completion: @escaping (Result<String, Error>)->Void) {
-        connect()
-        { [weak self]
-            (result: Result<(), Error>) in
-            if case let .failure(error) = result  {
+    func login(user: String, password: String, _ completion: @escaping LoginCompletion) {
+        connect() { [weak self] error in
+            if let error = error {
                 completion(.failure(error))
                 return
             }
             
             self?.client.login(withUser: user, password: password,
                 success: { (displayUserName: String, tokens: VIAuthParams) in
-                    self?.tokensManager.keys = (tokens.access, tokens.refresh)
+                    Tokens.update(with: tokens)
                     self?.loggedInUser = user
                     self?.loggedInUserDisplayName = displayUserName
                     if let pushToken = self?.pushToken {
@@ -71,27 +58,23 @@ class AuthService: NSObject, VIClientSessionDelegate {
         }
     }
     
-    func loginWithAccessToken(_ completion: @escaping (Result<String, Error>)->Void) {
-        
+    func loginWithAccessToken(_ completion: @escaping LoginCompletion) {
         guard let user = self.loggedInUser else {
-            let error = VoxDemoError.errorRequiredPassword()
+            let error = AuthError.loginDataNotFound
             completion(.failure(error))
             return
         }
         
         if client.clientState == .loggedIn,
-           let loggedInUserDisplayName = self.loggedInUserDisplayName,
-           let keys = tokensManager.keys,
-           !keys.refresh.isExpired
+            let loggedInUserDisplayName = self.loggedInUserDisplayName,
+            !Tokens.areExpired
         {
             completion(.success(loggedInUserDisplayName))
             return
         }
     
-        connect() {
-            [weak self]
-            (result: Result<(), Error>) in
-            if case let .failure(error) = result  {
+        connect() { [weak self] error in
+            if let error = error  {
                 completion(.failure(error))
                 return
             }
@@ -108,7 +91,7 @@ class AuthService: NSObject, VIClientSessionDelegate {
                 case let .success(accessKey):
                     self?.client.login(withUser: user, token: accessKey.token,
                         success: { (displayUserName: String, tokens: VIAuthParams) in
-                            self?.tokensManager.keys = (tokens.access, tokens.refresh)
+                            Tokens.update(with: tokens)
                             self?.loggedInUser = user
                             self?.loggedInUserDisplayName = displayUserName
                             if let pushToken = self?.pushToken {
@@ -125,45 +108,42 @@ class AuthService: NSObject, VIClientSessionDelegate {
         }
     }
     
-    fileprivate func updateAccessTokenIfNeeded(for user: String, _ completion: @escaping (Result<Token, Error>)->Void) {
-        guard let tokens = tokensManager.keys else {
-            completion(.failure(VoxDemoError.errorRequiredPassword()))
-            return
+    fileprivate func updateAccessTokenIfNeeded(for user: String,
+                                               _ completion: @escaping (Result<Token, Error>)->Void) {
+        guard let accessToken = Tokens.access,
+            let refreshToken = Tokens.refresh else {
+                completion(.failure(AuthError.loginDataNotFound))
+                return
         }
         
-        if tokens.access.isExpired {
-            client.refreshToken(withUser: user, token: tokens.refresh.token)
-            { [weak self] (authParams: VIAuthParams?, error: Error?) in
+        if accessToken.isExpired {
+            client.refreshToken(withUser: user, token: refreshToken.token)
+            { (authParams: VIAuthParams?, error: Error?) in
                 guard let tokens = authParams
                 else {
                     completion(.failure(error!))
                     return
                 }
-                self?.tokensManager.keys = (tokens.access, tokens.refresh)
-                completion(.success(tokens.access))
+                Tokens.update(with: tokens)
+                completion(.success(Tokens.access!))
             }
         } else {
-            completion(.success(tokens.access))
+            completion(.success(accessToken))
         }
     }
     
-    fileprivate func connect(_ completion: @escaping (Result<(), Error>)->Void) {
+    fileprivate func connect(_ completion: @escaping ConnectCompletion) {
         if client.clientState == .disconnected ||
            client.clientState == .connecting
         {
             connectCompletion = completion
             client.connect()
-
         } else {
-            completion(.success(()))
+            completion(nil)
         }
     }
     
-    func possibleToLogin() -> Date? {
-        return tokensManager.keys?.refresh.expireDate
-    }
-    
-    fileprivate func disconnect(_ completion: @escaping ()->Void) {
+    fileprivate func disconnect(_ completion: @escaping DisconnectCompletion) {
         if client.clientState == .disconnected {
             completion()
         } else {
@@ -172,47 +152,25 @@ class AuthService: NSObject, VIClientSessionDelegate {
         }
     }
     
-    func logout(_ completion: @escaping ()->Void) {
+    func logout(_ completion: @escaping () -> Void) {
         client.unregisterPushNotificationsToken(pushToken, imToken: nil)
-        tokensManager.keys = nil
+        Tokens.clear()
         disconnect(completion)
     }
     
-    // MARK: VIClientSessionDelegate
-    
+    // MARK: - VIClientSessionDelegate -
     func clientSessionDidConnect(_ client: VIClient) {
-        connectCompletion?(.success(()))
+        connectCompletion?(nil)
         connectCompletion = nil
     }
     
     func client(_ client: VIClient, sessionDidFailConnectWithError error: Error) {
-        connectCompletion?(.failure(error))
+        connectCompletion?(error)
         connectCompletion = nil
     }
     
     func clientSessionDidDisconnect(_ client: VIClient) {
         disconnectCompletion?()
         disconnectCompletion = nil
-    }
-}
-
-
-fileprivate extension VIAuthParams {
-    var access: Token {
-        get {
-            let accessExpire = self.accessExpire
-            let accessTokenContent = self.accessToken
-            let accessExpireDate = Date(timeIntervalSinceNow: accessExpire)
-            return Token(token: accessTokenContent, expireDate: accessExpireDate)
-        }
-    }
-    
-    var refresh: Token {
-        get {
-            let refreshExpire = self.refreshExpire
-            let refreshTokenContent = self.refreshToken
-            let refreshExpireDate = Date(timeIntervalSinceNow: refreshExpire)
-            return Token(token: refreshTokenContent, expireDate: refreshExpireDate)
-        }
     }
 }

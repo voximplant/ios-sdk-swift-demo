@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -169,67 +169,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tfY-XV-2Zd" customClass="ConferenceView" customModule="Conference" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="46" width="414" height="748"/>
+                                <rect key="frame" x="0.0" y="46" width="414" height="734"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7yx-pa-G9y" customClass="ConferenceCallButton" customModule="Conference" customModuleProvider="target">
-                                <rect key="frame" x="187" y="798" width="40" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7yx-pa-G9y" customClass="CallOptionButton" customModule="Conference" customModuleProvider="target">
+                                <rect key="frame" x="184.5" y="788" width="45" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="A6i-24-VtQ"/>
-                                    <constraint firstAttribute="height" constant="60" id="Awf-mk-O1k"/>
+                                    <constraint firstAttribute="width" constant="45" id="A6i-24-VtQ"/>
+                                    <constraint firstAttribute="height" constant="70" id="Awf-mk-O1k"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7p-zw-d0s" customClass="ConferenceCallButton" customModule="Conference" customModuleProvider="target">
-                                <rect key="frame" x="243" y="798" width="40" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7p-zw-d0s" customClass="CallOptionButton" customModule="Conference" customModuleProvider="target">
+                                <rect key="frame" x="245.5" y="788" width="45" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="dhZ-xo-MSq"/>
-                                    <constraint firstAttribute="height" constant="60" id="txp-2F-uPZ"/>
-                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JA8-t6-ha1" customClass="ConferenceCallButton" customModule="Conference" customModuleProvider="target">
-                                <rect key="frame" x="299" y="798" width="40" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JA8-t6-ha1" customClass="CallOptionButton" customModule="Conference" customModuleProvider="target">
+                                <rect key="frame" x="306.5" y="788" width="45" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="JQt-Ss-a5o"/>
-                                    <constraint firstAttribute="width" constant="40" id="NWJ-fn-8j7"/>
-                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tf1-pw-waK" customClass="ConferenceCallButton" customModule="Conference" customModuleProvider="target">
-                                <rect key="frame" x="131" y="798" width="40" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tf1-pw-waK" customClass="CallOptionButton" customModule="Conference" customModuleProvider="target">
+                                <rect key="frame" x="123.5" y="788" width="45" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="3O5-Q4-1X8"/>
-                                    <constraint firstAttribute="height" constant="60" id="CkH-oP-dAQ"/>
-                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9pG-w1-0yR" customClass="ConferenceCallButton" customModule="Conference" customModuleProvider="target">
-                                <rect key="frame" x="75" y="798" width="40" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9pG-w1-0yR" customClass="CallOptionButton" customModule="Conference" customModuleProvider="target">
+                                <rect key="frame" x="62.5" y="788" width="45" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="XOa-B8-Vfq"/>
-                                    <constraint firstAttribute="height" constant="60" id="y0V-Fl-9kv"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1333333333" green="0.062745098040000002" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="7yx-pa-G9y" firstAttribute="top" secondItem="tfY-XV-2Zd" secondAttribute="bottom" constant="8" id="06J-81-yps"/>
                             <constraint firstItem="Q7p-zw-d0s" firstAttribute="centerY" secondItem="7yx-pa-G9y" secondAttribute="centerY" id="19y-M6-tfo"/>
                             <constraint firstItem="tf1-pw-waK" firstAttribute="centerY" secondItem="7yx-pa-G9y" secondAttribute="centerY" id="1gZ-la-v8m"/>
                             <constraint firstItem="tf1-pw-waK" firstAttribute="leading" secondItem="9pG-w1-0yR" secondAttribute="trailing" constant="16" id="9bq-SA-ZmI"/>
                             <constraint firstItem="JA8-t6-ha1" firstAttribute="leading" secondItem="Q7p-zw-d0s" secondAttribute="trailing" constant="16" id="BGa-Mk-VBb"/>
+                            <constraint firstItem="Q7p-zw-d0s" firstAttribute="height" secondItem="7yx-pa-G9y" secondAttribute="height" id="CBM-JT-EfY"/>
                             <constraint firstItem="tfY-XV-2Zd" firstAttribute="centerX" secondItem="CCh-Bn-g4E" secondAttribute="centerX" id="Ce8-ru-2dL"/>
                             <constraint firstItem="Q7p-zw-d0s" firstAttribute="leading" secondItem="7yx-pa-G9y" secondAttribute="trailing" constant="16" id="Eqn-Qc-zRR"/>
+                            <constraint firstItem="9pG-w1-0yR" firstAttribute="height" secondItem="7yx-pa-G9y" secondAttribute="height" id="HpB-uB-X9e"/>
                             <constraint firstItem="7yx-pa-G9y" firstAttribute="leading" secondItem="tf1-pw-waK" secondAttribute="trailing" constant="16" id="KUL-70-31O"/>
                             <constraint firstItem="tfY-XV-2Zd" firstAttribute="leading" secondItem="Lay-wr-60N" secondAttribute="leading" id="PgP-yU-qrJ"/>
-                            <constraint firstItem="Lay-wr-60N" firstAttribute="bottom" secondItem="tfY-XV-2Zd" secondAttribute="bottom" constant="68" id="RWW-Z9-0Fi"/>
                             <constraint firstItem="7yx-pa-G9y" firstAttribute="centerX" secondItem="CCh-Bn-g4E" secondAttribute="centerX" id="XCo-9M-Ss5"/>
                             <constraint firstItem="Lay-wr-60N" firstAttribute="bottom" secondItem="7yx-pa-G9y" secondAttribute="bottom" constant="4" id="aK0-Nx-Qkd"/>
                             <constraint firstItem="9pG-w1-0yR" firstAttribute="centerY" secondItem="tf1-pw-waK" secondAttribute="centerY" id="aYi-XX-Kup"/>
+                            <constraint firstItem="JA8-t6-ha1" firstAttribute="width" secondItem="7yx-pa-G9y" secondAttribute="width" id="bn5-AJ-IMU"/>
+                            <constraint firstItem="Q7p-zw-d0s" firstAttribute="width" secondItem="7yx-pa-G9y" secondAttribute="width" id="dgn-US-vz4"/>
+                            <constraint firstItem="tf1-pw-waK" firstAttribute="height" secondItem="7yx-pa-G9y" secondAttribute="height" id="ez1-ah-DLb"/>
                             <constraint firstItem="Lay-wr-60N" firstAttribute="trailing" secondItem="tfY-XV-2Zd" secondAttribute="trailing" id="kQb-KQ-zJR"/>
                             <constraint firstItem="JA8-t6-ha1" firstAttribute="centerY" secondItem="Q7p-zw-d0s" secondAttribute="centerY" id="ltL-B0-JDs"/>
+                            <constraint firstItem="JA8-t6-ha1" firstAttribute="height" secondItem="7yx-pa-G9y" secondAttribute="height" id="riu-WT-Wgc"/>
                             <constraint firstItem="tfY-XV-2Zd" firstAttribute="top" secondItem="Lay-wr-60N" secondAttribute="top" constant="2" id="sTI-Ye-2EK"/>
+                            <constraint firstItem="tf1-pw-waK" firstAttribute="width" secondItem="7yx-pa-G9y" secondAttribute="width" id="smQ-Sa-2Wq"/>
+                            <constraint firstItem="9pG-w1-0yR" firstAttribute="width" secondItem="7yx-pa-G9y" secondAttribute="width" id="xz1-uU-BJe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lay-wr-60N"/>
                     </view>

@@ -5,13 +5,13 @@
 import UIKit
 import VoxImplantSDK
 
-final class ConferenceCallViewController: UIViewController {
+final class ConferenceCallViewController: UIViewController, AudioDeviceSelecting {
     @IBOutlet private weak var conferenceView: ConferenceView!
-    @IBOutlet private weak var muteButton: ConferenceCallButton!
-    @IBOutlet private weak var chooseAudioButton: ConferenceCallButton!
-    @IBOutlet private weak var switchCameraButton: ConferenceCallButton!
-    @IBOutlet private weak var videoButton: ConferenceCallButton!
-    @IBOutlet private weak var exitButton: ConferenceCallButton!
+    @IBOutlet private weak var muteButton: CallOptionButton!
+    @IBOutlet private weak var chooseAudioButton: CallOptionButton!
+    @IBOutlet private weak var switchCameraButton: CallOptionButton!
+    @IBOutlet private weak var videoButton: CallOptionButton!
+    @IBOutlet private weak var exitButton: CallOptionButton!
     
     var manageConference: ManageConference! // DI
     var leaveConference: LeaveConference! // DI
@@ -26,19 +26,19 @@ final class ConferenceCallViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        muteButton.state = .initial(model: ConferenceCallButtonModels.mute)
+        muteButton.state = .initial(model: CallOptionButtonModels.mute)
         muteButton.touchUpHandler = muteHandler(_:)
         
-        chooseAudioButton.state = .initial(model: ConferenceCallButtonModels.chooseAudio)
+        chooseAudioButton.state = .initial(model: CallOptionButtonModels.chooseAudio)
         chooseAudioButton.touchUpHandler = chooseAudioHandler(_:)
         
-        switchCameraButton.state = .initial(model: ConferenceCallButtonModels.switchCamera)
+        switchCameraButton.state = .initial(model: CallOptionButtonModels.switchCamera)
         switchCameraButton.touchUpHandler = switchCameraHandler(_:)
         
-        videoButton.state = .initial(model: ConferenceCallButtonModels.video)
+        videoButton.state = .initial(model: CallOptionButtonModels.video)
         videoButton.touchUpHandler = videoHandler(_:)
         
-        exitButton.state = .initial(model: ConferenceCallButtonModels.exit)
+        exitButton.state = .initial(model: CallOptionButtonModels.exit)
         exitButton.touchUpHandler = exitHandler(_:)
         
         manageConference.conferenceDisconnectedHandler = disconnectedHandler(error:)
@@ -64,7 +64,7 @@ final class ConferenceCallViewController: UIViewController {
         )
     }
     
-    private func muteHandler(_ button: ConferenceCallButton) {
+    private func muteHandler(_ button: CallOptionButton) {
         do {
             try manageConference.mute(!muted)
             muted.toggle()
@@ -74,15 +74,15 @@ final class ConferenceCallViewController: UIViewController {
         }
     }
     
-    private func chooseAudioHandler(_ button: ConferenceCallButton) {
-        showAudioDevices()
+    private func chooseAudioHandler(_ button: CallOptionButton) {
+        showAudioDevicesActionSheet(sourceView: button)
     }
     
-    private func switchCameraHandler(_ button: ConferenceCallButton) {
+    private func switchCameraHandler(_ button: CallOptionButton) {
         manageConference.switchCamera()
     }
     
-    private func videoHandler(_ button: ConferenceCallButton) {
+    private func videoHandler(_ button: CallOptionButton) {
         let previousState = button.state
         button.state = .unavailable
         manageConference.sendVideo(!video) { [weak self] error in
@@ -98,7 +98,7 @@ final class ConferenceCallViewController: UIViewController {
         }
     }
     
-    private func exitHandler(_ button: ConferenceCallButton) {
+    private func exitHandler(_ button: CallOptionButton) {
         button.state = .unavailable
         leftConference = true
         leaveConference.execute { error in
@@ -110,20 +110,6 @@ final class ConferenceCallViewController: UIViewController {
                 self.dismiss(animated: true)
             }
         }
-    }
-    
-    private func showAudioDevices() {
-        guard let audioDevices = audioDevices else { return }
-        let currentDevice = VIAudioManager.shared()?.currentAudioDevice()
-        AlertHelper.showActionSheet(
-            actions: audioDevices.map { device in
-                UIAlertAction(title: makeFormattedString(from: device, isCurrent: currentDevice == device), style: .default) { _ in
-                    VIAudioManager.shared().select(device)
-                }
-            },
-            sourceView: chooseAudioButton,
-            on: self
-        )
     }
     
     private func makeFormattedString(from device: VIAudioDevice, isCurrent: Bool) -> String {

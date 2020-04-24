@@ -18,12 +18,12 @@ final class VoximplantAPIService {
     ) {
         guard let displayName = displayName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
             else {
-                completion(.failure(Errors.unsupportedName))
+                completion(.failure(ConferenceError.unsupportedName))
                 return
         }
         guard let url = URL(string:"\(host)?id=\(id)&displayName=\(displayName)&email=&conferenceId=\(id)")
             else {
-                completion(.failure(Errors.failedToBuildURL))
+                completion(.failure(ConferenceError.failedToBuildURL))
                 return
         }
         
@@ -33,7 +33,7 @@ final class VoximplantAPIService {
                     let loginInformation = try JSONDecoder().decode(LoginInformation.self, from: data)
                     completion(.success(loginInformation))
                 } catch {
-                    completion(.failure(Errors.jsonDecodingFailed))
+                    completion(.failure(ConferenceError.jsonDecodingFailed))
                 }
             }
             if case .failure (let error) = result { completion(.failure(error)) }
@@ -49,7 +49,7 @@ final class VoximplantAPIService {
             if let data = data {
                 completion(.success(data))
             } else {
-                completion(.failure(Errors.noDataReceived))
+                completion(.failure(ConferenceError.noDataReceived))
             }
         }.resume()
     }

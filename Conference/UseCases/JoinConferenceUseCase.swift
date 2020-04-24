@@ -12,37 +12,19 @@ final class JoinConferenceUseCase: JoinConference {
     private let authService: AuthService
     private let conferenceService: ConferenceService
     private let apiService: VoximplantAPIService
-    private let permissionsService: PermissionsService
     
-    required init(authService: AuthService, conferenceService: ConferenceService, apiService: VoximplantAPIService, permissionsService: PermissionsService) {
+    required init(authService: AuthService, conferenceService: ConferenceService, apiService: VoximplantAPIService) {
         self.authService = authService
         self.conferenceService = conferenceService
         self.apiService = apiService
-        self.permissionsService = permissionsService
     }
     
     func execute(withId id: String, andName name: String, sendVideo video: Bool, completion: @escaping (Error?) -> Void) {
-        requestPermissions(includingVideo: video) { error in
+        PermissionsHelper.requestRecordPermissions(includingVideo: video) { error in
             if let error = error {
                 completion(error)
             } else {
                 self.login(with: id, name: name, video: video, completion: completion)
-            }
-        }
-    }
-    
-    private func requestPermissions(includingVideo video: Bool, completion: @escaping (Error?) -> Void) {
-        permissionsService.requestPermissions(for: .audio) { granted in
-            if granted {
-                if video {
-                    self.permissionsService.requestPermissions(for: .video) { granted in
-                        completion(granted ? nil : Errors.videoPermissionsDenied)
-                    }
-                    return
-                }
-                completion(nil)
-            } else {
-                completion(Errors.audioPermissionsDenied)
             }
         }
     }

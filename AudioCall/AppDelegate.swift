@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import UIKit
@@ -10,7 +10,7 @@ let sharedAuthService: AuthService = AuthService(sharedClient)
 let sharedCallManager: CallManager = CallManager(sharedClient, sharedAuthService)
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate {
     
     var window: UIWindow?
     var callManager: CallManager = sharedCallManager
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate {
         callManager.delegate = self
         
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            Log.i("Voximplant Swift Demo v\(version) started", context: self)
+            Log.i("AudioCall Swift Demo v\(version) started", context: self)
         }
         UIApplication.shared.isIdleTimerDisabled = true
         
@@ -31,11 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate {
         return true
     }
     
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    // MARK: AppLifeCycle methods:
+    // MARK: - AppLifeCycleDelegate -
     func applicationWillResignActive(_ application: UIApplication) {
         (window?.rootViewController?.toppestViewController as? AppLifeCycleDelegate)?.applicationWillResignActive(application)
         UIApplication.shared.isIdleTimerDisabled = false
@@ -52,10 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         (window?.rootViewController?.toppestViewController as? AppLifeCycleDelegate)?.applicationDidBecomeActive(application)
     }
-}
-
-// MARK: CallManagerDelegate
-extension AppDelegate {
+    // MARK: - CallManagerDelegate -
     func notifyIncomingCall(_ call: VICall) {
         (window?.rootViewController?.toppestViewController as? CallManagerDelegate)?.notifyIncomingCall(call)
     }

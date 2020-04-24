@@ -80,7 +80,7 @@ final class VoximplantConferenceService:
         if let call = managedConference {
             call.setSendVideo(send, completion: completion)
         } else {
-            completion(Errors.noActiveConferenceFound)
+            completion(ConferenceError.noActiveConferenceFound)
         }
     }
     
@@ -92,7 +92,7 @@ final class VoximplantConferenceService:
         if let call = managedConference {
             return call
         } else {
-            throw Errors.noActiveConferenceFound
+            throw ConferenceError.noActiveConferenceFound
         }
     }
     
@@ -139,7 +139,6 @@ final class VoximplantConferenceService:
     }
     
     func endpointDidRemove(_ endpoint: VIEndpoint) {
-        endpoint.delegate = nil
         endpointRemovedHandler?(endpoint.endpointId)
     }
     
@@ -165,12 +164,19 @@ final class VoximplantConferenceService:
     
     // MARK: - Private -
     private func selectAudioDevice(from availableAudioDevices: Set<VIAudioDevice>) {
-        if !headphonesConnected(availableAudioDevices) {
-            VIAudioManager.shared()?.select(VIAudioDevice(type: .speaker))
-        }
+        if selectIfAvailable(.bluetooth, from: availableAudioDevices) { return }
+        if selectIfAvailable(.wired, from: availableAudioDevices) { return }
+        selectIfAvailable(.speaker, from: availableAudioDevices)
     }
     
-    private func headphonesConnected(_ audioDevices: Set<VIAudioDevice>) -> Bool {
-        audioDevices.contains { $0.type == .bluetooth || $0.type == .wired }
+    @discardableResult private func selectIfAvailable(
+        _ audioDeviceType: VIAudioDeviceType,
+        from audioDevices: Set<VIAudioDevice>
+    ) -> Bool {
+        if let device = audioDevices.first(where: { $0.type == audioDeviceType }) {
+            VIAudioManager.shared()?.select(device)
+            return true
+        }
+        return false
     }
 }

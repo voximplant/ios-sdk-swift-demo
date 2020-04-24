@@ -1,50 +1,44 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import Foundation
-import VoxImplantSDK
 
-let AudioCallErrorDomain = Bundle.main.bundleIdentifier!
-
-enum VoxDemoError: Int {
-    case userPasswordRequired = 5019
-    case outgoingCallCreationInternalVoximplant = 5030
-    case outgoingCallCreationAlreadyManageCall = 5091
+enum PermissionError: Error {
+    case audioPermissionDenied
+    case videoPermissionDenied
     
-    private var description: String {
+    var localizedDescription: String {
         switch self {
-        case .outgoingCallCreationInternalVoximplant:
-            return "Can't start an outgoing call: couldn't create a VICall instance."
-        case .outgoingCallCreationAlreadyManageCall:
-            return "Can't start an outgoing call: CallManager already has a manage call or nil."
-        case .userPasswordRequired:
-            return "User password is needed for login."
+        case .audioPermissionDenied:
+           return "Record audio permission needed for call to work"
+        case .videoPermissionDenied:
+           return "Record video permission needed for video call to work"
         }
-    }
-    
-    var localizedDescriptionInfo: [String: Any] {
-        return [NSLocalizedDescriptionKey: self.description]
     }
 }
 
+enum AuthError: Error {
+    case loginDataNotFound
+    
+    var localizedDescription: String {
+        switch self {
+        case .loginDataNotFound:
+            return "Login data was not found, try to login with password"
+        }
+    }
+}
 
-extension VoxDemoError {
-    static func errorRequiredPassword() -> NSError {
-        return NSError(domain: AudioCallErrorDomain,
-                       code: VoxDemoError.userPasswordRequired.rawValue,
-                       userInfo: VoxDemoError.userPasswordRequired.localizedDescriptionInfo)
-    }
+enum CallError: Error {
+    case internalError
+    case alreadyManagingACall
     
-    static func errorCouldntCreateCall() -> NSError {
-        return NSError(domain: AudioCallErrorDomain,
-                       code: VoxDemoError.outgoingCallCreationInternalVoximplant.rawValue,
-                       userInfo: VoxDemoError.outgoingCallCreationInternalVoximplant.localizedDescriptionInfo)
-    }
-    
-    static func errorAlreadyHasCall() -> NSError {
-        return NSError(domain: AudioCallErrorDomain,
-                       code: VoxDemoError.outgoingCallCreationAlreadyManageCall.rawValue,
-                       userInfo: VoxDemoError.outgoingCallCreationAlreadyManageCall.localizedDescriptionInfo)
+    var localizedDescription: String {
+        switch self {
+        case .internalError:
+           return "There was an internal error starting the call. Try again"
+        case .alreadyManagingACall:
+           return "The app already managing a call, only a single call at a time allowed"
+        }
     }
 }

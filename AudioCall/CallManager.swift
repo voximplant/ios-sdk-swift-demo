@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import UIKit
@@ -18,8 +18,7 @@ protocol CallManagerDelegate: AnyObject {
     func notifyIncomingCall(_ call: VICall)
 }
 
-class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
-    
+final class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
     var delegate: CallManagerDelegate?
     
     let kCallNotificationIdentifier = "kCallNotificationIdentifier"
@@ -31,10 +30,8 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
     // this demo app demonstrates only one managed call at the moment,
     // so it rejects new incoming call if there is already a call.
     fileprivate(set) var managedCall: VICall?
-    
-    func hasManagedCall() -> Bool {
-        return managedCall != nil
-    }
+    var hasManagedCall: Bool { managedCall != nil }
+    private var hasNoManagedCalls: Bool { !hasManagedCall }
     
     fileprivate var ringtone: LoudAudioFile? = {
         let ringtone = (name: "noisecollector-beam", extension: "aiff")
@@ -71,7 +68,7 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
                 case .success(_):
                     if let sself = self,
                         let client = self?.client,
-                        !sself.hasManagedCall()
+                        sself.hasNoManagedCalls
                     {
                         let settings = VICallSettings()
                         settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: false, sendVideo: false)
@@ -83,10 +80,10 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
                             call.start()
                             completion(.success(()))
                         } else {
-                            completion(.failure(VoxDemoError.errorCouldntCreateCall()))
+                            completion(.failure(CallError.internalError))
                         }
                     } else {
-                        completion(.failure(VoxDemoError.errorAlreadyHasCall()))
+                        completion(.failure(CallError.alreadyManagingACall))
                     }
                 }
         }
@@ -104,9 +101,9 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
         managedCall?.answer(with: settings)
     }
 
-    // MARK: VIClientCallManagerDelegate
+    // MARK: - VIClientCallManagerDelegate -
     func client(_ client: VIClient, didReceiveIncomingCall call: VICall, withIncomingVideo video: Bool, headers: [AnyHashable: Any]?) {
-        if self.hasManagedCall() {
+        if self.hasManagedCall {
             call.reject(with: .busy, headers: nil)
         } else {
             managedCall = call
@@ -118,7 +115,7 @@ class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
         }
     }
     
-    // MARK: VICallDelegate
+    // MARK: - VICallDelegate -
     func call(_ call: VICall, didDisconnectWithHeaders headers: [AnyHashable: Any]?, answeredElsewhere: NSNumber) {
         if case call.callId? = managedCall?.callId {
             call.remove(self)

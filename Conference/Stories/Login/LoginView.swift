@@ -9,13 +9,19 @@ enum LoginViewState {
     case loading
 }
 
-final class LoginView: UIView, UITextFieldDelegate {
+final class LoginView: UIView, UITextFieldDelegate, MovingWithKeyboard {
     @IBOutlet private weak var fieldsContainerView: UIView!
     @IBOutlet private weak var joinWithVideoButton: UIButton!
     @IBOutlet private weak var joinWithoutVideoButton: UIButton!
     @IBOutlet private weak var IDField: LoginTextField!
     @IBOutlet private weak var nameField: LoginTextField!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    
+    // MARK: MovingWithKeyboard
+    var adjusted: Bool = false
+    var defaultPositionY: CGFloat = 0
+    var keyboardWillChangeFrameObserver: NSObjectProtocol?
+    var keyboardWillHideObserver: NSObjectProtocol?
     
     var idText: String? {
         IDField.text != "" ? IDField.text : nil
@@ -60,11 +66,7 @@ final class LoginView: UIView, UITextFieldDelegate {
                                               width: joinWithoutVideoButton.frame.size.width,
                                               height: 0)
         // TODO: HIDES CALL WITHOUT VIDEO BUTTON END
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard),
-                                               name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        subscribeOnKeyboardEvents()
     }
     
     func showLatestUsername(_ name: String) {
@@ -80,31 +82,13 @@ final class LoginView: UIView, UITextFieldDelegate {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        unsubscribeFromKeyboardEvents()
     }
     
     // MARK: - Private -
     private func execute(animation: @escaping () -> Void) {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.3, animations: animation, completion: nil)
-        }
-    }
-    
-    @objc private func adjustForKeyboard(notification: Notification) {
-        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        let keyboardScreenEndFrame = keyboardValue.cgRectValue
-
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            frame.origin.y = 0
-        } else {
-            if frame.origin.y == 0 {
-                if #available(iOS 11.0, *) {
-                    frame.origin.y -= (keyboardScreenEndFrame.height - safeAreaInsets.bottom) / 2
-                } else {
-                    frame.origin.y -= (keyboardScreenEndFrame.height) / 2
-                }
-            }
         }
     }
     

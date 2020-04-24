@@ -1,118 +1,60 @@
 /*
- *  Copyright (c) 2011-2019, Zingaya, Inc. All rights reserved.
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
  */
 
 import UIKit
-import VoxImplantSDK
 import CallKit
 
-class LoginViewController: UIViewController, CXCallObserverDelegate {
-    
-    // MARK: Properties
+final class LoginViewController:
+    UIViewController,
+    CXCallObserverDelegate,
+    LoadingShowable
+{
+    @IBOutlet var loginView: DefaultLoginView!
     private let authService: AuthService = sharedAuthService
-    private var tokenExpireDate: String?  {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        guard let date = authService.possibleToLogin() else { return nil }
-        return formatter.string(from: date)
-    }
-    private var SDKVersion: String {
-        return String(format: "VoximplantSDK %@\nWebRTC %@",
-                      arguments: [VIClient.clientVersion(),
-                                  VIClient.webrtcVersion()])
-    }
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
-    var userDisplayName: String?
-    
-    // MARK: Outlets
-    @IBOutlet weak var loginUserField: UITextField!
-    @IBOutlet weak var loginPasswordField: UITextField!
-    @IBOutlet weak var loginWithTokenButton: UIButton!
-    @IBOutlet weak var tokenLabel: UILabel!
-    @IBOutlet weak var versionLabel: UILabel!
-    @IBOutlet weak var tokenContainerView: UIView!
-    
-    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupUI()
+        loginView.setTitle(text: "Audio call demo")
+        loginView.loginTouchHandler = { username, password in
+            Log.d("Logging in")
+            self.showLoading(title: "Connecting", details: "Please wait...")
+            self.authService.login(user: username.appendingVoxDomain, password: password) {
+                [weak self] result in self?.handleLogin(result)
+            }
+        }
+        if authService.possibleToLogin {
+            Log.d("Logging in with token")
+            self.showLoading(title: "Connecting", details: "Please wait...")
+            self.authService.loginWithAccessToken { [weak self] result in
+                self?.handleLogin(result)
+            }
+        }
+    }
+
+    private func handleLogin(_ result: LoginResult) {
+        self.hideProgress()
+        switch(result) {
+        case let .failure(error):
+            AlertHelper.showError(message: error.localizedDescription, on: self)
+        case .success:
+            self.refreshUI()
+            self.performSegue(withIdentifier: MainViewController.self, sender: self)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         refreshUI()
     }
     
-    // MARK: UI methods
-    private func setupUI() {
-        navigationItem.titleView = UIHelper.LogoView
-        
-        versionLabel?.text = SDKVersion
-        
-        hideKeyboardWhenTappedAround()
-    }
-    
     private func refreshUI() {
-        loginUserField.text = authService.loggedInUser?.replacingOccurrences(of: ".voximplant.com", with: "")
-        loginPasswordField.text = ""
-        if let expireDate = tokenExpireDate {
-            tokenContainerView.isHidden = false
-            tokenLabel.text = "Token will expire at:\n\(expireDate)"
-        } else {
-            tokenContainerView.isHidden = true
-        }
+        loginView.username = authService.loggedInUser?.replacingOccurrences(of: ".voximplant.com", with: "")
+        loginView.password = ""
     }
     
-    // MARK: Actions
-    @IBAction func loginTouch(sender: AnyObject) {
-        Log.d("Logging in")
-        UIHelper.ShowProgress(title: "Connecting", details: "Please wait...", viewController: self)
-        authService.login(user: loginUserField.textWithVoxDomain, password: loginPasswordField.text!)
-        { [weak self] (result: Result<String,Error>) in
-
-            guard let sself = self else { return }
-            
-            UIHelper.HideProgress(on: sself)
-            
-            switch(result) {
-            case let .failure(error):
-                AlertHelper.showError(message: error.localizedDescription)
-            case let .success(userDisplayName):
-                sself.refreshUI()
-                sself.userDisplayName = userDisplayName
-                sself.performSegue(withIdentifier: MainViewController.self, sender: sself)
-            }
-        }
-    }
-    
-    @IBAction func loginWithTokenTouch(sender: AnyObject?) {
-        Log.d("Logging in with token")
-        UIHelper.ShowProgress(title: "Connecting", details: "Please wait...", viewController: self)
-        
-        authService.loginWithAccessToken()
-        { [weak self] result in
-            
-            guard let sself = self else { return }
-            
-            UIHelper.HideProgress(on: sself)
-            sself.refreshUI()
-            
-            switch(result) {
-            case let .failure(error):
-                AlertHelper.showError(message: error.localizedDescription)
-            case let .success(userDisplayName):
-                sself.userDisplayName = userDisplayName
-                sself.performSegue(withIdentifier: MainViewController.self, sender: sself)
-            }
-        }
-    }
-    
-}
-
-// MARK: CXCallObserverDelegate
-extension LoginViewController {
+    // MARK: - CXCallObserverDelegate -
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
         performSegue(withIdentifier: MainViewController.self, sender: self)
         { [weak self] in
@@ -120,9 +62,4 @@ extension LoginViewController {
             mainViewController?.callObserver(callObserver, callChanged: call)
         }
     }
-}
-
-extension UINavigationController {
-    open override var prefersStatusBarHidden: Bool { return false }
-    override open var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
 }

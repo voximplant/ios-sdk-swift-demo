@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="LYs-I4-WZE">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="bNq-y0-Di6" customClass="LoginViewController" customModule="VideoCallKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CDu-Sa-HAa" customClass="DefaultLoginView" customModule="VideoCallKit" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2WM-65-1U0"/>
+                    </view>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="loginView" destination="CDu-Sa-HAa" id="guL-Bm-tyv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="evG-bR-ZLi" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="386" y="-715"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="GKw-ov-BCU">
+            <objects>
+                <viewController storyboardIdentifier="MainViewController" id="aa3-Ic-pvD" customClass="MainViewController" customModule="VideoCallKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DXu-yB-60w" customClass="DefaultMainView" customModule="VideoCallKit" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Fd7-9E-6yU"/>
+                    </view>
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mainView" destination="DXu-yB-60w" id="7b0-c0-C3v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OeS-tf-AXB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1046" y="-715"/>
+        </scene>
+        <!--Call View Controller-->
+        <scene sceneID="Bos-NG-tqH">
+            <objects>
+                <viewController storyboardIdentifier="CallViewController" id="392-fu-gER" customClass="CallViewController" customModule="VideoCallKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kwa-iK-rZp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLv-ss-BCW" customClass="CallVideoView" customModule="VideoCallKit" customModuleProvider="target">
+                                <rect key="frame" x="4" y="48" width="367" height="644"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgC-pL-3wb" customClass="EdgeMagneticView" customModule="VideoCallKit" customModuleProvider="target">
+                                <rect key="frame" x="4" y="48" width="367" height="644"/>
+                                <subviews>
+                                    <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="sks-iw-Whd" customClass="CallVideoView" customModule="VideoCallKit" customModuleProvider="target">
+                                        <rect key="frame" x="119.33333333333333" y="225.33333333333331" width="128.33333333333337" height="193.33333333333331"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="gQZ-p7-ZkJ" appends="YES" id="J5y-9B-KNE"/>
+                                            <outletCollection property="gestureRecognizers" destination="ujG-aY-tlD" appends="YES" id="8jJ-Uz-hSJ"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="sks-iw-Whd" firstAttribute="width" secondItem="kgC-pL-3wb" secondAttribute="width" multiplier="0.35" id="11c-jb-bwy"/>
+                                    <constraint firstItem="sks-iw-Whd" firstAttribute="centerX" secondItem="kgC-pL-3wb" secondAttribute="centerX" placeholder="YES" id="8Pc-zJ-gdO"/>
+                                    <constraint firstItem="sks-iw-Whd" firstAttribute="height" secondItem="kgC-pL-3wb" secondAttribute="height" multiplier="0.3" id="MWp-Ww-ZG0"/>
+                                    <constraint firstItem="sks-iw-Whd" firstAttribute="width" secondItem="kgC-pL-3wb" secondAttribute="width" multiplier="0.35" id="gRC-V2-KTN"/>
+                                    <constraint firstItem="sks-iw-Whd" firstAttribute="centerY" secondItem="kgC-pL-3wb" secondAttribute="centerY" placeholder="YES" id="uuq-Zl-daB"/>
+                                    <constraint firstItem="sks-iw-Whd" firstAttribute="height" secondItem="kgC-pL-3wb" secondAttribute="height" multiplier="0.4" id="xGA-b8-m62"/>
+                                </constraints>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="11c-jb-bwy"/>
+                                        <exclude reference="MWp-Ww-ZG0"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="gRC-V2-KTN"/>
+                                        <exclude reference="xGA-b8-m62"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="innerView" destination="sks-iw-Whd" id="H69-BD-EY7"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJM-dY-H8z">
+                                <rect key="frame" x="187.66666666666666" y="682" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact" hidden="YES"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="pJK-hu-Mgi">
+                                <rect key="frame" x="16" y="700" width="343" height="70"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WyB-s6-R6j" customClass="CallOptionButton" customModule="VideoCallKit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" placeholder="YES" id="Obl-3f-brn"/>
+                                            <constraint firstAttribute="height" constant="50" placeholder="YES" id="rjq-91-0qL"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="rjq-91-0qL"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="Obl-3f-brn"/>
+                                                <include reference="rjq-91-0qL"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iez-iH-gC3" customClass="CallOptionButton" customModule="VideoCallKit" customModuleProvider="target">
+                                        <rect key="frame" x="73.333333333333329" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13U-Dy-VMb" customClass="CallOptionButton" customModule="VideoCallKit" customModuleProvider="target">
+                                        <rect key="frame" x="146.66666666666666" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MC2-LY-nFZ" customClass="CallOptionButton" customModule="VideoCallKit" customModuleProvider="target">
+                                        <rect key="frame" x="219.66666666666666" y="0.0" width="49.999999999999972" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8m-A9-0Yu" customClass="CallOptionButton" customModule="VideoCallKit" customModuleProvider="target">
+                                        <rect key="frame" x="293" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="WyB-s6-R6j" firstAttribute="height" secondItem="13U-Dy-VMb" secondAttribute="height" placeholder="YES" id="8au-DE-e3p"/>
+                                    <constraint firstItem="WyB-s6-R6j" firstAttribute="height" secondItem="iez-iH-gC3" secondAttribute="height" placeholder="YES" id="NV3-h8-6Qi"/>
+                                    <constraint firstItem="WyB-s6-R6j" firstAttribute="width" secondItem="MC2-LY-nFZ" secondAttribute="width" placeholder="YES" id="OmN-hX-v3k"/>
+                                    <constraint firstAttribute="height" constant="70" id="QRe-NY-M93"/>
+                                    <constraint firstItem="WyB-s6-R6j" firstAttribute="width" secondItem="iez-iH-gC3" secondAttribute="width" placeholder="YES" id="W5T-y8-ldY"/>
+                                    <constraint firstItem="WyB-s6-R6j" firstAttribute="width" secondItem="13U-Dy-VMb" secondAttribute="width" placeholder="YES" id="e8x-gk-3NO"/>
+                                    <constraint firstAttribute="width" constant="45" id="ikD-Fj-JAK"/>
+                                    <constraint firstItem="WyB-s6-R6j" firstAttribute="height" secondItem="MC2-LY-nFZ" secondAttribute="height" placeholder="YES" id="kwL-GX-Ivi"/>
+                                    <constraint firstItem="WyB-s6-R6j" firstAttribute="height" secondItem="l8m-A9-0Yu" secondAttribute="height" placeholder="YES" id="lZk-zj-uBY"/>
+                                    <constraint firstItem="WyB-s6-R6j" firstAttribute="width" secondItem="l8m-A9-0Yu" secondAttribute="width" placeholder="YES" id="sae-2t-7kf"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="8au-DE-e3p"/>
+                                        <exclude reference="NV3-h8-6Qi"/>
+                                        <exclude reference="kwL-GX-Ivi"/>
+                                        <exclude reference="lZk-zj-uBY"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="QRe-NY-M93"/>
+                                        <include reference="8au-DE-e3p"/>
+                                        <include reference="NV3-h8-6Qi"/>
+                                        <exclude reference="OmN-hX-v3k"/>
+                                        <exclude reference="W5T-y8-ldY"/>
+                                        <exclude reference="e8x-gk-3NO"/>
+                                        <include reference="kwL-GX-Ivi"/>
+                                        <include reference="lZk-zj-uBY"/>
+                                        <exclude reference="sae-2t-7kf"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" axis="horizontal">
+                                    <mask key="constraints">
+                                        <exclude reference="ikD-Fj-JAK"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="uJM-dY-H8z" firstAttribute="centerX" secondItem="kwa-iK-rZp" secondAttribute="centerX" id="0Jn-2e-K5E"/>
+                            <constraint firstItem="eLv-ss-BCW" firstAttribute="leading" secondItem="8Ue-aM-PI8" secondAttribute="leading" constant="4" id="28v-H3-vxH"/>
+                            <constraint firstItem="8Ue-aM-PI8" firstAttribute="trailing" secondItem="pJK-hu-Mgi" secondAttribute="trailing" constant="16" id="7to-SP-gUR"/>
+                            <constraint firstItem="eLv-ss-BCW" firstAttribute="leading" secondItem="pJK-hu-Mgi" secondAttribute="trailing" constant="8" id="F9C-i5-n3N"/>
+                            <constraint firstItem="pJK-hu-Mgi" firstAttribute="top" secondItem="8Ue-aM-PI8" secondAttribute="top" constant="16" id="FNe-KK-1yN"/>
+                            <constraint firstItem="kgC-pL-3wb" firstAttribute="centerX" secondItem="eLv-ss-BCW" secondAttribute="centerX" id="O2R-mm-hDy"/>
+                            <constraint firstItem="eLv-ss-BCW" firstAttribute="top" secondItem="8Ue-aM-PI8" secondAttribute="top" constant="4" id="RRD-D6-YDV"/>
+                            <constraint firstItem="8Ue-aM-PI8" firstAttribute="trailing" secondItem="eLv-ss-BCW" secondAttribute="trailing" constant="4" id="TZ1-tT-09I"/>
+                            <constraint firstItem="8Ue-aM-PI8" firstAttribute="bottom" secondItem="pJK-hu-Mgi" secondAttribute="bottom" constant="16" id="XHe-vM-9hw">
+                                <variation key="heightClass=regular" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="pJK-hu-Mgi" firstAttribute="leading" secondItem="8Ue-aM-PI8" secondAttribute="leading" constant="16" id="Z00-Mr-uBb"/>
+                            <constraint firstItem="8Ue-aM-PI8" firstAttribute="bottom" secondItem="eLv-ss-BCW" secondAttribute="bottom" constant="4" id="big-0S-F94"/>
+                            <constraint firstItem="kgC-pL-3wb" firstAttribute="width" secondItem="eLv-ss-BCW" secondAttribute="width" id="cy6-eQ-87f"/>
+                            <constraint firstItem="uJM-dY-H8z" firstAttribute="bottom" secondItem="eLv-ss-BCW" secondAttribute="bottom" constant="-10" id="fE6-Gm-N50"/>
+                            <constraint firstItem="pJK-hu-Mgi" firstAttribute="top" secondItem="eLv-ss-BCW" secondAttribute="bottom" constant="8" id="g4N-wM-aI6"/>
+                            <constraint firstItem="kgC-pL-3wb" firstAttribute="height" secondItem="eLv-ss-BCW" secondAttribute="height" id="ycb-ZF-BIg"/>
+                            <constraint firstItem="kgC-pL-3wb" firstAttribute="centerY" secondItem="eLv-ss-BCW" secondAttribute="centerY" id="zTr-4h-NlN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8Ue-aM-PI8"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="big-0S-F94"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="7to-SP-gUR"/>
+                                <include reference="big-0S-F94"/>
+                                <exclude reference="28v-H3-vxH"/>
+                                <exclude reference="g4N-wM-aI6"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="F9C-i5-n3N"/>
+                                <exclude reference="FNe-KK-1yN"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="callStateLabel" destination="uJM-dY-H8z" id="zka-vD-kyt"/>
+                        <outlet property="chooseAudioButton" destination="iez-iH-gC3" id="RJU-jj-Lbn"/>
+                        <outlet property="hangupButton" destination="l8m-A9-0Yu" id="63j-7R-CQh"/>
+                        <outlet property="holdButton" destination="13U-Dy-VMb" id="M6G-mt-9pa"/>
+                        <outlet property="localVideoStreamView" destination="sks-iw-Whd" id="pPl-ja-ILF"/>
+                        <outlet property="magneticView" destination="kgC-pL-3wb" id="RIP-jh-ttP"/>
+                        <outlet property="muteButton" destination="WyB-s6-R6j" id="NHW-qQ-csF"/>
+                        <outlet property="remoteVideoStreamView" destination="eLv-ss-BCW" id="3BN-Zu-NlL"/>
+                        <outlet property="videoButton" destination="MC2-LY-nFZ" id="JHy-wc-Gts"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="99I-u6-sMK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="ujG-aY-tlD">
+                    <connections>
+                        <action selector="localVideoStreamDragged:" destination="392-fu-gER" id="w8F-3d-i5k"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="gQZ-p7-ZkJ">
+                    <connections>
+                        <action selector="localVideoStreamTapped:" destination="392-fu-gER" id="WuO-Jc-nFe"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1702.4630541871923" y="-716"/>
+        </scene>
+    </scenes>
+</document>
