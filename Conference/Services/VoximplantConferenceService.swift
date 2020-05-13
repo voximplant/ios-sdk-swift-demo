@@ -63,8 +63,8 @@ final class VoximplantConferenceService:
         
         try callOrThrow().start()
         try callOrThrow().add(self)
-        if let availableAudioDevices = VIAudioManager.shared()?.availableAudioDevices() {
-            selectAudioDevice(from: availableAudioDevices)
+        if headphonesNotConnected {
+            selectIfAvailable(.speaker, from: VIAudioManager.shared().availableAudioDevices())
         }
     }
     
@@ -154,29 +154,24 @@ final class VoximplantConferenceService:
     }
     
     // MARK: - VIAudioManagerDelegate -
-    func audioDeviceChanged(_ audioDevice: VIAudioDevice!) { }
+    func audioDeviceChanged(_ audioDevice: VIAudioDevice) { }
     
-    func audioDeviceUnavailable(_ audioDevice: VIAudioDevice!) { }
+    func audioDeviceUnavailable(_ audioDevice: VIAudioDevice) { }
     
-    func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>!) {
-        selectAudioDevice(from: availableAudioDevices)
+    func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>) {
+        if headphonesNotConnected {
+            selectIfAvailable(.speaker, from: availableAudioDevices)
+        }
     }
     
     // MARK: - Private -
-    private func selectAudioDevice(from availableAudioDevices: Set<VIAudioDevice>) {
-        if selectIfAvailable(.bluetooth, from: availableAudioDevices) { return }
-        if selectIfAvailable(.wired, from: availableAudioDevices) { return }
-        selectIfAvailable(.speaker, from: availableAudioDevices)
+    private var headphonesNotConnected: Bool {
+        !VIAudioManager.shared().availableAudioDevices().contains { $0.type == .wired || $0.type == .bluetooth }
     }
     
-    @discardableResult private func selectIfAvailable(
-        _ audioDeviceType: VIAudioDeviceType,
-        from audioDevices: Set<VIAudioDevice>
-    ) -> Bool {
+    private func selectIfAvailable(_ audioDeviceType: VIAudioDeviceType, from audioDevices: Set<VIAudioDevice>) {
         if let device = audioDevices.first(where: { $0.type == audioDeviceType }) {
-            VIAudioManager.shared()?.select(device)
-            return true
+            VIAudioManager.shared().select(device)
         }
-        return false
     }
 }

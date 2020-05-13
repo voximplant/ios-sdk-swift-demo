@@ -22,7 +22,7 @@ class CustomCamera: NSObject {
 
 
 extension CustomCamera: VICustomVideoSourceDelegate {
-    func start(with format: VIVideoFormat!) {
+    func start(with format: VIVideoFormat) {
         Log.i("CustomCameraSource:Start with format: \(String(describing: format))")
         let timePerFrame = Double(format.interval) / Double(NSEC_PER_SEC)
 

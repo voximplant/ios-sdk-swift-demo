@@ -16,8 +16,11 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
     var possibleToLogin: Bool { Tokens.areExist && !Tokens.areExpired }
     var pushToken: Data? {
         willSet {
-            if pushToken != nil && newValue == nil {
-                client.unregisterPushNotificationsToken(pushToken, imToken: nil)
+            guard let pushToken = pushToken, newValue == nil else { return }
+            client.unregisterVoIPPushNotificationsToken(pushToken) { error in
+                if let error = error {
+                    print("unregister VoIP token failed with error \(error.localizedDescription)")
+                }
             }
         }
     }
@@ -47,7 +50,11 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
                     self?.loggedInUser = user
                     self?.loggedInUserDisplayName = displayUserName
                     if let pushToken = self?.pushToken {
-                        self?.client.registerPushNotificationsToken(pushToken, imToken: nil)
+                        self?.client.registerVoIPPushNotificationsToken(pushToken) { error in
+                            if let error = error {
+                                print("register VoIP token failed with error \(error.localizedDescription)")
+                            }
+                        }
                     }
                     completion(.success(displayUserName))
                 },
@@ -95,7 +102,11 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
                             self?.loggedInUser = user
                             self?.loggedInUserDisplayName = displayUserName
                             if let pushToken = self?.pushToken {
-                                self?.client.registerPushNotificationsToken(pushToken, imToken: nil)
+                                self?.client.registerVoIPPushNotificationsToken(pushToken) { error in
+                                    if let error = error {
+                                        print("register VoIP token failed with error \(error.localizedDescription)")
+                                    }
+                                }
                             }
                             completion(.success(displayUserName))
                         },
@@ -153,9 +164,15 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
     }
     
     func logout(_ completion: @escaping () -> Void) {
-        client.unregisterPushNotificationsToken(pushToken, imToken: nil)
-        Tokens.clear()
-        disconnect(completion)
+        if let pushToken = pushToken {
+            client.unregisterVoIPPushNotificationsToken(pushToken) { error in
+                if let error = error {
+                    print("unregister VoIP token failed with error \(error.localizedDescription)")
+                }
+                Tokens.clear()
+                self.disconnect(completion)
+            }
+        }
     }
     
     // MARK: - VIClientSessionDelegate -

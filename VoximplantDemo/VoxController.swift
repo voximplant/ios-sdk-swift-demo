@@ -62,7 +62,20 @@ class VoxController: NSObject {
             Settings.shared.refreshToken = authParams.refreshToken
             Settings.shared.accessToken = authParams.accessToken
 
-            self.client.registerPushNotificationsToken(self.voipPushToken, imToken: self.imPushToken)
+            if let VoIPToken = self.voipPushToken {
+                self.client.registerVoIPPushNotificationsToken(VoIPToken) { error in
+                    if let error = error {
+                        print("register VoIP token failed with error \(error.localizedDescription)")
+                    }
+                }
+            }
+            if let IMToken = self.imPushToken {
+                self.client.registerIMPushNotificationsToken(IMToken) { error in
+                    if let error = error {
+                        print("register IM token failed with error \(error.localizedDescription)")
+                    }
+                }
+            }
 
             self.loginSuccess?(displayName, authParams)
 
@@ -273,7 +286,21 @@ class VoxController: NSObject {
 
     func logout() {
         Log.i("Logging out")
-        self.client.unregisterPushNotificationsToken(self.voipPushToken, imToken: self.imPushToken)
+        
+        if let VoIPToken = self.voipPushToken {
+            client.unregisterVoIPPushNotificationsToken(VoIPToken) { error in
+                if let error = error {
+                    print("unregister VoIP token failed with error \(error.localizedDescription)")
+                }
+            }
+        }
+        if let IMToken = self.imPushToken {
+            client.unregisterIMPushNotificationsToken(IMToken) { error in
+                if let error = error {
+                    print("unregister IM token failed with error \(error.localizedDescription)")
+                }
+            }
+        }
 
         self.client.disconnect()
 

@@ -37,7 +37,7 @@ final class CallViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        VIAudioManager.shared()?.delegate = self
+        VIAudioManager.shared().delegate = self
     }
         
     override func viewWillAppear(_ animated: Bool) {
@@ -167,8 +167,7 @@ extension CallViewController {
 
 // MARK: VIAudioManagerDelegate
 extension CallViewController {
-    
-    func audioDeviceChanged(_ audioDevice: VIAudioDevice!) {
+    func audioDeviceChanged(_ audioDevice: VIAudioDevice) {
         Log.v("audioDeviceBecomeDefault: \(String(describing: audioDevice))")
         
         switch audioDevice.type {
@@ -187,11 +186,11 @@ extension CallViewController {
         }
     }
     
-    func audioDeviceUnavailable(_ audioDevice: VIAudioDevice!) {
+    func audioDeviceUnavailable(_ audioDevice: VIAudioDevice) {
         Log.v("audioDeviceUnavailable: \(String(describing: audioDevice))")
     }
     
-    func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>!) {
+    func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>) {
         Log.v("audioDevicesListChanged: \(String(describing: availableAudioDevices))")
     }
     

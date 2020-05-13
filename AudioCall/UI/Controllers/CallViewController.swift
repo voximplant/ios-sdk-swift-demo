@@ -171,7 +171,7 @@ extension CallViewController {
     }
     
     // MARK: - VIAudioManagerDelegate -
-    func audioDeviceChanged(_ audioDevice: VIAudioDevice!) {
+    func audioDeviceChanged(_ audioDevice: VIAudioDevice) {
         Log.v("audioDeviceBecomeDefault: \(String(describing: audioDevice))")
         switch audioDevice.type {
         case .none:
@@ -189,11 +189,11 @@ extension CallViewController {
         }
     }
     
-    func audioDeviceUnavailable(_ audioDevice: VIAudioDevice!) {
+    func audioDeviceUnavailable(_ audioDevice: VIAudioDevice) {
         Log.v("audioDeviceUnavailable: \(String(describing: audioDevice))")
     }
     
-    func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>!) {
+    func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>) {
         Log.v("audioDevicesListChanged: \(String(describing: availableAudioDevices))")
     }
 

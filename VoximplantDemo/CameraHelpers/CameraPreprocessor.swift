@@ -10,7 +10,7 @@ class CameraPreprocessor: NSObject {
 
     override init() {
         super.init()
-        cameraManager?.videoPreprocessDelegate = self
+        cameraManager.videoPreprocessDelegate = self
     }
 
 }
@@ -18,12 +18,8 @@ class CameraPreprocessor: NSObject {
 extension CameraPreprocessor: VIVideoPreprocessDelegate {
 
 
-    func preprocessVideoFrame(_ pixelBuffer: CVPixelBuffer!, rotation: VIRotation) {
+    func preprocessVideoFrame(_ pixelBuffer: CVPixelBuffer, rotation: VIRotation) {
         //Log.info("onPreprocessCameraCapturedVideo: rotation=\(rotation)")
-        if (pixelBuffer == nil) {
-            return
-        }
-
         var _ = CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
 
         let baseAddress = CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 1)

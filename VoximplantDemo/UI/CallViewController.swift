@@ -77,8 +77,8 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
                 self.remoteContainer?.addParticipant(endpoint)
             }
 
-            if let local = self.voximplant.localStream {
-                let viewRenderer = VIVideoRendererView(containerView: self.localContainer)
+            if let local = self.voximplant.localStream, let container = self.localContainer {
+                let viewRenderer = VIVideoRendererView(containerView: container)
                 local.addRenderer(viewRenderer)
             }
         } else {
@@ -119,7 +119,7 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
         let devices = VIAudioManager.shared().availableAudioDevices();
 
         let alertSheet = UIAlertController(title: "Device", message: nil, preferredStyle: .actionSheet);
-        for device in devices! {
+        for device in devices {
             alertSheet.addAction(UIAlertAction(title: String(describing: device), style: device.type == VIAudioManager.shared().currentAudioDevice().type ? .destructive : .default) { action in
                 VIAudioManager.shared().select(device);
             })
@@ -179,8 +179,10 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
     }
 
     func call(_ call: VICall, didAddLocalVideoStream videoStream: VIVideoStream) {
-        let viewRenderer = VIVideoRendererView(containerView: self.localContainer)
-        videoStream.addRenderer(viewRenderer)
+        if let container = self.localContainer {
+            let viewRenderer = VIVideoRendererView(containerView: container)
+            videoStream.addRenderer(viewRenderer)
+        }
     }
 
     func endpoint(_ endpoint: VIEndpoint, didAddRemoteVideoStream videoStream: VIVideoStream) {
@@ -195,15 +197,15 @@ class CallViewController: BaseViewController, VICallDelegate, VIEndpointDelegate
 }
 
 extension CallViewController: VIAudioManagerDelegate {
-    func audioDeviceChanged(_ audioDevice: VIAudioDevice!) {
+    func audioDeviceChanged(_ audioDevice: VIAudioDevice) {
         Log.v("audioDeviceBecomeDefault: \(String(describing: audioDevice))")
     }
 
-    func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>!) {
+    func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>) {
         Log.v("audioDevicesListChanged: \(String(describing: availableAudioDevices))")
     }
 
-    func audioDeviceUnavailable(_ audioDevice: VIAudioDevice!) {
+    func audioDeviceUnavailable(_ audioDevice: VIAudioDevice) {
         Log.v("audioDeviceUnavailable: \(String(describing: audioDevice))")
     }
 }

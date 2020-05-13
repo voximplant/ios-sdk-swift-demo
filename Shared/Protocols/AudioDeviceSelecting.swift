@@ -8,11 +8,11 @@ protocol AudioDeviceSelecting where Self: UIViewController { }
 
 extension AudioDeviceSelecting {
     func showAudioDevicesActionSheet(sourceView: UIView) {
-        guard let audioDevices = VIAudioManager.shared()?.availableAudioDevices() else { return }
-        let currentDevice = VIAudioManager.shared()?.currentAudioDevice()
+        let audioDevices = VIAudioManager.shared().availableAudioDevices()
+        let currentDevice = VIAudioManager.shared().currentAudioDevice()
         AlertHelper.showActionSheet(
             actions: audioDevices.map { device in
-                UIAlertAction(title: string(from: device, isCurrent: currentDevice?.type == device.type), style: .default) { _ in
+                UIAlertAction(title: string(from: device, isCurrent: currentDevice.type == device.type), style: .default) { _ in
                     VIAudioManager.shared().select(device)
                 }
             },
