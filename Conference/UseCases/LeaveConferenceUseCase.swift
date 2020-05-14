@@ -21,6 +21,8 @@ final class LeaveConferenceUseCase: LeaveConference {
         do {
             try conferenceService.leaveConference()
             authService.logout { completion(nil) }
+        } catch ConferenceError.noActiveConferenceFound {
+            authService.logout { completion(nil) }
         } catch (let error) {
             completion(error)
         }

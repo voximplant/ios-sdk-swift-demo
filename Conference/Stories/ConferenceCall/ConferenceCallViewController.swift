@@ -56,6 +56,11 @@ final class ConferenceCallViewController: UIViewController, AudioDeviceSelecting
     
     private func disconnectedHandler(error: Error?) {
         if (self.leftConference) { return }
+        leaveConference.execute { error in
+            if let error = error {
+                print("Got an error while leaving conference - \(error.localizedDescription)")
+            }
+        }
         AlertHelper.showAlert(
             title: "Disconnected",
             message: "You've been disconnected \(error != nil ? error!.localizedDescription : "")",
