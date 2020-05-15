@@ -37,7 +37,7 @@ final class ConferenceView: UIView {
     private var didDraw: Bool = false
     
     func addParticipant(withID id: String, displayName: String?) {
-        guard participantViews.count < 25 else {
+        guard participantViews.count <= 25 else {
             print("Limit!")
             return
         }
@@ -62,7 +62,13 @@ final class ConferenceView: UIView {
         }
     }
     
-    func prepareVideoRendererForStream(participantID: String, completion: (VIVideoRendererView) -> Void) {
+    func prepareVideoRendererForStream(participantID: String, completion: (VIVideoRendererView?) -> Void) {
+        guard participantViews.count <= 25 else {
+            print("Limit!")
+            completion(nil)
+            return
+        }
+        
         let participant = getView(for: participantID)
         participant.streamEnabled = true
         

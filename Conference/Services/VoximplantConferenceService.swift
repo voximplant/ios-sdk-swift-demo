@@ -7,7 +7,7 @@ import VoxImplantSDK
 typealias UserAdded = (String, String?) -> Void
 typealias UserUpdated = (String, String?) -> Void
 typealias UserRemoved = (String) -> Void
-typealias VideoStreamAdded = (String, (VIVideoRendererView) -> Void) -> Void
+typealias VideoStreamAdded = (String, (VIVideoRendererView?) -> Void) -> Void
 typealias VideoStreamRemoved = (String) -> Void
 
 protocol ConferenceService {
@@ -113,7 +113,9 @@ final class VoximplantConferenceService:
     
     func call(_ call: VICall, didAddLocalVideoStream videoStream: VIVideoStream) {
         localVideoStreamAddedHandler?(myId) { renderer in
-            videoStream.addRenderer(renderer)
+            if let renderer = renderer {
+                videoStream.addRenderer(renderer)
+            }
         }
     }
     
@@ -144,7 +146,9 @@ final class VoximplantConferenceService:
     
     func endpoint(_ endpoint: VIEndpoint, didAddRemoteVideoStream videoStream: VIVideoStream) {
         remoteVideoStreamAddedHandler?(endpoint.endpointId) { renderer in
-            videoStream.addRenderer(renderer)
+            if let renderer = renderer {
+                videoStream.addRenderer(renderer)
+            }
         }
     }
     
