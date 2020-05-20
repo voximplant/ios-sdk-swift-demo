@@ -26,7 +26,7 @@ This application is able to:
 3. Press ‘Join With Video’
 
 ## Useful links
-1. [Quickstart](https://voximplant.com/docs/references/articles/quickstart)
+1. [Getting started](https://voximplant.com/docs/introduction)
 2. [Voximplant iOS SDK reference](https://voximplant.com/docs/references/iossdk)
-3. [Using Voximplant iOS SDK](https://voximplant.com/docs/references/iossdk/using-ios-sdk)
-4. [HowTo’s](https://voximplant.com/blog/howto)
+3. [Installing the Voximplant iOS SDK](https://voximplant.com/docs/introduction/integration/adding_sdks/installing/ios_sdk)
+4. [HowTo’s](https://voximplant.com/docs/howtos)
