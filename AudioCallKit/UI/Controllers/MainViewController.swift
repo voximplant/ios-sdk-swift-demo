@@ -32,8 +32,7 @@ final class MainViewController:
                 }
                  let startCallAction = CXStartCallAction(call: UUID(), handle: CXHandle(type: .generic, value: username ?? ""))
                  self?.callController.requestTransaction(with: startCallAction) { [weak self] error in
-                    guard let self = self else { return }
-                     if let error = error {
+                     if let error = error, let self = self {
                          AlertHelper.showError(message: error.localizedDescription, on: self)
                          Log.e(error.localizedDescription)
                      }

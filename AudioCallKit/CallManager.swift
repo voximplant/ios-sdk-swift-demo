@@ -163,13 +163,12 @@ final class CallManager:
             return false
         } else {
             if authService.state == .disconnected {
-                authService.loginWithAccessToken()
-                { [weak self] (result: Result<String, Error>) in
-                    guard let sself = self else { return }
-                    if case .success(_) = result {
-                        sself.callProvider.commitTransactions(sself)
-                    } else if let managedCallUUID = sself.managedCall?.uuid {
-                        sself.reportCallEnded(managedCallUUID, .failed)
+                authService.loginWithAccessToken() { [weak self] error in
+                    guard let self = self else { return }
+                    if error == nil {
+                        self.callProvider.commitTransactions(self)
+                    } else if let managedCallUUID = self.managedCall?.uuid {
+                        self.reportCallEnded(managedCallUUID, .failed)
                     }
                 }
             }
@@ -327,7 +326,6 @@ final class CallManager:
     }
 
     // MARK: PushCallNotifierDelegate
-    
     func didReceiveIncomingCall(_ newUUID: UUID, from fullUsername: String, withDisplayName userDisplayName: String, withPushCompletion pushProcessingCompletion: (()->Void)?) {
         if hasManagedCall {
             // another call has been reported, skipped a new one:
@@ -338,12 +336,9 @@ final class CallManager:
             Log.i("CallManager push rcv: created new incoming call \(newUUID)")
         }
         
-        authService.loginWithAccessToken()
-        { [reportedCallUUID = newUUID, weak self]
-          (result: Result<String, Error>) in
-            guard let sself = self else { return }
-            if case .failure(_) = result {
-                sself.reportCallEnded(reportedCallUUID, .failed)
+        authService.loginWithAccessToken() { [reportedCallUUID = newUUID, weak self] error in
+            if error != nil {
+                self?.reportCallEnded(reportedCallUUID, .failed)
             }
             // in case of success we will receive VICall instance via VICallManagerDelegate
         }

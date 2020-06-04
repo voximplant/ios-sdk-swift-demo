@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -57,14 +57,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLv-ss-BCW" customClass="CallVideoView" customModule="VideoCallKit" customModuleProvider="target">
-                                <rect key="frame" x="4" y="48" width="367" height="644"/>
+                                <rect key="frame" x="4" y="48" width="367" height="618"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgC-pL-3wb" customClass="EdgeMagneticView" customModule="VideoCallKit" customModuleProvider="target">
-                                <rect key="frame" x="4" y="48" width="367" height="644"/>
+                                <rect key="frame" x="4" y="48" width="367" height="618"/>
                                 <subviews>
                                     <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="sks-iw-Whd" customClass="CallVideoView" customModule="VideoCallKit" customModuleProvider="target">
-                                        <rect key="frame" x="119.33333333333333" y="225.33333333333331" width="128.33333333333337" height="193.33333333333331"/>
+                                        <rect key="frame" x="119.33333333333333" y="216.33333333333331" width="128.33333333333337" height="185.33333333333331"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -99,7 +99,7 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJM-dY-H8z">
-                                <rect key="frame" x="187.66666666666666" y="682" width="0.0" height="0.0"/>
+                                <rect key="frame" x="187.66666666666666" y="692" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -200,8 +200,8 @@
                             <constraint firstItem="pJK-hu-Mgi" firstAttribute="leading" secondItem="8Ue-aM-PI8" secondAttribute="leading" constant="16" id="Z00-Mr-uBb"/>
                             <constraint firstItem="8Ue-aM-PI8" firstAttribute="bottom" secondItem="eLv-ss-BCW" secondAttribute="bottom" constant="4" id="big-0S-F94"/>
                             <constraint firstItem="kgC-pL-3wb" firstAttribute="width" secondItem="eLv-ss-BCW" secondAttribute="width" id="cy6-eQ-87f"/>
-                            <constraint firstItem="uJM-dY-H8z" firstAttribute="bottom" secondItem="eLv-ss-BCW" secondAttribute="bottom" constant="-10" id="fE6-Gm-N50"/>
-                            <constraint firstItem="pJK-hu-Mgi" firstAttribute="top" secondItem="eLv-ss-BCW" secondAttribute="bottom" constant="8" id="g4N-wM-aI6"/>
+                            <constraint firstItem="pJK-hu-Mgi" firstAttribute="top" secondItem="uJM-dY-H8z" secondAttribute="bottom" constant="8" id="fE6-Gm-N50"/>
+                            <constraint firstItem="pJK-hu-Mgi" firstAttribute="top" secondItem="eLv-ss-BCW" secondAttribute="bottom" constant="34" id="g4N-wM-aI6"/>
                             <constraint firstItem="kgC-pL-3wb" firstAttribute="height" secondItem="eLv-ss-BCW" secondAttribute="height" id="ycb-ZF-BIg"/>
                             <constraint firstItem="kgC-pL-3wb" firstAttribute="centerY" secondItem="eLv-ss-BCW" secondAttribute="centerY" id="zTr-4h-NlN"/>
                         </constraints>

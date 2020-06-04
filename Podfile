@@ -10,7 +10,7 @@ end
 
 def voximplant
    pod 'CocoaLumberjack/Swift', '~> 3.5'
-   pod 'VoxImplantSDK/CocoaLumberjackLogger', '2.31.0'
+   pod 'VoxImplantSDK/CocoaLumberjackLogger', '2.32.1'
 end
 
 target 'Voximplant Demo' do
@@ -34,6 +34,11 @@ target 'Conference' do
 end
 
 target 'VideoCallKit' do
+  common_pods
+  voximplant
+end
+
+target 'ScreenSharing' do
   common_pods
   voximplant
 end

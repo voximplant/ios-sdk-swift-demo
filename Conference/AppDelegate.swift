@@ -5,8 +5,15 @@
 import UIKit
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate, Loggable {
     var window: UIWindow?
+    var appName: String { "Conference" }
+    
+    override init() {
+        super.init()
+        
+        configureDefaultLogging()
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.isIdleTimerDisabled = true

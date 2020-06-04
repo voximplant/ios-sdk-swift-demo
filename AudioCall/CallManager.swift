@@ -59,33 +59,28 @@ final class CallManager: NSObject, VIClientCallManagerDelegate, VICallDelegate {
     }
     
     func startOutgoingCall(_ contact: String, _ completion: @escaping (Result<(), Error>) -> Void) {
-        authService.loginWithAccessToken
-            { [weak self] (result: Result<String, Error>) in
-                switch result {
-                case let .failure(error):
-                    Log.e("Can't start outgoing call: \(error.localizedDescription)")
-                    completion(.failure(error))
-                case .success(_):
-                    if let sself = self,
-                        let client = self?.client,
-                        sself.hasNoManagedCalls
-                    {
-                        let settings = VICallSettings()
-                        settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: false, sendVideo: false)
-                        
-                        // could be nil only if client is not logged in:
-                        if let call: VICall = client.call(contact, settings: settings) {
-                            call.add(sself)
-                            sself.managedCall = call
-                            call.start()
-                            completion(.success(()))
-                        } else {
-                            completion(.failure(CallError.internalError))
-                        }
-                    } else {
-                        completion(.failure(CallError.alreadyManagingACall))
-                    }
+        authService.loginWithAccessToken { [weak self] error in
+            if let error = error {
+                Log.e("Can't start outgoing call: \(error.localizedDescription)")
+                completion(.failure(error))
+                
+            } else if let self = self, self.hasNoManagedCalls {
+                let settings = VICallSettings()
+                settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: false, sendVideo: false)
+                
+                // could be nil only if client is not logged in:
+                if let call: VICall = self.client.call(contact, settings: settings) {
+                    call.add(self)
+                    self.managedCall = call
+                    call.start()
+                    completion(.success(()))
+                } else {
+                    completion(.failure(CallError.internalError))
                 }
+                
+            } else {
+                completion(.failure(CallError.alreadyManagingACall))
+            }
         }
     }
     

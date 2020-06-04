@@ -12,6 +12,7 @@ final class MainViewController:
     ErrorHandling
 {
     @IBOutlet private var mainView: DefaultMainView!
+    
     var callController: CXCallController! // DI
     var authService: AuthService! // DI
     
@@ -31,10 +32,9 @@ final class MainViewController:
                 }
                 let startCallAction = CXStartCallAction(call: UUID(), handle: CXHandle(type: .generic, value: username ?? ""))
                 self?.callController.requestTransaction(with: startCallAction) { [weak self] error in
-                    guard let self = self else { return }
-                    if let error = error {
-                        AlertHelper.showError(message: error.localizedDescription, on: self)
+                    if let error = error, let self = self {
                         Log.e(error.localizedDescription)
+                        AlertHelper.showError(message: error.localizedDescription, on: self)
                     }
                 }
             }

@@ -14,20 +14,15 @@ fileprivate let callManager: CallManager = CallManager(client, authService)
 let storyAssembler: StoryAssembler = StoryAssembler(client, authService, callManager, callController)
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate, Loggable {
     var window: UIWindow?
+    var appName: String { "VideoCallKit" }
     
     override init() {
         super.init()
+        
         callController.callObserver.setDelegate(self, queue: .main)
-
-        // Configure logs:
-        Log.enable(level: .debug)
-        // VIClient.writeLogsToFile()
-        VIClient.setLogLevel(.info)
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            Log.i("VideoCallKit Swift Demo v\(version) started", context: self)
-        }
+        configureDefaultLogging()
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

@@ -1,10 +1,9 @@
 # Voximplant Swift Demos
 
-## [Audio call demo](AudioCall)
+## [AudioCall demo](AudioCall)
 The demo demonstrates basic audio call functionality of the Voximplant iOS SDK.
 
-
-## [Audio CallKit demo](AudioCallKit)
+## [AudioCallKit demo](AudioCallKit)
 The demo demonstrates [CallKit](https://developer.apple.com/documentation/callkit) integration with basic audio call functionality of the Voximplant iOS SDK . 
 > Apple has changed the workflow for VoIP push notifications handling in iOS 13.
 > AudioCallKit demo application is implemented to meet new requirements. Please use it to test push notification on iOS 13.
@@ -12,15 +11,16 @@ The demo demonstrates [CallKit](https://developer.apple.com/documentation/callki
 ## [Conference demo](Conference)
 The demo demonstrates conference call functionality of the Voximplant iOS SDK.
 
-
-## [Video CallKit demo](VideoCallKit)
+## [VideoCallKit demo](VideoCallKit)
 The demo demonstrates [CallKit](https://developer.apple.com/documentation/callkit) integration with basic video call functionality of the Voximplant iOS SDK . 
 > Apple has changed the workflow for VoIP push notifications handling in iOS 13.
 > VideoCallKit demo application is implemented to meet new requirements. Please use it to test push notification on iOS 13.
 
+## [ScreenSharing demo](ScreenSharing)
+The demo demonstrates basic in-app screen sharing functionality of the Voximplant iOS SDK.
+
 ## [Voximplant demo](VoximplantDemo)
 The demo demonstrates a sample implementation of the Voximplant client application, video call functionality, custom camera, and camera preprocessor implementation.
-
 
 --------------------------------------------------------------------------------
 In these demos sound resources are used whose authors are:

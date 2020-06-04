@@ -34,9 +34,11 @@ final class MainViewController:
                 self?.callManager.startOutgoingCall(username ?? "") { [weak self] result in
                     if case let .failure(error) = result {
                         AlertHelper.showError(message: error.localizedDescription, on: self)
-                    } else if let self = self { // success
-                        self.view.endEditing(true)
-                        self.performSegue(withIdentifier: CallViewController.self, sender: self)
+                    } else if let self = self {
+                        DispatchQueue.main.async {
+                            self.view.endEditing(true)
+                            self.performSegue(withIdentifier: CallViewController.self, sender: self)
+                        }
                     }
                 }
             }
@@ -56,19 +58,18 @@ final class MainViewController:
             self.performSegueIfPossible(withIdentifier: IncomingCallViewController.self, sender: self)
         }
     }
-
+    
     func reconnect() {
         Log.d("Reconnecting")
         showLoading(title: "Reconnecting", details: "Please wait...")
-        authService.loginWithAccessToken { [weak self] result in
+        authService.loginWithAccessToken { [weak self] error in
             guard let self = self else { return }
             self.hideProgress()
             
-            switch(result) {
-            case let .failure(error):
+            if let error = error {
                 AlertHelper.showError(message: error.localizedDescription, on: self)
-            case let .success(userDisplayName):
-                self.mainView.setDisplayName(text: "Logged in as \(userDisplayName)")
+            } else if let displayName = self.authService.loggedInUserDisplayName {
+                self.mainView.setDisplayName(text: "Logged in as \(displayName)")
             }
         }
     }

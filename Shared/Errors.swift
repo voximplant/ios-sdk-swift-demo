@@ -20,11 +20,14 @@ enum PermissionError: Error {
 
 enum AuthError: Error {
     case loginDataNotFound
+    case notLoggedIn
     
     var localizedDescription: String {
         switch self {
         case .loginDataNotFound:
             return "Login data was not found, try to login with password"
+        case .notLoggedIn:
+            return "User is not logged in"
         }
     }
 }
@@ -32,6 +35,7 @@ enum AuthError: Error {
 enum CallError: Error {
     case internalError
     case alreadyManagingACall
+    case hasNoActiveCall
     
     var localizedDescription: String {
         switch self {
@@ -39,6 +43,8 @@ enum CallError: Error {
            return "There was an internal error starting the call. Try again"
         case .alreadyManagingACall:
            return "The app already managing a call, only a single call at a time allowed"
+        case .hasNoActiveCall:
+            return "Active call not found, action cancelled"
         }
     }
 }

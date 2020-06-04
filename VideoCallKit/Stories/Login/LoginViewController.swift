@@ -16,39 +16,33 @@ final class LoginViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         loginView.setTitle(text: "Video call demo")
+        
+        let loginHandler: AuthService.LoginCompletion = { [weak self] error in
+            guard let self = self else { return }
+            self.hideProgress()
+            if let error = error {
+                AlertHelper.showError(message: error.localizedDescription, on: self)
+            } else {
+                self.present(storyAssembler.assembleMain(), animated: true)
+            }
+        }
+        
         loginView.loginTouchHandler = { [weak self] username, password in
-            Log.d("Logging in")
+            Log.d("Manually Logging in with password")
             self?.showLoading(title: "Connecting", details: "Please wait...")
-            self?.authService.login(user: username.appendingVoxDomain, password: password) {
-                [weak self] result in self?.handleLogin(result)
-            }
+            self?.authService.login(user: username.appendingVoxDomain, password: password, loginHandler)
         }
+        
         if authService.possibleToLogin {
-            Log.d("Logging in with token")
+            Log.d("Automatically Logging in with token")
             self.showLoading(title: "Connecting", details: "Please wait...")
-            self.authService.loginWithAccessToken { [weak self] result in
-                self?.handleLogin(result)
-            }
-        }
-    }
-
-    private func handleLogin(_ result: LoginResult) {
-        self.hideProgress()
-        switch(result) {
-        case let .failure(error):
-            AlertHelper.showError(message: error.localizedDescription, on: self)
-        case .success:
-            self.refreshUI()
-            self.present(storyAssembler.assembleMain(), animated: true)
+            self.authService.loginWithAccessToken(loginHandler)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshUI()
-    }
-    
-    private func refreshUI() {
+        
         loginView.username = authService.loggedInUser?.replacingOccurrences(of: ".voximplant.com", with: "")
         loginView.password = ""
     }

@@ -24,8 +24,7 @@ final class CallManager:
     // Voximplant SDK supports multiple calls at the same time, however
     // this demo app demonstrates only one managed call at the moment,
     // so it rejects new incoming call, if there is already a call.
-    private(set) var managedCall: CallWrapper?
-    {
+    private(set) var managedCall: CallWrapper? {
         willSet {
             managedCall?.delegate = nil // old managedCall
         }
@@ -185,12 +184,12 @@ final class CallManager:
         } else {
             if authService.state == .disconnected {
                 authService.loginWithAccessToken()
-                { [weak self] (result: Result<String, Error>) in
-                    guard let sself = self else { return }
-                    if case .success(_) = result {
-                        sself.callProvider.commitTransactions(sself)
-                    } else if let managedCallUUID = sself.managedCall?.uuid {
-                        sself.reportCallEnded(managedCallUUID, .failed)
+                { [weak self] error in
+                    guard let self = self else { return }
+                    if error == nil {
+                        self.callProvider.commitTransactions(self)
+                    } else if let managedCallUUID = self.managedCall?.uuid {
+                        self.reportCallEnded(managedCallUUID, .failed)
                     }
                 }
             }
@@ -386,11 +385,9 @@ final class CallManager:
         }
         
         authService.loginWithAccessToken()
-        { [reportedCallUUID = newUUID, weak self]
-          (result: Result<String, Error>) in
-            guard let sself = self else { return }
-            if case .failure(_) = result {
-                sself.reportCallEnded(reportedCallUUID, .failed)
+        { [reportedCallUUID = newUUID, weak self] error in
+            if error != nil {
+                self?.reportCallEnded(reportedCallUUID, .failed)
             }
             // in case of success we will receive VICall instance via VICallManagerDelegate
         }

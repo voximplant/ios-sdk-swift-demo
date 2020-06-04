@@ -61,7 +61,6 @@ class VoxController: NSObject {
             Settings.shared.accessExpire = Date(timeIntervalSinceNow: authParams.accessExpire)
             Settings.shared.refreshToken = authParams.refreshToken
             Settings.shared.accessToken = authParams.accessToken
-
             if let VoIPToken = self.voipPushToken {
                 self.client.registerVoIPPushNotificationsToken(VoIPToken) { error in
                     if let error = error {

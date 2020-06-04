@@ -10,23 +10,20 @@ let sharedAuthService: AuthService = AuthService(sharedClient)
 let sharedCallManager: CallManager = CallManager(sharedClient, sharedAuthService)
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate {
-    
+final class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate, Loggable {
+    var appName: String { "AudioCall" }
     var window: UIWindow?
     var callManager: CallManager = sharedCallManager
     
+    override init() {
+        super.init()
+        
+        configureDefaultLogging()
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        Log.enable(level: .debug)
-        VIClient.setLogLevel(.info)
-        
-        callManager.delegate = self
-        
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            Log.i("AudioCall Swift Demo v\(version) started", context: self)
-        }
         UIApplication.shared.isIdleTimerDisabled = true
-        
+        callManager.delegate = self
         
         return true
     }

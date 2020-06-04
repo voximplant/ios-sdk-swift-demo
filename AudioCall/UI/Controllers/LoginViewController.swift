@@ -3,10 +3,10 @@
  */
 
 import UIKit
-import VoxImplantSDK
 
 final class LoginViewController: UIViewController, LoadingShowable {
     @IBOutlet private var loginView: DefaultLoginView!
+    
     private let authService: AuthService = sharedAuthService
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
@@ -14,39 +14,33 @@ final class LoginViewController: UIViewController, LoadingShowable {
         super.viewDidLoad()
         
         loginView.setTitle(text: "Audio call demo")
-        loginView.loginTouchHandler = { [weak self] username, password in
-            Log.d("Logging in")
-            self?.showLoading(title: "Connecting", details: "Please wait...")
-            self?.authService.login(user: username.appendingVoxDomain, password: password) {
-                [weak self] result in self?.handleLogin(result)
+        
+        let loginHandler: AuthService.LoginCompletion = { [weak self] error in
+            guard let self = self else { return }
+            self.hideProgress()
+            if let error = error {
+                AlertHelper.showError(message: error.localizedDescription, on: self)
+            } else {
+                self.performSegue(withIdentifier: MainViewController.self, sender: self)
             }
         }
+        
+        loginView.loginTouchHandler = { [weak self] username, password in
+            Log.d("Manually Logging in with password")
+            self?.showLoading(title: "Connecting", details: "Please wait...")
+            self?.authService.login(user: username.appendingVoxDomain, password: password, loginHandler)
+        }
+        
         if authService.possibleToLogin {
-            Log.d("Logging in with token")
+            Log.d("Automatically Logging in with token")
             self.showLoading(title: "Connecting", details: "Please wait...")
-            self.authService.loginWithAccessToken { [weak self] result in
-                self?.handleLogin(result)
-            }
+            self.authService.loginWithAccessToken(loginHandler)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshUI()
-    }
-    
-    private func handleLogin(_ result: LoginResult) {
-        self.hideProgress()
-        switch(result) {
-        case let .failure(error):
-            AlertHelper.showError(message: error.localizedDescription, on: self)
-        case .success:
-            self.refreshUI()
-            self.performSegue(withIdentifier: MainViewController.self, sender: self)
-        }
-    }
-     
-    private func refreshUI() {
+        
         loginView.username = authService.loggedInUser?.replacingOccurrences(of: ".voximplant.com", with: "")
         loginView.password = ""
     }

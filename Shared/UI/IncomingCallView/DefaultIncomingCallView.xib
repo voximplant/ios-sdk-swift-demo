@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DefaultIncomingCallView" customModule="Voximplant_Demo" customModuleProvider="target">
+            <connections>
+                <outlet property="displayNameLabel" destination="zg4-QU-Vaw" id="qgZ-qS-jEz"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zg4-QU-Vaw">
+                    <rect key="frame" x="10" y="84" width="394" height="0.0"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="34"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incoming call" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1M-kF-5gn">
+                    <rect key="frame" x="10" y="92" width="394" height="21"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vfc-5B-dOP" userLabel="ContainerView">
+                    <rect key="frame" x="30" y="697" width="354" height="65"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDD-gc-h8U" customClass="PressableButton" customModule="Voximplant_Demo" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="BDD-gc-h8U" secondAttribute="height" multiplier="1:1" id="chv-Mv-Epf"/>
+                            </constraints>
+                            <state key="normal" image="declineCall"/>
+                            <state key="highlighted" image="declineCallP"/>
+                            <connections>
+                                <action selector="declineTouchUp:" destination="-1" eventType="touchUpInside" id="Z31-JW-gqD"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EW3-f2-muD" customClass="PressableButton" customModule="Voximplant_Demo" customModuleProvider="target">
+                            <rect key="frame" x="289" y="0.0" width="65" height="65"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="EW3-f2-muD" secondAttribute="height" multiplier="1:1" id="o7q-3K-7FF"/>
+                            </constraints>
+                            <state key="normal" image="acceptCall"/>
+                            <state key="highlighted" image="acceptCallP"/>
+                            <connections>
+                                <action selector="acceptTouchUp:" destination="-1" eventType="touchUpInside" id="dET-FF-F2X"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="3B6-tS-ccm"/>
+                        <constraint firstItem="EW3-f2-muD" firstAttribute="top" secondItem="Vfc-5B-dOP" secondAttribute="top" id="BDm-3s-KFE"/>
+                        <constraint firstItem="BDD-gc-h8U" firstAttribute="leading" secondItem="Vfc-5B-dOP" secondAttribute="leading" id="CDg-4K-M0g"/>
+                        <constraint firstAttribute="bottom" secondItem="BDD-gc-h8U" secondAttribute="bottom" id="OeO-nH-mDD"/>
+                        <constraint firstAttribute="trailing" secondItem="EW3-f2-muD" secondAttribute="trailing" id="uEr-r6-uru"/>
+                        <constraint firstItem="BDD-gc-h8U" firstAttribute="top" secondItem="Vfc-5B-dOP" secondAttribute="top" id="x43-cQ-xT0"/>
+                        <constraint firstAttribute="bottom" secondItem="EW3-f2-muD" secondAttribute="bottom" id="zhY-c3-sal"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Decline" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJz-Qp-iTu">
+                    <rect key="frame" x="30" y="772" width="65" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QK6-OE-Iq3">
+                    <rect key="frame" x="319" y="772" width="65" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Vfc-5B-dOP" secondAttribute="bottom" constant="100" id="38u-Vy-x84"/>
+                <constraint firstItem="QK6-OE-Iq3" firstAttribute="width" secondItem="EW3-f2-muD" secondAttribute="width" id="4rj-Nw-Xya"/>
+                <constraint firstItem="e1M-kF-5gn" firstAttribute="top" secondItem="zg4-QU-Vaw" secondAttribute="bottom" constant="8" id="6DJ-uf-8wH"/>
+                <constraint firstItem="zg4-QU-Vaw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="FJ7-81-P2g"/>
+                <constraint firstItem="QK6-OE-Iq3" firstAttribute="top" secondItem="Vfc-5B-dOP" secondAttribute="bottom" constant="10" id="GTj-wb-lCm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zg4-QU-Vaw" secondAttribute="trailing" constant="10" id="HEW-iy-Kws"/>
+                <constraint firstItem="QK6-OE-Iq3" firstAttribute="centerX" secondItem="EW3-f2-muD" secondAttribute="centerX" id="KD0-IY-DhP"/>
+                <constraint firstItem="PJz-Qp-iTu" firstAttribute="width" secondItem="BDD-gc-h8U" secondAttribute="width" id="NXl-Qp-Buv"/>
+                <constraint firstItem="e1M-kF-5gn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="QmX-ab-jtO"/>
+                <constraint firstItem="PJz-Qp-iTu" firstAttribute="centerX" secondItem="BDD-gc-h8U" secondAttribute="centerX" id="VCC-JW-Xg9"/>
+                <constraint firstItem="zg4-QU-Vaw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="bRx-py-4DP"/>
+                <constraint firstAttribute="trailing" secondItem="e1M-kF-5gn" secondAttribute="trailing" constant="10" id="ify-eN-lXe"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vfc-5B-dOP" secondAttribute="trailing" constant="30" id="m8b-WA-UuC"/>
+                <constraint firstItem="Vfc-5B-dOP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="okh-zE-Isf"/>
+                <constraint firstItem="PJz-Qp-iTu" firstAttribute="top" secondItem="Vfc-5B-dOP" secondAttribute="bottom" constant="10" id="ttc-zu-zRn"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="139" y="149"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="acceptCall" width="145" height="145"/>
+        <image name="acceptCallP" width="145" height="145"/>
+        <image name="declineCall" width="145" height="145"/>
+        <image name="declineCallP" width="145" height="145"/>
+    </resources>
+</document>

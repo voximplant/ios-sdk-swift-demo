@@ -2,7 +2,7 @@
 *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
 */
 
-import VoxImplant
+import VoxImplantSDK
 
 protocol AuthService {
     func login(with user: String, and password: String, completion: @escaping (Error?) -> Void)

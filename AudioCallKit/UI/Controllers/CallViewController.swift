@@ -167,6 +167,7 @@ extension CallViewController {
 
 // MARK: VIAudioManagerDelegate
 extension CallViewController {
+    
     func audioDeviceChanged(_ audioDevice: VIAudioDevice) {
         Log.v("audioDeviceBecomeDefault: \(String(describing: audioDevice))")
         
