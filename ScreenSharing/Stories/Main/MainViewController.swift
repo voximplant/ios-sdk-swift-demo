@@ -35,10 +35,8 @@ final class MainViewController:
                     guard let self = self else { return }
                     do {
                         try self.callManager.makeOutgoingCall(to: username ?? "")
-                        DispatchQueue.main.async {
-                            self.view.endEditing(true)
-                            self.present(self.storyAssembler.call, animated: true)
-                        }
+                        self.view.endEditing(true)
+                        self.present(self.storyAssembler.call, animated: true)
                     } catch (let error) {
                         Log.e(error.localizedDescription)
                         AlertHelper.showError(message: error.localizedDescription, on: self)
@@ -68,10 +66,8 @@ final class MainViewController:
         callManager.didReceiveIncomingCall = { [weak self] in
             guard let self = self else { return }
             
-            DispatchQueue.main.async {
-                self.view.endEditing(true)
-                self.present(self.storyAssembler.incomingCall, animated: true)
-            }
+            self.view.endEditing(true)
+            self.present(self.storyAssembler.incomingCall, animated: true)
         }
     }
     

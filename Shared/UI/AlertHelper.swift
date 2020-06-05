@@ -66,11 +66,10 @@ final class AlertHelper {
     }
     
     static func showErrorWithSettingsAction(
-        title: String = "Something went wrong",
         message: String,
         on viewController: UIViewController? = nil
     ) {
-        showError(message: title, action: accessSettingsAction, on: viewController)
+        showError(message: message, action: accessSettingsAction, on: viewController)
     }
     
     static func showAlert(

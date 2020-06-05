@@ -7,12 +7,13 @@ import AVFoundation
 final class PermissionsHelper {
     static func requestRecordPermissions(
         includingVideo video: Bool,
+        accessRequestCompletionQueue: DispatchQueue = .main,
         completion: @escaping (Error?) -> Void
     ) {
-        requestPermissions(for: .audio) { granted in
+        requestPermissions(for: .audio, queue: accessRequestCompletionQueue) { granted in
             if granted {
                 if video {
-                    requestPermissions(for: .video) { granted in
+                    requestPermissions(for: .video, queue: accessRequestCompletionQueue) { granted in
                         completion(granted ? nil : PermissionError.videoPermissionDenied)
                     }
                     return
@@ -24,10 +25,19 @@ final class PermissionsHelper {
         }
     }
     
-    static func requestPermissions(for mediaType: AVMediaType, completion: @escaping (Bool) -> Void) {
+    static func requestPermissions(
+        for mediaType: AVMediaType,
+        queue: DispatchQueue = .main,
+        completion: @escaping (Bool) -> Void
+    ) {
         switch AVCaptureDevice.authorizationStatus(for: mediaType) {
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: mediaType) { granted in
+                queue.async {
+                    completion(granted)
+                }
+            }
         case .authorized: completion(true)
-        case .notDetermined: AVCaptureDevice.requestAccess(for: mediaType, completionHandler: completion)
         case .denied: completion(false)
         case .restricted: completion(false)
         @unknown default: completion(false)
