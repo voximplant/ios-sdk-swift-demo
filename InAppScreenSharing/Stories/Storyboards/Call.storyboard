@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Incoming Call View Controller-->
+        <scene sceneID="oxB-LU-Cf7">
+            <objects>
+                <viewController storyboardIdentifier="IncomingCallViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="RuY-Sc-KXS" customClass="IncomingCallViewController" customModule="ScreenSharing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QoQ-eg-Bnt" customClass="DefaultIncomingCallView" customModule="ScreenSharing" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="wc8-n2-jyk"/>
+                    </view>
+                    <connections>
+                        <outlet property="incomingCallView" destination="QoQ-eg-Bnt" id="R9u-ge-w73"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5vv-Gj-vfs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122" y="125"/>
+        </scene>
+        <!--Call View Controller-->
+        <scene sceneID="bFT-7r-35w">
+            <objects>
+                <viewController storyboardIdentifier="CallViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="lXc-bE-qju" customClass="CallViewController" customModule="ScreenSharing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tjM-Yt-clB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mak-5n-S2N" customClass="CallVideoView" customModule="ScreenSharing" customModuleProvider="target">
+                                <rect key="frame" x="4" y="48" width="406" height="706"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qcw-wL-yiY" customClass="EdgeMagneticView" customModule="ScreenSharing" customModuleProvider="target">
+                                <rect key="frame" x="4" y="48" width="406" height="706"/>
+                                <subviews>
+                                    <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqR-oS-XSf" customClass="CallVideoView" customModule="ScreenSharing" customModuleProvider="target">
+                                        <rect key="frame" x="132" y="247" width="142" height="212"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="88j-0G-D7Z" appends="YES" id="hNB-Wi-yXi"/>
+                                            <outletCollection property="gestureRecognizers" destination="Ozt-Vk-v2l" appends="YES" id="kqa-jI-lMz"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="cqR-oS-XSf" firstAttribute="height" secondItem="Qcw-wL-yiY" secondAttribute="height" multiplier="0.4" id="Ijo-JB-WdH"/>
+                                    <constraint firstItem="cqR-oS-XSf" firstAttribute="centerY" secondItem="Qcw-wL-yiY" secondAttribute="centerY" placeholder="YES" id="NDL-xA-4Nh"/>
+                                    <constraint firstItem="cqR-oS-XSf" firstAttribute="centerX" secondItem="Qcw-wL-yiY" secondAttribute="centerX" placeholder="YES" id="UVg-K4-ttK"/>
+                                    <constraint firstItem="cqR-oS-XSf" firstAttribute="width" secondItem="Qcw-wL-yiY" secondAttribute="width" multiplier="0.35" id="Ywd-my-cke"/>
+                                    <constraint firstItem="cqR-oS-XSf" firstAttribute="height" secondItem="Qcw-wL-yiY" secondAttribute="height" multiplier="0.3" id="mNl-6b-rte"/>
+                                    <constraint firstItem="cqR-oS-XSf" firstAttribute="width" secondItem="Qcw-wL-yiY" secondAttribute="width" multiplier="0.35" id="n5T-Cm-7gn"/>
+                                </constraints>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="mNl-6b-rte"/>
+                                        <exclude reference="n5T-Cm-7gn"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="Ijo-JB-WdH"/>
+                                        <exclude reference="Ywd-my-cke"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="innerView" destination="cqR-oS-XSf" id="rGO-f1-tti"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InE-Dx-biV">
+                                <rect key="frame" x="207" y="780" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact" hidden="YES"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Zjy-PN-zVg">
+                                <rect key="frame" x="116" y="788" width="182" height="70"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFu-ye-gm0" customClass="CallOptionButton" customModule="ScreenSharing" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chO-89-Yb9" customClass="CallOptionButton" customModule="ScreenSharing" customModuleProvider="target">
+                                        <rect key="frame" x="66" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="Whp-r5-cfG"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Whp-r5-cfG"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="Whp-r5-cfG"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfP-kl-nOy" customClass="CallOptionButton" customModule="ScreenSharing" customModuleProvider="target">
+                                        <rect key="frame" x="132" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="E2h-9C-OHL"/>
+                                    <constraint firstItem="hFu-ye-gm0" firstAttribute="height" secondItem="chO-89-Yb9" secondAttribute="height" id="HCY-tw-mjb"/>
+                                    <constraint firstAttribute="width" constant="45" id="rrY-vM-AGG"/>
+                                    <constraint firstItem="ZfP-kl-nOy" firstAttribute="height" secondItem="chO-89-Yb9" secondAttribute="height" id="uMS-RR-veZ"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="HCY-tw-mjb"/>
+                                        <exclude reference="uMS-RR-veZ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="E2h-9C-OHL"/>
+                                        <include reference="HCY-tw-mjb"/>
+                                        <include reference="uMS-RR-veZ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" axis="horizontal">
+                                    <mask key="constraints">
+                                        <exclude reference="rrY-vM-AGG"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zjy-PN-zVg" firstAttribute="top" secondItem="Mak-5n-S2N" secondAttribute="bottom" constant="34" id="DKz-Yr-Svs"/>
+                            <constraint firstItem="Mak-5n-S2N" firstAttribute="leading" secondItem="X75-Rp-ZZc" secondAttribute="leading" constant="4" id="DXc-ZZ-8fS"/>
+                            <constraint firstItem="X75-Rp-ZZc" firstAttribute="bottom" secondItem="Mak-5n-S2N" secondAttribute="bottom" constant="4" id="Dck-eA-VW5"/>
+                            <constraint firstItem="Mak-5n-S2N" firstAttribute="top" secondItem="X75-Rp-ZZc" secondAttribute="top" constant="4" id="E9N-fI-JBQ"/>
+                            <constraint firstItem="InE-Dx-biV" firstAttribute="leading" secondItem="Zjy-PN-zVg" secondAttribute="leading" id="FyH-Rg-QCM"/>
+                            <constraint firstItem="Zjy-PN-zVg" firstAttribute="top" secondItem="InE-Dx-biV" secondAttribute="bottom" constant="8" id="I3P-FX-ZFA"/>
+                            <constraint firstItem="X75-Rp-ZZc" firstAttribute="bottom" secondItem="Zjy-PN-zVg" secondAttribute="bottom" constant="4" id="LGg-7t-yUO"/>
+                            <constraint firstItem="Zjy-PN-zVg" firstAttribute="centerY" secondItem="tjM-Yt-clB" secondAttribute="centerY" id="Wfd-lm-FSY"/>
+                            <constraint firstItem="Zjy-PN-zVg" firstAttribute="leading" secondItem="X75-Rp-ZZc" secondAttribute="leading" constant="16" id="XZx-dB-wuD"/>
+                            <constraint firstItem="Qcw-wL-yiY" firstAttribute="centerY" secondItem="Mak-5n-S2N" secondAttribute="centerY" id="YVc-vw-Ad0"/>
+                            <constraint firstItem="Qcw-wL-yiY" firstAttribute="centerX" secondItem="Mak-5n-S2N" secondAttribute="centerX" id="cLu-32-43a"/>
+                            <constraint firstItem="X75-Rp-ZZc" firstAttribute="trailing" secondItem="Mak-5n-S2N" secondAttribute="trailing" constant="4" id="cdf-nQ-Dfa"/>
+                            <constraint firstItem="Zjy-PN-zVg" firstAttribute="centerX" secondItem="tjM-Yt-clB" secondAttribute="centerX" id="fZV-Gz-aug"/>
+                            <constraint firstItem="Qcw-wL-yiY" firstAttribute="width" secondItem="Mak-5n-S2N" secondAttribute="width" id="mbA-db-flZ"/>
+                            <constraint firstItem="Qcw-wL-yiY" firstAttribute="height" secondItem="Mak-5n-S2N" secondAttribute="height" id="vUd-YK-4Tt"/>
+                            <constraint firstItem="InE-Dx-biV" firstAttribute="centerX" secondItem="tjM-Yt-clB" secondAttribute="centerX" id="vvN-ud-zBx"/>
+                            <constraint firstItem="Mak-5n-S2N" firstAttribute="leading" secondItem="Zjy-PN-zVg" secondAttribute="trailing" constant="8" id="wLr-qe-97l"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="X75-Rp-ZZc"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Dck-eA-VW5"/>
+                                <exclude reference="Wfd-lm-FSY"/>
+                                <exclude reference="XZx-dB-wuD"/>
+                                <exclude reference="FyH-Rg-QCM"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="Dck-eA-VW5"/>
+                                <exclude reference="LGg-7t-yUO"/>
+                                <exclude reference="DXc-ZZ-8fS"/>
+                                <include reference="Wfd-lm-FSY"/>
+                                <include reference="XZx-dB-wuD"/>
+                                <exclude reference="fZV-Gz-aug"/>
+                                <include reference="FyH-Rg-QCM"/>
+                                <exclude reference="vvN-ud-zBx"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="wLr-qe-97l"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="DKz-Yr-Svs"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="callStateLabel" destination="InE-Dx-biV" id="Wn9-M8-8mA"/>
+                        <outlet property="hangupButton" destination="ZfP-kl-nOy" id="WsV-cj-U8r"/>
+                        <outlet property="localVideoStreamView" destination="cqR-oS-XSf" id="cGJ-YH-al0"/>
+                        <outlet property="magneticView" destination="Qcw-wL-yiY" id="phX-yz-0X2"/>
+                        <outlet property="remoteVideoStreamView" destination="Mak-5n-S2N" id="iG9-W2-3LO"/>
+                        <outlet property="sharingButton" destination="chO-89-Yb9" id="CjM-b0-QQv"/>
+                        <outlet property="videoButton" destination="hFu-ye-gm0" id="ANy-h1-WTv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5fR-yH-Vvn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Ozt-Vk-v2l">
+                    <connections>
+                        <action selector="localVideoStreamDragged:" destination="lXc-bE-qju" id="p03-K7-XT6"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="88j-0G-D7Z">
+                    <connections>
+                        <action selector="localVideoStreamTapped:" destination="lXc-bE-qju" id="gWz-Jo-lnw"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="799.55357142857144" y="124.6376811594203"/>
+        </scene>
+        <!--Call Failed View Controller-->
+        <scene sceneID="7Hi-PW-frg">
+            <objects>
+                <viewController storyboardIdentifier="CallFailedViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="etP-PU-pd4" customClass="CallFailedViewController" customModule="ScreenSharing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uSO-4c-pCo" customClass="DefaultCallFailedView" customModule="ScreenSharing" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="pMn-C2-FaM"/>
+                    </view>
+                    <connections>
+                        <outlet property="callFailedView" destination="uSO-4c-pCo" id="Sp3-Ar-zjL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wje-yJ-3XQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1461" y="125"/>
+        </scene>
+    </scenes>
+</document>

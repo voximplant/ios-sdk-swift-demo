@@ -31,7 +31,13 @@ final class StoryAssembler {
     var call: CallViewController {
         let controller = Storyboard.call.instantiateViewController(of: CallViewController.self)
         controller.callManager = callManager
-        controller.myDisplayName = authService.loggedInUserDisplayName
+        controller.storyAssembler = self
+        return controller
+    }
+    
+    var incomingCall: IncomingCallViewController {
+        let controller = Storyboard.call.instantiateViewController(of: IncomingCallViewController.self)
+        controller.callManager = callManager
         controller.storyAssembler = self
         return controller
     }

@@ -5,23 +5,15 @@
 import UIKit
 import VoxImplantSDK
 
-extension UserDefaults {
-    static var main: UserDefaults {
-        // App Group UserDefaults needed for communication between the app and the appex
-        return UserDefaults(suiteName: "group.com.voximplant.demos")!
-    }
-}
-
 fileprivate let client: VIClient = VIClient(delegateQueue: DispatchQueue.main)
 fileprivate let authService: AuthService = AuthService(client)
-fileprivate let darwinNotificationService = DarwinNotificationCenter()
-fileprivate let callManager: CallManager = CallManager(client, authService, darwinNotificationService)
+fileprivate let callManager: CallManager = CallManager(client, authService)
 fileprivate let storyAssembler: StoryAssembler = StoryAssembler(authService: authService, callManager: callManager)
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate, Loggable {
     var window: UIWindow?
-    var appName: String { "ScreenSharing" }
+    var appName: String { "InAppScreenSharing" }
     
     override init() {
         super.init()

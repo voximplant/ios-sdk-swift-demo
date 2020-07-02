@@ -3,13 +3,12 @@
 */
 
 import VoxImplantSDK
-import UIKit
 
 protocol Loggable {
     var appName: String { get }
 }
 
-extension Loggable where Self: AppDelegate {
+extension Loggable where Self: AnyObject {
     func configureDefaultLogging() {
         // Configure logs:
         Log.enable(level: .debug)

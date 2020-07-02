@@ -3,9 +3,6 @@
  */
 
 import VoxImplantSDK
-import ReplayKit
-
-let myId = "me"
 
 final class CallManager:
     NSObject,
@@ -14,19 +11,22 @@ final class CallManager:
     VICallDelegate,
     VIEndpointDelegate
 {
-    typealias UserAdded = (String, String?) -> Void
-    typealias UserUpdated = (String, String?) -> Void
-    typealias UserRemoved = (String) -> Void
-    typealias VideoStreamAdded = (String, (VIVideoRendererView?) -> Void) -> Void
-    typealias VideoStreamRemoved = (String) -> Void
+    typealias VideoStreamAdded = (_ local: Bool, (VIVideoRendererView) -> Void) -> Void
+    typealias VideoStreamRemoved = (_ local: Bool) -> Void
     
     struct CallWrapper {
         fileprivate let call: VICall
         let callee: String
         var displayName: String?
         var state: CallState = .connecting
+        let direction: CallDirection
         var sendingVideo: Bool = true
         var sharingScreen: Bool = false
+        
+        enum CallDirection {
+            case incoming
+            case outgoing
+        }
         
         enum CallState: Equatable {
             case connecting
@@ -42,19 +42,14 @@ final class CallManager:
     
     private let client: VIClient
     private let authService: AuthService
-    private let notificationCenter: DarwinNotificationCenter
-    
-    @UserDefault("activecall")
-    private var managedCallee: String?
     
     // Voximplant SDK supports multiple calls at the same time, however
     // this demo app demonstrates only one managed call at the moment,
     // so it rejects new incoming call if there is already a call.
     private(set) var managedCallWrapper: CallWrapper? {
-        willSet { 
+        willSet {
             if managedCallWrapper?.call != newValue?.call {
                 managedCallWrapper?.call.remove(self)
-                self.managedCallee = newValue?.callee
             }
         }
         didSet {
@@ -69,57 +64,22 @@ final class CallManager:
     var hasManagedCall: Bool { managedCallWrapper != nil }
     private var hasNoManagedCalls: Bool { !hasManagedCall }
     
-    var endpointAddedHandler: UserAdded?
-    var endpointUpdatedHandler: UserUpdated?
-    var endpointRemovedHandler: UserRemoved?
-    var localVideoStreamAddedHandler: VideoStreamAdded?
-    var localVideoStreamRemovedHandler: VideoStreamRemoved?
-    var remoteVideoStreamAddedHandler: VideoStreamAdded?
-    var remoteVideoStreamRemovedHandler: VideoStreamRemoved?
     var callObserver: ((CallWrapper) -> Void)?
+    var didReceiveIncomingCall: (() -> Void)?
+    var videoStreamAddedHandler: VideoStreamAdded?
+    var videoStreamRemovedHandler: VideoStreamRemoved?
     
     private let callSettings: VICallSettings = {
         let settings = VICallSettings()
-        settings.preferredVideoCodec = .H264
         settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: true, sendVideo: true)
         return settings
     }()
     
-    init(_ client: VIClient,
-         _ authService: AuthService,
-         _ notificationCenter: DarwinNotificationCenter
-    ) {
+    required init(_ client: VIClient, _ authService: AuthService) {
         self.client = client
         self.authService = authService
-        self.notificationCenter = notificationCenter
         
         super.init()
-        
-        self.notificationCenter.registerForNotification(.broadcastEnded)
-        self.notificationCenter.broadcastEndedHandler = {
-            if let call = self.managedCallWrapper, call.sharingScreen {
-                self.managedCallWrapper?.sharingScreen = false
-            }
-        }
-        
-        self.notificationCenter.registerForNotification(.broadcastStarted)
-        self.notificationCenter.broadcastStartedHandler = {
-            if let call = self.managedCallWrapper, !call.sharingScreen {
-                self.managedCallWrapper?.sharingScreen = true
-            }
-        }
-        
-        self.notificationCenter.registerForNotification(.broadcastCallEnded)
-        self.notificationCenter.broadcastCallEndedHandler = {
-            if let call = self.managedCallWrapper, call.sharingScreen {
-                self.managedCallWrapper?.sharingScreen = false
-                AlertHelper.showAlert(
-                    title: "Broadcast",
-                    message: "Broadcast has been ended",
-                    defaultAction: true
-                )
-            }
-        }
         
         VIAudioManager.shared().delegate = self
         self.client.callManagerDelegate = self
@@ -129,8 +89,8 @@ final class CallManager:
         guard authService.isLoggedIn else { throw AuthError.notLoggedIn }
         guard hasNoManagedCalls else { throw CallError.alreadyManagingACall }
         
-        if let call = client.callConference(contact, settings: callSettings) {
-            managedCallWrapper = CallWrapper(call: call, callee: contact)
+        if let call = client.call(contact, settings: callSettings) {
+            managedCallWrapper = CallWrapper(call: call, callee: contact, direction: .outgoing)
         } else {
             throw CallError.internalError
         }
@@ -144,6 +104,16 @@ final class CallManager:
             self.selectIfAvailable(.speaker, from: VIAudioManager.shared().availableAudioDevices())
         }
         call.start()
+    }
+    
+    func makeIncomingCallActive() throws {
+        guard let call = managedCallWrapper?.call else { throw CallError.hasNoActiveCall }
+        guard authService.isLoggedIn else { throw AuthError.notLoggedIn }
+        
+        if headphonesNotConnected {
+            selectIfAvailable(.speaker, from: VIAudioManager.shared().availableAudioDevices())
+        }
+        call.answer(with: callSettings)
     }
     
     func changeSendVideo(_ completion: ((Error?) -> Void)? = nil) {
@@ -161,6 +131,28 @@ final class CallManager:
         }
     }
     
+    func changeShareScreen(_ completion: ((Error?) -> Void)? = nil) {
+        guard let wrapper = managedCallWrapper else { completion?(CallError.hasNoActiveCall); return }
+        
+        if wrapper.sharingScreen {
+            wrapper.call.setSendVideo(wrapper.sendingVideo) { [weak self] error in
+                if let error = error {
+                    completion?(error)
+                    return
+                }
+                self?.managedCallWrapper?.sharingScreen = false
+            }
+        } else {
+            wrapper.call.startInAppScreenSharing { [weak self] error in
+                if let error = error {
+                    completion?(error)
+                    return
+                }
+                self?.managedCallWrapper?.sharingScreen = true
+            }
+        }
+    }
+    
     func endCall() throws {
         guard let call = managedCallWrapper?.call else { throw CallError.hasNoActiveCall }
         
@@ -173,8 +165,12 @@ final class CallManager:
                 withIncomingVideo video: Bool,
                 headers: [AnyHashable: Any]?
     ) {
-        // Incoming calls are not supported in this demo
-        call.reject(with: .busy, headers: nil)
+        if hasManagedCall {
+            call.reject(with: .busy, headers: nil)
+        } else {
+            managedCallWrapper = CallWrapper(call: call, callee: call.endpoints.first?.user ?? "", displayName: call.endpoints.first?.userDisplayName, direction: .incoming)
+            didReceiveIncomingCall?()
+        }
     }
     
     // MARK: - VICallDelegate -
@@ -195,7 +191,6 @@ final class CallManager:
             managedCallWrapper?.state = .ended(reason: .disconnected)
             managedCallWrapper = nil
         }
-        notificationCenter.sendNotification(.callEnded)
     }
     
     func call(_ call: VICall,
@@ -206,53 +201,33 @@ final class CallManager:
             managedCallWrapper?.state = .ended(reason: .failed(message: error.localizedDescription))
             managedCallWrapper = nil
         }
-        notificationCenter.sendNotification(.callEnded)
     }
     
     func call(_ call: VICall, didAddLocalVideoStream videoStream: VIVideoStream) {
         if videoStream.type == .screenSharing { return }
-        localVideoStreamAddedHandler?(myId) { renderer in
-            if let renderer = renderer {
-                videoStream.addRenderer(renderer)
-            }
+        videoStreamAddedHandler?(true) { renderer in
+            videoStream.addRenderer(renderer)
         }
     }
     
     func call(_ call: VICall, didRemoveLocalVideoStream videoStream: VIVideoStream) {
-        localVideoStreamRemovedHandler?(myId)
+        videoStreamRemovedHandler?(true)
         videoStream.removeAllRenderers()
     }
     
     func call(_ call: VICall, didAdd endpoint: VIEndpoint) {
-        if endpoint.endpointId == call.callId {
-            return
-        }
         endpoint.delegate = self
-        endpointAddedHandler?(endpoint.endpointId, endpoint.userDisplayName ?? endpoint.user)
     }
     
     // MARK: - VIEndpointDelegate -
-    func endpointInfoDidUpdate(_ endpoint: VIEndpoint) {
-        if endpoint.endpointId == managedCallWrapper?.call.callId {
-            return
-        }
-        endpointUpdatedHandler?(endpoint.endpointId, endpoint.userDisplayName ?? endpoint.user)
-    }
-    
-    func endpointDidRemove(_ endpoint: VIEndpoint) {
-        endpointRemovedHandler?(endpoint.endpointId)
-    }
-    
     func endpoint(_ endpoint: VIEndpoint, didAddRemoteVideoStream videoStream: VIVideoStream) {
-        remoteVideoStreamAddedHandler?(endpoint.endpointId) { renderer in
-            if let renderer = renderer {
-                videoStream.addRenderer(renderer)
-            }
+        videoStreamAddedHandler?(false) { renderer in
+            videoStream.addRenderer(renderer)
         }
     }
     
     func endpoint(_ endpoint: VIEndpoint, didRemoveRemoteVideoStream videoStream: VIVideoStream) {
-        remoteVideoStreamRemovedHandler?(endpoint.endpointId)
+        videoStreamRemovedHandler?(false)
         videoStream.removeAllRenderers()
     }
     

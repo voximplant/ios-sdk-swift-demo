@@ -1,14 +1,12 @@
-# Voximplant Screen Sharing Kit Demo (iOS)
+# Voximplant Screen Sharing Demo (iOS)
 
-This demo demonstrates basic in-app screen sharing functionality of the Voximplant iOS SDK. The application supports video calls between this iOS app and other apps that use any Voximplant SDK.
+This demo demonstrates basic screen sharing functionality of the Voximplant iOS SDK. The application supports video calls between this iOS app and other apps that use any Voximplant SDK.
 
 #### Features
 The application is able to:
 - log in to the Voximplant Cloud
 - auto login using access tokens
-- make an video call
-- receive an incoming call
-- switch camera during a call
+- make an video conference call
 - enable/disable video during a call
 - enable/disable screen sharing during a call
 - auto reconnect/relogin
@@ -23,12 +21,6 @@ You'll need the following:
 - two Voximplant users
 - VoxEngine scenario
 - routing setup
-- VoIP services certificate for push notifications. Follow [this tutorial](https://voximplant.com/docs/references/iossdk/push-notifications-for-ios) to upload the certificate to the Voximplant Control Panel
-
-### Automatic
-We've implemented a special template to enable you to quickly use the demo – just 
-install [SDK tutorial](https://manage.voximplant.com/marketplace/sdk_tutorial) from our marketplace:
-![marketplace](Screenshots/market.png)
 
 ### Manual
 
@@ -36,16 +28,69 @@ You can set up it manually using our [quickstart guide](https://voximplant.com/d
 
 #### VoxEngine scenario example:
   ```
-  require(Modules.PushService);
-  VoxEngine.addEventListener(AppEvents.CallAlerting, (e) => {
-  const newCall = VoxEngine.callUserDirect(
-    e.call, 
-    e.destination,
-    e.callerid,
-    e.displayName,
-    null
-  );
-  VoxEngine.easyProcess(e.call, newCall, ()=>{}, true);
+  var MediaStatistic = true;
+  require("conference");
+  require("recorder");
+  var conf;
+  var partsCounter = 0;
+  var recorder;
+  function checkForTermination() {
+    if (partsCounter === 0) {
+      conf.stop();
+      conf = null;
+      setTimeout(VoxEngine.terminate, 2000);
+    }
+  }
+  VoxEngine.addEventListener(AppEvents.Started, function (e) {
+    conf = VoxEngine.createConference({hd_audio:true});
+    conf.addEventListener(ConferenceEvents.Stopped, function(e) {
+      Logger.write("stopped");
+    });
+    conf.addEventListener(ConferenceEvents.Started, function(e) {
+      Logger.write("started id=" + e.conference.getId());
+    });
+    conf.addEventListener(ConferenceEvents.EndpointAdded, function(e) {
+      ++partsCounter;
+    Logger.write("endpoint added pc = " + partsCounter);
+    });
+    conf.addEventListener(ConferenceEvents.EndpointRemoved, function(e) {
+      --partsCounter;
+      Logger.write("endpoint removed pc = " + partsCounter);
+      if (partsCounter == 0) {
+          setTimeout(checkForTermination, 1000*10); // wait for 10 ceconds
+      }
+    });
+  });
+  VoxEngine.addEventListener(AppEvents.CallAlerting, function (e) {
+    e.call.answer();
+    partsCounter = partsCounter + 1;
+    const endpoint = conf.add({
+      call: e.call,
+      mode: "FORWARD",
+      direction: "BOTH", scheme: e.scheme
+    });
+    Logger.write(`New endpoint was added ID: ${endpoint.id}`);
+    const endpoint1 = conf.add({
+      call: e.call,
+      mode: "FORWARD",
+      direction: "BOTH", scheme: e.scheme
+    });
+    Logger.write(`New endpoint was added ID: ${endpoint1.id}`);
+    function checkForTermination() {
+      if (partsCounter === 0) {
+        conf.stop();
+        conf = null;
+        }
+    }
+    function participantDisconnected() {
+      partsCounter = partsCounter - 1;
+      if (partsCounter === 0) {
+        setTimeout(checkForTermination, 1000 * 10); // wait for 10 ceconds
+      }
+    }
+    e.call.addEventListener(CallEvents.Disconnected, function (e) {
+        participantDisconnected();
+    });
   });
   ```
 
@@ -70,17 +115,16 @@ Log in using:
 
 See the following classes for code details:
 * [AuthService.swift](Services/AuthService.swift)
-* [LoginViewController.swift](Stories/Login/LoginViewController.swift)
+* [LoginViewController.swift](Stories/LoginViewController.swift)
 
-### Make or receive calls
+### Make calls
 ![call](Screenshots/call.png)
 
-Enter a Voximplant user name to the input field and press "Call" button to make a call.
+Enter "myconf" to the input field and press "Call" button to join a conference.
 
 See the following classes for code details:
 - [CallManager.swift](Services/CallManager.swift)
-- [MainViewController.swift](Stories/Main/MainViewController.swift)
-- [IncomingCallViewController.swift](Stories/Main/IncomingCallViewController.swift)
+- [MainViewController.swift](Stories/MainViewController.swift)
 
 ### Call controls
 ![inCall](Screenshots/inCall.png)
@@ -88,12 +132,30 @@ See the following classes for code details:
 Enable/disable video or screen sharing during a call.
 
 See the following classes for code details:
-- [CallViewController.swift](Stories/Call/CallViewController.swift)
+- [CallViewController.swift](Stories/CallViewController.swift)
 * [CallManager.swift](Services/CallManager.swift)
   
+  
+## Broadcasting Architecture
+
+Screen capture happens within an broadcast upload app extension.
+look: [SampleHandler.swift](../ScreenSharingUploadAppex/SampleHandler)
+
+Every time user tries to begin screen sharing, extension receives ‘broadcastStarted’ method call, in which
+app extension will try to auth into Voximplant Cloud 
+(using locally stored auth tokens in app group User Defaults) and to begin another call which is used for delivery screen frames.
+
+If an error occurs while doing so, broadcast upload app extension process will be ended and user will be notified about it with an alert.
+
+CFNotificationCenter ([DarwinNotificationsService.swift](Services/DarwinNotificationsService.swift)) is used to send messages between the app and extension.
+
+>  Please note, ios app extensions are highly restricted and has only 
+50mb ram limit. Due to this reason it is possible only use hardware accelerated encoding (which is h264) and is not possible to use software accelerated (vp8).
+
 
 ## Useful links
 1. [Getting started](https://voximplant.com/docs/introduction)
 2. [Voximplant iOS SDK reference](https://voximplant.com/docs/references/iossdk)
 3. [Installing the Voximplant iOS SDK](https://voximplant.com/docs/introduction/integration/adding_sdks/installing/ios_sdk)
 4. [HowTo's](https://voximplant.com/docs/howtos) 
+5. [About ReplayKit on WWDC](https://developer.apple.com/videos/play/wwdc2018/601/) 

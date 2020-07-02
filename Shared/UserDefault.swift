@@ -4,8 +4,21 @@
 
 import Foundation
 
-fileprivate let userDefaults = UserDefaults.standard
-fileprivate let userDefaultsDomain = Bundle.main.bundleIdentifier ?? ""
+protocol UserDefaultsMain {
+    static var main: UserDefaults { get }
+}
+
+extension UserDefaultsMain {
+    static var main: UserDefaults {
+        // Switching UserDefaults implementation needed for ScreenSharing and ScreenSharingUploadAppex targets.
+        return UserDefaults.standard
+    }
+}
+
+extension UserDefaults: UserDefaultsMain {}
+
+fileprivate let userDefaults = UserDefaults.main
+fileprivate let userDefaultsDomain = "" //Bundle.main.bundleIdentifier ?? ""
 fileprivate extension String {
     var appendingAppDomain: String {
         "\(userDefaultsDomain).\(self)"

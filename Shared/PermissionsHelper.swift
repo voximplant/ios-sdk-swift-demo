@@ -7,8 +7,8 @@ import AVFoundation
 final class PermissionsHelper {
     static func requestRecordPermissions(
         includingVideo video: Bool,
-        accessRequestCompletionQueue: DispatchQueue = .main,
-        completion: @escaping (Error?) -> Void
+        completion: @escaping (Error?) -> Void,
+        accessRequestCompletionQueue: DispatchQueue = .main
     ) {
         requestPermissions(for: .audio, queue: accessRequestCompletionQueue) { granted in
             if granted {
@@ -25,11 +25,7 @@ final class PermissionsHelper {
         }
     }
     
-    static func requestPermissions(
-        for mediaType: AVMediaType,
-        queue: DispatchQueue = .main,
-        completion: @escaping (Bool) -> Void
-    ) {
+    static func requestPermissions(for mediaType: AVMediaType, queue: DispatchQueue = .main, completion: @escaping (Bool) -> Void) {
         switch AVCaptureDevice.authorizationStatus(for: mediaType) {
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: mediaType) { granted in
@@ -38,7 +34,7 @@ final class PermissionsHelper {
                 }
             }
         case .authorized: completion(true)
-        case .denied: completion(false)
+        case .denied:     completion(false)
         case .restricted: completion(false)
         @unknown default: completion(false)
         }

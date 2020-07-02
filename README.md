@@ -17,6 +17,9 @@ The demo demonstrates [CallKit](https://developer.apple.com/documentation/callki
 > VideoCallKit demo application is implemented to meet new requirements. Please use it to test push notification on iOS 13.
 
 ## [ScreenSharing demo](ScreenSharing)
+The demo demonstrates basic screen sharing functionality of the Voximplant iOS SDK.
+
+## [InAppScreenSharing demo](InAppScreenSharing)
 The demo demonstrates basic in-app screen sharing functionality of the Voximplant iOS SDK.
 
 ## [Voximplant demo](VoximplantDemo)

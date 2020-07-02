@@ -16,6 +16,10 @@ final class MainViewController:
     var callManager: CallManager! // DI
     var storyAssembler: StoryAssembler! // DI
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        .all
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +29,7 @@ final class MainViewController:
         
         mainView.callTouchHandler = { username in
             Log.d("Calling \(String(describing: username))")
-            PermissionsHelper.requestRecordPermissions(includingVideo: true) { [weak self] error in
+            PermissionsHelper.requestRecordPermissions(includingVideo: true, completion: { [weak self] error in
                 if let error = error {
                     self?.handleError(error)
                     return
@@ -35,8 +39,10 @@ final class MainViewController:
                     guard let self = self else { return }
                     do {
                         try self.callManager.makeOutgoingCall(to: username ?? "")
-                        self.view.endEditing(true)
-                        self.present(self.storyAssembler.call, animated: true)
+                        DispatchQueue.main.async {
+                            self.view.endEditing(true)
+                            self.present(self.storyAssembler.call, animated: true)
+                        }
                     } catch (let error) {
                         Log.e(error.localizedDescription)
                         AlertHelper.showError(message: error.localizedDescription, on: self)
@@ -50,24 +56,13 @@ final class MainViewController:
                 } else {
                     beginCall()
                 }
-            }
+            })
         }
         
         mainView.logoutTouchHandler = { [weak self] in
             self?.authService.logout { [weak self] in
                 self?.dismiss(animated: true)
             }
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        callManager.didReceiveIncomingCall = { [weak self] in
-            guard let self = self else { return }
-            
-            self.view.endEditing(true)
-            self.present(self.storyAssembler.incomingCall, animated: true)
         }
     }
     

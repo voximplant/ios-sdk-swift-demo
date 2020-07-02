@@ -4,7 +4,6 @@
 
 import VoxImplantSDK
 
-// This class is common for ScreenSharing app and ScreenSharingUploadAppex
 final class AuthService: NSObject, VIClientSessionDelegate {
     private typealias ConnectCompletion = (Error?) -> Void
     private typealias DisconnectCompletion = () -> Void
@@ -21,7 +20,7 @@ final class AuthService: NSObject, VIClientSessionDelegate {
         super.init()
         client.sessionDelegate = self
     }
-    
+        
     @UserDefault("lastFullUsername")
     var loggedInUser: String?
     var loggedInUserDisplayName: String?
@@ -70,9 +69,11 @@ final class AuthService: NSObject, VIClientSessionDelegate {
                 return
             }
             
-            self?.updateAccessTokenIfNeeded(for: user) { [weak self] result in
+            self?.updateAccessTokenIfNeeded(for: user) {
+                [weak self]
+                (result: Result<Token, Error>) in
+                
                 switch result {
-                    
                 case let .failure(error):
                     completion(error)
                     return

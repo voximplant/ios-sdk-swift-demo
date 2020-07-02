@@ -75,7 +75,7 @@ final class AlertHelper {
     static func showAlert(
         title: String,
         message: String,
-        actions: [UIAlertAction],
+        actions: [UIAlertAction] = [],
         defaultAction: Bool = false,
         on viewController: UIViewController? = nil
     ) {

@@ -36,6 +36,11 @@ final class ConferenceView: UIView {
     }
     private var didDraw: Bool = false
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        rearrange()
+    }
+    
     func addParticipant(withID id: String, displayName: String?) {
         guard participantViews.count <= 25 else {
             print("Limit!")

@@ -9,8 +9,8 @@ def common_pods
 end
 
 def voximplant
-   pod 'CocoaLumberjack/Swift', '~> 3.5'
-   pod 'VoxImplantSDK/CocoaLumberjackLogger', '2.32.1'
+  pod 'CocoaLumberjack/Swift', '~> 3.5'
+  pod 'VoxImplantSDK/CocoaLumberjackLogger', '2.33.0'
 end
 
 target 'Voximplant Demo' do
@@ -40,6 +40,15 @@ end
 
 target 'ScreenSharing' do
   common_pods
+  voximplant
+end
+
+target 'InAppScreenSharing' do
+  common_pods
+  voximplant
+end
+
+target 'ScreenSharingUploadAppex' do
   voximplant
 end
 

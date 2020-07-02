@@ -29,19 +29,22 @@ final class IncomingCallViewController: UIViewController, ErrorHandling {
         
         incomingCallView.acceptHandler = { [weak self] in
             Log.d("Call accepted from incomingCall view")
-            PermissionsHelper.requestRecordPermissions(includingVideo: true) { [weak self] error in
-                if let error = error {
-                    self?.handleError(error)
-                    return
-                }
-                
-                if let self = self {
-                    weak var presentingViewController = self.presentingViewController
-                    self.dismiss(animated: true) {
-                        presentingViewController?.present(self.storyAssembler.call, animated: true)
+            PermissionsHelper.requestRecordPermissions(
+                includingVideo: true,
+                completion: { [weak self] error in
+                    if let error = error {
+                        self?.handleError(error)
+                        return
+                    }
+                    
+                    if let self = self {
+                        weak var presentingViewController = self.presentingViewController
+                        self.dismiss(animated: true) {
+                            presentingViewController?.present(self.storyAssembler.call, animated: true)
+                        }
                     }
                 }
-            }
+            )
         }
         
         callManager.callObserver = { [weak self] call in
