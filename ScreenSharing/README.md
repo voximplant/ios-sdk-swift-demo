@@ -70,12 +70,6 @@ You can set up it manually using our [quickstart guide](https://voximplant.com/d
       direction: "BOTH", scheme: e.scheme
     });
     Logger.write(`New endpoint was added ID: ${endpoint.id}`);
-    const endpoint1 = conf.add({
-      call: e.call,
-      mode: "FORWARD",
-      direction: "BOTH", scheme: e.scheme
-    });
-    Logger.write(`New endpoint was added ID: ${endpoint1.id}`);
     function checkForTermination() {
       if (partsCounter === 0) {
         conf.stop();
