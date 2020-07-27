@@ -12,7 +12,7 @@ enum CallOptionButtonState: Equatable {
 }
 
 final class CallOptionButton: UIView, NibLoadable {
-    @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var button: PressableButton!
     @IBOutlet private weak var buttonDescriptionLabel: UILabel!
     
     var touchUpHandler: ((CallOptionButton) -> Void)?

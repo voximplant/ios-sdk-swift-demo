@@ -8,6 +8,7 @@ final class LoginViewController: UIViewController, ErrorHandling {
     @IBOutlet private var loginView: LoginView!
     
     var joinConference: JoinConference! // DI
+    var storyAssembler: StoryAssembler! // DI
     
     private let previousNameKey = "previousName"
     private var previousName: String? {
@@ -49,7 +50,10 @@ final class LoginViewController: UIViewController, ErrorHandling {
                     self.handleError(error)
                 } else {
                     self.previousName = name
-                    self.present(StoryAssembler.assembleConferenceCall(name: name, video: video), animated: true)
+                    self.present(
+                        self.storyAssembler.assembleConferenceCall(name: name, video: video),
+                        animated: true
+                    )
                 }
             }
         }

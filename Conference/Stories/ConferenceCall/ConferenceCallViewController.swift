@@ -3,9 +3,11 @@
 */
 
 import UIKit
-import VoxImplantSDK
 
-final class ConferenceCallViewController: UIViewController, AudioDeviceSelecting {
+final class ConferenceCallViewController:
+    UIViewController,
+    AudioDeviceAlertSelecting
+{
     @IBOutlet private weak var conferenceView: ConferenceView!
     @IBOutlet private weak var muteButton: CallOptionButton!
     @IBOutlet private weak var chooseAudioButton: CallOptionButton!
@@ -19,9 +21,6 @@ final class ConferenceCallViewController: UIViewController, AudioDeviceSelecting
     var video: Bool! // DI
     private var leftConference = false
     private var muted = false
-    private var audioDevices: Set<VIAudioDevice>? {
-        VIAudioManager.shared().availableAudioDevices()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,11 +105,6 @@ final class ConferenceCallViewController: UIViewController, AudioDeviceSelecting
         
         conferenceView.addParticipant(withID: myId, displayName: "\(name ?? "") (you)")
         conferenceView.updateParticipant(withID: myId, displayName: "\(name ?? "") (you)")
-    }
-    
-    private func makeFormattedString(from device: VIAudioDevice, isCurrent: Bool) -> String {
-        let formattedString = String(describing: device).replacingOccurrences(of: "VIAudioDevice", with: "")
-        return isCurrent ? "\(formattedString) (Current)" : formattedString
     }
     
     private enum CallOptionButtonModels {

@@ -41,6 +41,7 @@ final class StoryAssembler {
         controller.user = callee
         controller.displayName = displayName
         controller.failReason = reason
+        controller.authService = authService
         controller.callManager = callManager
         controller.storyAssembler = self
         return controller

@@ -15,7 +15,8 @@ final class CallManager:
     VIClientCallManagerDelegate,
     VIEndpointDelegate,
     VIAudioManagerDelegate,
-    PushCallNotifierDelegate
+    PushCallNotifierDelegate,
+    SpeakerAutoselecting
 {
     private let client: VIClient
     private let authService: AuthService
@@ -128,9 +129,7 @@ final class CallManager:
            managedCall.uuid == vicall.callKitUUID
         {
             managedCall.call = vicall
-            if headphonesNotConnected {
-                selectIfAvailable(.speaker, from: VIAudioManager.shared().availableAudioDevices())
-            }
+            selectSpeaker()
             vicall.start()
             callProvider.reportOutgoingCall(with: managedCall.uuid, startedConnectingAt: nil)
         }
@@ -149,8 +148,13 @@ final class CallManager:
         guard hasNoManagedCalls else { return }
         self.managedCall = CallWrapper(uuid: callUUID, isOutgoing: true)
     }
-        
-    func createIncomingCall(_ newUUID: UUID, from fullUsername: String, withDisplayName userDisplayName: String, withPushCompletion pushProcessingCompletion: (()->Void)? = nil) {
+    
+    func createIncomingCall(
+        _ newUUID: UUID,
+        from fullUsername: String,
+        withDisplayName userDisplayName: String,
+        withPushCompletion pushProcessingCompletion: (() -> Void)? = nil
+    ) {
         guard hasNoManagedCalls else { return }
 
         self.managedCall = CallWrapper(uuid: newUUID, isOutgoing: false, withPushCompletion: pushProcessingCompletion)
@@ -242,9 +246,7 @@ final class CallManager:
         
         let settings = VICallSettings()
         settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: true, sendVideo: true)
-        if headphonesNotConnected {
-            selectIfAvailable(.speaker, from: VIAudioManager.shared().availableAudioDevices())
-        }
+        selectSpeaker()
         managedCall?.call?.answer(with: settings)
         action.fulfill()
     }
@@ -399,19 +401,6 @@ final class CallManager:
     func audioDeviceUnavailable(_ audioDevice: VIAudioDevice) { }
     
     func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>) {
-        if headphonesNotConnected {
-            selectIfAvailable(.speaker, from: availableAudioDevices)
-        }
-    }
-    
-    // MARK: - Private -
-    private var headphonesNotConnected: Bool {
-        !VIAudioManager.shared().availableAudioDevices().contains { $0.type == .wired || $0.type == .bluetooth }
-    }
-    
-    private func selectIfAvailable(_ audioDeviceType: VIAudioDeviceType, from audioDevices: Set<VIAudioDevice>) {
-        if let device = audioDevices.first(where: { $0.type == audioDeviceType }) {
-            VIAudioManager.shared().select(device)
-        }
+        selectSpeaker(from: availableAudioDevices)
     }
 }

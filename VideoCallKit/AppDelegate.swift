@@ -11,7 +11,7 @@ fileprivate let client: VIClient = VIClient(delegateQueue: DispatchQueue.main)
 fileprivate let authService: AuthService = AuthService(client)
 fileprivate let callController: CXCallController = CXCallController(queue: .main)
 fileprivate let callManager: CallManager = CallManager(client, authService)
-let storyAssembler: StoryAssembler = StoryAssembler(client, authService, callManager, callController)
+let storyAssembler: StoryAssembler = StoryAssembler(authService, callManager, callController)
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate, Loggable {

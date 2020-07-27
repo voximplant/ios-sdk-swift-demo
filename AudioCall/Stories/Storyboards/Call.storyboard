@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Incoming Call View Controller-->
+        <scene sceneID="kGP-ma-Wf2">
+            <objects>
+                <viewController storyboardIdentifier="IncomingCallViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="aDh-yc-1aw" customClass="IncomingCallViewController" customModule="AudioCall" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KRP-9v-wHe" customClass="DefaultIncomingCallView" customModule="AudioCall" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="YUY-kO-q5B"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="incomingCallView" destination="KRP-9v-wHe" id="4z7-ae-yo3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="94T-iu-eWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2106" y="-1011"/>
+        </scene>
+        <!--Call Failed View Controller-->
+        <scene sceneID="TNi-OU-9W1">
+            <objects>
+                <viewController storyboardIdentifier="CallFailedViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="4zq-hv-3Yd" customClass="CallFailedViewController" customModule="AudioCall" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5k6-M0-5eG" customClass="DefaultCallFailedView" customModule="AudioCall" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="UIk-CG-Fg1"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="callFailedView" destination="5k6-M0-5eG" id="fCV-8K-FdS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cY1-81-zZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3481" y="-1011"/>
+        </scene>
+        <!--Call View Controller-->
+        <scene sceneID="Aiw-8v-1lt">
+            <objects>
+                <viewController storyboardIdentifier="CallViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="k3v-wN-Yfa" customClass="CallViewController" customModule="AudioCall" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="exA-hf-isL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outgoing Сall" textAlignment="center" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NSK-zk-ciP">
+                                <rect key="frame" x="26" y="84" width="362" height="40"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="34"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUB-zS-HtW" customClass="LabelWithTimer" customModule="AudioCall" customModuleProvider="target">
+                                <rect key="frame" x="25" y="132" width="364" height="20"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMS-HV-5if">
+                                <rect key="frame" x="169.5" y="606" width="75" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ksj-1p-J0W" customClass="ButtonWithLabel" customModule="AudioCall" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="12" width="65" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <state key="normal" title="Button" image="hold"/>
+                                        <state key="selected" image="resume"/>
+                                        <state key="highlighted" image="holdP"/>
+                                        <connections>
+                                            <action selector="holdTouch:" destination="k3v-wN-Yfa" eventType="touchUpInside" id="ibx-Z6-OV1"/>
+                                            <outlet property="label" destination="8Uf-iT-cbk" id="O2n-wt-GUY"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uf-iT-cbk">
+                                        <rect key="frame" x="0.0" y="82" width="75" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="79e-Mg-MGl"/>
+                                    <constraint firstAttribute="height" constant="100" id="u2Y-j4-lYi"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfz-dn-zyj" customClass="PressableButton" customModule="AudioCall" customModuleProvider="target">
+                                <rect key="frame" x="174.5" y="772" width="65" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="2no-E8-Qxi"/>
+                                    <constraint firstAttribute="width" constant="65" id="UaL-7O-NvM"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="declineCall"/>
+                                <state key="highlighted" image="declineCallP"/>
+                                <connections>
+                                    <action selector="hangupTouch:" destination="k3v-wN-Yfa" eventType="touchUpInside" id="Icu-0C-T7C"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pga-N3-trK">
+                                <rect key="frame" x="75.5" y="503" width="263" height="100"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Syc-Av-kSf">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mute" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W96-Q0-PBO">
+                                                <rect key="frame" x="0.0" y="82" width="75" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr2-rj-pMm" customClass="ButtonWithLabel" customModule="AudioCall" customModuleProvider="target">
+                                                <rect key="frame" x="5" y="12" width="65" height="65"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="mic"/>
+                                                <state key="selected" image="micP"/>
+                                                <state key="highlighted" image="micP"/>
+                                                <connections>
+                                                    <action selector="muteTouch:" destination="k3v-wN-Yfa" eventType="touchUpInside" id="JxW-PX-qT8"/>
+                                                    <outlet property="label" destination="W96-Q0-PBO" id="go2-KD-PjT"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vJ-u9-Uup">
+                                        <rect key="frame" x="188" y="0.0" width="75" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ5-WN-jjs" customClass="ButtonWithLabel" customModule="AudioCall" customModuleProvider="target">
+                                                <rect key="frame" x="5" y="12" width="65" height="65"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="speaker"/>
+                                                <state key="selected" image="speakerP"/>
+                                                <state key="highlighted" image="speakerP"/>
+                                                <connections>
+                                                    <action selector="audioDeviceTouch:" destination="k3v-wN-Yfa" eventType="touchUpInside" id="Gfm-h0-Us6"/>
+                                                    <outlet property="label" destination="tLe-9N-j3X" id="AqA-Ti-bJI"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="audio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLe-9N-j3X">
+                                                <rect key="frame" x="0.0" y="82" width="75" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PNk-IN-c5g">
+                                        <rect key="frame" x="94" y="0.0" width="75" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bt4-Q8-6JF" customClass="ButtonWithLabel" customModule="AudioCall" customModuleProvider="target">
+                                                <rect key="frame" x="5" y="12" width="65" height="65"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="pinpad"/>
+                                                <state key="selected" image="pinpadP"/>
+                                                <state key="highlighted" image="pinpadP"/>
+                                                <connections>
+                                                    <action selector="dtmfTouch:" destination="k3v-wN-Yfa" eventType="touchUpInside" id="KTq-Av-9UY"/>
+                                                    <outlet property="label" destination="lTx-qV-KK3" id="y2S-7s-dcw"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="keypad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTx-qV-KK3">
+                                                <rect key="frame" x="0.0" y="82" width="75" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="CD0-eg-lPP"/>
+                                    <constraint firstAttribute="width" constant="263" id="GPc-1C-jh6"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7J-Y9-fQl" customClass="KeyPadView" customModule="AudioCall" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="434.5" width="414" height="327.5"/>
+                                <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="327.5" id="1yr-dH-d4D"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="M7J-Y9-fQl" firstAttribute="leading" secondItem="hMc-ir-dbF" secondAttribute="leading" id="4Z0-hJ-8Oo"/>
+                            <constraint firstItem="hMc-ir-dbF" firstAttribute="trailing" secondItem="NSK-zk-ciP" secondAttribute="trailing" constant="26" id="5iE-3R-217"/>
+                            <constraint firstItem="Mfz-dn-zyj" firstAttribute="centerX" secondItem="hMc-ir-dbF" secondAttribute="centerX" id="L4S-6A-46B"/>
+                            <constraint firstItem="SMS-HV-5if" firstAttribute="centerX" secondItem="hMc-ir-dbF" secondAttribute="centerX" id="Na2-Zl-17e"/>
+                            <constraint firstItem="NSK-zk-ciP" firstAttribute="top" secondItem="hMc-ir-dbF" secondAttribute="top" constant="40" id="Nro-fP-wVV"/>
+                            <constraint firstItem="Pga-N3-trK" firstAttribute="centerX" secondItem="hMc-ir-dbF" secondAttribute="centerX" id="Qq0-Ej-6j1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TUB-zS-HtW" secondAttribute="trailing" constant="5" id="RDE-7L-DaJ"/>
+                            <constraint firstItem="TUB-zS-HtW" firstAttribute="top" secondItem="NSK-zk-ciP" secondAttribute="bottom" constant="8" id="Tcx-Ig-Xsh"/>
+                            <constraint firstItem="SMS-HV-5if" firstAttribute="top" secondItem="Pga-N3-trK" secondAttribute="bottom" constant="3" id="WJr-pQ-4AH"/>
+                            <constraint firstItem="TUB-zS-HtW" firstAttribute="leading" secondItem="exA-hf-isL" secondAttribute="leadingMargin" constant="5" id="X12-xq-u0B"/>
+                            <constraint firstItem="Mfz-dn-zyj" firstAttribute="top" secondItem="M7J-Y9-fQl" secondAttribute="bottom" constant="10" id="e8f-h6-1Sk"/>
+                            <constraint firstItem="Mfz-dn-zyj" firstAttribute="top" secondItem="SMS-HV-5if" secondAttribute="bottom" constant="66" id="khQ-zP-bKn"/>
+                            <constraint firstItem="NSK-zk-ciP" firstAttribute="leading" secondItem="hMc-ir-dbF" secondAttribute="leading" constant="26" id="p67-4G-bNb"/>
+                            <constraint firstItem="hMc-ir-dbF" firstAttribute="trailing" secondItem="M7J-Y9-fQl" secondAttribute="trailing" id="xUx-ay-fzl"/>
+                            <constraint firstItem="hMc-ir-dbF" firstAttribute="bottom" secondItem="Mfz-dn-zyj" secondAttribute="bottom" constant="25" id="zy3-nD-mXj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hMc-ir-dbF"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="callStateLabel" destination="TUB-zS-HtW" id="k7b-EG-spX"/>
+                        <outlet property="dtmfButton" destination="bt4-Q8-6JF" id="DY6-qY-Dhv"/>
+                        <outlet property="endpointDisplayNameLabel" destination="NSK-zk-ciP" id="nWw-VB-gRF"/>
+                        <outlet property="holdButton" destination="Ksj-1p-J0W" id="fvI-Fe-ziU"/>
+                        <outlet property="keyPadView" destination="M7J-Y9-fQl" id="cNK-AM-Iae"/>
+                        <outlet property="muteButton" destination="hr2-rj-pMm" id="2cL-ZP-khv"/>
+                        <outlet property="speakerButton" destination="xJ5-WN-jjs" id="GBr-IL-8uc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h1h-Cd-Onh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2793" y="-1011"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="declineCall" width="145" height="145"/>
+        <image name="declineCallP" width="145" height="145"/>
+        <image name="hold" width="145" height="145"/>
+        <image name="holdP" width="145" height="145"/>
+        <image name="mic" width="145" height="145"/>
+        <image name="micP" width="145" height="145"/>
+        <image name="pinpad" width="145" height="145"/>
+        <image name="pinpadP" width="145" height="145"/>
+        <image name="resume" width="145" height="145"/>
+        <image name="speaker" width="145" height="145"/>
+        <image name="speakerP" width="145" height="145"/>
+    </resources>
+</document>

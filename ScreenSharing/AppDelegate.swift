@@ -25,7 +25,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, Loggable {
     
     override init() {
         super.init()
-
         configureDefaultLogging()
     }
 

@@ -8,7 +8,7 @@ final class StoryAssembler {
     private let authService: AuthService
     private let callManager: CallManager
     
-    required init(authService: AuthService, callManager: CallManager) {
+    init(authService: AuthService, callManager: CallManager) {
         self.authService = authService
         self.callManager = callManager
     }
@@ -47,6 +47,7 @@ final class StoryAssembler {
         controller.user = callee
         controller.displayName = displayName
         controller.failReason = reason
+        controller.authService = authService
         controller.callManager = callManager
         controller.storyAssembler = self
         return controller

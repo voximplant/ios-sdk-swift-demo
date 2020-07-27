@@ -128,9 +128,8 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
         } else {
             self.disconnect(completion)
         }
+        loggedInUserDisplayName = nil
         Tokens.clear()
-        self.loggedInUser = nil
-        self.loggedInUserDisplayName = nil
     }
     
     private func updateAccessTokenIfNeeded(
@@ -165,7 +164,6 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
         {
             connectCompletion = completion
             client.connect()
-
         } else {
             completion(nil)
         }

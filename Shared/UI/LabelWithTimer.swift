@@ -4,40 +4,41 @@
 
 import UIKit
 
-@objc protocol TimerDelegate: AnyObject {
-    func updateTime()
+final class LabelWithTimer: UILabel {
+    private var timer: Timer?
+    
+    var additionalText: String?
+    
+    deinit {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    func runTimer(with dataSource: @autoclosure @escaping () -> TimeInterval) {
+        if timer != nil { return }
+        timer = Timer.scheduledTimer(
+            withTimeInterval: 1,
+            repeats: true,
+            block: { [weak self] _ in
+                self?.text = "\(dataSource().string)\(self?.additionalText ?? "")"
+            }
+        )
+    }
 }
 
-final class LabelWithTimer: UILabel {
-    @IBOutlet weak var delegate: TimerDelegate?
-    private var timer: Timer?
-    private let dateFormatter: DateFormatter = {
+fileprivate extension TimeInterval {
+    private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "UTC")
         formatter.dateFormat = "HH:mm:ss"
         return formatter
-    }()
-    
-    deinit {
-        timer?.invalidate()
     }
     
-    func runTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1,
-                                     target: self,
-                                     selector: (#selector(updateTimer)),
-                                     userInfo: nil,
-                                     repeats: true)
-    }
-    
-    @objc private func updateTimer() {
-        delegate?.updateTime()
-    }
-    
-    func buildStringTimeToDisplay(timeInterval: TimeInterval) -> String {
-        let date = Date(timeIntervalSince1970: timeInterval)
+    var string: String {
+        let date = Date(timeIntervalSince1970: self)
         let formattedDate = dateFormatter.string(from: date)
-        return formattedDate.starts(with: "00") ? String(formattedDate.dropFirst(3)) : formattedDate
+        return formattedDate.starts(with: "00")
+            ? String(formattedDate.dropFirst(3))
+            : formattedDate
     }
 }
-

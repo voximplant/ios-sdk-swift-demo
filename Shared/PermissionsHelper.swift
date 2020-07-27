@@ -6,7 +6,7 @@ import AVFoundation
 
 final class PermissionsHelper {
     static func requestRecordPermissions(
-        includingVideo video: Bool,
+        includingVideo video: Bool = false,
         completion: @escaping (Error?) -> Void,
         accessRequestCompletionQueue: DispatchQueue = .main
     ) {
@@ -25,7 +25,11 @@ final class PermissionsHelper {
         }
     }
     
-    static func requestPermissions(for mediaType: AVMediaType, queue: DispatchQueue = .main, completion: @escaping (Bool) -> Void) {
+    static func requestPermissions(
+        for mediaType: AVMediaType,
+        queue: DispatchQueue = .main,
+        completion: @escaping (Bool) -> Void
+    ) {
         switch AVCaptureDevice.authorizationStatus(for: mediaType) {
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: mediaType) { granted in

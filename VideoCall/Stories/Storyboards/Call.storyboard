@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Incoming Call View Controller-->
+        <scene sceneID="asi-E8-RGf">
+            <objects>
+                <viewController storyboardIdentifier="IncomingCallViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="Pbx-T0-EtA" customClass="IncomingCallViewController" customModule="VideoCall" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BY6-vT-QAt" customClass="DefaultIncomingCallView" customModule="InAppScreenSharing" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="RgH-wN-EsK"/>
+                    </view>
+                    <connections>
+                        <outlet property="incomingCallView" destination="BY6-vT-QAt" id="HlN-7r-UMC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aX7-jO-dUu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122" y="125"/>
+        </scene>
+        <!--Call View Controller-->
+        <scene sceneID="drd-6Y-IPX">
+            <objects>
+                <viewController storyboardIdentifier="CallViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="kkn-o9-8xP" customClass="CallViewController" customModule="VideoCall" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b9a-yc-73m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzH-Gv-IcB" customClass="CallVideoView" customModule="VideoCall">
+                                <rect key="frame" x="4" y="48" width="406" height="706"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJ8-g8-ruZ" customClass="EdgeMagneticView" customModule="VideoCall">
+                                <rect key="frame" x="4" y="48" width="406" height="706"/>
+                                <subviews>
+                                    <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcN-S3-dY9" customClass="CallVideoView" customModule="VideoCall">
+                                        <rect key="frame" x="132" y="247" width="142" height="212"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="dm2-nc-Pkl" appends="YES" id="Ubw-Y6-kjW"/>
+                                            <outletCollection property="gestureRecognizers" destination="Pce-zR-kYn" appends="YES" id="L4Q-Tl-b6W"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="tcN-S3-dY9" firstAttribute="height" secondItem="aJ8-g8-ruZ" secondAttribute="height" multiplier="0.4" id="4ZU-CF-qBS"/>
+                                    <constraint firstItem="tcN-S3-dY9" firstAttribute="centerY" secondItem="aJ8-g8-ruZ" secondAttribute="centerY" placeholder="YES" id="JxO-SZ-RoP"/>
+                                    <constraint firstItem="tcN-S3-dY9" firstAttribute="centerX" secondItem="aJ8-g8-ruZ" secondAttribute="centerX" placeholder="YES" id="cf3-zG-N7n"/>
+                                    <constraint firstItem="tcN-S3-dY9" firstAttribute="width" secondItem="aJ8-g8-ruZ" secondAttribute="width" multiplier="0.35" id="gQm-Tg-hww"/>
+                                    <constraint firstItem="tcN-S3-dY9" firstAttribute="height" secondItem="aJ8-g8-ruZ" secondAttribute="height" multiplier="0.3" id="vlR-Pg-zri"/>
+                                    <constraint firstItem="tcN-S3-dY9" firstAttribute="width" secondItem="aJ8-g8-ruZ" secondAttribute="width" multiplier="0.35" id="wpy-6c-31v"/>
+                                </constraints>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="vlR-Pg-zri"/>
+                                        <exclude reference="gQm-Tg-hww"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="4ZU-CF-qBS"/>
+                                        <exclude reference="wpy-6c-31v"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="innerView" destination="tcN-S3-dY9" id="EoM-H3-Gyo"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxI-WO-QaE">
+                                <rect key="frame" x="207" y="780" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact" hidden="YES"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Vvw-ga-qMh">
+                                <rect key="frame" x="50" y="788" width="314" height="70"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="znU-jg-Pfd" customClass="CallOptionButton" customModule="VideoCall">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="07E-kB-apc" customClass="CallOptionButton" customModule="VideoCall">
+                                        <rect key="frame" x="66" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fN9-QW-NoN" customClass="CallOptionButton" customModule="VideoCall">
+                                        <rect key="frame" x="132" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1g-ti-VVk" customClass="CallOptionButton" customModule="VideoCall">
+                                        <rect key="frame" x="198" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V3x-tq-mmK" customClass="CallOptionButton" customModule="VideoCall">
+                                        <rect key="frame" x="264" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="TMY-Th-n6p"/>
+                                    <constraint firstAttribute="width" constant="45" id="xf5-JQ-jm8"/>
+                                </constraints>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="TMY-Th-n6p"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" axis="horizontal">
+                                    <mask key="constraints">
+                                        <exclude reference="xf5-JQ-jm8"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bzH-Gv-IcB" firstAttribute="leading" secondItem="E8w-9Z-5OL" secondAttribute="leading" constant="4" id="1yZ-Js-1WK"/>
+                            <constraint firstItem="Vvw-ga-qMh" firstAttribute="centerY" secondItem="b9a-yc-73m" secondAttribute="centerY" id="42A-JM-zb7"/>
+                            <constraint firstItem="Vvw-ga-qMh" firstAttribute="centerX" secondItem="b9a-yc-73m" secondAttribute="centerX" id="CYP-by-Kek"/>
+                            <constraint firstItem="bzH-Gv-IcB" firstAttribute="top" secondItem="E8w-9Z-5OL" secondAttribute="top" constant="4" id="Mva-ht-6ua"/>
+                            <constraint firstItem="aJ8-g8-ruZ" firstAttribute="height" secondItem="bzH-Gv-IcB" secondAttribute="height" id="OHZ-ut-Nkn"/>
+                            <constraint firstItem="aJ8-g8-ruZ" firstAttribute="width" secondItem="bzH-Gv-IcB" secondAttribute="width" id="Rlg-cd-ZmX"/>
+                            <constraint firstItem="aJ8-g8-ruZ" firstAttribute="centerX" secondItem="bzH-Gv-IcB" secondAttribute="centerX" id="Rw7-qo-jWw"/>
+                            <constraint firstItem="E8w-9Z-5OL" firstAttribute="bottom" secondItem="bzH-Gv-IcB" secondAttribute="bottom" constant="4" id="UJc-Ld-aYD"/>
+                            <constraint firstItem="Vvw-ga-qMh" firstAttribute="leading" secondItem="E8w-9Z-5OL" secondAttribute="leading" constant="16" id="VEC-Ed-bqi"/>
+                            <constraint firstItem="aJ8-g8-ruZ" firstAttribute="centerY" secondItem="bzH-Gv-IcB" secondAttribute="centerY" id="Vzl-xl-6z6"/>
+                            <constraint firstItem="bzH-Gv-IcB" firstAttribute="leading" secondItem="Vvw-ga-qMh" secondAttribute="trailing" constant="8" id="YVa-2K-dJH"/>
+                            <constraint firstItem="bxI-WO-QaE" firstAttribute="leading" secondItem="Vvw-ga-qMh" secondAttribute="leading" id="cm1-Ig-cOl"/>
+                            <constraint firstItem="E8w-9Z-5OL" firstAttribute="trailing" secondItem="bzH-Gv-IcB" secondAttribute="trailing" constant="4" id="des-6Q-Tbl"/>
+                            <constraint firstItem="E8w-9Z-5OL" firstAttribute="bottom" secondItem="Vvw-ga-qMh" secondAttribute="bottom" constant="4" id="jra-1o-F6W"/>
+                            <constraint firstItem="Vvw-ga-qMh" firstAttribute="top" secondItem="bzH-Gv-IcB" secondAttribute="bottom" constant="34" id="vY8-3K-Dg1"/>
+                            <constraint firstItem="bxI-WO-QaE" firstAttribute="centerX" secondItem="b9a-yc-73m" secondAttribute="centerX" id="wgl-Vc-aWB"/>
+                            <constraint firstItem="Vvw-ga-qMh" firstAttribute="top" secondItem="bxI-WO-QaE" secondAttribute="bottom" constant="8" id="yvD-MR-4Jz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="E8w-9Z-5OL"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="UJc-Ld-aYD"/>
+                                <exclude reference="42A-JM-zb7"/>
+                                <exclude reference="VEC-Ed-bqi"/>
+                                <exclude reference="cm1-Ig-cOl"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="UJc-Ld-aYD"/>
+                                <exclude reference="jra-1o-F6W"/>
+                                <exclude reference="1yZ-Js-1WK"/>
+                                <include reference="42A-JM-zb7"/>
+                                <include reference="VEC-Ed-bqi"/>
+                                <exclude reference="CYP-by-Kek"/>
+                                <include reference="cm1-Ig-cOl"/>
+                                <exclude reference="wgl-Vc-aWB"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="YVa-2K-dJH"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="vY8-3K-Dg1"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="callStateLabel" destination="bxI-WO-QaE" id="pKI-8I-vGl"/>
+                        <outlet property="chooseAudioButton" destination="07E-kB-apc" id="V4J-ev-3Qy"/>
+                        <outlet property="hangupButton" destination="V3x-tq-mmK" id="IJa-ES-TUS"/>
+                        <outlet property="holdButton" destination="fN9-QW-NoN" id="Ybl-vh-I4r"/>
+                        <outlet property="localVideoStreamView" destination="tcN-S3-dY9" id="BN0-gm-nSN"/>
+                        <outlet property="magneticView" destination="aJ8-g8-ruZ" id="xoH-tx-xFg"/>
+                        <outlet property="muteButton" destination="znU-jg-Pfd" id="oRe-Ia-ozH"/>
+                        <outlet property="remoteVideoStreamView" destination="bzH-Gv-IcB" id="nES-yp-rit"/>
+                        <outlet property="videoButton" destination="L1g-ti-VVk" id="ZlT-36-ok4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6wP-Ei-0sn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Pce-zR-kYn">
+                    <connections>
+                        <action selector="localVideoStreamDragged:" destination="kkn-o9-8xP" id="LMF-E1-WTf"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="dm2-nc-Pkl">
+                    <connections>
+                        <action selector="localVideoStreamTapped:" destination="kkn-o9-8xP" id="BO0-qU-c0k"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="799.55357142857144" y="124.6376811594203"/>
+        </scene>
+        <!--Call Failed View Controller-->
+        <scene sceneID="VSI-KM-b47">
+            <objects>
+                <viewController storyboardIdentifier="CallFailedViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="mNr-Gw-2tK" customClass="CallFailedViewController" customModule="VideoCall" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ymh-BE-dtm" customClass="DefaultCallFailedView" customModule="InAppScreenSharing" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="A9Y-aF-MQ7"/>
+                    </view>
+                    <connections>
+                        <outlet property="callFailedView" destination="ymh-BE-dtm" id="gK8-7y-wkG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y3z-P0-mmh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1461" y="125"/>
+        </scene>
+    </scenes>
+</document>

@@ -38,20 +38,3 @@ struct UserDefault<T> {
         set { userDefaults.set(newValue, forKey: key) }
     }
 }
-
-@propertyWrapper
-struct NonNilUserDefault<T> {
-    let key: String
-    let defaultValue: T
-    
-    init(_ key: String, defaultValue: T) {
-        self.key = key.appendingAppDomain
-        self.defaultValue = defaultValue
-        userDefaults.register(defaults: [key: defaultValue])
-    }
-    
-    var wrappedValue: T {
-        get { userDefaults.object(forKey: key) as? T ?? defaultValue }
-        set { userDefaults.set(newValue, forKey: key) }
-    }
-}

@@ -28,7 +28,11 @@ final class LoginViewController: UIViewController, LoadingShowable {
         loginView.loginTouchHandler = { [weak self] username, password in
             Log.d("Manually Logging in with password")
             self?.showLoading(title: "Connecting", details: "Please wait...")
-            self?.authService.login(user: username.appendingVoxDomain, password: password, loginHandler)
+            self?.authService.login(
+                user: username.appendingVoxDomain,
+                password: password,
+                loginHandler
+            )
         }
         
         if authService.possibleToLogin {
@@ -40,8 +44,10 @@ final class LoginViewController: UIViewController, LoadingShowable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        loginView.username = authService.loggedInUser?.replacingOccurrences(of: ".voximplant.com", with: "")
+        loginView.username = authService.loggedInUser?.replacingOccurrences(
+            of: ".voximplant.com",
+            with: ""
+        )
         loginView.password = ""
     }
 }

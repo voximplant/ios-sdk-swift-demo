@@ -4,6 +4,6 @@
 
 import UIKit
 
-final class ButtonWithLabel: UIButton {
+final class ButtonWithLabel: PressableButton {
     @IBOutlet weak var label: UILabel!
 }

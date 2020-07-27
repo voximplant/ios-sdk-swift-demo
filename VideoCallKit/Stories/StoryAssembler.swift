@@ -2,22 +2,17 @@
 *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
 */
 
-import VoxImplantSDK
 import CallKit
 
 final class StoryAssembler {
-    private let client: VIClient
     private let authService: AuthService
     private let callManager: CallManager
     private let callController: CXCallController
     
-    required init(
-        _ client: VIClient,
-        _ authService: AuthService,
-        _ callManager: CallManager,
-        _ callController: CXCallController
+    init(_ authService: AuthService,
+         _ callManager: CallManager,
+         _ callController: CXCallController
     ) {
-        self.client = client
         self.authService = authService
         self.callManager = callManager
         self.callController = callController

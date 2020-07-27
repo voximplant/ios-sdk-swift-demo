@@ -4,16 +4,19 @@
 
 import UIKit
 
-final class CallFailedViewController: UIViewController {
+final class CallFailedViewController:
+    UIViewController,
+    LoadingShowable
+{
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
     @IBOutlet private var callFailedView: DefaultCallFailedView!
     
+    var authService: AuthService! // DI
     var callManager: CallManager! // DI
     var storyAssembler: StoryAssembler! // DI
     var failReason: String! // DI
     var user: String! // DI
     var displayName: String! // DI
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,29 +29,60 @@ final class CallFailedViewController: UIViewController {
         }
         
         callFailedView.callBackHandler = { [weak self] in
+            let beginCall = { [weak self] in
+                guard let self = self else { return }
+                do {
+                    try self.callManager.makeOutgoingCall(to: self.user)
+                    self.navigationController?.setViewControllers(
+                        [self.storyAssembler.call],
+                        animated: true
+                    )
+                } catch (let error) {
+                    Log.e("Error during call back \(error.localizedDescription)")
+                    AlertHelper.showAlert(
+                        title: "Error",
+                        message: error.localizedDescription,
+                        actions: [
+                            UIAlertAction(title: "Dismiss", style: .cancel) { _ in
+                                self.dismiss(animated: true)
+                            }
+                        ],
+                        defaultAction: false,
+                        on: self
+                    )
+                }
+            }
+            
             guard let self = self else { return }
             
-            do {
-                try self.callManager.makeOutgoingCall(to: self.user)
-                
-                weak var presentingViewController = self.presentingViewController
-                self.dismiss(animated: true) {
-                    presentingViewController?.present(self.storyAssembler.call, animated: true)
-                }
-                
-            } catch (let error) {
-                Log.e("Error during call back \(error.localizedDescription)")
+            if !self.authService.isLoggedIn {
+                self.reconnect(onSuccess: beginCall)
+            } else {
+                beginCall()
+            }
+        }
+    }
+    
+    // MARK: - Private -
+    private func reconnect(onSuccess: (() -> Void)? = nil) {
+        Log.d("Reconnecting")
+        showLoading(title: "Reconnecting", details: "Please wait...")
+        authService.loginWithAccessToken { [weak self] error in
+            guard let self = self else { return }
+            self.hideProgress()
+            
+            if let error = error {
                 AlertHelper.showAlert(
-                    title: "Error",
+                    title: "Connection error",
                     message: error.localizedDescription,
                     actions: [
-                        UIAlertAction(title: "Dismiss", style: .cancel) { _ in
-                            self.dismiss(animated: true)
-                        }
+                        UIAlertAction(title: "Try again", style: .default) {
+                            _ in self.reconnect()
+                        },
                     ],
-                    defaultAction: false,
-                    on: self
-                )
+                    defaultAction: true)
+            } else {
+                onSuccess?()
             }
         }
     }

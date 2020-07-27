@@ -5,26 +5,29 @@
 import UIKit
 import VoxImplantSDK
 
-let sharedClient: VIClient = VIClient(delegateQueue: DispatchQueue.main)
-let sharedAuthService: AuthService = AuthService(sharedClient)
-let sharedCallManager: CallManager = CallManager(sharedClient, sharedAuthService)
+fileprivate let client: VIClient = VIClient(delegateQueue: DispatchQueue.main)
+fileprivate let authService: AuthService = AuthService(client)
+fileprivate let callManager: CallManager = CallManager(client, authService)
+fileprivate let storyAssembler: StoryAssembler = StoryAssembler(authService, callManager)
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate, Loggable {
-    var appName: String { "AudioCall" }
+final class AppDelegate: UIResponder, UIApplicationDelegate, Loggable {
     var window: UIWindow?
-    var callManager: CallManager = sharedCallManager
+    var appName: String { "AudioCall" }
     
     override init() {
         super.init()
-        
         configureDefaultLogging()
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
         UIApplication.shared.isIdleTimerDisabled = true
-        callManager.delegate = self
-        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = storyAssembler.login
+        window?.makeKeyAndVisible()
         return true
     }
     
@@ -44,9 +47,5 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, CallManagerDelegate
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         (window?.rootViewController?.toppestViewController as? AppLifeCycleDelegate)?.applicationDidBecomeActive(application)
-    }
-    // MARK: - CallManagerDelegate -
-    func notifyIncomingCall(_ call: VICall) {
-        (window?.rootViewController?.toppestViewController as? CallManagerDelegate)?.notifyIncomingCall(call)
     }
 }

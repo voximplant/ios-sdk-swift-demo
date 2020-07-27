@@ -70,7 +70,7 @@ Log in using:
 
 See the following classes for code details:
 * [AuthService.swift](Services/AuthService.swift)
-* [LoginViewController.swift](Stories/Login/LoginViewController.swift)
+* [LoginViewController.swift](Stories/LoginViewController.swift)
 
 ### Make or receive calls
 ![call](Screenshots/call.png)
@@ -79,8 +79,8 @@ Enter a Voximplant user name to the input field and press "Call" button to make 
 
 See the following classes for code details:
 - [CallManager.swift](Services/CallManager.swift)
-- [MainViewController.swift](Stories/Main/MainViewController.swift)
-- [IncomingCallViewController.swift](Stories/Main/IncomingCallViewController.swift)
+- [MainViewController.swift](Stories/MainViewController.swift)
+- [IncomingCallViewController.swift](Stories/IncomingCallViewController.swift)
 
 ### Call controls
 ![inCall](Screenshots/inCall.png)
@@ -88,7 +88,7 @@ See the following classes for code details:
 Enable/disable video or screen sharing during a call.
 
 See the following classes for code details:
-- [CallViewController.swift](Stories/Call/CallViewController.swift)
+- [CallViewController.swift](Stories/CallViewController.swift)
 * [CallManager.swift](Services/CallManager.swift)
   
 

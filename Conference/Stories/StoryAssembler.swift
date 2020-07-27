@@ -2,22 +2,32 @@
 *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
 */
 
-import VoxImplant
-
-fileprivate let client = VIClient(delegateQueue: DispatchQueue.main)
-fileprivate let authService: AuthService = VoximplantAuthService(client: client)
-fileprivate let conferenceService: ConferenceService = VoximplantConferenceService(client: client)
-fileprivate let apiService: VoximplantAPIService = VoximplantAPIService()
-
 final class StoryAssembler {
-    static func assembleLogin() -> LoginViewController {
+    private let authService: AuthService
+    private let conferenceService: ConferenceService
+    private let apiService: VoximplantAPIService
+    
+    init(_ authService: AuthService,
+         _ conferenceService: ConferenceService,
+         _ apiService: VoximplantAPIService
+    ) {
+        self.authService = authService
+        self.conferenceService = conferenceService
+        self.apiService = apiService
+    }
+    
+    var login: LoginViewController {
         let controller = Storyboard.main.instantiateViewController(of: LoginViewController.self)
-        controller.joinConference = JoinConferenceUseCase(authService: authService, conferenceService: conferenceService,
-                                                          apiService: apiService)
+        controller.joinConference = JoinConferenceUseCase(
+            authService: authService,
+            conferenceService: conferenceService,
+            apiService: apiService
+        )
+        controller.storyAssembler = self
         return controller
     }
     
-    static func assembleConferenceCall(name: String, video: Bool) -> ConferenceCallViewController {
+    func assembleConferenceCall(name: String, video: Bool) -> ConferenceCallViewController {
         let controller = Storyboard.main.instantiateViewController(of: ConferenceCallViewController.self)
         controller.leaveConference = LeaveConferenceUseCase(conferenceService: conferenceService, authService: authService)
         controller.manageConference = ManageConferenceUseCase(conferenceService: conferenceService)

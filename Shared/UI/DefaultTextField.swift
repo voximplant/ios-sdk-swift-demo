@@ -4,10 +4,6 @@
 
 import UIKit
 
-extension String {
-    var appendingVoxDomain: String { "\(self).voximplant.com" }
-}
-
 final class DefaultTextField: UITextField {
     var padding = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     
@@ -37,7 +33,10 @@ final class DefaultTextField: UITextField {
     }
     
     private func sharedInit() {
-        attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: placeholerAttributes)
+        attributedPlaceholder = NSAttributedString(
+            string: placeholder ?? "",
+            attributes: placeholerAttributes
+        )
         layer.borderWidth = 1
         layer.borderColor = Color.secondaryWhite.cgColor
         layer.cornerRadius = Theme.defaultCornerRadius

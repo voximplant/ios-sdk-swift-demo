@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -77,8 +76,10 @@
                 <constraint firstItem="gBg-ht-NQ0" firstAttribute="centerX" secondItem="Jk8-kW-gDy" secondAttribute="centerX" id="5gZ-05-2Sj"/>
                 <constraint firstItem="y8v-Ic-fN8" firstAttribute="trailing" secondItem="cvT-T3-7dS" secondAttribute="trailing" constant="16" id="6xy-Da-ueT"/>
                 <constraint firstItem="y8v-Ic-fN8" firstAttribute="trailing" secondItem="Jk8-kW-gDy" secondAttribute="trailing" constant="16" id="Apx-IK-Mlh"/>
+                <constraint firstItem="Jk8-kW-gDy" firstAttribute="width" secondItem="6O3-iE-Ix3" secondAttribute="width" multiplier="0.5" id="HmV-iZ-orc"/>
                 <constraint firstItem="e5a-jm-eSL" firstAttribute="top" secondItem="y8v-Ic-fN8" secondAttribute="top" constant="16" id="Pxy-sh-1gi"/>
                 <constraint firstItem="gBg-ht-NQ0" firstAttribute="width" secondItem="Jk8-kW-gDy" secondAttribute="width" id="SFV-N2-JzN"/>
+                <constraint firstItem="Jk8-kW-gDy" firstAttribute="centerX" secondItem="6O3-iE-Ix3" secondAttribute="centerX" id="V9c-os-WqX"/>
                 <constraint firstItem="gBg-ht-NQ0" firstAttribute="height" secondItem="Jk8-kW-gDy" secondAttribute="height" id="cOj-JN-x7Y"/>
                 <constraint firstItem="e5a-jm-eSL" firstAttribute="leading" secondItem="y8v-Ic-fN8" secondAttribute="leading" constant="16" id="clN-GR-ym0"/>
                 <constraint firstItem="gYH-7Y-OkK" firstAttribute="leading" secondItem="y8v-Ic-fN8" secondAttribute="leading" constant="16" id="dH1-TE-35W"/>
@@ -91,6 +92,19 @@
                 <constraint firstItem="gBg-ht-NQ0" firstAttribute="top" secondItem="Jk8-kW-gDy" secondAttribute="bottom" constant="16" id="yNs-c4-tJH"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="y8v-Ic-fN8"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="HmV-iZ-orc"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="6xy-Da-ueT"/>
+                    <exclude reference="Apx-IK-Mlh"/>
+                    <include reference="HmV-iZ-orc"/>
+                    <exclude reference="f7q-2v-ixg"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="139" y="-492"/>
         </view>
     </objects>

@@ -9,7 +9,8 @@ final class CallManager:
     VIClientCallManagerDelegate,
     VIAudioManagerDelegate,
     VICallDelegate,
-    VIEndpointDelegate
+    VIEndpointDelegate,
+    SpeakerAutoselecting
 {
     typealias VideoStreamAdded = (_ local: Bool, (VIVideoRendererView) -> Void) -> Void
     typealias VideoStreamRemoved = (_ local: Bool) -> Void
@@ -75,12 +76,10 @@ final class CallManager:
         return settings
     }()
     
-    required init(_ client: VIClient, _ authService: AuthService) {
+    init(_ client: VIClient, _ authService: AuthService) {
         self.client = client
         self.authService = authService
-        
         super.init()
-        
         VIAudioManager.shared().delegate = self
         self.client.callManagerDelegate = self
     }
@@ -100,9 +99,7 @@ final class CallManager:
         guard let call = managedCallWrapper?.call else { throw CallError.hasNoActiveCall }
         guard authService.isLoggedIn else { throw AuthError.notLoggedIn }
         
-        if headphonesNotConnected {
-            self.selectIfAvailable(.speaker, from: VIAudioManager.shared().availableAudioDevices())
-        }
+        selectSpeaker()
         call.start()
     }
     
@@ -110,34 +107,35 @@ final class CallManager:
         guard let call = managedCallWrapper?.call else { throw CallError.hasNoActiveCall }
         guard authService.isLoggedIn else { throw AuthError.notLoggedIn }
         
-        if headphonesNotConnected {
-            selectIfAvailable(.speaker, from: VIAudioManager.shared().availableAudioDevices())
-        }
+        selectSpeaker()
         call.answer(with: callSettings)
     }
     
-    func changeSendVideo(_ completion: ((Error?) -> Void)? = nil) {
-        guard let wrapper = managedCallWrapper else { completion?(CallError.hasNoActiveCall); return }
-        
+    func toggleSendVideo(_ completion: @escaping (Error?) -> Void) {
+        guard let wrapper = managedCallWrapper else {
+            completion(CallError.hasNoActiveCall)
+            return
+        }
         wrapper.call.setSendVideo(!wrapper.sendingVideo) { [weak self] error in
             if let error = error {
-                completion?(error)
+                completion(error)
                 return
             }
-            
             self?.managedCallWrapper?.sendingVideo.toggle()
             self?.managedCallWrapper?.sharingScreen = false
-            completion?(nil)
+            completion(nil)
         }
     }
     
-    func changeShareScreen(_ completion: ((Error?) -> Void)? = nil) {
-        guard let wrapper = managedCallWrapper else { completion?(CallError.hasNoActiveCall); return }
-        
+    func toggleShareScreen(_ completion: @escaping (Error?) -> Void) {
+        guard let wrapper = managedCallWrapper else {
+            completion(CallError.hasNoActiveCall)
+            return
+        }
         if wrapper.sharingScreen {
             wrapper.call.setSendVideo(wrapper.sendingVideo) { [weak self] error in
                 if let error = error {
-                    completion?(error)
+                    completion(error)
                     return
                 }
                 self?.managedCallWrapper?.sharingScreen = false
@@ -145,7 +143,7 @@ final class CallManager:
         } else {
             wrapper.call.startInAppScreenSharing { [weak self] error in
                 if let error = error {
-                    completion?(error)
+                    completion(error)
                     return
                 }
                 self?.managedCallWrapper?.sharingScreen = true
@@ -153,9 +151,14 @@ final class CallManager:
         }
     }
     
+    func switchCamera() {
+        VICameraManager.shared().useBackCamera.toggle()
+    }
+    
     func endCall() throws {
-        guard let call = managedCallWrapper?.call else { throw CallError.hasNoActiveCall }
-        
+        guard let call = managedCallWrapper?.call else {
+            throw CallError.hasNoActiveCall
+        }
         call.hangup(withHeaders: nil)
     }
 
@@ -237,19 +240,6 @@ final class CallManager:
     func audioDeviceUnavailable(_ audioDevice: VIAudioDevice) { }
     
     func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>) {
-        if headphonesNotConnected {
-            selectIfAvailable(.speaker, from: availableAudioDevices)
-        }
-    }
-    
-    // MARK: - Private -
-    private var headphonesNotConnected: Bool {
-        !VIAudioManager.shared().availableAudioDevices().contains { $0.type == .wired || $0.type == .bluetooth }
-    }
-    
-    private func selectIfAvailable(_ audioDeviceType: VIAudioDeviceType, from audioDevices: Set<VIAudioDevice>) {
-        if let device = audioDevices.first(where: { $0.type == audioDeviceType }) {
-            VIAudioManager.shared().select(device)
-        }
+        selectSpeaker(from: availableAudioDevices)
     }
 }

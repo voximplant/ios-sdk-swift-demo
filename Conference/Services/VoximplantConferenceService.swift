@@ -33,7 +33,8 @@ final class VoximplantConferenceService:
     ConferenceService,
     VICallDelegate,
     VIEndpointDelegate,
-    VIAudioManagerDelegate
+    VIAudioManagerDelegate,
+    SpeakerAutoselecting
 {
     private let client: VIClient
     private var managedConference: VICall?
@@ -63,9 +64,7 @@ final class VoximplantConferenceService:
         
         try callOrThrow().start()
         try callOrThrow().add(self)
-        if headphonesNotConnected {
-            selectIfAvailable(.speaker, from: VIAudioManager.shared().availableAudioDevices())
-        }
+        selectSpeaker()
     }
     
     func leaveConference() throws {
@@ -163,19 +162,6 @@ final class VoximplantConferenceService:
     func audioDeviceUnavailable(_ audioDevice: VIAudioDevice) { }
     
     func audioDevicesListChanged(_ availableAudioDevices: Set<VIAudioDevice>) {
-        if headphonesNotConnected {
-            selectIfAvailable(.speaker, from: availableAudioDevices)
-        }
-    }
-    
-    // MARK: - Private -
-    private var headphonesNotConnected: Bool {
-        !VIAudioManager.shared().availableAudioDevices().contains { $0.type == .wired || $0.type == .bluetooth }
-    }
-    
-    private func selectIfAvailable(_ audioDeviceType: VIAudioDeviceType, from audioDevices: Set<VIAudioDevice>) {
-        if let device = audioDevices.first(where: { $0.type == audioDeviceType }) {
-            VIAudioManager.shared().select(device)
-        }
+        selectSpeaker(from: availableAudioDevices)
     }
 }

@@ -133,7 +133,7 @@ See the following classes for code details:
 ## Broadcasting Architecture
 
 Screen capture happens within an broadcast upload app extension.
-look: [SampleHandler.swift](../ScreenSharingUploadAppex/SampleHandler)
+look: [SampleHandler.swift](../ScreenSharingUploadAppex/SampleHandler.swift)
 
 Every time user tries to begin screen sharing, extension receives ‘broadcastStarted’ method call, in which
 app extension will try to auth into Voximplant Cloud 

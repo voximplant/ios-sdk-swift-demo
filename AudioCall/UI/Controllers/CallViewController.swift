@@ -34,10 +34,12 @@ final class CallViewController:
             call?.sendAudio = !newValue
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        VIAudioManager.shared().delegate = self
+        let audioManager = VIAudioManager.shared()
+        audioManager.delegate = self
+        self.audioDeviceChanged(audioManager.currentAudioDevice())
         call?.add(self)
     }
     

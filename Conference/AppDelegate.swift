@@ -3,6 +3,13 @@
  */
 
 import UIKit
+import VoxImplantSDK
+
+fileprivate let client = VIClient(delegateQueue: DispatchQueue.main)
+fileprivate let authService: AuthService = VoximplantAuthService(client: client)
+fileprivate let conferenceService: ConferenceService = VoximplantConferenceService(client: client)
+fileprivate let apiService = VoximplantAPIService()
+fileprivate let storyAssembler = StoryAssembler(authService, conferenceService, apiService)
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate, Loggable {
@@ -11,15 +18,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, Loggable {
     
     override init() {
         super.init()
-        
         configureDefaultLogging()
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
         UIApplication.shared.isIdleTimerDisabled = true
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = StoryAssembler.assembleLogin()
+        window?.rootViewController = storyAssembler.login
         window?.makeKeyAndVisible()
         
         return true

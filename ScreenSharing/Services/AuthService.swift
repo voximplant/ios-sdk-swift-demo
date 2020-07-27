@@ -96,9 +96,8 @@ final class AuthService: NSObject, VIClientSessionDelegate {
     
     func logout(_ completion: @escaping LogoutCompletion) {
         Tokens.clear()
-        self.loggedInUser = nil
-        self.loggedInUserDisplayName = nil
-        self.disconnect(completion)
+        loggedInUserDisplayName = nil
+        disconnect(completion)
     }
     
     private func updateAccessTokenIfNeeded(
@@ -133,7 +132,6 @@ final class AuthService: NSObject, VIClientSessionDelegate {
         {
             connectCompletion = completion
             client.connect()
-
         } else {
             completion(nil)
         }

@@ -7,55 +7,24 @@ import VoxImplantSDK
 import ReplayKit
 
 final class CallViewController: UIViewController {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .all }
     @IBOutlet private weak var conferenceView: ConferenceView!
     @IBOutlet private weak var videoButton: CallOptionButton!
     @IBOutlet private weak var sharingButton: CallOptionButton!
     @IBOutlet private weak var hangupButton: CallOptionButton!
+    private var screenSharingButtonSubview: UIImageView?
+    
+    private var shouldDismissAfterAppearing = false
     
     var myDisplayName: String! // DI
     var callManager: CallManager! // DI
     var storyAssembler: StoryAssembler! // DI
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        .all
-    }
-    
-    private var screenSharingButtonSubview: UIImageView?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         callManager.callObserver = { [weak self] call in
-            guard let self = self else { return }
-            if case .ended (let reason) = call.state {
-                if case .disconnected = reason {
-                    self.dismiss(animated: true)
-                }
-                if case .failed (let message) = reason {
-                    weak var presentingViewController = self.presentingViewController
-                    self.dismiss(animated: true) {
-                        presentingViewController?.present(
-                            self.storyAssembler.callFailed(
-                                callee: call.callee,
-                                displayName: call.displayName ?? call.callee,
-                                reason: message
-                            ),
-                            animated: true)
-                    }
-                    return
-                }
-            }
-            
-            if #available(iOS 12.0, *) {
-                self.screenSharingButtonSubview?.tintColor = call.sharingScreen ? #colorLiteral(red: 0.9607843137, green: 0.2941176471, blue: 0.368627451, alpha: 1) : .white
-            } else {
-                self.sharingButton.state = call.state == .connected
-                    ? call.sharingScreen ? .selected : .normal
-                    : .unavailable
-            }
-            self.videoButton.state = call.state == .connected
-                ? call.sendingVideo ? .normal : .selected
-                : .unavailable
+            self?.updateContent(with: call)
         }
         
         videoButton.state = .initial(model: CallOptionButtonModels.camera)
@@ -64,7 +33,7 @@ final class CallViewController: UIViewController {
             let previousState = button.state
             button.state = .unavailable
             
-            self?.callManager.changeSendVideo { [weak self] error in
+            self?.callManager.toggleSendVideo { [weak self] error in
                 if let error = error {
                     Log.e("setSendVideo error \(error.localizedDescription)")
                     AlertHelper.showError(message: error.localizedDescription, on: self)
@@ -123,6 +92,20 @@ final class CallViewController: UIViewController {
             conferenceView.addParticipant(withID: myId, displayName: "\(myDisplayName ?? "") (you)")
         } catch (let error) {
             Log.e("Call start failed with error \(error.localizedDescription)")
+            shouldDismissAfterAppearing = true
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let call = callManager.managedCallWrapper {
+            updateContent(with: call)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if shouldDismissAfterAppearing {
             dismiss(animated: true)
         }
     }
@@ -135,7 +118,37 @@ final class CallViewController: UIViewController {
         callManager.remoteVideoStreamAddedHandler = nil
         callManager.remoteVideoStreamAddedHandler = nil
         callManager.remoteVideoStreamRemovedHandler = nil
-    }   
+    }
+    
+    private func updateContent(with call: CallManager.CallWrapper) {
+        if case .ended (let reason) = call.state {
+            if case .disconnected = reason {
+                dismiss(animated: true)
+            }
+            if case .failed (let message) = reason {
+                navigationController?.setViewControllers(
+                    [storyAssembler.callFailed(
+                        callee: call.callee,
+                        displayName: call.displayName ?? call.callee,
+                        reason: message)
+                    ],
+                    animated: true
+                )
+            }
+            return
+        }
+        
+        if #available(iOS 12.0, *) {
+            screenSharingButtonSubview?.tintColor = call.sharingScreen ? #colorLiteral(red: 0.9607843137, green: 0.2941176471, blue: 0.368627451, alpha: 1) : .white
+        } else {
+            sharingButton.state = call.state == .connected
+                ? call.sharingScreen ? .selected : .normal
+                : .unavailable
+        }
+        videoButton.state = call.state == .connected
+            ? call.sendingVideo ? .normal : .selected
+            : .unavailable
+    }
     
     private enum CallOptionButtonModels {
         static let screenOld = CallOptionButtonModel(image: UIImage(named: "screenSharing"), text: "Screen")

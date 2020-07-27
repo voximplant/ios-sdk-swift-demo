@@ -70,8 +70,8 @@ Log in using:
 * password
 
 See the following classes for code details:
-- [AuthService.swift](AuthService.swift)
-- [LoginViewController.swift](UI/Controllers/LoginViewController.swift)
+- [AuthService.swift](Services/AuthService.swift)
+- [LoginViewController.swift](Stories/LoginViewController.swift)
 
 ### Make or receive calls
 ![call](Screenshots/call.png)
@@ -79,9 +79,9 @@ See the following classes for code details:
 Enter a Voximplant user name to the input field and press "Call" button to make a call.
 
 See the following classes for code details:
-- [CallManager.swift](CallManager.swift)
-- [MainViewController.swift](UI/Controllers/MainViewController.swift)
-- [IncomingCallViewController.swift](UI/Controllers/IncomingCallViewController.swift)
+- [CallManager.swift](Services/CallManager.swift)
+- [MainViewController.swift](Stories/MainViewController.swift)
+- [IncomingCallViewController.swift](Stories/IncomingCallViewController.swift)
 
 ### Audio call controls
 ![inCall](Screenshots/inCall.png)
@@ -89,7 +89,7 @@ See the following classes for code details:
 Mute, hold, change an audio device or send DTMFs during a call.
 
 See the following classes for code details:
-- [CallViewController.swift](UI/Controllers/CallViewController.swift)
+- [CallViewController.swift](Stories/CallViewController.swift)
   
 
 ## Useful links

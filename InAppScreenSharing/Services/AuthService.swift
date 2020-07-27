@@ -14,18 +14,17 @@ final class AuthService: NSObject, VIClientSessionDelegate {
     private var connectCompletion: ConnectCompletion?
     private var disconnectCompletion: DisconnectCompletion?
     var possibleToLogin: Bool { Tokens.areExist && !Tokens.areExpired }
+    @UserDefault("lastFullUsername")
+    var loggedInUser: String?
+    var loggedInUserDisplayName: String?
+    var isLoggedIn: Bool { state == .loggedIn }
+    private var state: VIClientState { client.clientState }
     
     init(_ client: VIClient) {
         self.client = client
         super.init()
         client.sessionDelegate = self
     }
-        
-    @UserDefault("lastFullUsername")
-    var loggedInUser: String?
-    var loggedInUserDisplayName: String?
-    var isLoggedIn: Bool { state == .loggedIn }
-    private var state: VIClientState { client.clientState }
         
     func login(user: String, password: String, _ completion: @escaping LoginCompletion) {
         connect() { [weak self] error in
@@ -97,9 +96,8 @@ final class AuthService: NSObject, VIClientSessionDelegate {
     
     func logout(_ completion: @escaping LogoutCompletion) {
         Tokens.clear()
-        self.loggedInUser = nil
-        self.loggedInUserDisplayName = nil
-        self.disconnect(completion)
+        loggedInUserDisplayName = nil
+        disconnect(completion)
     }
     
     private func updateAccessTokenIfNeeded(
@@ -134,7 +132,6 @@ final class AuthService: NSObject, VIClientSessionDelegate {
         {
             connectCompletion = completion
             client.connect()
-
         } else {
             completion(nil)
         }

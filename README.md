@@ -11,6 +11,9 @@ The demo demonstrates [CallKit](https://developer.apple.com/documentation/callki
 ## [Conference demo](Conference)
 The demo demonstrates conference call functionality of the Voximplant iOS SDK.
 
+## [VideoCall demo](VideoCall)
+The demo demonstrates basic video call functionality of the Voximplant iOS SDK.
+
 ## [VideoCallKit demo](VideoCallKit)
 The demo demonstrates [CallKit](https://developer.apple.com/documentation/callkit) integration with basic video call functionality of the Voximplant iOS SDK . 
 > Apple has changed the workflow for VoIP push notifications handling in iOS 13.

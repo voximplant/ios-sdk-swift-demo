@@ -33,6 +33,11 @@ target 'Conference' do
    voximplant
 end
 
+target 'VideoCall' do
+  common_pods
+  voximplant
+end
+
 target 'VideoCallKit' do
   common_pods
   voximplant
