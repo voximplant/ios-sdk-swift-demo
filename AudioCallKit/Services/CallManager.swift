@@ -15,6 +15,7 @@ final class CallManager:
     fileprivate var client: VIClient
     fileprivate var authService: AuthService
     fileprivate var pushCallNotifier: PushCallNotifier
+    fileprivate var audioIsActive: Bool = false
     
     // Voximplant SDK supports multiple calls at the same time, however
     // this demo app demonstrates only one managed call at the moment,
@@ -79,8 +80,6 @@ final class CallManager:
             } else {
                 call.call?.hangup(withHeaders: nil)
             }
-            
-            VIAudioManager.shared().callKitReleaseAudioSession()
         }
         // SDK will invoke VICallDelegate methods (didDisconnectWithHeaders or didFailWithError)
     }
@@ -102,6 +101,11 @@ final class CallManager:
             self.managedCall?.completePushProcessing()
             
             self.managedCall = nil
+            
+            // callKitReleaseAudio should be called after deactivating CallKit session by iOS subsystem after the call ended.
+            if !self.audioIsActive {
+                VIAudioManager.shared().callKitReleaseAudioSession()
+            }
         }
     }
     
@@ -201,12 +205,19 @@ final class CallManager:
 
     func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
         VIAudioManager.shared().callKitStartAudio()
+        self.audioIsActive = true
         progresstone?.didActivateAudioSession()
     }
     
     func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
         VIAudioManager.shared().callKitStopAudio()
+        self.audioIsActive = false
         progresstone?.didDeactivateAudioSession()
+        
+        // callKitReleaseAudio should be called after deactivating CallKit session by iOS subsystem after the call ended.
+        if self.managedCall == nil {
+            VIAudioManager.shared().callKitReleaseAudioSession()
+        }
     }
 
     // method caused by the CXProvider.invalidate()
