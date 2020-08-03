@@ -23,11 +23,9 @@
 		7E386CB1248793B800556D3D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CB0248793B800556D3D /* LoginViewController.swift */; };
 		7E386CB4248793B800556D3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E386CB2248793B800556D3D /* Main.storyboard */; };
 		7E386CBE248794E900556D3D /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFCF22B773BC009C7F2D /* Log.swift */; };
-		7E386CBF248794FF00556D3D /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFCF22B773BC009C7F2D /* Log.swift */; };
 		7E386CC2248795C200556D3D /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
 		7E386CC3248795C200556D3D /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
 		7E386CC4248795C300556D3D /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
-		7E386CC5248795C300556D3D /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
 		7E386CC6248795C400556D3D /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
 		7E386CC72487976000556D3D /* VoximplantSDKVersionContainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E02244D8A8F009DDA51 /* VoximplantSDKVersionContainable.swift */; };
 		7E386CC82487976300556D3D /* LoadingShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E1A244DC327009DDA51 /* LoadingShowable.swift */; };
@@ -56,7 +54,6 @@
 		7E386CE2248798CF00556D3D /* StoryAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CE1248798CF00556D3D /* StoryAssembler.swift */; };
 		7E386CE82487991D00556D3D /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CE72487991D00556D3D /* Storyboard.swift */; };
 		7E386CEA248799A900556D3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E0CFB622B771A0009C7F2D /* LaunchScreen.storyboard */; };
-		7E386CEB248799A900556D3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E0CFB622B771A0009C7F2D /* LaunchScreen.storyboard */; };
 		7E386CEC248799AA00556D3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E0CFB622B771A0009C7F2D /* LaunchScreen.storyboard */; };
 		7E386CED248799AA00556D3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E0CFB622B771A0009C7F2D /* LaunchScreen.storyboard */; };
 		7E386CF024879A2200556D3D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CEF24879A2200556D3D /* AuthService.swift */; };
@@ -74,7 +71,6 @@
 		7E386D152488059A00556D3D /* PressableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386D132488056000556D3D /* PressableButton.swift */; };
 		7E386D172488059B00556D3D /* PressableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386D132488056000556D3D /* PressableButton.swift */; };
 		7E386D182488059C00556D3D /* PressableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386D132488056000556D3D /* PressableButton.swift */; };
-		7E3901D424D2D69300EFFD7F /* PressableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386D132488056000556D3D /* PressableButton.swift */; };
 		7E475612244DEF420028495E /* DefaultMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47560D244DEF010028495E /* DefaultMainView.swift */; };
 		7E475613244DEF430028495E /* DefaultMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47560D244DEF010028495E /* DefaultMainView.swift */; };
 		7E475614244DEF430028495E /* DefaultMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47560D244DEF010028495E /* DefaultMainView.swift */; };
@@ -95,32 +91,10 @@
 		7E537DCF24880C8A00013D6E /* DefaultCallFailedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E537DCD24880BA800013D6E /* DefaultCallFailedView.xib */; };
 		7E537DD024880C8C00013D6E /* DefaultCallFailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E537DCB24880B9D00013D6E /* DefaultCallFailedView.swift */; };
 		7E537DD12488235B00013D6E /* EdgeMagneticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CF82487C09000556D3D /* EdgeMagneticView.swift */; };
-		7E544266243BA45500450A73 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7E544265243BA45500450A73 /* README.md */; };
 		7E55DF37248829880067A214 /* AppLifeCycleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E37244DDE2C009DDA51 /* AppLifeCycleDelegate.swift */; };
 		7E616725249A17820066C43B /* ConferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F772435E259004387C2 /* ConferenceView.swift */; };
 		7E616726249A17870066C43B /* ConferenceParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3FDB92436433A0021BD9E /* ConferenceParticipantView.swift */; };
 		7E616727249A178A0066C43B /* ConferenceParticipantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EC3FDBB243643880021BD9E /* ConferenceParticipantView.xib */; };
-		7E708B7E2452D35B00F58F92 /* PermissionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B6829E22F4492A002244B5 /* PermissionsHelper.swift */; };
-		7E738F912435E259004387C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E738F6E2435E259004387C2 /* Main.storyboard */; };
-		7E738F922435E259004387C2 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F702435E259004387C2 /* Storyboard.swift */; };
-		7E738F942435E259004387C2 /* CallOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F742435E259004387C2 /* CallOptionButton.swift */; };
-		7E738F952435E259004387C2 /* CallOptionButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E738F752435E259004387C2 /* CallOptionButton.xib */; };
-		7E738F962435E259004387C2 /* CallOptionButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F762435E259004387C2 /* CallOptionButtonModel.swift */; };
-		7E738F972435E259004387C2 /* ConferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F772435E259004387C2 /* ConferenceView.swift */; };
-		7E738F992435E259004387C2 /* ConferenceCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F792435E259004387C2 /* ConferenceCallViewController.swift */; };
-		7E738F9A2435E259004387C2 /* StoryAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F7A2435E259004387C2 /* StoryAssembler.swift */; };
-		7E738F9B2435E259004387C2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F7C2435E259004387C2 /* LoginView.swift */; };
-		7E738F9C2435E259004387C2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F7D2435E259004387C2 /* LoginViewController.swift */; };
-		7E738F9E2435E259004387C2 /* ConferenceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F802435E259004387C2 /* ConferenceErrors.swift */; };
-		7E738F9F2435E259004387C2 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F812435E259004387C2 /* NibLoadable.swift */; };
-		7E738FA02435E259004387C2 /* VoximplantConferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F832435E259004387C2 /* VoximplantConferenceService.swift */; };
-		7E738FA12435E259004387C2 /* VoximplantAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F842435E259004387C2 /* VoximplantAPIService.swift */; };
-		7E738FA22435E259004387C2 /* VoximplantAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F852435E259004387C2 /* VoximplantAuthService.swift */; };
-		7E738FA42435E259004387C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E738F892435E259004387C2 /* Assets.xcassets */; };
-		7E738FA72435E259004387C2 /* LeaveConferenceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F8E2435E259004387C2 /* LeaveConferenceUseCase.swift */; };
-		7E738FA82435E259004387C2 /* ManageConferenceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F8F2435E259004387C2 /* ManageConferenceUseCase.swift */; };
-		7E738FA92435E25A004387C2 /* JoinConferenceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F902435E259004387C2 /* JoinConferenceUseCase.swift */; };
-		7E738FAB2435E297004387C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738FAA2435E297004387C2 /* AppDelegate.swift */; };
 		7E7A007C24C5A11900691771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A007B24C5A11900691771 /* AppDelegate.swift */; };
 		7E7A008024C5A11900691771 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A007F24C5A11900691771 /* LoginViewController.swift */; };
 		7E7A008324C5A11900691771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E7A008124C5A11900691771 /* Main.storyboard */; };
@@ -182,8 +156,6 @@
 		7E7A00D824C5E4E600691771 /* SpeakerAutoselecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A00D524C5E4B800691771 /* SpeakerAutoselecting.swift */; };
 		7E7A00D924C5E4E900691771 /* AudioDeviceSelecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A00D324C5E48300691771 /* AudioDeviceSelecting.swift */; };
 		7E7A00DA24C5E4E900691771 /* SpeakerAutoselecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A00D524C5E4B800691771 /* SpeakerAutoselecting.swift */; };
-		7E7A00DB24C5E4EA00691771 /* AudioDeviceSelecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A00D324C5E48300691771 /* AudioDeviceSelecting.swift */; };
-		7E7A00DC24C5E4EA00691771 /* SpeakerAutoselecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A00D524C5E4B800691771 /* SpeakerAutoselecting.swift */; };
 		7E7A00DD24C5E62100691771 /* AudioDeviceSelecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A00D324C5E48300691771 /* AudioDeviceSelecting.swift */; };
 		7E7A00DE24C5E62100691771 /* AudioDeviceSelecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A00D324C5E48300691771 /* AudioDeviceSelecting.swift */; };
 		7E7A00DF24C5E63800691771 /* SpeakerAutoselecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A00D524C5E4B800691771 /* SpeakerAutoselecting.swift */; };
@@ -242,13 +214,8 @@
 		7E9A494E2451E05A00F8773E /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A494B2451E04200F8773E /* ErrorHandling.swift */; };
 		7E9A494F2451E05B00F8773E /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A494B2451E04200F8773E /* ErrorHandling.swift */; };
 		7E9A49512451F75500F8773E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7E9A49502451F75400F8773E /* README.md */; };
-		7E9A49522452D0FE00F8773E /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A494B2451E04200F8773E /* ErrorHandling.swift */; };
-		7E9A49532452D20A00F8773E /* MovingWithKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47561B244ECC580028495E /* MovingWithKeyboard.swift */; };
-		7E9A49542452D28800F8773E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C8E1F522E99419006CCCFF /* Errors.swift */; };
 		7E9F20E2243C733E002B5700 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F20E0243C7323002B5700 /* AlertHelper.swift */; };
 		7E9F20E3243C733F002B5700 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F20E0243C7323002B5700 /* AlertHelper.swift */; };
-		7E9F20E4243C733F002B5700 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F20E0243C7323002B5700 /* AlertHelper.swift */; };
-		7E9F20E5243C738F002B5700 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F00F9322C610E00061AF13 /* UIExtensions.swift */; };
 		7EB67DEA244D8543009DDA51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67DE9244D8543009DDA51 /* AppDelegate.swift */; };
 		7EB67DEE244D8543009DDA51 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67DED244D8543009DDA51 /* LoginViewController.swift */; };
 		7EB67DF1244D8543009DDA51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EB67DEF244D8543009DDA51 /* Main.storyboard */; };
@@ -263,7 +230,6 @@
 		7EB67E0F244DA159009DDA51 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E0E244DA159009DDA51 /* UserDefault.swift */; };
 		7EB67E11244DA62F009DDA51 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E0E244DA159009DDA51 /* UserDefault.swift */; };
 		7EB67E12244DA630009DDA51 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E0E244DA159009DDA51 /* UserDefault.swift */; };
-		7EB67E13244DA636009DDA51 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E0E244DA159009DDA51 /* UserDefault.swift */; };
 		7EB67E1B244DC327009DDA51 /* LoadingShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E1A244DC327009DDA51 /* LoadingShowable.swift */; };
 		7EB67E1C244DC3BC009DDA51 /* LoadingShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E1A244DC327009DDA51 /* LoadingShowable.swift */; };
 		7EB67E1D244DC3BD009DDA51 /* LoadingShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E1A244DC327009DDA51 /* LoadingShowable.swift */; };
@@ -288,10 +254,6 @@
 		7EB67E45244DE18C009DDA51 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F812435E259004387C2 /* NibLoadable.swift */; };
 		7EB67E46244DE18E009DDA51 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F812435E259004387C2 /* NibLoadable.swift */; };
 		7EB67E47244DE18E009DDA51 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F812435E259004387C2 /* NibLoadable.swift */; };
-		7EC3FDBA2436433A0021BD9E /* ConferenceParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3FDB92436433A0021BD9E /* ConferenceParticipantView.swift */; };
-		7EC3FDBC243643880021BD9E /* ConferenceParticipantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EC3FDBB243643880021BD9E /* ConferenceParticipantView.xib */; };
-		7EC3FDC124379DC40021BD9E /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3FDC024379DC40021BD9E /* LoginTextField.swift */; };
-		7EC3FDC32437B0170021BD9E /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C8E20022EB4139006CCCFF /* Shared.xcassets */; };
 		7ECA29D124A508A100F3D1ED /* DarwinNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECA29D024A508A100F3D1ED /* DarwinNotificationsService.swift */; };
 		7ECA29D224A509CB00F3D1ED /* DarwinNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECA29D024A508A100F3D1ED /* DarwinNotificationsService.swift */; };
 		7EF4B52724C9DED000DFF3C6 /* AnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF4B52524C9DEB900DFF3C6 /* AnimatedTransition.swift */; };
@@ -316,7 +278,6 @@
 		7EF4B637249A4EEA00081013 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF4B5F0249A4DA600081013 /* MainViewController.swift */; };
 		7EF4B638249A4EEE00081013 /* IncomingCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF4B5F3249A4DA600081013 /* IncomingCallViewController.swift */; };
 		7EF4B639249A4F0800081013 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF4B5F6249A4DA600081013 /* LoginViewController.swift */; };
-		7EF72227244F3CD000B0037E /* AudioDeviceAlertSelecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E37C36B244F349F00F18266 /* AudioDeviceAlertSelecting.swift */; };
 		7EF7222A244F4FEA00B0037E /* CallVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF72229244F4FEA00B0037E /* CallVideoView.swift */; };
 		7EF7222C244F506D00B0037E /* CallVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF7222B244F506D00B0037E /* CallVideoView.xib */; };
 		8E87346121D3D292008E75B5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8E87345F21D3D292008E75B5 /* README.md */; };
@@ -469,29 +430,11 @@
 		7E537DC824880B3300013D6E /* CallFailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallFailedViewController.swift; sourceTree = "<group>"; };
 		7E537DCB24880B9D00013D6E /* DefaultCallFailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCallFailedView.swift; sourceTree = "<group>"; };
 		7E537DCD24880BA800013D6E /* DefaultCallFailedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultCallFailedView.xib; sourceTree = "<group>"; };
-		7E544265243BA45500450A73 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7E738F592435DF92004387C2 /* Conference.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Conference.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E738F6F2435E259004387C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7E738F702435E259004387C2 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		7E738F742435E259004387C2 /* CallOptionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallOptionButton.swift; sourceTree = "<group>"; };
 		7E738F752435E259004387C2 /* CallOptionButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallOptionButton.xib; sourceTree = "<group>"; };
 		7E738F762435E259004387C2 /* CallOptionButtonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallOptionButtonModel.swift; sourceTree = "<group>"; };
 		7E738F772435E259004387C2 /* ConferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceView.swift; sourceTree = "<group>"; };
-		7E738F792435E259004387C2 /* ConferenceCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceCallViewController.swift; sourceTree = "<group>"; };
-		7E738F7A2435E259004387C2 /* StoryAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryAssembler.swift; sourceTree = "<group>"; };
-		7E738F7C2435E259004387C2 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		7E738F7D2435E259004387C2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		7E738F802435E259004387C2 /* ConferenceErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceErrors.swift; sourceTree = "<group>"; };
 		7E738F812435E259004387C2 /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
-		7E738F832435E259004387C2 /* VoximplantConferenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoximplantConferenceService.swift; sourceTree = "<group>"; };
-		7E738F842435E259004387C2 /* VoximplantAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoximplantAPIService.swift; sourceTree = "<group>"; };
-		7E738F852435E259004387C2 /* VoximplantAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoximplantAuthService.swift; sourceTree = "<group>"; };
-		7E738F892435E259004387C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7E738F8C2435E259004387C2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E738F8E2435E259004387C2 /* LeaveConferenceUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaveConferenceUseCase.swift; sourceTree = "<group>"; };
-		7E738F8F2435E259004387C2 /* ManageConferenceUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageConferenceUseCase.swift; sourceTree = "<group>"; };
-		7E738F902435E259004387C2 /* JoinConferenceUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinConferenceUseCase.swift; sourceTree = "<group>"; };
-		7E738FAA2435E297004387C2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E7A007924C5A11900691771 /* VideoCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E7A007B24C5A11900691771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E7A007F24C5A11900691771 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -540,7 +483,6 @@
 		7EB67E40244DE0FC009DDA51 /* DefaultLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginView.swift; sourceTree = "<group>"; };
 		7EC3FDB92436433A0021BD9E /* ConferenceParticipantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceParticipantView.swift; sourceTree = "<group>"; };
 		7EC3FDBB243643880021BD9E /* ConferenceParticipantView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConferenceParticipantView.xib; sourceTree = "<group>"; };
-		7EC3FDC024379DC40021BD9E /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		7ECA29D024A508A100F3D1ED /* DarwinNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinNotificationsService.swift; sourceTree = "<group>"; };
 		7EF4B52524C9DEB900DFF3C6 /* AnimatedTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTransition.swift; sourceTree = "<group>"; };
 		7EF4B52A24C9E11500DFF3C6 /* AnimatedTransitionNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTransitionNavigationController.swift; sourceTree = "<group>"; };
@@ -651,13 +593,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		7E386CA7248793B800556D3D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7E738F562435DF92004387C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -833,39 +768,6 @@
 			path = ConferenceView;
 			sourceTree = "<group>";
 		};
-		7E738F5A2435DF92004387C2 /* Conference */ = {
-			isa = PBXGroup;
-			children = (
-				7E544265243BA45500450A73 /* README.md */,
-				7E738FAA2435E297004387C2 /* AppDelegate.swift */,
-				7E738F6D2435E259004387C2 /* Stories */,
-				7E738F8D2435E259004387C2 /* UseCases */,
-				7E738F822435E259004387C2 /* Services */,
-				7E738F7E2435E259004387C2 /* Utils */,
-				7E738F882435E259004387C2 /* Resources */,
-			);
-			path = Conference;
-			sourceTree = "<group>";
-		};
-		7E738F6D2435E259004387C2 /* Stories */ = {
-			isa = PBXGroup;
-			children = (
-				7E738F7A2435E259004387C2 /* StoryAssembler.swift */,
-				7E738F7B2435E259004387C2 /* Login */,
-				7E738F712435E259004387C2 /* ConferenceCall */,
-				7E7A00E524C5F67100691771 /* Storyboards */,
-			);
-			path = Stories;
-			sourceTree = "<group>";
-		};
-		7E738F712435E259004387C2 /* ConferenceCall */ = {
-			isa = PBXGroup;
-			children = (
-				7E738F792435E259004387C2 /* ConferenceCallViewController.swift */,
-			);
-			path = ConferenceCall;
-			sourceTree = "<group>";
-		};
 		7E738F732435E259004387C2 /* CallOptionButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -874,53 +776,6 @@
 				7E738F762435E259004387C2 /* CallOptionButtonModel.swift */,
 			);
 			path = CallOptionButton;
-			sourceTree = "<group>";
-		};
-		7E738F7B2435E259004387C2 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				7EC3FDC024379DC40021BD9E /* LoginTextField.swift */,
-				7E738F7C2435E259004387C2 /* LoginView.swift */,
-				7E738F7D2435E259004387C2 /* LoginViewController.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		7E738F7E2435E259004387C2 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				7E738F802435E259004387C2 /* ConferenceErrors.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		7E738F822435E259004387C2 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				7E738F832435E259004387C2 /* VoximplantConferenceService.swift */,
-				7E738F852435E259004387C2 /* VoximplantAuthService.swift */,
-				7E738F842435E259004387C2 /* VoximplantAPIService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		7E738F882435E259004387C2 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				7E738F892435E259004387C2 /* Assets.xcassets */,
-				7E738F8C2435E259004387C2 /* Info.plist */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		7E738F8D2435E259004387C2 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				7E738F902435E259004387C2 /* JoinConferenceUseCase.swift */,
-				7E738F8F2435E259004387C2 /* ManageConferenceUseCase.swift */,
-				7E738F8E2435E259004387C2 /* LeaveConferenceUseCase.swift */,
-			);
-			path = UseCases;
 			sourceTree = "<group>";
 		};
 		7E7A007A24C5A11900691771 /* VideoCall */ = {
@@ -1013,15 +868,6 @@
 				92A6571922BA3F5D004701D4 /* KeyPadView.xib */,
 			);
 			path = KeyPadView;
-			sourceTree = "<group>";
-		};
-		7E7A00E524C5F67100691771 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				7E738F6E2435E259004387C2 /* Main.storyboard */,
-				7E738F702435E259004387C2 /* Storyboard.swift */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		7E7A00E824C5FBDE00691771 /* Storyboards */ = {
@@ -1237,7 +1083,6 @@
 				8EEA98B21FB5A1AD00E90861 /* VoximplantDemo */,
 				C5A248BA22B3F7140008FAF4 /* AudioCall */,
 				C5A8B61222D33569007DC646 /* AudioCallKit */,
-				7E738F5A2435DF92004387C2 /* Conference */,
 				7E7A007A24C5A11900691771 /* VideoCall */,
 				7EB67DE8244D8543009DDA51 /* VideoCallKit */,
 				7E386CAB248793B800556D3D /* ScreenSharing */,
@@ -1255,7 +1100,6 @@
 				8EEA98B01FB5A1AD00E90861 /* Voximplant Demo.app */,
 				C5A248B922B3F7140008FAF4 /* AudioCall.app */,
 				C5A8B61122D33569007DC646 /* AudioCallKit.app */,
-				7E738F592435DF92004387C2 /* Conference.app */,
 				7EB67DE7244D8543009DDA51 /* VideoCallKit.app */,
 				7E386CAA248793B800556D3D /* ScreenSharing.app */,
 				C560015F2497686500818028 /* ScreenSharingUploadAppex.appex */,
@@ -1479,23 +1323,6 @@
 			productReference = 7E386CAA248793B800556D3D /* ScreenSharing.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7E738F582435DF92004387C2 /* Conference */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7E738F6C2435DF94004387C2 /* Build configuration list for PBXNativeTarget "Conference" */;
-			buildPhases = (
-				7E738F552435DF92004387C2 /* Sources */,
-				7E738F562435DF92004387C2 /* Frameworks */,
-				7E738F572435DF92004387C2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Conference;
-			productName = Conference;
-			productReference = 7E738F592435DF92004387C2 /* Conference.app */;
-			productType = "com.apple.product-type.application";
-		};
 		7E7A007824C5A11900691771 /* VideoCall */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E7A008C24C5A11B00691771 /* Build configuration list for PBXNativeTarget "VideoCall" */;
@@ -1629,10 +1456,6 @@
 						CreatedOnToolsVersion = 11.5;
 						ProvisioningStyle = Automatic;
 					};
-					7E738F582435DF92004387C2 = {
-						CreatedOnToolsVersion = 11.4;
-						ProvisioningStyle = Automatic;
-					};
 					7E7A007824C5A11900691771 = {
 						CreatedOnToolsVersion = 11.6;
 						ProvisioningStyle = Automatic;
@@ -1693,7 +1516,6 @@
 				8EEA98AF1FB5A1AD00E90861 /* Voximplant Demo */,
 				C5A248B822B3F7140008FAF4 /* AudioCall */,
 				C5A8B61022D33569007DC646 /* AudioCallKit */,
-				7E738F582435DF92004387C2 /* Conference */,
 				7EB67DE6244D8543009DDA51 /* VideoCallKit */,
 				7E386CA9248793B800556D3D /* ScreenSharing */,
 				C560015E2497686500818028 /* ScreenSharingUploadAppex */,
@@ -1719,20 +1541,6 @@
 				7E386D08248802C200556D3D /* DefaultIncomingCallView.xib in Resources */,
 				7E386CCF248797BE00556D3D /* Shared.xcassets in Resources */,
 				7E386CB4248793B800556D3D /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7E738F572435DF92004387C2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7E738F912435E259004387C2 /* Main.storyboard in Resources */,
-				7E386CEB248799A900556D3D /* LaunchScreen.storyboard in Resources */,
-				7EC3FDC32437B0170021BD9E /* Shared.xcassets in Resources */,
-				7E544266243BA45500450A73 /* README.md in Resources */,
-				7E738FA42435E259004387C2 /* Assets.xcassets in Resources */,
-				7EC3FDBC243643880021BD9E /* ConferenceParticipantView.xib in Resources */,
-				7E738F952435E259004387C2 /* CallOptionButton.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1906,45 +1714,6 @@
 				7E386CD0248797CA00556D3D /* DefaultLoginView.swift in Sources */,
 				7E386CBE248794E900556D3D /* Log.swift in Sources */,
 				7E386CD6248797E200556D3D /* CallOptionButtonModel.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7E738F552435DF92004387C2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7E738FA82435E259004387C2 /* ManageConferenceUseCase.swift in Sources */,
-				7E738FA22435E259004387C2 /* VoximplantAuthService.swift in Sources */,
-				7E738FA12435E259004387C2 /* VoximplantAPIService.swift in Sources */,
-				7EC3FDC124379DC40021BD9E /* LoginTextField.swift in Sources */,
-				7E738F922435E259004387C2 /* Storyboard.swift in Sources */,
-				7E738F992435E259004387C2 /* ConferenceCallViewController.swift in Sources */,
-				7E708B7E2452D35B00F58F92 /* PermissionsHelper.swift in Sources */,
-				7E738F9E2435E259004387C2 /* ConferenceErrors.swift in Sources */,
-				7E738F9B2435E259004387C2 /* LoginView.swift in Sources */,
-				7E7A00DC24C5E4EA00691771 /* SpeakerAutoselecting.swift in Sources */,
-				7E738F942435E259004387C2 /* CallOptionButton.swift in Sources */,
-				7E9A49532452D20A00F8773E /* MovingWithKeyboard.swift in Sources */,
-				7E9F20E4243C733F002B5700 /* AlertHelper.swift in Sources */,
-				7E3901D424D2D69300EFFD7F /* PressableButton.swift in Sources */,
-				7E738F972435E259004387C2 /* ConferenceView.swift in Sources */,
-				7E7A00DB24C5E4EA00691771 /* AudioDeviceSelecting.swift in Sources */,
-				7E738F9A2435E259004387C2 /* StoryAssembler.swift in Sources */,
-				7E738FA72435E259004387C2 /* LeaveConferenceUseCase.swift in Sources */,
-				7EC3FDBA2436433A0021BD9E /* ConferenceParticipantView.swift in Sources */,
-				7E738FA92435E25A004387C2 /* JoinConferenceUseCase.swift in Sources */,
-				7E386CC5248795C300556D3D /* Loggable.swift in Sources */,
-				7EB67E13244DA636009DDA51 /* UserDefault.swift in Sources */,
-				7E738F9C2435E259004387C2 /* LoginViewController.swift in Sources */,
-				7E9A49542452D28800F8773E /* Errors.swift in Sources */,
-				7E738FA02435E259004387C2 /* VoximplantConferenceService.swift in Sources */,
-				7E738FAB2435E297004387C2 /* AppDelegate.swift in Sources */,
-				7E9A49522452D0FE00F8773E /* ErrorHandling.swift in Sources */,
-				7E9F20E5243C738F002B5700 /* UIExtensions.swift in Sources */,
-				7E738F9F2435E259004387C2 /* NibLoadable.swift in Sources */,
-				7EF72227244F3CD000B0037E /* AudioDeviceAlertSelecting.swift in Sources */,
-				7E738F962435E259004387C2 /* CallOptionButtonModel.swift in Sources */,
-				7E386CBF248794FF00556D3D /* Log.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2257,14 +2026,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		7E738F6E2435E259004387C2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7E738F6F2435E259004387C2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7E7A008124C5A11900691771 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2329,47 +2090,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.ScreenSharing;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		7E738F6A2435DF94004387C2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = W9BHJBL635;
-				INFOPLIST_FILE = "$(SRCROOT)/Conference/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.3;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.Conference;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		7E738F6B2435DF94004387C2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = W9BHJBL635;
-				INFOPLIST_FILE = "$(SRCROOT)/Conference/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.3;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.Conference;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2796,15 +2516,6 @@
 			buildConfigurations = (
 				7E386CBB248793B900556D3D /* Debug */,
 				7E386CBC248793B900556D3D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7E738F6C2435DF94004387C2 /* Build configuration list for PBXNativeTarget "Conference" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7E738F6A2435DF94004387C2 /* Debug */,
-				7E738F6B2435DF94004387C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

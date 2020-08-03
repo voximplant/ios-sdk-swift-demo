@@ -8,9 +8,6 @@ The demo demonstrates [CallKit](https://developer.apple.com/documentation/callki
 > Apple has changed the workflow for VoIP push notifications handling in iOS 13.
 > AudioCallKit demo application is implemented to meet new requirements. Please use it to test push notification on iOS 13.
 
-## [Conference demo](Conference)
-The demo demonstrates conference call functionality of the Voximplant iOS SDK.
-
 ## [VideoCall demo](VideoCall)
 The demo demonstrates basic video call functionality of the Voximplant iOS SDK.
 
@@ -27,6 +24,12 @@ The demo demonstrates basic in-app screen sharing functionality of the Voximplan
 
 ## [Voximplant demo](VoximplantDemo)
 The demo demonstrates a sample implementation of the Voximplant client application, video call functionality, custom camera, and camera preprocessor implementation.
+
+## [Conference demo](https://github.com/voximplant/solutions-videoconference/tree/master/client-ios-swift)
+The demo demonstrates conference call functionality of the Voximplant iOS SDK.
+
+## [Messaging demo](https://github.com/voximplant/solutions-messaging/tree/draft-4/client-ios-swift)
+The demo demonstrates messaging functionality of the Voximplant iOS SDK.
 
 --------------------------------------------------------------------------------
 In these demos sound resources are used whose authors are:

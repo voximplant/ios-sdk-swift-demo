@@ -29,10 +29,6 @@ target 'AudioCallKit' do
   voximplant
 end
 
-target 'Conference' do
-   voximplant
-end
-
 target 'VideoCall' do
   common_pods
   voximplant
