@@ -76,9 +76,7 @@ final class CallViewController:
     }
     
     private func updateContent() {
-        if let call = self.call,
-           let callinfo = call.info
-        {
+        if let call = call, let callinfo = call.info {
             let endpoint = callinfo.endpoints.first
             if let userName = endpoint?.user {
                 self.userName = userName

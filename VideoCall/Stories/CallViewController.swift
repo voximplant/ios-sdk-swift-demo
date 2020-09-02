@@ -58,7 +58,7 @@ final class CallViewController:
             Log.d("Changing hold state")
             let previousState = button.state
             button.state = .unavailable
-            self?.callManager.toggleHold { [weak self] error in
+            self?.callManager.toggleHold { error in
                 if let _ = error as? CallError {
                     button.state = previousState
                     Log.d("Tried to toggle hold state while active call is nil")
@@ -77,7 +77,7 @@ final class CallViewController:
             Log.d("Changing sendVideo state")
             let previousState = button.state
             button.state = .unavailable
-            self?.callManager.toggleSendVideo { [weak self] error in
+            self?.callManager.toggleSendVideo { error in
                 if let _ = error as? CallError {
                     button.state = previousState
                     Log.d("Tried to toggle sendVideo state while active call is nil")

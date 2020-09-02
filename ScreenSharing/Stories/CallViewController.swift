@@ -33,7 +33,7 @@ final class CallViewController: UIViewController {
             let previousState = button.state
             button.state = .unavailable
             
-            self?.callManager.toggleSendVideo { [weak self] error in
+            self?.callManager.toggleSendVideo { error in
                 if let error = error {
                     Log.e("setSendVideo error \(error.localizedDescription)")
                     AlertHelper.showError(message: error.localizedDescription, on: self)

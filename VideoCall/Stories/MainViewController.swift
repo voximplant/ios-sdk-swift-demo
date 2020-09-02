@@ -24,16 +24,17 @@ final class MainViewController:
             mainView.setDisplayName(text: "Logged in as \(displayName)")
         }
         
-        mainView.callTouchHandler = { username in
+        mainView.callTouchHandler = { [weak self] username in
             Log.d("Calling \(String(describing: username))")
-            PermissionsHelper.requestRecordPermissions(includingVideo: true) { [weak self] error in
+            PermissionsHelper.requestRecordPermissions(includingVideo: true) { error in
                 if let error = error {
                     self?.handleError(error)
                     return
                 }
                 
-                let beginCall = { [weak self] in
-                    guard let self = self else { return }
+                guard let self = self else { return }
+                
+                let beginCall = {
                     do {
                         try self.callManager.makeOutgoingCall(to: username ?? "")
                         self.view.endEditing(true)
@@ -45,8 +46,6 @@ final class MainViewController:
                     }
                 }
                 
-                guard let self = self else { return }
-                
                 if !self.authService.isLoggedIn {
                     self.reconnect(onSuccess: beginCall)
                 } else {
@@ -56,7 +55,7 @@ final class MainViewController:
         }
         
         mainView.logoutTouchHandler = { [weak self] in
-            self?.authService.logout { [weak self] in
+            self?.authService.logout {
                 self?.dismiss(animated: true)
             }
         }
@@ -98,12 +97,12 @@ final class MainViewController:
                     title: "Connection error",
                     message: error.localizedDescription,
                     actions: [
-                        UIAlertAction(title: "Try again", style: .default) {
-                            _ in self.reconnect()
+                        UIAlertAction(title: "Try again", style: .default) { _ in
+                            self.reconnect()
                         },
-                        UIAlertAction(title: "Logout", style: .destructive) {
-                            _ in self.authService.logout { [weak self] in
-                                self?.dismiss(animated: true)
+                        UIAlertAction(title: "Logout", style: .destructive) { _ in
+                            self.authService.logout {
+                                self.dismiss(animated: true)
                             }
                         },
                     ],

@@ -20,13 +20,9 @@ final class MainViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let displayName = authService.loggedInUserDisplayName {
-            mainView.setDisplayName(text: "Logged in as \(displayName)")
-        }
-        
-        mainView.callTouchHandler = { username in
+        mainView.callTouchHandler = { [weak self] username in
             Log.d("Calling \(String(describing: username))")
-            PermissionsHelper.requestRecordPermissions { [weak self] error in
+            PermissionsHelper.requestRecordPermissions { error in
                 if let error = error {
                     self?.handleError(error)
                     return
@@ -35,7 +31,7 @@ final class MainViewController:
                     call: UUID(),
                     handle: CXHandle(type: .generic, value: username ?? "")
                 )
-                self?.callController.requestTransaction(with: startCallAction) { [weak self] error in
+                self?.callController.requestTransaction(with: startCallAction) { error in
                     if let error = error, let self = self {
                         AlertHelper.showError(message: error.localizedDescription, on: self)
                         Log.e(error.localizedDescription)
@@ -45,12 +41,20 @@ final class MainViewController:
         }
         
         mainView.logoutTouchHandler = { [weak self] in
-            self?.authService.logout { [weak self] in
+            self?.authService.logout {
                 self?.dismiss(animated: true)
             }
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let displayName = authService.loggedInUserDisplayName {
+            mainView.setDisplayName(text: "Logged in as \(displayName)")
+        }
+    }
+
     @IBAction func unwindSegue(segue: UIStoryboardSegue) { }
     
     // MARK: - CXCallObserverDelegate -

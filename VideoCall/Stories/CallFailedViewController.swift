@@ -92,8 +92,8 @@ final class CallFailedViewController:
                     title: "Connection error",
                     message: error.localizedDescription,
                     actions: [
-                        UIAlertAction(title: "Try again", style: .default) {
-                            _ in self.reconnect()
+                        UIAlertAction(title: "Try again", style: .default) { _ in
+                            self.reconnect()
                         },
                     ],
                     defaultAction: true)

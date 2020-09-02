@@ -1,6 +1,6 @@
 /*
-*  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
-*/
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
+ */
 
 import UIKit
 
@@ -17,9 +17,12 @@ extension MovingWithKeyboard {
             forName: UIResponder.keyboardWillChangeFrameNotification,
             object: nil,
             queue: OperationQueue.main
-        ) { notification in
-            guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
-                else { return }
+        ) { [weak self] notification in
+            guard let self = self,
+                let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+                else {
+                    return
+            }
             let keyboardScreenEndFrame = keyboardValue.cgRectValue
             if !self.adjusted {
                 self.defaultPositionY = self.frame.origin.y
@@ -36,9 +39,11 @@ extension MovingWithKeyboard {
             forName: UIResponder.keyboardWillHideNotification,
             object: nil,
             queue: OperationQueue.main
-        ) { notification in
-            self.frame.origin.y = self.defaultPositionY
-            self.adjusted = false
+        ) { [weak self] notification in
+            if let self = self {
+                self.frame.origin.y = self.defaultPositionY
+                self.adjusted = false
+            }
         }
     }
     

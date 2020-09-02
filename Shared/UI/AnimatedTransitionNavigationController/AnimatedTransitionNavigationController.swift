@@ -13,6 +13,11 @@ final class AnimatedTransitionNavigationController:
         sharedInit()
     }
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        sharedInit()
+    }
+    
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         sharedInit()

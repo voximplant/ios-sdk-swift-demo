@@ -30,7 +30,7 @@ final class IncomingCallViewController: UIViewController, ErrorHandling {
         
         incomingCallView.acceptHandler = { [weak self] in
             Log.d("Call accepted from incomingCall view")
-            PermissionsHelper.requestRecordPermissions(includingVideo: true) { [weak self] error in
+            PermissionsHelper.requestRecordPermissions(includingVideo: true) { error in
                 if let error = error {
                     self?.handleError(error)
                     return

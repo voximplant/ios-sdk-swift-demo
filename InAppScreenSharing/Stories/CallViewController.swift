@@ -39,7 +39,7 @@ final class CallViewController:
             button.state = .unavailable
             self?.sharingButton.state = .unavailable
             
-            self?.callManager.toggleSendVideo { [weak self] error in
+            self?.callManager.toggleSendVideo { error in
                 if let error = error {
                     Log.e("setSendVideo error \(error.localizedDescription)")
                     AlertHelper.showError(message: error.localizedDescription, on: self)
@@ -52,7 +52,7 @@ final class CallViewController:
             Log.d("Changing sharing")
             button.state = .unavailable
             self?.videoButton.state = .unavailable
-            self?.callManager.toggleShareScreen { [weak self] error in
+            self?.callManager.toggleShareScreen { error in
                 if let error = error {
                     Log.e("setSharing error \(error.localizedDescription)")
                     AlertHelper.showError(message: error.localizedDescription, on: self)

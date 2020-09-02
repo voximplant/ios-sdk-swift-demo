@@ -31,7 +31,7 @@ final class IncomingCallViewController: UIViewController, ErrorHandling {
         
         incomingCallView.acceptHandler = { [weak self] in
             Log.d("Call accepted from incomingCall view")
-            PermissionsHelper.requestRecordPermissions { [weak self] error in
+            PermissionsHelper.requestRecordPermissions { error in
                 if let error = error {
                     self?.handleError(error)
                     return

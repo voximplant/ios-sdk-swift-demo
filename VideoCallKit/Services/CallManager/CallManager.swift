@@ -89,11 +89,10 @@ final class CallManager:
         // According to the CXProvider documentation: "The provider must be invalidated before it is deallocated."
         callProvider.invalidate()
     }
-    
-    // MARK: - CXProviderDelegate -
+
     func endCall(_ uuid: UUID) {
         if let call = managedCall, call.uuid == uuid {
-            if !call.hasConnected && !call.isOutgoing {
+            if !call.hasConnected && call.direction == .incoming {
                 call.call?.reject(with: .decline, headers: nil)
             } else {
                 call.call?.hangup(withHeaders: nil)
@@ -150,7 +149,7 @@ final class CallManager:
     
     func createOutgoingCall(_ callUUID: UUID) {
         guard hasNoManagedCalls else { return }
-        self.managedCall = CallWrapper(uuid: callUUID, isOutgoing: true)
+        self.managedCall = CallWrapper(uuid: callUUID, direction: .outgoing)
     }
     
     func createIncomingCall(
@@ -161,7 +160,7 @@ final class CallManager:
     ) {
         guard hasNoManagedCalls else { return }
 
-        self.managedCall = CallWrapper(uuid: newUUID, isOutgoing: false, withPushCompletion: pushProcessingCompletion)
+        self.managedCall = CallWrapper(uuid: newUUID, withPushCompletion: pushProcessingCompletion)
         
         let callinfo = CXCallUpdate()
         callinfo.remoteHandle = CXHandle(type: .generic, value: fullUsername)
@@ -186,6 +185,7 @@ final class CallManager:
         }
     }
     
+    // MARK: - CXProviderDelegate -
     func provider(_ provider: CXProvider, execute transaction: CXTransaction) -> Bool {
         if authService.state == .loggedIn {
             return false
@@ -305,8 +305,8 @@ final class CallManager:
     }
     
     func call(_ call: VICall, didConnectWithHeaders headers: [AnyHashable : Any]?) {
-        if let managedCall = self.managedCall {
-            if managedCall.isOutgoing {
+        if let managedCall = managedCall {
+            if managedCall.direction == .outgoing {
                 // notify CallKit that the outgoing call is connected
                 callProvider.reportOutgoingCall(with: managedCall.uuid, connectedAt: nil)
                 
@@ -322,10 +322,10 @@ final class CallManager:
                 
                 callProvider.reportCall(with: managedCall.uuid, updated: callinfo)
             }
-            self.managedCall?.hasConnected = true
+            managedCall.hasConnected = true
         }
         
-        self.managedCall?.completePushProcessing()
+        managedCall?.completePushProcessing()
     }
 
     func call(_ call: VICall, startRingingWithHeaders headers: [AnyHashable : Any]?) {
@@ -341,8 +341,12 @@ final class CallManager:
         reportCallEnded(callKitUUID, .failed)
     }
     
-    func client(_ client: VIClient, didReceiveIncomingCall call: VICall, withIncomingVideo video: Bool, headers: [AnyHashable: Any]?) {
-        if let managedCall = self.managedCall {
+    func client(_ client: VIClient,
+                didReceiveIncomingCall call: VICall,
+                withIncomingVideo video: Bool,
+                headers: [AnyHashable: Any]?
+    ) {
+        if let managedCall = managedCall {
             if managedCall.uuid == call.callKitUUID {
                 updateIncomingCall(call)
                 callProvider.commitTransactions(self)
@@ -387,10 +391,14 @@ final class CallManager:
     }
 
     // MARK: - PushCallNotifierDelegate -
-    func didReceiveIncomingCall(_ newUUID: UUID, from fullUsername: String, withDisplayName userDisplayName: String, withPushCompletion pushProcessingCompletion: (()->Void)?) {
+    func didReceiveIncomingCall(_ newUUID: UUID,
+                                from fullUsername: String,
+                                withDisplayName userDisplayName: String,
+                                withPushCompletion pushProcessingCompletion: (() -> Void)?
+    ) {
         if hasManagedCall {
             // another call has been reported, skipped a new one:
-            Log.i("CallManager push rcv: skipped new incoming call \(newUUID) while has already managed call \(String(describing: self.managedCall?.uuid))")
+            Log.i("CallManager push rcv: skipped new incoming call \(newUUID) while has already managed call \(String(describing: managedCall?.uuid))")
             return
         } else {
             createIncomingCall(newUUID, from: fullUsername, withDisplayName: userDisplayName, withPushCompletion: pushProcessingCompletion)

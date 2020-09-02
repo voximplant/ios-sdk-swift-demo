@@ -39,8 +39,9 @@ final class CallFailedViewController:
         }
         
         callFailedView.callBackHandler = { [weak self] in
-            let beginCall = { [weak self] in
-                guard let self = self else { return }
+            guard let self = self else { return }
+            
+            let beginCall = {
                 do {
                     try self.callManager.makeOutgoingCall(to: self.user)
                     self.navigationController?.setViewControllers(
@@ -62,8 +63,6 @@ final class CallFailedViewController:
                     )
                 }
             }
-            
-            guard let self = self else { return }
             
             if !self.authService.isLoggedIn {
                 self.reconnect(onSuccess: beginCall)
@@ -93,8 +92,8 @@ final class CallFailedViewController:
                     title: "Connection error",
                     message: error.localizedDescription,
                     actions: [
-                        UIAlertAction(title: "Try again", style: .default) {
-                            _ in self.reconnect()
+                        UIAlertAction(title: "Try again", style: .default) { _ in
+                            self.reconnect()
                         },
                     ],
                     defaultAction: true)

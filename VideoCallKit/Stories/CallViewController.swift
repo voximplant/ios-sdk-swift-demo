@@ -39,9 +39,7 @@ final class CallViewController:
             Log.d("Changing mute state")
             if let call = self.call {
                 let setMute = CXSetMutedCallAction(call: call.uuid, muted: !self.muted)
-                self.callController.requestTransaction(with: setMute)
-                { [weak self] (error: Error?) in
-                    guard let self = self else { return }
+                self.callController.requestTransaction(with: setMute) { (error: Error?) in
                     if let error = error {
                         Log.e("setMute error: \(error.localizedDescription)")
                         AlertHelper.showError(message: error.localizedDescription)
@@ -66,9 +64,7 @@ final class CallViewController:
             button.state = .unavailable
              if let call = self.call {
                 let setHeld = CXSetHeldCallAction(call: call.uuid, onHold: !self.onHold)
-                self.callController.requestTransaction(with: setHeld)
-                 { [weak self] (error: Error?) in
-                    guard let self = self else { return }
+                self.callController.requestTransaction(with: setHeld) { (error: Error?) in
                     if let error = error {
                         Log.e("setHold error: \(error.localizedDescription)")
                         AlertHelper.showError(message: error.localizedDescription, on: self)
@@ -87,8 +83,7 @@ final class CallViewController:
             button.state = .unavailable
             if let call = self.call,
                 let viCall = self.getCallInfo(call) {
-                viCall.setSendVideo(!self.sendingVideo) { [weak self] error in
-                    guard let self = self else { return }
+                viCall.setSendVideo(!self.sendingVideo) { error in
                     if let error = error {
                         Log.d("setSendVideo error \(error.localizedDescription)")
                         AlertHelper.showError(message: error.localizedDescription, on: self)
@@ -108,8 +103,7 @@ final class CallViewController:
             if let call = self.call {
                 // stop call if call exists
                 let doEndCall = CXEndCallAction(call: call.uuid)
-                self.callController.requestTransaction(with: doEndCall)
-                { (error: Error?) in
+                self.callController.requestTransaction(with: doEndCall) { (error: Error?) in
                     if let error = error {
                         Log.d("Call hangup error: \(error.localizedDescription)")
                         AlertHelper.showError(message: error.localizedDescription, on: self)
@@ -160,9 +154,7 @@ final class CallViewController:
     }
     
     private func updateContent() {
-        if let call = self.call,
-           let callinfo = getCallInfo(call)
-        {
+        if let call = call, let callinfo = getCallInfo(call) {
             muted = !callinfo.sendAudio
             onHold = call.isOnHold
             
