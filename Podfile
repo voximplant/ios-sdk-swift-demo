@@ -10,7 +10,7 @@ end
 
 def voximplant
   pod 'CocoaLumberjack/Swift', '~> 3.5'
-  pod 'VoxImplantSDK/CocoaLumberjackLogger', '2.34.0'
+  pod 'VoxImplantSDK/CocoaLumberjackLogger', '2.36.2'
 end
 
 target 'Voximplant Demo' do
