@@ -19,46 +19,45 @@ final class MainViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let displayName = authService.loggedInUserDisplayName {
-            mainView.setDisplayName(text: "Logged in as \(displayName)")
-        }
-        
-        mainView.callTouchHandler = { [weak self] username in
-            Log.d("Calling \(String(describing: username))")            
-            PermissionsHelper.requestRecordPermissions { error in
-                if let error = error {
-                    self?.handleError(error)
-                    return
-                }
-                
-                guard let self = self else { return }
-                
-                let beginCall = {
-                    do {
-                        try self.callManager.makeOutgoingCall(to: username ?? "")
-                        self.view.endEditing(true)
-                        self.present(AnimatedTransitionNavigationController(
-                            rootViewController: self.storyAssembler.call), animated: true)
-                    } catch (let error) {
-                        Log.e(error.localizedDescription)
-                        AlertHelper.showError(message: error.localizedDescription, on: self)
+
+        mainView.configure(
+            displayName: "Logged in as \(authService.loggedInUserDisplayName ?? "")",
+            controller: self,
+            callHandler: { [weak self] username in
+                Log.d("Calling \(String(describing: username))")
+                PermissionsHelper.requestRecordPermissions { error in
+                    if let error = error {
+                        self?.handleError(error)
+                        return
+                    }
+
+                    guard let self = self else { return }
+
+                    let beginCall = {
+                        do {
+                            try self.callManager.makeOutgoingCall(to: username ?? "")
+                            self.view.endEditing(true)
+                            self.present(AnimatedTransitionNavigationController(
+                                            rootViewController: self.storyAssembler.call), animated: true)
+                        } catch (let error) {
+                            Log.e(error.localizedDescription)
+                            AlertHelper.showError(message: error.localizedDescription, on: self)
+                        }
+                    }
+
+                    if !self.authService.isLoggedIn {
+                        self.reconnect(onSuccess: beginCall)
+                    } else {
+                        beginCall()
                     }
                 }
-                
-                if !self.authService.isLoggedIn {
-                    self.reconnect(onSuccess: beginCall)
-                } else {
-                    beginCall()
+            },
+            logoutHandler: { [weak self] in
+                self?.authService.logout {
+                    self?.dismiss(animated: true)
                 }
             }
-        }
-        
-        mainView.logoutTouchHandler = { [weak self] in
-             self?.authService.logout {
-                 self?.dismiss(animated: true)
-             }
-        }
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {

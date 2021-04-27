@@ -14,9 +14,12 @@ final class DefaultMainView:
     @IBOutlet private weak var callToField: DefaultTextField!
     @IBOutlet private weak var loggedInLabel: UILabel!
     @IBOutlet private weak var versionLabel: UILabel!
+    @IBOutlet private weak var shareButton: LogSharingButton!
     
-    var callTouchHandler: ((String?) -> Void)?
-    var logoutTouchHandler: (() -> Void)?
+    private var callTouchHandler: ((String?) -> Void)?
+    private var logoutTouchHandler: (() -> Void)?
+
+    private var isConfigured = false
     
     // MARK: MovingWithKeyboard
     var adjusted: Bool = false
@@ -44,13 +47,26 @@ final class DefaultMainView:
     deinit {
         unsubscribeFromKeyboardEvents()
     }
+
+    func configure(displayName: String,
+                   controller: UIViewController,
+                   callHandler: @escaping (String?) -> Void,
+                   logoutHandler: @escaping () -> Void
+    ) {
+        if isConfigured { return }
+        loggedInLabel.text = displayName
+        shareButton.presentingController = controller
+        callTouchHandler = callHandler
+        logoutTouchHandler = logoutHandler
+        isConfigured = true
+    }
     
     @IBAction private func callTouchUp(_ sender: ColoredButton) {
         callToField.resignFirstResponder()
         callTouchHandler?(callToField.text)
     }
     
-    @IBAction func logoutTouchUp(_ sender: UIButton) {
+    @IBAction private func logoutTouchUp(_ sender: UIButton) {
         callToField.resignFirstResponder()
         logoutTouchHandler?()
     }

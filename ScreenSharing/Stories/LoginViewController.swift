@@ -12,9 +12,7 @@ final class LoginViewController: UIViewController, LoadingShowable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loginView.setTitle(text: "Screen sharing demo")
-        
+
         let loginHandler: AuthService.LoginCompletion = { [weak self] error in
             guard let self = self else { return }
             self.hideProgress()
@@ -24,16 +22,20 @@ final class LoginViewController: UIViewController, LoadingShowable {
                 self.present(self.storyAssembler.main, animated: true)
             }
         }
-        
-        loginView.loginTouchHandler = { [weak self] username, password in
-            Log.d("Manually Logging in with password")
-            self?.showLoading(title: "Connecting", details: "Please wait...")
-            self?.authService.login(
-                user: username.appendingVoxDomain,
-                password: password,
-                loginHandler
-            )
-        }
+
+        loginView.configure(
+            title: "Screen sharing demo",
+            controller: self,
+            loginHandler: { [weak self] username, password in
+                Log.d("Manually Logging in with password")
+                self?.showLoading(title: "Connecting", details: "Please wait...")
+                self?.authService.login(
+                    user: username.appendingVoxDomain,
+                    password: password,
+                    loginHandler
+                )
+            }
+        )
         
         if authService.possibleToLogin {
             Log.d("Automatically Logging in with token")

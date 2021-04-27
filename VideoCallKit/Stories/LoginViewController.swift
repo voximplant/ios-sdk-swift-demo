@@ -15,7 +15,6 @@ final class LoginViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginView.setTitle(text: "Video call demo")
         
         let loginHandler: AuthService.LoginCompletion = { [weak self] error in
             guard let self = self else { return }
@@ -26,12 +25,20 @@ final class LoginViewController:
                 self.present(storyAssembler.assembleMain(), animated: true)
             }
         }
-        
-        loginView.loginTouchHandler = { [weak self] username, password in
-            Log.d("Manually Logging in with password")
-            self?.showLoading(title: "Connecting", details: "Please wait...")
-            self?.authService.login(user: username.appendingVoxDomain, password: password, loginHandler)
-        }
+
+        loginView.configure(
+            title: "Video call demo",
+            controller: self,
+            loginHandler: { [weak self] username, password in
+                Log.d("Manually Logging in with password")
+                self?.showLoading(title: "Connecting", details: "Please wait...")
+                self?.authService.login(
+                    user: username.appendingVoxDomain,
+                    password: password,
+                    loginHandler
+                )
+            }
+        )
         
         if authService.possibleToLogin {
             Log.d("Automatically Logging in with token")

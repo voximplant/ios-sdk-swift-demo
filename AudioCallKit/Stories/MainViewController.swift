@@ -19,32 +19,37 @@ final class MainViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mainView.callTouchHandler = { [weak self] username in
-            Log.d("Calling \(String(describing: username))")
-            PermissionsHelper.requestRecordPermissions { error in
-                if let error = error {
-                    self?.handleError(error)
-                    return
-                }
-                let startCallAction = CXStartCallAction(
-                    call: UUID(),
-                    handle: CXHandle(type: .generic, value: username ?? "")
-                )
-                self?.callController.requestTransaction(with: startCallAction) { error in
-                    if let error = error, let self = self {
-                        AlertHelper.showError(message: error.localizedDescription, on: self)
-                        Log.e(error.localizedDescription)
+
+        mainView.configure(
+            displayName: "", // setup on ViewWillAppear
+            controller: self,
+            callHandler: { [weak self] username in
+                Log.d("Calling \(String(describing: username))")
+                PermissionsHelper.requestRecordPermissions { error in
+                    if let error = error {
+                        self?.handleError(error)
+                        return
+                    }
+                    let startCallAction = CXStartCallAction(
+                        call: UUID(),
+                        handle: CXHandle(type: .generic, value: username ?? "")
+                    )
+                    self?.callController.requestTransaction(with: startCallAction) { error in
+                        if let error = error, let self = self {
+                            AlertHelper.showError(message: error.localizedDescription, on: self)
+                            Log.e(error.localizedDescription)
+                        }
                     }
                 }
+            },
+            logoutHandler: { [weak self] in
+                self?.showLoading(title: "Logging out", details: "Please wait...")
+                self?.authService.logout {
+                    self?.hideProgress()
+                    self?.dismiss(animated: true)
+                }
             }
-        }
-        
-        mainView.logoutTouchHandler = { [weak self] in
-            self?.authService.logout {
-                self?.dismiss(animated: true)
-            }
-        }
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {

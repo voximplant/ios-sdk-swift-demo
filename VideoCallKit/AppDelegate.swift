@@ -14,15 +14,14 @@ fileprivate let callManager: CallManager = CallManager(client, authService)
 let storyAssembler: StoryAssembler = StoryAssembler(authService, callManager, callController)
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate, Loggable {
+final class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate {
     var window: UIWindow?
-    var appName: String { "VideoCallKit" }
     
     override init() {
         super.init()
-        
+
+        Logger.configure(appName: "VideoCallKit")
         callController.callObserver.setDelegate(self, queue: .main)
-        configureDefaultLogging()
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

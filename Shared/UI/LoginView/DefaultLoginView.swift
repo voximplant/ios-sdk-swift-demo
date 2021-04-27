@@ -13,6 +13,7 @@ final class DefaultLoginView:
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var usernameField: DefaultTextField!
     @IBOutlet private weak var passwordField: DefaultTextField!
+    @IBOutlet private weak var shareButton: LogSharingButton!
     
     var username: String? {
         get { usernameField.text }
@@ -23,7 +24,10 @@ final class DefaultLoginView:
         set { passwordField.text = newValue }
     }
     
-    var loginTouchHandler: ((String, String) -> Void)?
+    private var loginTouchHandler: ((String, String) -> Void)?
+
+    private var isConfigured = false
+
     
     // MARK: MovingWithKeyboard
     var adjusted: Bool = false
@@ -52,6 +56,14 @@ final class DefaultLoginView:
     deinit {
         unsubscribeFromKeyboardEvents()
     }
+
+    func configure(title: String, controller: UIViewController, loginHandler: @escaping (String, String) -> Void) {
+        if isConfigured { return }
+        titleLabel.text = title
+        shareButton.presentingController = controller
+        loginTouchHandler = loginHandler
+        isConfigured = true
+    }
     
     @IBAction private func loginTouchUp(_ sender: ColoredButton) {
         hideKeyboard()
@@ -64,10 +76,6 @@ final class DefaultLoginView:
         } else if passwordField.isFirstResponder {
             passwordField.resignFirstResponder()
         }
-    }
-    
-    func setTitle(text: String) {
-        titleLabel.text = text
     }
     
     // MARK: - UITextFieldDelegate -

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,6 +16,7 @@
             <connections>
                 <outlet property="callToField" destination="Jk8-kW-gDy" id="6F5-0Y-dI3"/>
                 <outlet property="loggedInLabel" destination="cvT-T3-7dS" id="Tpw-so-BE7"/>
+                <outlet property="shareButton" destination="vwg-t1-Yec" id="9vE-tT-C3K"/>
                 <outlet property="versionLabel" destination="gYH-7Y-OkK" id="z92-s8-Sg0"/>
             </connections>
         </placeholder>
@@ -70,16 +71,28 @@
                         <action selector="logoutTouchUp:" destination="-1" eventType="touchUpInside" id="5pM-Ut-7NW"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwg-t1-Yec" customClass="LogSharingButton" customModule="AudioCall" customModuleProvider="target">
+                    <rect key="frame" x="368" y="60" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="W6p-fS-VT9"/>
+                        <constraint firstAttribute="height" constant="30" id="u45-3A-9Df"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="logs"/>
+                </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="y8v-Ic-fN8"/>
             <color key="backgroundColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="gBg-ht-NQ0" firstAttribute="centerX" secondItem="Jk8-kW-gDy" secondAttribute="centerX" id="5gZ-05-2Sj"/>
                 <constraint firstItem="y8v-Ic-fN8" firstAttribute="trailing" secondItem="cvT-T3-7dS" secondAttribute="trailing" constant="16" id="6xy-Da-ueT"/>
                 <constraint firstItem="y8v-Ic-fN8" firstAttribute="trailing" secondItem="Jk8-kW-gDy" secondAttribute="trailing" constant="16" id="Apx-IK-Mlh"/>
                 <constraint firstItem="Jk8-kW-gDy" firstAttribute="width" secondItem="6O3-iE-Ix3" secondAttribute="width" multiplier="0.5" id="HmV-iZ-orc"/>
+                <constraint firstItem="y8v-Ic-fN8" firstAttribute="trailing" secondItem="vwg-t1-Yec" secondAttribute="trailing" constant="16" id="I9c-6L-N1K"/>
                 <constraint firstItem="e5a-jm-eSL" firstAttribute="top" secondItem="y8v-Ic-fN8" secondAttribute="top" constant="16" id="Pxy-sh-1gi"/>
                 <constraint firstItem="gBg-ht-NQ0" firstAttribute="width" secondItem="Jk8-kW-gDy" secondAttribute="width" id="SFV-N2-JzN"/>
                 <constraint firstItem="Jk8-kW-gDy" firstAttribute="centerX" secondItem="6O3-iE-Ix3" secondAttribute="centerX" id="V9c-os-WqX"/>
+                <constraint firstItem="vwg-t1-Yec" firstAttribute="top" secondItem="y8v-Ic-fN8" secondAttribute="top" constant="16" id="Xt9-1Z-Oc4"/>
                 <constraint firstItem="gBg-ht-NQ0" firstAttribute="height" secondItem="Jk8-kW-gDy" secondAttribute="height" id="cOj-JN-x7Y"/>
                 <constraint firstItem="e5a-jm-eSL" firstAttribute="leading" secondItem="y8v-Ic-fN8" secondAttribute="leading" constant="16" id="clN-GR-ym0"/>
                 <constraint firstItem="gYH-7Y-OkK" firstAttribute="leading" secondItem="y8v-Ic-fN8" secondAttribute="leading" constant="16" id="dH1-TE-35W"/>
@@ -91,7 +104,6 @@
                 <constraint firstItem="y8v-Ic-fN8" firstAttribute="trailing" secondItem="gYH-7Y-OkK" secondAttribute="trailing" constant="16" id="yNF-Q5-Z1m"/>
                 <constraint firstItem="gBg-ht-NQ0" firstAttribute="top" secondItem="Jk8-kW-gDy" secondAttribute="bottom" constant="16" id="yNs-c4-tJH"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="y8v-Ic-fN8"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="HmV-iZ-orc"/>
@@ -108,7 +120,13 @@
             <point key="canvasLocation" x="139" y="-492"/>
         </view>
     </objects>
+    <designables>
+        <designable name="gBg-ht-NQ0">
+            <size key="intrinsicContentSize" width="30" height="31"/>
+        </designable>
+    </designables>
     <resources>
         <image name="logout" width="25" height="25"/>
+        <image name="logs" width="96" height="96"/>
     </resources>
 </document>

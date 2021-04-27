@@ -11,13 +11,12 @@ fileprivate let callManager: CallManager = CallManager(client, authService)
 fileprivate let storyAssembler: StoryAssembler = StoryAssembler(authService, callManager)
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate, Loggable {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    var appName: String { "AudioCall" }
     
     override init() {
         super.init()
-        configureDefaultLogging()
+        Logger.configure(appName: "AudioCall")
     }
     
     func application(

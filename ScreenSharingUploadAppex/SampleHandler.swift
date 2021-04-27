@@ -27,7 +27,7 @@ extension CGImagePropertyOrientation {
     }
 }
 
-class SampleHandler: RPBroadcastSampleHandler, Loggable, VICallDelegate {
+class SampleHandler: RPBroadcastSampleHandler, VICallDelegate {
     var client: VIClient
     var authService: AuthService
     var screenVideoSource = VICustomVideoSource(screenCastFormat: ())
@@ -42,8 +42,6 @@ class SampleHandler: RPBroadcastSampleHandler, Loggable, VICallDelegate {
         self.authService = AuthService(viclient)
         super.init()
     }
-    
-    var appName: String { "ScreenSharingUploadAppex" }
     
     private let notificationCenter = DarwinNotificationCenter()
     
@@ -67,7 +65,7 @@ class SampleHandler: RPBroadcastSampleHandler, Loggable, VICallDelegate {
         // User has requested to start the broadcast.
         // On iOS 11 it starts from Control Panel, on iOS 12 and above it could be started within the app (RPSystemBroadcastPickerView).
         
-        configureDefaultLogging()
+        Logger.configure(appName: "ScreenSharingUploadAppex")
         
         let screenVideoSource = self.screenVideoSource
        
