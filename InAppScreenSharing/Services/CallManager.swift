@@ -206,14 +206,14 @@ final class CallManager:
         }
     }
     
-    func call(_ call: VICall, didAddLocalVideoStream videoStream: VIVideoStream) {
+    func call(_ call: VICall, didAddLocalVideoStream videoStream: VILocalVideoStream) {
         if videoStream.type == .screenSharing { return }
         videoStreamAddedHandler?(true) { renderer in
             videoStream.addRenderer(renderer)
         }
     }
     
-    func call(_ call: VICall, didRemoveLocalVideoStream videoStream: VIVideoStream) {
+    func call(_ call: VICall, didRemoveLocalVideoStream videoStream: VILocalVideoStream) {
         videoStreamRemovedHandler?(true)
         videoStream.removeAllRenderers()
     }
@@ -223,13 +223,13 @@ final class CallManager:
     }
     
     // MARK: - VIEndpointDelegate -
-    func endpoint(_ endpoint: VIEndpoint, didAddRemoteVideoStream videoStream: VIVideoStream) {
+    func endpoint(_ endpoint: VIEndpoint, didAddRemoteVideoStream videoStream: VIRemoteVideoStream) {
         videoStreamAddedHandler?(false) { renderer in
             videoStream.addRenderer(renderer)
         }
     }
-    
-    func endpoint(_ endpoint: VIEndpoint, didRemoveRemoteVideoStream videoStream: VIVideoStream) {
+
+    func endpoint(_ endpoint: VIEndpoint, didRemoveRemoteVideoStream videoStream: VIRemoteVideoStream) {
         videoStreamRemovedHandler?(false)
         videoStream.removeAllRenderers()
     }
