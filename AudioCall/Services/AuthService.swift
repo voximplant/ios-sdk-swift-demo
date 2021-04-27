@@ -34,8 +34,10 @@ final class AuthService: NSObject, VIClientSessionDelegate {
             }
             
             self?.client.login(withUser: user, password: password,
-                success: { (displayUserName: String, tokens: VIAuthParams) in
-                    Tokens.update(with: tokens)
+                success: { (displayUserName: String, tokens: VIAuthParams?) in
+                    if let tokens = tokens {
+                        Tokens.update(with: tokens)
+                    }
                     self?.loggedInUser = user
                     self?.loggedInUserDisplayName = displayUserName
                     completion(nil)
@@ -79,8 +81,10 @@ final class AuthService: NSObject, VIClientSessionDelegate {
                     
                 case let .success(accessKey):
                     self?.client.login(withUser: user, token: accessKey.token,
-                        success: { (displayUserName: String, tokens: VIAuthParams) in
-                            Tokens.update(with: tokens)
+                        success: { (displayUserName: String, tokens: VIAuthParams?) in
+                            if let tokens = tokens {
+                                Tokens.update(with: tokens)
+                            }
                             self?.loggedInUser = user
                             self?.loggedInUserDisplayName = displayUserName
                             completion(nil)

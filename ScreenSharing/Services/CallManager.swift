@@ -209,8 +209,8 @@ final class CallManager:
         }
         notificationCenter.sendNotification(.callEnded)
     }
-    
-    func call(_ call: VICall, didAddLocalVideoStream videoStream: VIVideoStream) {
+
+    func call(_ call: VICall, didAddLocalVideoStream videoStream: VILocalVideoStream) {
         if videoStream.type == .screenSharing { return }
         localVideoStreamAddedHandler?(myId) { renderer in
             if let renderer = renderer {
@@ -218,8 +218,8 @@ final class CallManager:
             }
         }
     }
-    
-    func call(_ call: VICall, didRemoveLocalVideoStream videoStream: VIVideoStream) {
+
+    func call(_ call: VICall, didRemoveLocalVideoStream videoStream: VILocalVideoStream) {
         localVideoStreamRemovedHandler?(myId)
         videoStream.removeAllRenderers()
     }
@@ -243,20 +243,20 @@ final class CallManager:
     func endpointDidRemove(_ endpoint: VIEndpoint) {
         endpointRemovedHandler?(endpoint.endpointId)
     }
-    
-    func endpoint(_ endpoint: VIEndpoint, didAddRemoteVideoStream videoStream: VIVideoStream) {
+
+    func endpoint(_ endpoint: VIEndpoint, didAddRemoteVideoStream videoStream: VIRemoteVideoStream) {
         remoteVideoStreamAddedHandler?(endpoint.endpointId) { renderer in
             if let renderer = renderer {
                 videoStream.addRenderer(renderer)
             }
         }
     }
-    
-    func endpoint(_ endpoint: VIEndpoint, didRemoveRemoteVideoStream videoStream: VIVideoStream) {
+
+    func endpoint(_ endpoint: VIEndpoint, didRemoveRemoteVideoStream videoStream: VIRemoteVideoStream) {
         remoteVideoStreamRemovedHandler?(endpoint.endpointId)
         videoStream.removeAllRenderers()
     }
-    
+
     // MARK: - VIAudioManagerDelegate -
     func audioDeviceChanged(_ audioDevice: VIAudioDevice) { }
     

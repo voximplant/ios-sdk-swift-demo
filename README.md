@@ -22,9 +22,6 @@ The demo demonstrates basic screen sharing functionality of the Voximplant iOS S
 ## [InAppScreenSharing demo](InAppScreenSharing)
 The demo demonstrates basic in-app screen sharing functionality of the Voximplant iOS SDK.
 
-## [Voximplant demo](VoximplantDemo)
-The demo demonstrates a sample implementation of the Voximplant client application, video call functionality, custom camera, and camera preprocessor implementation.
-
 ## [Conference demo](https://github.com/voximplant/solutions-videoconference/tree/master/client-ios-swift)
 The demo demonstrates conference call functionality of the Voximplant iOS SDK.
 
