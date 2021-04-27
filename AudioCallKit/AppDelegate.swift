@@ -13,17 +13,15 @@ let sharedCallController: CXCallController = CXCallController(queue: .main)
 let sharedCallManager: CallManager = CallManager(sharedClient, sharedAuthService)
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate, Loggable {
+class AppDelegate: UIResponder, UIApplicationDelegate, CXCallObserverDelegate {
     var window: UIWindow?
-    var appName: String { "AudioCallKit" }
     var callManager = sharedCallManager
     var callController = sharedCallController
     
     override init() {
         super.init()
-        
+        Logger.configure(appName: "AudioCallKit")
         callController.callObserver.setDelegate(self, queue: .main)
-        configureDefaultLogging()
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
