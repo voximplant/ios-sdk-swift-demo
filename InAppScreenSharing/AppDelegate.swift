@@ -11,13 +11,12 @@ fileprivate let callManager: CallManager = CallManager(client, authService)
 fileprivate let storyAssembler: StoryAssembler = StoryAssembler(authService: authService, callManager: callManager)
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate, Loggable {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    var appName: String { "InAppScreenSharing" }
     
     override init() {
         super.init()
-        configureDefaultLogging()
+        Logger.configure(appName: "InAppScreenSharing")
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
