@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -67,12 +67,6 @@
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="go" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text=".voximplant.com " lineBreakMode="clip" baselineAdjustment="none" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="tUd-O0-T4x">
-                    <rect key="frame" x="274" y="428.5" width="122" height="19"/>
-                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="dLV-O4-gtg">
                     <rect key="frame" x="57" y="797" width="300" height="45"/>
                     <constraints>
@@ -80,9 +74,26 @@
                     </constraints>
                     <variation key="heightClass=compact" hidden="YES"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text=".voximplant.com " lineBreakMode="clip" baselineAdjustment="none" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="tUd-O0-T4x">
+                    <rect key="frame" x="274" y="428.5" width="122" height="19"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qW7-3y-1q1" customClass="LogSharingButton" customModule="AudioCall" customModuleProvider="target">
+                    <rect key="frame" x="368" y="60" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="UCu-Mz-UXz"/>
+                        <constraint firstAttribute="height" constant="30" id="XJR-F0-WS7"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="logs"/>
+                </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="gSf-S3-3ee"/>
             <color key="backgroundColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="qW7-3y-1q1" firstAttribute="top" secondItem="gSf-S3-3ee" secondAttribute="top" constant="16" id="2qo-J7-k42"/>
                 <constraint firstItem="Nma-sz-7ag" firstAttribute="width" secondItem="yMN-hh-3wr" secondAttribute="width" id="3P8-Tr-nLh"/>
                 <constraint firstItem="yMN-hh-3wr" firstAttribute="trailing" secondItem="tUd-O0-T4x" secondAttribute="trailing" constant="2" id="Eyc-ea-8oM"/>
                 <constraint firstItem="2z5-Yy-Tev" firstAttribute="centerX" secondItem="yMN-hh-3wr" secondAttribute="centerX" id="Fy7-1V-0zB"/>
@@ -91,6 +102,7 @@
                 <constraint firstItem="yMN-hh-3wr" firstAttribute="centerX" secondItem="g8C-Mx-R3F" secondAttribute="centerX" id="Ibj-SL-QRF"/>
                 <constraint firstItem="yMN-hh-3wr" firstAttribute="width" secondItem="g8C-Mx-R3F" secondAttribute="width" multiplier="0.5" id="NvC-Yd-0nE"/>
                 <constraint firstItem="yMN-hh-3wr" firstAttribute="centerY" secondItem="g8C-Mx-R3F" secondAttribute="centerY" constant="-10" id="OTR-9g-lfd"/>
+                <constraint firstItem="gSf-S3-3ee" firstAttribute="trailing" secondItem="qW7-3y-1q1" secondAttribute="trailing" constant="16" id="Pbf-12-rxi"/>
                 <constraint firstItem="gSf-S3-3ee" firstAttribute="trailing" secondItem="yMN-hh-3wr" secondAttribute="trailing" constant="16" id="R1x-xo-fzz"/>
                 <constraint firstItem="dLV-O4-gtg" firstAttribute="centerX" secondItem="g8C-Mx-R3F" secondAttribute="centerX" id="WNU-4s-tIr"/>
                 <constraint firstItem="tUd-O0-T4x" firstAttribute="centerY" secondItem="yMN-hh-3wr" secondAttribute="centerY" id="ZYk-DP-dSC"/>
@@ -102,7 +114,6 @@
                 <constraint firstItem="gSf-S3-3ee" firstAttribute="bottom" secondItem="dLV-O4-gtg" secondAttribute="bottom" constant="20" id="sip-7f-K7i"/>
                 <constraint firstAttribute="trailingMargin" secondItem="7j7-WO-W99" secondAttribute="trailing" constant="20" id="wTg-Wy-s0r"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="gSf-S3-3ee"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="NvC-Yd-0nE"/>
@@ -118,7 +129,13 @@
             <point key="canvasLocation" x="8.6956521739130448" y="799.55357142857144"/>
         </view>
     </objects>
+    <designables>
+        <designable name="2z5-Yy-Tev">
+            <size key="intrinsicContentSize" width="40" height="31"/>
+        </designable>
+    </designables>
     <resources>
         <image name="Logo" width="300" height="69"/>
+        <image name="logs" width="96" height="96"/>
     </resources>
 </document>
