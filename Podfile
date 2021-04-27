@@ -13,12 +13,6 @@ def voximplant
   pod 'VoxImplantSDK/CocoaLumberjackLogger', '2.36.2'
 end
 
-target 'Voximplant Demo' do
-  pod 'SkyFloatingLabelTextField', '~> 3.0'
-  common_pods
-  voximplant
-end
-
 target 'AudioCall' do
   common_pods
   voximplant
