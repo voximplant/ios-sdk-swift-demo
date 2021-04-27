@@ -37,7 +37,8 @@ final class Logger {
         let fileLogger = DDFileLogger(logFileManager: logFileManager)
         fileLogger.rollingFrequency = TimeInterval(60 * 60 * 24)  // 24 hours
         fileLogger.maximumFileSize = 1024 * 1024 * 50 // 50MB
-        DDLog.add(fileLogger, with: ddLogLevel)
+        DDLog.add(fileLogger, with: ddLogLevel) // Log to file
+        DDLog.add(DDOSLogger.sharedInstance, with: ddLogLevel) // Log to console
 
         // Configure Voximplant logs:
         VIClient.setLogLevel(.info)
