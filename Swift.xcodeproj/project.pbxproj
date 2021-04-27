@@ -23,10 +23,6 @@
 		7E386CB1248793B800556D3D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CB0248793B800556D3D /* LoginViewController.swift */; };
 		7E386CB4248793B800556D3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E386CB2248793B800556D3D /* Main.storyboard */; };
 		7E386CBE248794E900556D3D /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFCF22B773BC009C7F2D /* Log.swift */; };
-		7E386CC2248795C200556D3D /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
-		7E386CC3248795C200556D3D /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
-		7E386CC4248795C300556D3D /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
-		7E386CC6248795C400556D3D /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
 		7E386CC72487976000556D3D /* VoximplantSDKVersionContainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E02244D8A8F009DDA51 /* VoximplantSDKVersionContainable.swift */; };
 		7E386CC82487976300556D3D /* LoadingShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E1A244DC327009DDA51 /* LoadingShowable.swift */; };
 		7E386CC92487976C00556D3D /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E738F812435E259004387C2 /* NibLoadable.swift */; };
@@ -100,7 +96,6 @@
 		7E7A008324C5A11900691771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E7A008124C5A11900691771 /* Main.storyboard */; };
 		7E7A008E24C5A17400691771 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C8E20022EB4139006CCCFF /* Shared.xcassets */; };
 		7E7A008F24C5A17700691771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E0CFB622B771A0009C7F2D /* LaunchScreen.storyboard */; };
-		7E7A009024C5A19300691771 /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
 		7E7A009424C5A2B900691771 /* StoryAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A009324C5A2B900691771 /* StoryAssembler.swift */; };
 		7E7A009524C5A32300691771 /* LoadingShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E1A244DC327009DDA51 /* LoadingShowable.swift */; };
 		7E7A009624C5A32E00691771 /* DefaultLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E40244DE0FC009DDA51 /* DefaultLoginView.swift */; };
@@ -166,7 +161,6 @@
 		7E7A00EC24C5FC0D00691771 /* Call.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E7A00EB24C5FC0D00691771 /* Call.storyboard */; };
 		7E7BE47824A6012700243B8E /* BroadcastError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7BE47724A6012700243B8E /* BroadcastError.swift */; };
 		7E8A831124891BC3000578C6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7E8A831024891BC3000578C6 /* README.md */; };
-		7E8E19F9249A4F6000BC78F9 /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
 		7E8E19FA249A4F6600BC78F9 /* AppLifeCycleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB67E37244DDE2C009DDA51 /* AppLifeCycleDelegate.swift */; };
 		7E8E19FB249A4F7300BC78F9 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F00F9322C610E00061AF13 /* UIExtensions.swift */; };
 		7E8E19FC249A661700BC78F9 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C8E20022EB4139006CCCFF /* Shared.xcassets */; };
@@ -294,7 +288,26 @@
 		92D040B722C4A1DE007B74B4 /* CallFailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D040B622C4A1DE007B74B4 /* CallFailedViewController.swift */; };
 		92F00F9222C60B7F0061AF13 /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F00F9122C60B7F0061AF13 /* DefaultTextField.swift */; };
 		92F00F9422C610E00061AF13 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F00F9322C610E00061AF13 /* UIExtensions.swift */; };
+		BB7A0908263878EF004F366D /* LogSharingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A0907263878EF004F366D /* LogSharingButton.swift */; };
+		BB7A0909263878EF004F366D /* LogSharingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A0907263878EF004F366D /* LogSharingButton.swift */; };
+		BB7A090A263878EF004F366D /* LogSharingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A0907263878EF004F366D /* LogSharingButton.swift */; };
+		BB7A090B263878EF004F366D /* LogSharingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A0907263878EF004F366D /* LogSharingButton.swift */; };
+		BB7A090D263878EF004F366D /* LogSharingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A0907263878EF004F366D /* LogSharingButton.swift */; };
+		BB7A090E263878EF004F366D /* LogSharingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A0907263878EF004F366D /* LogSharingButton.swift */; };
+		BB7A091726387913004F366D /* LogSharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A091626387913004F366D /* LogSharingView.swift */; };
+		BB7A091826387913004F366D /* LogSharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A091626387913004F366D /* LogSharingView.swift */; };
+		BB7A091926387913004F366D /* LogSharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A091626387913004F366D /* LogSharingView.swift */; };
+		BB7A091A26387913004F366D /* LogSharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A091626387913004F366D /* LogSharingView.swift */; };
+		BB7A091C26387913004F366D /* LogSharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A091626387913004F366D /* LogSharingView.swift */; };
+		BB7A091D26387913004F366D /* LogSharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A091626387913004F366D /* LogSharingView.swift */; };
 		BBFB085B2638324E003AB533 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFCF22B773BC009C7F2D /* Log.swift */; };
+		BBFB094A2638759C003AB533 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB09492638759C003AB533 /* Logger.swift */; };
+		BBFB094B2638759C003AB533 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB09492638759C003AB533 /* Logger.swift */; };
+		BBFB094C2638759C003AB533 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB09492638759C003AB533 /* Logger.swift */; };
+		BBFB094D2638759C003AB533 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB09492638759C003AB533 /* Logger.swift */; };
+		BBFB094E2638759C003AB533 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB09492638759C003AB533 /* Logger.swift */; };
+		BBFB094F2638759C003AB533 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB09492638759C003AB533 /* Logger.swift */; };
+		BBFB09502638759C003AB533 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB09492638759C003AB533 /* Logger.swift */; };
 		C5184200239684A2006778E6 /* fennelliott-beeping.wav in Resources */ = {isa = PBXBuildFile; fileRef = C51841F9239684A2006778E6 /* fennelliott-beeping.wav */; };
 		C5184201239684A2006778E6 /* fennelliott-beeping.wav in Resources */ = {isa = PBXBuildFile; fileRef = C51841F9239684A2006778E6 /* fennelliott-beeping.wav */; };
 		C5393E9D240D38420064006F /* CXAudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5393E9C240D38410064006F /* CXAudioFile.swift */; };
@@ -322,7 +335,6 @@
 		C56001852498C3C800818028 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C8E1F522E99419006CCCFF /* Errors.swift */; };
 		C56001862498C3EF00818028 /* Tokens+VIAuthParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A49412451D5AD00F8773E /* Tokens+VIAuthParams.swift */; };
 		C560018924990C8100818028 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFCF22B773BC009C7F2D /* Log.swift */; };
-		C560018D2499422800818028 /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CC02487954100556D3D /* Loggable.swift */; };
 		C560018F249A023A00818028 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E386CEF24879A2200556D3D /* AuthService.swift */; };
 		C58D0F4823D1A18200A337EB /* LoudAudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D0F4623D1A16E00A337EB /* LoudAudioFile.swift */; };
 		C590E7C32322E0F300E112D7 /* CallWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590E7C22322E0F300E112D7 /* CallWrapper.swift */; };
@@ -380,7 +392,6 @@
 		7E386CB0248793B800556D3D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7E386CB3248793B800556D3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7E386CBA248793B900556D3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E386CC02487954100556D3D /* Loggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loggable.swift; sourceTree = "<group>"; };
 		7E386CE1248798CF00556D3D /* StoryAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAssembler.swift; sourceTree = "<group>"; };
 		7E386CE72487991D00556D3D /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		7E386CEF24879A2200556D3D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -490,6 +501,9 @@
 		92DB9E612333C8B5007BF73C /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		92F00F9122C60B7F0061AF13 /* DefaultTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		92F00F9322C610E00061AF13 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		BB7A0907263878EF004F366D /* LogSharingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSharingButton.swift; sourceTree = "<group>"; };
+		BB7A091626387913004F366D /* LogSharingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSharingView.swift; sourceTree = "<group>"; };
+		BBFB09492638759C003AB533 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		C51841F9239684A2006778E6 /* fennelliott-beeping.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "fennelliott-beeping.wav"; sourceTree = "<group>"; };
 		C5393E9C240D38410064006F /* CXAudioFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXAudioFile.swift; sourceTree = "<group>"; };
 		C54DB016230147C300415EF3 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -867,7 +881,6 @@
 				7E9A49372451BC5A00F8773E /* PushTokenHolder.swift */,
 				7E9A493B2451BCFD00F8773E /* PushCallNotifierDelegate.swift */,
 				7E9A494B2451E04200F8773E /* ErrorHandling.swift */,
-				7E386CC02487954100556D3D /* Loggable.swift */,
 				7E7A00D324C5E48300691771 /* AudioDeviceSelecting.swift */,
 				7E7A00D524C5E4B800691771 /* SpeakerAutoselecting.swift */,
 			);
@@ -1016,6 +1029,7 @@
 		92182AFC22E98F7000E5992B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BBFB094826387588003AB533 /* Log */,
 				7EB67E01244D8A5B009DDA51 /* Protocols */,
 				7E7A00A224C5A44A00691771 /* Extensions */,
 				C51340D522F8952E000F4BFE /* UI */,
@@ -1026,9 +1040,18 @@
 				C5393E9C240D38410064006F /* CXAudioFile.swift */,
 				7EB67E0E244DA159009DDA51 /* UserDefault.swift */,
 				92C8E1F522E99419006CCCFF /* Errors.swift */,
-				C5E0CFCF22B773BC009C7F2D /* Log.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		BBFB094826387588003AB533 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				C5E0CFCF22B773BC009C7F2D /* Log.swift */,
+				BBFB09492638759C003AB533 /* Logger.swift */,
+				BB7A091626387913004F366D /* LogSharingView.swift */,
+			);
+			path = Log;
 			sourceTree = "<group>";
 		};
 		C51340D522F8952E000F4BFE /* UI */ = {
@@ -1050,6 +1073,7 @@
 				92049F9822DDDD47006DB07F /* ButtonWithLabel.swift */,
 				9220152622CA41F60023B5A7 /* LabelWithTimer.swift */,
 				7E9F20E0243C7323002B5700 /* AlertHelper.swift */,
+				BB7A0907263878EF004F366D /* LogSharingButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1490,9 +1514,11 @@
 				7E386CF22487A3F600556D3D /* CallManager.swift in Sources */,
 				7E386CDB2487981500556D3D /* Tokens.swift in Sources */,
 				7E386CE82487991D00556D3D /* Storyboard.swift in Sources */,
+				BBFB094D2638759C003AB533 /* Logger.swift in Sources */,
 				7E386CD92487980F00556D3D /* UIExtensions.swift in Sources */,
 				7E386CE2248798CF00556D3D /* StoryAssembler.swift in Sources */,
 				7E386CD7248797E600556D3D /* ColoredButton.swift in Sources */,
+				BB7A091A26387913004F366D /* LogSharingView.swift in Sources */,
 				7E386CF92487C09000556D3D /* EdgeMagneticView.swift in Sources */,
 				7E386CCC248797A000556D3D /* ErrorHandling.swift in Sources */,
 				7E616726249A17870066C43B /* ConferenceParticipantView.swift in Sources */,
@@ -1507,6 +1533,7 @@
 				7E386D142488056000556D3D /* PressableButton.swift in Sources */,
 				7E386CDA2487981100556D3D /* AlertHelper.swift in Sources */,
 				7E7A00A824C5A47A00691771 /* Extensions.swift in Sources */,
+				BB7A090B263878EF004F366D /* LogSharingButton.swift in Sources */,
 				7E537DC924880B3300013D6E /* CallFailedViewController.swift in Sources */,
 				7E386CDC2487981800556D3D /* Tokens+VIAuthParams.swift in Sources */,
 				7E386CDD2487981E00556D3D /* PermissionsHelper.swift in Sources */,
@@ -1516,7 +1543,6 @@
 				7E7A00DD24C5E62100691771 /* AudioDeviceSelecting.swift in Sources */,
 				7E386CC92487976C00556D3D /* NibLoadable.swift in Sources */,
 				7E386CF72487C02500556D3D /* AudioDeviceAlertSelecting.swift in Sources */,
-				7E386CC6248795C400556D3D /* Loggable.swift in Sources */,
 				7E386CC82487976300556D3D /* LoadingShowable.swift in Sources */,
 				7EF4B53024C9F01200DFF3C6 /* AnimatedTransitionNavigationController.swift in Sources */,
 				7E386CF024879A2200556D3D /* AuthService.swift in Sources */,
@@ -1538,7 +1564,6 @@
 				7E7A00B124C5A50300691771 /* PressableButton.swift in Sources */,
 				7E7A00CF24C5AEC700691771 /* DefaultCallFailedView.swift in Sources */,
 				7E7A00AC24C5A4DC00691771 /* NibLoadable.swift in Sources */,
-				7E7A009024C5A19300691771 /* Loggable.swift in Sources */,
 				7E7A00B524C5A60700691771 /* Storyboard.swift in Sources */,
 				7E7A00B324C5A56500691771 /* CallManager.swift in Sources */,
 				7E7A00BB24C5ABF600691771 /* PermissionsHelper.swift in Sources */,
@@ -1557,6 +1582,7 @@
 				7E7A009424C5A2B900691771 /* StoryAssembler.swift in Sources */,
 				7E7A00B724C5A62D00691771 /* MainViewController.swift in Sources */,
 				7E7A00BC24C5AC1200691771 /* VoximplantSDKVersionContainable.swift in Sources */,
+				BB7A090E263878EF004F366D /* LogSharingButton.swift in Sources */,
 				7E7A00C224C5AD1900691771 /* CallOptionButton.swift in Sources */,
 				7E7A00AE24C5A4EE00691771 /* Color.swift in Sources */,
 				7E7A00BE24C5AC6200691771 /* CallViewController.swift in Sources */,
@@ -1573,6 +1599,8 @@
 				7E7A00C424C5AD1F00691771 /* CallOptionButtonModel.swift in Sources */,
 				7E7A00B824C5ABD300691771 /* ErrorHandling.swift in Sources */,
 				7E7A009624C5A32E00691771 /* DefaultLoginView.swift in Sources */,
+				BB7A091D26387913004F366D /* LogSharingView.swift in Sources */,
+				BBFB09502638759C003AB533 /* Logger.swift in Sources */,
 				7E7A00AF24C5A4F000691771 /* Theme.swift in Sources */,
 				7E7A007C24C5A11900691771 /* AppDelegate.swift in Sources */,
 				7EF4B52D24C9E17200DFF3C6 /* AnimatedTransitionNavigationController.swift in Sources */,
@@ -1584,7 +1612,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E386CC4248795C300556D3D /* Loggable.swift in Sources */,
 				7E37C36A244F29C100F18266 /* CallViewController.swift in Sources */,
 				7E47562A244EE41B0028495E /* Theme.swift in Sources */,
 				7E9A494A2451D62900F8773E /* Log.swift in Sources */,
@@ -1608,6 +1635,7 @@
 				7EB67E23244DC8CC009DDA51 /* Errors.swift in Sources */,
 				7EB67DFF244D888C009DDA51 /* Storyboard.swift in Sources */,
 				7E37C372244F37A300F18266 /* CallOptionButton.swift in Sources */,
+				BB7A090A263878EF004F366D /* LogSharingButton.swift in Sources */,
 				7E47562E244F051C0028495E /* PermissionsHelper.swift in Sources */,
 				7EB67DEE244D8543009DDA51 /* LoginViewController.swift in Sources */,
 				7EB67E03244D8A8F009DDA51 /* VoximplantSDKVersionContainable.swift in Sources */,
@@ -1624,6 +1652,8 @@
 				7EB67DEA244D8543009DDA51 /* AppDelegate.swift in Sources */,
 				7E37C374244F37B500F18266 /* CallOptionButtonModel.swift in Sources */,
 				7EF7222A244F4FEA00B0037E /* CallVideoView.swift in Sources */,
+				BB7A091926387913004F366D /* LogSharingView.swift in Sources */,
+				BBFB094C2638759C003AB533 /* Logger.swift in Sources */,
 				7E37C36C244F349F00F18266 /* AudioDeviceAlertSelecting.swift in Sources */,
 				7E9A494F2451E05B00F8773E /* ErrorHandling.swift in Sources */,
 				7E37C363244F1D9600F18266 /* CXExtensions.swift in Sources */,
@@ -1658,11 +1688,11 @@
 				7E8E1A11249A670000BC78F9 /* DefaultTextField.swift in Sources */,
 				7E8E1A15249A672000BC78F9 /* UserDefault.swift in Sources */,
 				7E8E1A0F249A66EE00BC78F9 /* MovingWithKeyboard.swift in Sources */,
+				BBFB094F2638759C003AB533 /* Logger.swift in Sources */,
 				7E8E1A03249A669900BC78F9 /* PressableButton.swift in Sources */,
 				7E8E1A01249A668C00BC78F9 /* DefaultIncomingCallView.swift in Sources */,
 				7E8E1A17249A672E00BC78F9 /* CallOptionButtonModel.swift in Sources */,
 				7EF4B631249A4ECE00081013 /* AppDelegate.swift in Sources */,
-				7E8E19F9249A4F6000BC78F9 /* Loggable.swift in Sources */,
 				7E8E1A12249A670800BC78F9 /* Color.swift in Sources */,
 				7EF4B637249A4EEA00081013 /* MainViewController.swift in Sources */,
 				7E7A00C724C5ADC700691771 /* CallVideoView.swift in Sources */,
@@ -1670,10 +1700,12 @@
 				7EF4B638249A4EEE00081013 /* IncomingCallViewController.swift in Sources */,
 				7E8E1A08249A66C300BC78F9 /* ErrorHandling.swift in Sources */,
 				7E8E1A14249A671900BC78F9 /* Theme.swift in Sources */,
+				BB7A090D263878EF004F366D /* LogSharingButton.swift in Sources */,
 				7E8E1A18249A673900BC78F9 /* EdgeMagneticView.swift in Sources */,
 				7E8E1A0D249A66E100BC78F9 /* Errors.swift in Sources */,
 				7EF4B634249A4EDE00081013 /* CallViewController.swift in Sources */,
 				7E7A00A724C5A47900691771 /* Extensions.swift in Sources */,
+				BB7A091C26387913004F366D /* LogSharingView.swift in Sources */,
 				7E8E1A07249A66BC00BC78F9 /* AlertHelper.swift in Sources */,
 				7E8E1A09249A66C600BC78F9 /* LoadingShowable.swift in Sources */,
 				7E8E1A05249A66AF00BC78F9 /* DefaultLoginView.swift in Sources */,
@@ -1686,9 +1718,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C56001852498C3C800818028 /* Errors.swift in Sources */,
+				BBFB094E2638759C003AB533 /* Logger.swift in Sources */,
 				C56001642497686500818028 /* SampleHandler.swift in Sources */,
 				7ECA29D224A509CB00F3D1ED /* DarwinNotificationsService.swift in Sources */,
-				C560018D2499422800818028 /* Loggable.swift in Sources */,
 				C560018924990C8100818028 /* Log.swift in Sources */,
 				C56001832498BF1D00818028 /* Tokens.swift in Sources */,
 				C56001862498C3EF00818028 /* Tokens+VIAuthParams.swift in Sources */,
@@ -1704,7 +1736,6 @@
 			files = (
 				7E47561F244ECDDF0028495E /* MovingWithKeyboard.swift in Sources */,
 				7EB67E06244D8AA7009DDA51 /* VoximplantSDKVersionContainable.swift in Sources */,
-				7E386CC2248795C200556D3D /* Loggable.swift in Sources */,
 				C58D0F4823D1A18200A337EB /* LoudAudioFile.swift in Sources */,
 				92F00F9422C610E00061AF13 /* UIExtensions.swift in Sources */,
 				C5E0CFB522B77198009C7F2D /* LoginViewController.swift in Sources */,
@@ -1715,8 +1746,10 @@
 				7E386D182488059C00556D3D /* PressableButton.swift in Sources */,
 				921A728D22B8DC59001BB4E5 /* IncomingCallViewController.swift in Sources */,
 				C5E0CFDB22B78633009C7F2D /* Tokens.swift in Sources */,
+				BB7A091726387913004F366D /* LogSharingView.swift in Sources */,
 				7E9A49452451D5BC00F8773E /* Tokens+VIAuthParams.swift in Sources */,
 				7EB67E11244DA62F009DDA51 /* UserDefault.swift in Sources */,
+				BBFB094A2638759C003AB533 /* Logger.swift in Sources */,
 				7EB67E20244DC5C7009DDA51 /* Color.swift in Sources */,
 				92A6571E22BA60EF004701D4 /* CallViewController.swift in Sources */,
 				C54DB017230147C300415EF3 /* AuthService.swift in Sources */,
@@ -1736,6 +1769,7 @@
 				7E386D0D2488046700556D3D /* DefaultIncomingCallView.swift in Sources */,
 				7EF4B52C24C9E17100DFF3C6 /* AnimatedTransitionNavigationController.swift in Sources */,
 				7EB67E41244DE0FC009DDA51 /* DefaultLoginView.swift in Sources */,
+				BB7A0908263878EF004F366D /* LogSharingButton.swift in Sources */,
 				92C8E1F622E99419006CCCFF /* Errors.swift in Sources */,
 				7EB67E3B244DDE39009DDA51 /* AppLifeCycleDelegate.swift in Sources */,
 				7E537DD024880C8C00013D6E /* DefaultCallFailedView.swift in Sources */,
@@ -1754,6 +1788,8 @@
 				C5A8B61422D33569007DC646 /* AppDelegate.swift in Sources */,
 				7EB67E42244DE0FC009DDA51 /* DefaultLoginView.swift in Sources */,
 				C5393E9D240D38420064006F /* CXAudioFile.swift in Sources */,
+				BB7A0909263878EF004F366D /* LogSharingButton.swift in Sources */,
+				BB7A091826387913004F366D /* LogSharingView.swift in Sources */,
 				7E37C36D244F34CA00F18266 /* AudioDeviceAlertSelecting.swift in Sources */,
 				7E9A493A2451BC8000F8773E /* PushTokenHolder.swift in Sources */,
 				7EB67E46244DE18E009DDA51 /* NibLoadable.swift in Sources */,
@@ -1766,9 +1802,9 @@
 				C590E7C32322E0F300E112D7 /* CallWrapper.swift in Sources */,
 				C5491E6722F99230001D9601 /* DefaultTextField.swift in Sources */,
 				7EB67E1C244DC3BC009DDA51 /* LoadingShowable.swift in Sources */,
+				BBFB094B2638759C003AB533 /* Logger.swift in Sources */,
 				C5A8B64922D35AC0007DC646 /* MainViewController.swift in Sources */,
 				C5491E6422F98EBE001D9601 /* PermissionsHelper.swift in Sources */,
-				7E386CC3248795C200556D3D /* Loggable.swift in Sources */,
 				7E47561E244ECDDD0028495E /* MovingWithKeyboard.swift in Sources */,
 				7E9A49442451D5BB00F8773E /* Tokens+VIAuthParams.swift in Sources */,
 				C54DB019230147CB00415EF3 /* AuthService.swift in Sources */,
