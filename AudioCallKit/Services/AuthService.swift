@@ -43,8 +43,10 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
             }
             
             self?.client.login(withUser: user, password: password,
-                success: { (displayUserName: String, tokens: VIAuthParams) in
-                    Tokens.update(with: tokens)
+                success: { (displayUserName: String, tokens: VIAuthParams?) in
+                    if let tokens = tokens {
+                        Tokens.update(with: tokens)
+                    }
                     self?.loggedInUser = user
                     self?.loggedInUserDisplayName = displayUserName
                     if let pushToken = self?.pushToken {
@@ -95,8 +97,10 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
                     
                 case let .success(accessKey):
                     self?.client.login(withUser: user, token: accessKey.token,
-                        success: { (displayUserName: String, tokens: VIAuthParams) in
-                            Tokens.update(with: tokens)
+                        success: { (displayUserName: String, tokens: VIAuthParams?) in
+                            if let tokens = tokens {
+                                Tokens.update(with: tokens)
+                            }
                             self?.loggedInUser = user
                             self?.loggedInUserDisplayName = displayUserName
                             if let pushToken = self?.pushToken {
