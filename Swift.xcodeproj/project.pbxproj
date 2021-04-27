@@ -294,6 +294,7 @@
 		92D040B722C4A1DE007B74B4 /* CallFailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D040B622C4A1DE007B74B4 /* CallFailedViewController.swift */; };
 		92F00F9222C60B7F0061AF13 /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F00F9122C60B7F0061AF13 /* DefaultTextField.swift */; };
 		92F00F9422C610E00061AF13 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F00F9322C610E00061AF13 /* UIExtensions.swift */; };
+		BBFB085B2638324E003AB533 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFCF22B773BC009C7F2D /* Log.swift */; };
 		C5184200239684A2006778E6 /* fennelliott-beeping.wav in Resources */ = {isa = PBXBuildFile; fileRef = C51841F9239684A2006778E6 /* fennelliott-beeping.wav */; };
 		C5184201239684A2006778E6 /* fennelliott-beeping.wav in Resources */ = {isa = PBXBuildFile; fileRef = C51841F9239684A2006778E6 /* fennelliott-beeping.wav */; };
 		C5393E9D240D38420064006F /* CXAudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5393E9C240D38410064006F /* CXAudioFile.swift */; };
@@ -1635,6 +1636,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EF4B62D249A4EB100081013 /* AuthService.swift in Sources */,
+				BBFB085B2638324E003AB533 /* Log.swift in Sources */,
 				7E8E1A02249A669400BC78F9 /* NibLoadable.swift in Sources */,
 				7E8E1A10249A66F800BC78F9 /* ColoredButton.swift in Sources */,
 				7EF4B52924C9DED500DFF3C6 /* AnimatedTransition.swift in Sources */,
