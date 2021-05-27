@@ -92,11 +92,9 @@ You can set up it manually using our [quickstart guide](https://voximplant.com/d
 
 1. Clone this repo 
 
-1. Run `$ pod install` in the repo folder
+2. Open the `Swift.xcodeproj` workspace
 
-1. Open the `Swift.xcworkspace` workspace
-
-1. Target ScreenSharing and build the project using Xcode
+3. Target ScreenSharing and build the project using Xcode
 
 ## Usage
 

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7EB67DE6244D8543009DDA51"
-               BuildableName = "VideoCallKit.app"
-               BlueprintName = "VideoCallKit"
+               BlueprintIdentifier = "7E7A007824C5A11900691771"
+               BuildableName = "VideoCall.app"
+               BlueprintName = "VideoCall"
                ReferencedContainer = "container:Swift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7EB67DE6244D8543009DDA51"
-            BuildableName = "VideoCallKit.app"
-            BlueprintName = "VideoCallKit"
+            BlueprintIdentifier = "7E7A007824C5A11900691771"
+            BuildableName = "VideoCall.app"
+            BlueprintName = "VideoCall"
             ReferencedContainer = "container:Swift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7EB67DE6244D8543009DDA51"
-            BuildableName = "VideoCallKit.app"
-            BlueprintName = "VideoCallKit"
+            BlueprintIdentifier = "7E7A007824C5A11900691771"
+            BuildableName = "VideoCall.app"
+            BlueprintName = "VideoCall"
             ReferencedContainer = "container:Swift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

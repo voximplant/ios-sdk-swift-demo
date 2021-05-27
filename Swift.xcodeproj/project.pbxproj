@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -300,6 +300,26 @@
 		BB7A091A26387913004F366D /* LogSharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A091626387913004F366D /* LogSharingView.swift */; };
 		BB7A091C26387913004F366D /* LogSharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A091626387913004F366D /* LogSharingView.swift */; };
 		BB7A091D26387913004F366D /* LogSharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A091626387913004F366D /* LogSharingView.swift */; };
+		BBD6BFFB265FA0BC0092B694 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6BFFA265FA0BC0092B694 /* CocoaLumberjackSwift */; };
+		BBD6C000265FA1390092B694 /* VoximplantSDK in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6BFFF265FA1390092B694 /* VoximplantSDK */; };
+		BBD6C004265FA1500092B694 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C003265FA1500092B694 /* CocoaLumberjackSwift */; };
+		BBD6C006265FA1550092B694 /* VoximplantSDK in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C005265FA1550092B694 /* VoximplantSDK */; };
+		BBD6C009265FA1B00092B694 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C008265FA1B00092B694 /* MBProgressHUD */; };
+		BBD6C00B265FA2B70092B694 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C00A265FA2B70092B694 /* MBProgressHUD */; };
+		BBD6C00D265FA2CC0092B694 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C00C265FA2CC0092B694 /* CocoaLumberjackSwift */; };
+		BBD6C00F265FA2D30092B694 /* VoximplantSDK in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C00E265FA2D30092B694 /* VoximplantSDK */; };
+		BBD6C011265FA2D70092B694 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C010265FA2D70092B694 /* MBProgressHUD */; };
+		BBD6C013265FA3690092B694 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C012265FA3690092B694 /* CocoaLumberjackSwift */; };
+		BBD6C015265FA3690092B694 /* VoximplantSDK in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C014265FA3690092B694 /* VoximplantSDK */; };
+		BBD6C017265FA3690092B694 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C016265FA3690092B694 /* MBProgressHUD */; };
+		BBD6C019265FA38B0092B694 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C018265FA38B0092B694 /* CocoaLumberjackSwift */; };
+		BBD6C01B265FA3910092B694 /* VoximplantSDK in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C01A265FA3910092B694 /* VoximplantSDK */; };
+		BBD6C01D265FA3B50092B694 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C01C265FA3B50092B694 /* CocoaLumberjackSwift */; };
+		BBD6C01F265FA3B50092B694 /* VoximplantSDK in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C01E265FA3B50092B694 /* VoximplantSDK */; };
+		BBD6C021265FA3B50092B694 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C020265FA3B50092B694 /* MBProgressHUD */; };
+		BBD6C023265FA3CC0092B694 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C022265FA3CC0092B694 /* CocoaLumberjackSwift */; };
+		BBD6C025265FA3CC0092B694 /* VoximplantSDK in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C024265FA3CC0092B694 /* VoximplantSDK */; };
+		BBD6C027265FA3CC0092B694 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BBD6C026265FA3CC0092B694 /* MBProgressHUD */; };
 		BBFB085B2638324E003AB533 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFCF22B773BC009C7F2D /* Log.swift */; };
 		BBFB094A2638759C003AB533 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB09492638759C003AB533 /* Logger.swift */; };
 		BBFB094B2638759C003AB533 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB09492638759C003AB533 /* Logger.swift */; };
@@ -549,6 +569,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD6C017265FA3690092B694 /* MBProgressHUD in Frameworks */,
+				BBD6C013265FA3690092B694 /* CocoaLumberjackSwift in Frameworks */,
+				BBD6C015265FA3690092B694 /* VoximplantSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +579,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD6C027265FA3CC0092B694 /* MBProgressHUD in Frameworks */,
+				BBD6C023265FA3CC0092B694 /* CocoaLumberjackSwift in Frameworks */,
+				BBD6C025265FA3CC0092B694 /* VoximplantSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +589,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD6C011265FA2D70092B694 /* MBProgressHUD in Frameworks */,
+				BBD6C00D265FA2CC0092B694 /* CocoaLumberjackSwift in Frameworks */,
+				BBD6C00F265FA2D30092B694 /* VoximplantSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +599,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD6C021265FA3B50092B694 /* MBProgressHUD in Frameworks */,
+				BBD6C01D265FA3B50092B694 /* CocoaLumberjackSwift in Frameworks */,
+				BBD6C01F265FA3B50092B694 /* VoximplantSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +609,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD6C01B265FA3910092B694 /* VoximplantSDK in Frameworks */,
+				BBD6C019265FA38B0092B694 /* CocoaLumberjackSwift in Frameworks */,
 				C56001612497686500818028 /* ReplayKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,6 +619,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD6C000265FA1390092B694 /* VoximplantSDK in Frameworks */,
+				BBD6C009265FA1B00092B694 /* MBProgressHUD in Frameworks */,
+				BBD6BFFB265FA0BC0092B694 /* CocoaLumberjackSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +629,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD6C00B265FA2B70092B694 /* MBProgressHUD in Frameworks */,
+				BBD6C006265FA1550092B694 /* VoximplantSDK in Frameworks */,
+				BBD6C004265FA1500092B694 /* CocoaLumberjackSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,13 +646,6 @@
 				C56001732497687A00818028 /* UIKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		369334A608BD108D7AD7AA32 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		7E37C367244F1FE900F18266 /* CallManager */ = {
@@ -1007,7 +1040,6 @@
 				C56001622497686500818028 /* ScreenSharingUploadAppex */,
 				7EF4B616249A4DF500081013 /* InAppScreenSharing */,
 				8EEA98B11FB5A1AD00E90861 /* Products */,
-				369334A608BD108D7AD7AA32 /* Pods */,
 				1DD0F974DCACD349A4CA3C60 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -1205,6 +1237,11 @@
 				C56001672497686500818028 /* PBXTargetDependency */,
 			);
 			name = ScreenSharing;
+			packageProductDependencies = (
+				BBD6C012265FA3690092B694 /* CocoaLumberjackSwift */,
+				BBD6C014265FA3690092B694 /* VoximplantSDK */,
+				BBD6C016265FA3690092B694 /* MBProgressHUD */,
+			);
 			productName = ScreenSharing;
 			productReference = 7E386CAA248793B800556D3D /* ScreenSharing.app */;
 			productType = "com.apple.product-type.application";
@@ -1222,6 +1259,11 @@
 			dependencies = (
 			);
 			name = VideoCall;
+			packageProductDependencies = (
+				BBD6C022265FA3CC0092B694 /* CocoaLumberjackSwift */,
+				BBD6C024265FA3CC0092B694 /* VoximplantSDK */,
+				BBD6C026265FA3CC0092B694 /* MBProgressHUD */,
+			);
 			productName = VideoCall;
 			productReference = 7E7A007924C5A11900691771 /* VideoCall.app */;
 			productType = "com.apple.product-type.application";
@@ -1239,6 +1281,11 @@
 			dependencies = (
 			);
 			name = VideoCallKit;
+			packageProductDependencies = (
+				BBD6C00C265FA2CC0092B694 /* CocoaLumberjackSwift */,
+				BBD6C00E265FA2D30092B694 /* VoximplantSDK */,
+				BBD6C010265FA2D70092B694 /* MBProgressHUD */,
+			);
 			productName = VideoCallKit;
 			productReference = 7EB67DE7244D8543009DDA51 /* VideoCallKit.app */;
 			productType = "com.apple.product-type.application";
@@ -1256,6 +1303,11 @@
 			dependencies = (
 			);
 			name = InAppScreenSharing;
+			packageProductDependencies = (
+				BBD6C01C265FA3B50092B694 /* CocoaLumberjackSwift */,
+				BBD6C01E265FA3B50092B694 /* VoximplantSDK */,
+				BBD6C020265FA3B50092B694 /* MBProgressHUD */,
+			);
 			productName = InAppScreenSharing;
 			productReference = 7EF4B615249A4DF500081013 /* InAppScreenSharing.app */;
 			productType = "com.apple.product-type.application";
@@ -1273,6 +1325,10 @@
 			dependencies = (
 			);
 			name = ScreenSharingUploadAppex;
+			packageProductDependencies = (
+				BBD6C018265FA38B0092B694 /* CocoaLumberjackSwift */,
+				BBD6C01A265FA3910092B694 /* VoximplantSDK */,
+			);
 			productName = ScreenSharingUploadAppex;
 			productReference = C560015F2497686500818028 /* ScreenSharingUploadAppex.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -1290,6 +1346,11 @@
 			dependencies = (
 			);
 			name = AudioCall;
+			packageProductDependencies = (
+				BBD6BFFA265FA0BC0092B694 /* CocoaLumberjackSwift */,
+				BBD6BFFF265FA1390092B694 /* VoximplantSDK */,
+				BBD6C008265FA1B00092B694 /* MBProgressHUD */,
+			);
 			productName = AudioCall;
 			productReference = C5A248B922B3F7140008FAF4 /* AudioCall.app */;
 			productType = "com.apple.product-type.application";
@@ -1307,6 +1368,11 @@
 			dependencies = (
 			);
 			name = AudioCallKit;
+			packageProductDependencies = (
+				BBD6C003265FA1500092B694 /* CocoaLumberjackSwift */,
+				BBD6C005265FA1550092B694 /* VoximplantSDK */,
+				BBD6C00A265FA2B70092B694 /* MBProgressHUD */,
+			);
 			productName = AudioCallKit;
 			productReference = C5A8B61122D33569007DC646 /* AudioCallKit.app */;
 			productType = "com.apple.product-type.application";
@@ -1318,7 +1384,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Zingaya Ltd.";
 				TargetAttributes = {
 					7E386CA9248793B800556D3D = {
@@ -1365,17 +1431,22 @@
 				Base,
 			);
 			mainGroup = 8EEA98A71FB5A1AC00E90861;
+			packageReferences = (
+				BBD6BFF9265FA0BC0092B694 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
+				BBD6BFFE265FA1390092B694 /* XCRemoteSwiftPackageReference "ios-sdk-releases" */,
+				BBD6C007265FA1B00092B694 /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
+			);
 			productRefGroup = 8EEA98B11FB5A1AD00E90861 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				C5A248B822B3F7140008FAF4 /* AudioCall */,
 				C5A8B61022D33569007DC646 /* AudioCallKit */,
+				7E7A007824C5A11900691771 /* VideoCall */,
 				7EB67DE6244D8543009DDA51 /* VideoCallKit */,
 				7E386CA9248793B800556D3D /* ScreenSharing */,
 				C560015E2497686500818028 /* ScreenSharingUploadAppex */,
 				7EF4B614249A4DF500081013 /* InAppScreenSharing */,
-				7E7A007824C5A11900691771 /* VideoCall */,
 			);
 		};
 /* End PBXProject section */
@@ -1887,7 +1958,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/ScreenSharing/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1910,7 +1984,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/ScreenSharing/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.ScreenSharing;
@@ -1930,7 +2007,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/VideoCall/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1951,7 +2031,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/VideoCall/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.VideoCall;
@@ -1972,7 +2055,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/VideoCallKit/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1994,7 +2080,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/VideoCallKit/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.VideoCallKit;
@@ -2014,7 +2103,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/InAppScreenSharing/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2035,7 +2127,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/InAppScreenSharing/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.InAppScreenSharing;
@@ -2070,6 +2165,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2130,6 +2226,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2153,7 +2250,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2168,7 +2266,11 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = ScreenSharingUploadAppex/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2190,7 +2292,11 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = ScreenSharingUploadAppex/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.ScreenSharing.ScreenSharingUploadAppex;
@@ -2212,7 +2318,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/AudioCall/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.3.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2234,7 +2343,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/AudioCall/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.3.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift.AudioCall;
@@ -2256,7 +2368,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/AudioCallKit/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.2.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2280,7 +2395,10 @@
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/AudioCallKit/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.2.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift.AudioCallKit;
@@ -2367,6 +2485,136 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BBD6BFF9265FA0BC0092B694 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CocoaLumberjack/CocoaLumberjack";
+			requirement = {
+				kind = exactVersion;
+				version = 3.7.2;
+			};
+		};
+		BBD6BFFE265FA1390092B694 /* XCRemoteSwiftPackageReference "ios-sdk-releases" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/voximplant/ios-sdk-releases.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.39.0;
+			};
+		};
+		BBD6C007265FA1B00092B694 /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jdg/MBProgressHUD.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BBD6BFFA265FA0BC0092B694 /* CocoaLumberjackSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFF9265FA0BC0092B694 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjackSwift;
+		};
+		BBD6BFFF265FA1390092B694 /* VoximplantSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFFE265FA1390092B694 /* XCRemoteSwiftPackageReference "ios-sdk-releases" */;
+			productName = VoximplantSDK;
+		};
+		BBD6C003265FA1500092B694 /* CocoaLumberjackSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFF9265FA0BC0092B694 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjackSwift;
+		};
+		BBD6C005265FA1550092B694 /* VoximplantSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFFE265FA1390092B694 /* XCRemoteSwiftPackageReference "ios-sdk-releases" */;
+			productName = VoximplantSDK;
+		};
+		BBD6C008265FA1B00092B694 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6C007265FA1B00092B694 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
+		BBD6C00A265FA2B70092B694 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6C007265FA1B00092B694 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
+		BBD6C00C265FA2CC0092B694 /* CocoaLumberjackSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFF9265FA0BC0092B694 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjackSwift;
+		};
+		BBD6C00E265FA2D30092B694 /* VoximplantSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFFE265FA1390092B694 /* XCRemoteSwiftPackageReference "ios-sdk-releases" */;
+			productName = VoximplantSDK;
+		};
+		BBD6C010265FA2D70092B694 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6C007265FA1B00092B694 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
+		BBD6C012265FA3690092B694 /* CocoaLumberjackSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFF9265FA0BC0092B694 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjackSwift;
+		};
+		BBD6C014265FA3690092B694 /* VoximplantSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFFE265FA1390092B694 /* XCRemoteSwiftPackageReference "ios-sdk-releases" */;
+			productName = VoximplantSDK;
+		};
+		BBD6C016265FA3690092B694 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6C007265FA1B00092B694 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
+		BBD6C018265FA38B0092B694 /* CocoaLumberjackSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFF9265FA0BC0092B694 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjackSwift;
+		};
+		BBD6C01A265FA3910092B694 /* VoximplantSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFFE265FA1390092B694 /* XCRemoteSwiftPackageReference "ios-sdk-releases" */;
+			productName = VoximplantSDK;
+		};
+		BBD6C01C265FA3B50092B694 /* CocoaLumberjackSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFF9265FA0BC0092B694 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjackSwift;
+		};
+		BBD6C01E265FA3B50092B694 /* VoximplantSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFFE265FA1390092B694 /* XCRemoteSwiftPackageReference "ios-sdk-releases" */;
+			productName = VoximplantSDK;
+		};
+		BBD6C020265FA3B50092B694 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6C007265FA1B00092B694 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
+		BBD6C022265FA3CC0092B694 /* CocoaLumberjackSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFF9265FA0BC0092B694 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjackSwift;
+		};
+		BBD6C024265FA3CC0092B694 /* VoximplantSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6BFFE265FA1390092B694 /* XCRemoteSwiftPackageReference "ios-sdk-releases" */;
+			productName = VoximplantSDK;
+		};
+		BBD6C026265FA3CC0092B694 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBD6C007265FA1B00092B694 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8EEA98A81FB5A1AC00E90861 /* Project object */;
 }
