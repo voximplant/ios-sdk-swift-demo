@@ -2499,8 +2499,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/voximplant/ios-sdk-releases.git";
 			requirement = {
-				kind = exactVersion;
-				version = 2.39.0;
+				kind = upToNextMinorVersion;
+				minimumVersion = 2.41.0;
 			};
 		};
 		BBD6C007265FA1B00092B694 /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
