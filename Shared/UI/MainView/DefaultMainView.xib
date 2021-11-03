@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,6 +15,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DefaultMainView" customModule="AudioCall" customModuleProvider="target">
             <connections>
                 <outlet property="callToField" destination="Jk8-kW-gDy" id="6F5-0Y-dI3"/>
+                <outlet property="callToFieldCenterY" destination="lJb-IX-nIc" id="bdX-b8-Bnr"/>
+                <outlet property="callToFieldHeight" destination="Lib-iJ-jbo" id="O3c-LZ-iYR"/>
+                <outlet property="callToField_CallButton_Spacing" destination="yNs-c4-tJH" id="KM5-p9-8eP"/>
                 <outlet property="loggedInLabel" destination="cvT-T3-7dS" id="Tpw-so-BE7"/>
                 <outlet property="shareButton" destination="vwg-t1-Yec" id="9vE-tT-C3K"/>
                 <outlet property="versionLabel" destination="gYH-7Y-OkK" id="z92-s8-Sg0"/>

@@ -8,7 +8,7 @@ final class LoginViewController:
     UIViewController,
     LoadingShowable
 {
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .all }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
     @IBOutlet private var loginView: DefaultLoginView!
     var authService: AuthService! // DI
     var storyAssembler: StoryAssembler! // DI

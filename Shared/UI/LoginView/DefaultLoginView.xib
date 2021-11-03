@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2z5-Yy-Tev" customClass="ColoredButton" customModule="AudioCall" customModuleProvider="target">
-                    <rect key="frame" x="16" y="530" width="382" height="44"/>
+                    <rect key="frame" x="16" y="440" width="382" height="44"/>
                     <color key="backgroundColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="XDJ-au-hov"/>
@@ -41,13 +41,13 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7j7-WO-W99">
-                    <rect key="frame" x="40" y="356.5" width="334" height="29.5"/>
+                    <rect key="frame" x="40" y="266.5" width="334" height="29.5"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="25"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="user@app.account" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yMN-hh-3wr" customClass="DefaultTextField" customModule="AudioCall" customModuleProvider="target">
-                    <rect key="frame" x="16" y="416" width="382" height="44"/>
+                    <rect key="frame" x="16" y="326" width="382" height="44"/>
                     <color key="backgroundColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="tintColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -58,7 +58,7 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" smartInsertDeleteType="no" smartQuotesType="no"/>
                 </textField>
                 <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Nma-sz-7ag" customClass="DefaultTextField" customModule="AudioCall" customModuleProvider="target">
-                    <rect key="frame" x="16" y="470" width="382" height="44"/>
+                    <rect key="frame" x="16" y="380" width="382" height="44"/>
                     <color key="backgroundColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="tintColor" red="0.40000000000000002" green="0.18039215689999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -76,7 +76,7 @@
                     <variation key="heightClass=compact" hidden="YES"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text=".voximplant.com " lineBreakMode="clip" baselineAdjustment="none" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="tUd-O0-T4x">
-                    <rect key="frame" x="274" y="428.5" width="122" height="19"/>
+                    <rect key="frame" x="274" y="338.5" width="122" height="19"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -102,7 +102,7 @@
                 <constraint firstItem="2z5-Yy-Tev" firstAttribute="top" secondItem="Nma-sz-7ag" secondAttribute="bottom" constant="16" id="Iac-D4-mLc"/>
                 <constraint firstItem="yMN-hh-3wr" firstAttribute="centerX" secondItem="g8C-Mx-R3F" secondAttribute="centerX" id="Ibj-SL-QRF"/>
                 <constraint firstItem="yMN-hh-3wr" firstAttribute="width" secondItem="g8C-Mx-R3F" secondAttribute="width" multiplier="0.5" id="NvC-Yd-0nE"/>
-                <constraint firstItem="yMN-hh-3wr" firstAttribute="centerY" secondItem="g8C-Mx-R3F" secondAttribute="centerY" constant="-10" id="OTR-9g-lfd"/>
+                <constraint firstItem="yMN-hh-3wr" firstAttribute="centerY" secondItem="g8C-Mx-R3F" secondAttribute="centerY" constant="-100" id="OTR-9g-lfd"/>
                 <constraint firstItem="gSf-S3-3ee" firstAttribute="trailing" secondItem="qW7-3y-1q1" secondAttribute="trailing" constant="16" id="Pbf-12-rxi"/>
                 <constraint firstItem="gSf-S3-3ee" firstAttribute="trailing" secondItem="yMN-hh-3wr" secondAttribute="trailing" constant="16" id="R1x-xo-fzz"/>
                 <constraint firstItem="dLV-O4-gtg" firstAttribute="centerX" secondItem="g8C-Mx-R3F" secondAttribute="centerX" id="WNU-4s-tIr"/>

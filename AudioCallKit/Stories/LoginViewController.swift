@@ -27,7 +27,7 @@ final class LoginViewController:
                 self.performSegue(withIdentifier: MainViewController.self, sender: self)
             }
         }
-
+        
         loginView.configure(
             title: "Audio call demo",
             controller: self,

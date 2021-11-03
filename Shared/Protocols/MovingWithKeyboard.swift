@@ -5,34 +5,23 @@
 import UIKit
 
 protocol MovingWithKeyboard where Self: UIView {
-    var adjusted: Bool { get set }
-    var defaultPositionY: CGFloat { get set }
     var keyboardWillChangeFrameObserver: NSObjectProtocol? { get set }
     var keyboardWillHideObserver: NSObjectProtocol? { get set }
+    func keyboardWillHide()
+    func keyboardWillChange(heightOfKeyboard: CGFloat)
 }
 
 extension MovingWithKeyboard {
     func subscribeOnKeyboardEvents() {
         keyboardWillChangeFrameObserver = NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardWillChangeFrameNotification,
+            forName: UIResponder.keyboardWillShowNotification,
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
             guard let self = self,
-                let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
-                else {
-                    return
-            }
-            let keyboardScreenEndFrame = keyboardValue.cgRectValue
-            if !self.adjusted {
-                self.defaultPositionY = self.frame.origin.y
-                if #available(iOS 11.0, *) {
-                    self.frame.origin.y -= (keyboardScreenEndFrame.height - self.safeAreaInsets.bottom) / 2
-                } else {
-                    self.frame.origin.y -= (keyboardScreenEndFrame.height) / 2
-                }
-                self.adjusted = true
-            }
+                  let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+            else { return }
+            self.keyboardWillChange(heightOfKeyboard: keyboardValue.cgRectValue.height)
         }
         
         keyboardWillHideObserver = NotificationCenter.default.addObserver(
@@ -41,8 +30,7 @@ extension MovingWithKeyboard {
             queue: OperationQueue.main
         ) { [weak self] notification in
             if let self = self {
-                self.frame.origin.y = self.defaultPositionY
-                self.adjusted = false
+                self.keyboardWillHide()
             }
         }
     }

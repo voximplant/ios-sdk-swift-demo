@@ -16,6 +16,13 @@ final class DefaultMainView:
     @IBOutlet private weak var versionLabel: UILabel!
     @IBOutlet private weak var shareButton: LogSharingButton!
     
+    @IBOutlet weak var callToFieldCenterY: NSLayoutConstraint!
+    @IBOutlet weak var callToFieldHeight: NSLayoutConstraint!
+    @IBOutlet weak var callToField_CallButton_Spacing: NSLayoutConstraint!
+    
+    private var callToFieldCenterY_Inset: CGFloat = 0
+    private let callButton_Keyboard_Spacing: CGFloat = 32
+    
     private var callTouchHandler: ((String?) -> Void)?
     private var logoutTouchHandler: (() -> Void)?
 
@@ -23,9 +30,21 @@ final class DefaultMainView:
     
     // MARK: MovingWithKeyboard
     var adjusted: Bool = false
-    var defaultPositionY: CGFloat = 0
     var keyboardWillChangeFrameObserver: NSObjectProtocol?
     var keyboardWillHideObserver: NSObjectProtocol?
+
+    func keyboardWillChange(heightOfKeyboard: CGFloat) {
+        callToFieldCenterY_Inset = callToFieldCenterY.constant
+        let bottomPoint: CGFloat = (callToFieldHeight.constant / 2) + callToField_CallButton_Spacing.constant + callToFieldHeight.constant
+        let topOfKeyboard = (UIScreen.main.bounds.height / 2) - heightOfKeyboard
+        if bottomPoint + callToFieldCenterY_Inset > topOfKeyboard - callButton_Keyboard_Spacing {
+            callToFieldCenterY.constant = topOfKeyboard - bottomPoint - callButton_Keyboard_Spacing
+        }
+    }
+    
+    func keyboardWillHide() {
+        callToFieldCenterY.constant = callToFieldCenterY_Inset
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

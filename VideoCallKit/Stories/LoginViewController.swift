@@ -10,6 +10,7 @@ final class LoginViewController:
     CXCallObserverDelegate,
     LoadingShowable
 {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
     @IBOutlet private var loginView: DefaultLoginView!
     var authService: AuthService! // DI
     
