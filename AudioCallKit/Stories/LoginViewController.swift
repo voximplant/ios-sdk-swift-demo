@@ -60,6 +60,7 @@ final class LoginViewController:
     
     // MARK: - CXCallObserverDelegate -
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
+        hideProgress()
         performSegue(withIdentifier: MainViewController.self, sender: self) { [weak self] in
             let mainViewController = self?.parent?.toppestViewController as? MainViewController
             mainViewController?.callObserver(callObserver, callChanged: call)
