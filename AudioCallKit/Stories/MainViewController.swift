@@ -44,9 +44,13 @@ final class MainViewController:
             },
             logoutHandler: { [weak self] in
                 self?.showLoading(title: "Logging out", details: "Please wait...")
-                self?.authService.logout {
+                self?.authService.logout { error in
                     self?.hideProgress()
-                    self?.dismiss(animated: true)
+                    if let _ = error {
+                        self?.showErrorAlert(title: "Logout error", message: "Something went wrong, please try again.")
+                    } else {
+                        self?.dismiss(animated: true)
+                    }
                 }
             }
         )

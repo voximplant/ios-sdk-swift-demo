@@ -16,4 +16,12 @@ extension ErrorHandling {
             AlertHelper.showError(message: error.localizedDescription, on: self)
         }
     }
+    
+    func showErrorAlert(title: String, message: String) {
+        AlertHelper.showAlert(title: title,
+                              message: message,
+                              actions: [UIAlertAction(title: "Ok", style: .cancel)],
+                              defaultAction: false,
+                              on: self)
+    }
 }

@@ -45,7 +45,7 @@ final class LoginViewController:
         if authService.possibleToLogin {
             Log.d("Automatically Logging in with token")
             self.showLoading(title: "Connecting", details: "Please wait...")
-            self.authService.loginWithAccessToken(loginHandler)
+            self.authService.loginWithAccessToken(completion: loginHandler)
         }
     }
 
