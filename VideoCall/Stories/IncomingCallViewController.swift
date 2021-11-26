@@ -21,7 +21,7 @@ final class IncomingCallViewController: UIViewController, ErrorHandling {
         incomingCallView.declineHandler = { [weak self] in
             Log.d("Call declined from incomingCall view")
             do {
-                try self?.callManager.endCall()
+                try self?.callManager.rejectCall()
             } catch (let error) {
                 self?.dismiss(animated: true)
                 Log.e(error.localizedDescription)

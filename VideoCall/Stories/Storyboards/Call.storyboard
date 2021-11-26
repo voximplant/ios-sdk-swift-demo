@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Incoming Call View Controller-->
         <scene sceneID="asi-E8-RGf">
             <objects>
                 <viewController storyboardIdentifier="IncomingCallViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="Pbx-T0-EtA" customClass="IncomingCallViewController" customModule="VideoCall" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BY6-vT-QAt" customClass="DefaultIncomingCallView" customModule="InAppScreenSharing" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="BY6-vT-QAt" customClass="DefaultIncomingCallView" customModule="VideoCall" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="RgH-wN-EsK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="incomingCallView" destination="BY6-vT-QAt" id="HlN-7r-UMC"/>
@@ -37,6 +44,25 @@
                                 <rect key="frame" x="4" y="48" width="406" height="706"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1GA-cF-fst" userLabel="Labels Stack View">
+                                <rect key="frame" x="34" y="88" width="346" height="108"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSv-xB-J1a" userLabel="Endpoint Display Name Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="346" height="50"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxI-WO-QaE" customClass="LabelWithTimer" customModule="VideoCall">
+                                        <rect key="frame" x="0.0" y="58" width="346" height="50"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="f6U-6e-WJQ"/>
+                                <color key="backgroundColor" red="0.099628366529999998" green="0.047344736749999998" blue="0.25099599360000002" alpha="0.29772514696942259" colorSpace="custom" customColorSpace="displayP3"/>
+                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJ8-g8-ruZ" customClass="EdgeMagneticView" customModule="VideoCall">
                                 <rect key="frame" x="4" y="48" width="406" height="706"/>
                                 <subviews>
@@ -61,8 +87,8 @@
                                 </constraints>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
-                                        <exclude reference="vlR-Pg-zri"/>
                                         <exclude reference="gQm-Tg-hww"/>
+                                        <exclude reference="vlR-Pg-zri"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular">
@@ -75,13 +101,6 @@
                                     <outlet property="innerView" destination="tcN-S3-dY9" id="EoM-H3-Gyo"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxI-WO-QaE">
-                                <rect key="frame" x="207" y="780" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact" hidden="YES"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Vvw-ga-qMh">
                                 <rect key="frame" x="50" y="788" width="314" height="70"/>
                                 <subviews>
@@ -122,6 +141,7 @@
                                 </variation>
                             </stackView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="E8w-9Z-5OL"/>
                         <color key="backgroundColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bzH-Gv-IcB" firstAttribute="leading" secondItem="E8w-9Z-5OL" secondAttribute="leading" constant="4" id="1yZ-Js-1WK"/>
@@ -131,24 +151,23 @@
                             <constraint firstItem="aJ8-g8-ruZ" firstAttribute="height" secondItem="bzH-Gv-IcB" secondAttribute="height" id="OHZ-ut-Nkn"/>
                             <constraint firstItem="aJ8-g8-ruZ" firstAttribute="width" secondItem="bzH-Gv-IcB" secondAttribute="width" id="Rlg-cd-ZmX"/>
                             <constraint firstItem="aJ8-g8-ruZ" firstAttribute="centerX" secondItem="bzH-Gv-IcB" secondAttribute="centerX" id="Rw7-qo-jWw"/>
+                            <constraint firstItem="1GA-cF-fst" firstAttribute="top" secondItem="aJ8-g8-ruZ" secondAttribute="top" constant="40" id="TTK-Gm-3YI"/>
                             <constraint firstItem="E8w-9Z-5OL" firstAttribute="bottom" secondItem="bzH-Gv-IcB" secondAttribute="bottom" constant="4" id="UJc-Ld-aYD"/>
                             <constraint firstItem="Vvw-ga-qMh" firstAttribute="leading" secondItem="E8w-9Z-5OL" secondAttribute="leading" constant="16" id="VEC-Ed-bqi"/>
                             <constraint firstItem="aJ8-g8-ruZ" firstAttribute="centerY" secondItem="bzH-Gv-IcB" secondAttribute="centerY" id="Vzl-xl-6z6"/>
                             <constraint firstItem="bzH-Gv-IcB" firstAttribute="leading" secondItem="Vvw-ga-qMh" secondAttribute="trailing" constant="8" id="YVa-2K-dJH"/>
-                            <constraint firstItem="bxI-WO-QaE" firstAttribute="leading" secondItem="Vvw-ga-qMh" secondAttribute="leading" id="cm1-Ig-cOl"/>
                             <constraint firstItem="E8w-9Z-5OL" firstAttribute="trailing" secondItem="bzH-Gv-IcB" secondAttribute="trailing" constant="4" id="des-6Q-Tbl"/>
                             <constraint firstItem="E8w-9Z-5OL" firstAttribute="bottom" secondItem="Vvw-ga-qMh" secondAttribute="bottom" constant="4" id="jra-1o-F6W"/>
+                            <constraint firstItem="1GA-cF-fst" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aJ8-g8-ruZ" secondAttribute="leading" constant="10" id="ky1-TE-Hav"/>
+                            <constraint firstItem="1GA-cF-fst" firstAttribute="centerX" secondItem="aJ8-g8-ruZ" secondAttribute="centerX" id="rZB-KU-tdo"/>
                             <constraint firstItem="Vvw-ga-qMh" firstAttribute="top" secondItem="bzH-Gv-IcB" secondAttribute="bottom" constant="34" id="vY8-3K-Dg1"/>
-                            <constraint firstItem="bxI-WO-QaE" firstAttribute="centerX" secondItem="b9a-yc-73m" secondAttribute="centerX" id="wgl-Vc-aWB"/>
-                            <constraint firstItem="Vvw-ga-qMh" firstAttribute="top" secondItem="bxI-WO-QaE" secondAttribute="bottom" constant="8" id="yvD-MR-4Jz"/>
+                            <constraint firstItem="aJ8-g8-ruZ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1GA-cF-fst" secondAttribute="trailing" constant="10" id="zB7-Du-t6e"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="E8w-9Z-5OL"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="UJc-Ld-aYD"/>
                                 <exclude reference="42A-JM-zb7"/>
                                 <exclude reference="VEC-Ed-bqi"/>
-                                <exclude reference="cm1-Ig-cOl"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -157,10 +176,8 @@
                                 <exclude reference="jra-1o-F6W"/>
                                 <exclude reference="1yZ-Js-1WK"/>
                                 <include reference="42A-JM-zb7"/>
-                                <include reference="VEC-Ed-bqi"/>
                                 <exclude reference="CYP-by-Kek"/>
-                                <include reference="cm1-Ig-cOl"/>
-                                <exclude reference="wgl-Vc-aWB"/>
+                                <include reference="VEC-Ed-bqi"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -175,10 +192,12 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="callStateLabel" destination="bxI-WO-QaE" id="pKI-8I-vGl"/>
+                        <outlet property="callStateLabel" destination="bxI-WO-QaE" id="scx-zD-9Ea"/>
                         <outlet property="chooseAudioButton" destination="07E-kB-apc" id="V4J-ev-3Qy"/>
+                        <outlet property="endpointDisplayNameLabel" destination="iSv-xB-J1a" id="3vh-aY-k1s"/>
                         <outlet property="hangupButton" destination="V3x-tq-mmK" id="IJa-ES-TUS"/>
                         <outlet property="holdButton" destination="fN9-QW-NoN" id="Ybl-vh-I4r"/>
+                        <outlet property="labelsStackView" destination="1GA-cF-fst" id="WtA-2q-bav"/>
                         <outlet property="localVideoStreamView" destination="tcN-S3-dY9" id="BN0-gm-nSN"/>
                         <outlet property="magneticView" destination="aJ8-g8-ruZ" id="xoH-tx-xFg"/>
                         <outlet property="muteButton" destination="znU-jg-Pfd" id="oRe-Ia-ozH"/>
@@ -198,17 +217,17 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="799.55357142857144" y="124.6376811594203"/>
+            <point key="canvasLocation" x="798.55072463768124" y="124.55357142857142"/>
         </scene>
         <!--Call Failed View Controller-->
         <scene sceneID="VSI-KM-b47">
             <objects>
                 <viewController storyboardIdentifier="CallFailedViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="mNr-Gw-2tK" customClass="CallFailedViewController" customModule="VideoCall" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ymh-BE-dtm" customClass="DefaultCallFailedView" customModule="InAppScreenSharing" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="ymh-BE-dtm" customClass="DefaultCallFailedView" customModule="VideoCall" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="A9Y-aF-MQ7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="callFailedView" destination="ymh-BE-dtm" id="gK8-7y-wkG"/>
@@ -219,4 +238,9 @@
             <point key="canvasLocation" x="1461" y="125"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

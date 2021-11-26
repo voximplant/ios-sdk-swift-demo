@@ -7,7 +7,8 @@ import VoxImplantSDK
 
 final class CallViewController:
     UIViewController,
-    AudioDeviceAlertSelecting
+    AudioDeviceAlertSelecting,
+    VIVideoRendererViewDelegate
 {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .all }
     @IBOutlet private weak var muteButton: CallOptionButton!
@@ -18,7 +19,9 @@ final class CallViewController:
     @IBOutlet private weak var localVideoStreamView: CallVideoView!
     @IBOutlet private weak var magneticView: EdgeMagneticView!
     @IBOutlet private weak var remoteVideoStreamView: CallVideoView!
-    @IBOutlet private weak var callStateLabel: UILabel!
+    @IBOutlet private weak var endpointDisplayNameLabel: UILabel!
+    @IBOutlet private weak var callStateLabel: LabelWithTimer!
+    @IBOutlet private weak var labelsStackView: UIStackView!
     
     private var shouldDismissAfterAppearing = false
     
@@ -117,7 +120,9 @@ final class CallViewController:
                 completion(VIVideoRendererView(containerView: self.localVideoStreamView.streamView))
             } else {
                 self.remoteVideoStreamView.streamEnabled = true
-                completion(VIVideoRendererView(containerView: self.remoteVideoStreamView.streamView))
+                let renderer = VIVideoRendererView(containerView: self.remoteVideoStreamView.streamView)
+                renderer.delegate = self
+                completion(renderer)
             }
         }
         callManager.videoStreamRemovedHandler = { [weak self] local in
@@ -144,6 +149,8 @@ final class CallViewController:
         if let call = callManager.managedCallWrapper {
             updateContent(with: call)
         }
+        labelsStackView.layoutMargins = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        labelsStackView.isLayoutMarginsRelativeArrangement = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -190,6 +197,8 @@ final class CallViewController:
             return
         }
         
+        endpointDisplayNameLabel.text = call.displayName ?? call.callee
+        
         muteButton.state = call.isMuted ? .selected : .normal
         videoButton.state = !call.isOnHold && call.state == .connected
             ? call.sendingVideo ? .normal : .selected
@@ -199,7 +208,26 @@ final class CallViewController:
             : .unavailable
         
         localVideoStreamView.streamEnabled = !call.isOnHold && call.sendingVideo
-        callStateLabel.text = call.state == .connected ? "Call in progress" : "Connecting..."
+        
+        switch call.state {
+        case .connecting:
+            if call.direction == .outgoing {
+                callStateLabel.text = "Connecting..."
+            }
+        case .ringing:
+            callStateLabel.text = "Ringing..."
+        case .connected:
+            if call.isOnHold {
+                callStateLabel.stopTimer()
+                callStateLabel.text = "Call on hold"
+            } else {
+                callStateLabel.runTimer(with: call.duration)
+            }
+        case .reconnecting:
+            callStateLabel.stopTimer()
+            callStateLabel.text = "Reconnecting..."
+        default: break
+        }
     }
     
     private enum CallOptionButtonModels {
@@ -208,5 +236,16 @@ final class CallViewController:
         static let hold = CallOptionButtonModel(image: UIImage(named: "pause"), text: "Hold")
         static let video = CallOptionButtonModel(image: UIImage(named: "videoOn"), imageSelected: UIImage(named: "videoOff"), text: "Cam")
         static let hangup = CallOptionButtonModel(image: UIImage(named: "hangup"), imageTint: #colorLiteral(red: 1, green: 0.02352941176, blue: 0.2549019608, alpha: 1), text: "Hangup")
+    }
+}
+
+// MARK: VIVideoRendererViewDelegate
+extension CallViewController {
+    func videoView(_ videoView: VIVideoRendererView, didChangeVideoSize size: CGSize) {
+        if size.height > size.width  {
+            videoView.resizeMode = .fill
+        } else {
+            videoView.resizeMode = .fit
+        }
     }
 }

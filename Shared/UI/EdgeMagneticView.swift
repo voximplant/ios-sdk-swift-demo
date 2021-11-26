@@ -6,7 +6,7 @@ import UIKit
 
 final class EdgeMagneticView: UIView {
     @IBOutlet private weak var innerView: UIView! // must be attached as a subview
-    private var currentEdge: Edge = .topRight
+    private var currentEdge: Edge = .bottomRight
     
     override func layoutSubviews() {
         super.layoutSubviews()

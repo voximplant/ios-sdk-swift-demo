@@ -28,7 +28,13 @@ The demo demonstrates conference call functionality of the Voximplant iOS SDK.
 ## [Messaging demo](https://github.com/voximplant/solutions-messaging/tree/draft-4/client-ios-swift)
 The demo demonstrates messaging functionality of the Voximplant iOS SDK.
 
---------------------------------------------------------------------------------
+## License
 In these demos sound resources are used whose authors are:
-* [fennelliott-beeping.wav](Shared/Resources/Sounds) by author [fennelliott](https://freesound.org/people/fennelliott/sounds/379419/) with [CC-BY-3.0](https://creativecommons.org/licenses/by/3.0/legalcode) license
+* [fennelliott-beeping.wav](Shared/Resources/Sounds) by author [fennelliott](https://freesound.org/people/fennelliott/sounds/379419/) with [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) license
 * [noisecollector-beam.aiff](Shared/Resources/Sounds) by author [NoiseCollector](https://freesound.org/people/NoiseCollector/sounds/6141/) with [CC-BY-3.0](https://creativecommons.org/licenses/by/3.0/legalcode) license
+* [current_us_can.wav](Shared/Resources/Sounds) by author [NoiseCollector](https://freesound.org/people/tt_runscript/sounds/337655/) with [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) license
+
+## Have a question
+- contact us via `support@voximplant.com`
+- create an issue
+- join our developer [community](https://discord.gg/sfCbT5u)

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="LYs-I4-WZE">
@@ -15,8 +20,8 @@
                     <view key="view" contentMode="scaleToFill" id="CDu-Sa-HAa" customClass="DefaultLoginView" customModule="VideoCallKit" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="2WM-65-1U0"/>
+                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -34,8 +39,8 @@
                     <view key="view" contentMode="scaleToFill" id="DXu-yB-60w" customClass="DefaultMainView" customModule="VideoCallKit" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Fd7-9E-6yU"/>
+                        <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -60,6 +65,26 @@
                                 <rect key="frame" x="4" y="48" width="367" height="618"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uow-bX-i2g" userLabel="Labels Stack View">
+                                <rect key="frame" x="14" y="88" width="347" height="108"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPC-JV-7bo" userLabel="Endpoint Display Name Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="347" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="26"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJM-dY-H8z" customClass="LabelWithTimer" customModule="VideoCallKit">
+                                        <rect key="frame" x="0.0" y="58" width="347" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.099628366529999998" green="0.047344736749999998" blue="0.25099599360000002" alpha="0.29379302776412458" colorSpace="custom" customColorSpace="displayP3"/>
+                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgC-pL-3wb" customClass="EdgeMagneticView" customModule="VideoCallKit" customModuleProvider="target">
                                 <rect key="frame" x="4" y="48" width="367" height="618"/>
                                 <subviews>
@@ -98,13 +123,6 @@
                                     <outlet property="innerView" destination="sks-iw-Whd" id="H69-BD-EY7"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJM-dY-H8z">
-                                <rect key="frame" x="187.66666666666666" y="692" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact" hidden="YES"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="pJK-hu-Mgi">
                                 <rect key="frame" x="16" y="700" width="343" height="70"/>
                                 <subviews>
@@ -184,13 +202,15 @@
                                 </variation>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="8Ue-aM-PI8"/>
+                        <color key="backgroundColor" red="0.099628366529999998" green="0.047344736749999998" blue="0.25099599360000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="uJM-dY-H8z" firstAttribute="centerX" secondItem="kwa-iK-rZp" secondAttribute="centerX" id="0Jn-2e-K5E"/>
                             <constraint firstItem="eLv-ss-BCW" firstAttribute="leading" secondItem="8Ue-aM-PI8" secondAttribute="leading" constant="4" id="28v-H3-vxH"/>
                             <constraint firstItem="8Ue-aM-PI8" firstAttribute="trailing" secondItem="pJK-hu-Mgi" secondAttribute="trailing" constant="16" id="7to-SP-gUR"/>
+                            <constraint firstItem="uow-bX-i2g" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kgC-pL-3wb" secondAttribute="leading" constant="10" id="CSM-GP-2ZJ"/>
                             <constraint firstItem="eLv-ss-BCW" firstAttribute="leading" secondItem="pJK-hu-Mgi" secondAttribute="trailing" constant="8" id="F9C-i5-n3N"/>
                             <constraint firstItem="pJK-hu-Mgi" firstAttribute="top" secondItem="8Ue-aM-PI8" secondAttribute="top" constant="16" id="FNe-KK-1yN"/>
+                            <constraint firstItem="uow-bX-i2g" firstAttribute="centerX" secondItem="kgC-pL-3wb" secondAttribute="centerX" id="Klk-Ko-8da"/>
                             <constraint firstItem="kgC-pL-3wb" firstAttribute="centerX" secondItem="eLv-ss-BCW" secondAttribute="centerX" id="O2R-mm-hDy"/>
                             <constraint firstItem="eLv-ss-BCW" firstAttribute="top" secondItem="8Ue-aM-PI8" secondAttribute="top" constant="4" id="RRD-D6-YDV"/>
                             <constraint firstItem="8Ue-aM-PI8" firstAttribute="trailing" secondItem="eLv-ss-BCW" secondAttribute="trailing" constant="4" id="TZ1-tT-09I"/>
@@ -200,12 +220,12 @@
                             <constraint firstItem="pJK-hu-Mgi" firstAttribute="leading" secondItem="8Ue-aM-PI8" secondAttribute="leading" constant="16" id="Z00-Mr-uBb"/>
                             <constraint firstItem="8Ue-aM-PI8" firstAttribute="bottom" secondItem="eLv-ss-BCW" secondAttribute="bottom" constant="4" id="big-0S-F94"/>
                             <constraint firstItem="kgC-pL-3wb" firstAttribute="width" secondItem="eLv-ss-BCW" secondAttribute="width" id="cy6-eQ-87f"/>
-                            <constraint firstItem="pJK-hu-Mgi" firstAttribute="top" secondItem="uJM-dY-H8z" secondAttribute="bottom" constant="8" id="fE6-Gm-N50"/>
+                            <constraint firstItem="kgC-pL-3wb" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uow-bX-i2g" secondAttribute="trailing" constant="10" id="eEa-hQ-eWI"/>
                             <constraint firstItem="pJK-hu-Mgi" firstAttribute="top" secondItem="eLv-ss-BCW" secondAttribute="bottom" constant="34" id="g4N-wM-aI6"/>
+                            <constraint firstItem="uow-bX-i2g" firstAttribute="top" secondItem="kgC-pL-3wb" secondAttribute="top" constant="40" id="qpu-Az-lw9"/>
                             <constraint firstItem="kgC-pL-3wb" firstAttribute="height" secondItem="eLv-ss-BCW" secondAttribute="height" id="ycb-ZF-BIg"/>
                             <constraint firstItem="kgC-pL-3wb" firstAttribute="centerY" secondItem="eLv-ss-BCW" secondAttribute="centerY" id="zTr-4h-NlN"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="8Ue-aM-PI8"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="big-0S-F94"/>
@@ -227,10 +247,12 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="callStateLabel" destination="uJM-dY-H8z" id="zka-vD-kyt"/>
+                        <outlet property="callStateLabel" destination="uJM-dY-H8z" id="QLd-eD-OBo"/>
                         <outlet property="chooseAudioButton" destination="iez-iH-gC3" id="RJU-jj-Lbn"/>
+                        <outlet property="endpointDisplayNameLabel" destination="hPC-JV-7bo" id="3yr-uv-NyA"/>
                         <outlet property="hangupButton" destination="l8m-A9-0Yu" id="63j-7R-CQh"/>
                         <outlet property="holdButton" destination="13U-Dy-VMb" id="M6G-mt-9pa"/>
+                        <outlet property="labelsStackView" destination="uow-bX-i2g" id="TwP-8z-eoc"/>
                         <outlet property="localVideoStreamView" destination="sks-iw-Whd" id="pPl-ja-ILF"/>
                         <outlet property="magneticView" destination="kgC-pL-3wb" id="RIP-jh-ttP"/>
                         <outlet property="muteButton" destination="WyB-s6-R6j" id="NHW-qQ-csF"/>
@@ -250,7 +272,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1702.4630541871923" y="-716"/>
+            <point key="canvasLocation" x="1701.5999999999999" y="-716.00985221674875"/>
         </scene>
     </scenes>
 </document>

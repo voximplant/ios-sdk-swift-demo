@@ -40,6 +40,7 @@ final class StoryAssembler {
         controller.getCallInfo = callManager.info(of:)
         callManager.videoStreamAddedHandler = controller.videoStreamAdded(_:_:)
         callManager.videoStreamRemovedHandler = controller.videoStreamRemoved(_:)
+        callManager.reconnectDelegate = controller
         return controller
     }
 }

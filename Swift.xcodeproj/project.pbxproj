@@ -382,6 +382,8 @@
 		F2DD1B70275129D600E19C8F /* current_us_can.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2DD1B6C275129CB00E19C8F /* current_us_can.wav */; };
 		F2DD1B73275129F300E19C8F /* CallReconnectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DD1B71275129F300E19C8F /* CallReconnectDelegate.swift */; };
 		F2DD1B75275129F900E19C8F /* CallReconnectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DD1B71275129F300E19C8F /* CallReconnectDelegate.swift */; };
+		F2DD1B7D27513D2000E19C8F /* LabelWithTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220152622CA41F60023B5A7 /* LabelWithTimer.swift */; };
+		F2DD1B7E27513D2100E19C8F /* LabelWithTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220152622CA41F60023B5A7 /* LabelWithTimer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1645,6 +1647,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E7A00AB24C5A4D800691771 /* MovingWithKeyboard.swift in Sources */,
+				F2DD1B7D27513D2000E19C8F /* LabelWithTimer.swift in Sources */,
 				7E7A00C624C5AD5900691771 /* AudioDeviceAlertSelecting.swift in Sources */,
 				7E7A00B124C5A50300691771 /* PressableButton.swift in Sources */,
 				7E7A00CF24C5AEC700691771 /* DefaultCallFailedView.swift in Sources */,
@@ -1725,6 +1728,7 @@
 				7E47562E244F051C0028495E /* PermissionsHelper.swift in Sources */,
 				7EB67DEE244D8543009DDA51 /* LoginViewController.swift in Sources */,
 				7EB67E03244D8A8F009DDA51 /* VoximplantSDKVersionContainable.swift in Sources */,
+				F2DD1B7E27513D2100E19C8F /* LabelWithTimer.swift in Sources */,
 				7E7A00D924C5E4E900691771 /* AudioDeviceSelecting.swift in Sources */,
 				7E386D152488059A00556D3D /* PressableButton.swift in Sources */,
 				7EB67E39244DDE38009DDA51 /* AppLifeCycleDelegate.swift in Sources */,

@@ -20,7 +20,11 @@ final class CallManager:
         let callee: String
         var displayName: String?
         var state: CallState = .connecting
+        var previousState: CallState = .connecting
         let direction: CallDirection
+        var duration: TimeInterval {
+            call.duration()
+        }
         var sendingVideo: Bool = true
         var isMuted: Bool = false
         var isOnHold: Bool = false
@@ -32,7 +36,9 @@ final class CallManager:
         
         enum CallState: Equatable {
             case connecting
+            case ringing
             case connected
+            case reconnecting
             case ended (reason: CallEndReason)
             
             enum CallEndReason: Equatable {
@@ -77,6 +83,24 @@ final class CallManager:
         return settings
     }()
     
+    fileprivate var progressTone: VIAudioFile? = {
+        let progressTone = (name: "current_us_can", extension: "wav")
+        if let progressTonePath = Bundle.main.path(forResource: progressTone.name, ofType: progressTone.extension) {
+            return VIAudioFile(url: URL(fileURLWithPath: progressTonePath), looped: true)
+        } else {
+            return nil
+        }
+    }()
+    
+    fileprivate var reconnectTone: VIAudioFile? = {
+        let reconnectTone = (name: "fennelliott-beeping", extension: "wav")
+        if let reconnectTonePath = Bundle.main.path(forResource: reconnectTone.name, ofType: reconnectTone.extension) {
+            return VIAudioFile(url: URL(fileURLWithPath: reconnectTonePath), looped: true)
+        } else {
+            return nil
+        }
+    }()
+    
     init(_ client: VIClient, _ authService: AuthService) {
         self.client = client
         self.authService = authService
@@ -107,9 +131,11 @@ final class CallManager:
     func makeIncomingCallActive() throws {
         guard let call = managedCallWrapper?.call else { throw CallError.hasNoActiveCall }
         guard authService.isLoggedIn else { throw AuthError.notLoggedIn }
-        
         selectSpeaker()
         call.answer(with: callSettings)
+        if managedCallWrapper?.state == .reconnecting {
+            reconnectTone?.play()
+        }
     }
     
     func toggleSendVideo(_ completion: @escaping (Error?) -> Void) {
@@ -162,6 +188,13 @@ final class CallManager:
         call.hangup(withHeaders: nil)
     }
     
+    func rejectCall() throws {
+        guard let call = managedCallWrapper?.call else {
+            throw CallError.hasNoActiveCall
+        }
+        call.reject(with: VIRejectMode.decline, headers: nil)
+    }
+    
     // MARK: - VIClientCallManagerDelegate -
     func client(_ client: VIClient,
                 didReceiveIncomingCall call: VICall,
@@ -180,9 +213,38 @@ final class CallManager:
     func call(_ call: VICall,
               didConnectWithHeaders headers: [AnyHashable : Any]?
     ) {
-        if call.callId == managedCallWrapper?.call.callId {
+        if let wrapper = managedCallWrapper, call.callId == wrapper.call.callId {
             managedCallWrapper?.displayName = call.endpoints.first?.userDisplayName ?? call.endpoints.first?.user
+            managedCallWrapper?.previousState = wrapper.state
             managedCallWrapper?.state = .connected
+        }
+    }
+    
+    func callDidStartReconnecting(_ call: VICall) {
+        if let wrapper = managedCallWrapper, call.callId == wrapper.call.callId {
+            managedCallWrapper?.previousState = wrapper.state
+            managedCallWrapper?.state = .reconnecting
+            progressTone?.stop()
+            if managedCallWrapper?.direction == .outgoing ||
+                managedCallWrapper?.previousState == .connected {
+                reconnectTone?.play()
+            }
+        }
+    }
+    
+    func callDidReconnect(_ call: VICall) {
+        if call.callId == managedCallWrapper?.call.callId {
+            reconnectTone?.stop()
+            switch managedCallWrapper?.previousState {
+            case .connecting:
+                managedCallWrapper?.state = .connecting
+            case .ringing:
+                managedCallWrapper?.state = .ringing
+                progressTone?.play()
+            case .connected:
+                managedCallWrapper?.state = .connected
+            default: break
+            }
         }
     }
     
@@ -190,9 +252,12 @@ final class CallManager:
               didDisconnectWithHeaders headers: [AnyHashable: Any]?,
               answeredElsewhere: NSNumber
     ) {
-        if call.callId == managedCallWrapper?.call.callId {
+        if let wrapper = managedCallWrapper, call.callId == wrapper.call.callId {
+            managedCallWrapper?.previousState = wrapper.state
             managedCallWrapper?.state = .ended(reason: .disconnected)
             managedCallWrapper = nil
+            reconnectTone?.stop()
+            progressTone?.stop()
         }
     }
     
@@ -200,9 +265,20 @@ final class CallManager:
               didFailWithError error: Error,
               headers: [AnyHashable : Any]?
     ) {
-        if call.callId == managedCallWrapper?.call.callId {
+        if let wrapper = managedCallWrapper, call.callId == wrapper.call.callId {
+            managedCallWrapper?.previousState = wrapper.state
             managedCallWrapper?.state = .ended(reason: .failed(message: error.localizedDescription))
             managedCallWrapper = nil
+            reconnectTone?.stop()
+            progressTone?.stop()
+        }
+    }
+    
+    func call(_ call: VICall, startRingingWithHeaders headers: [AnyHashable : Any]?) {
+        if let wrapper = managedCallWrapper, call.callId == wrapper.call.callId {
+            managedCallWrapper?.previousState = wrapper.state
+            managedCallWrapper?.state = .ringing
+            progressTone?.play()
         }
     }
     
@@ -220,6 +296,10 @@ final class CallManager:
     
     func call(_ call: VICall, didAdd endpoint: VIEndpoint) {
         endpoint.delegate = self
+    }
+    
+    func callDidStartAudio(_ call: VICall) {
+        progressTone?.stop()
     }
     
     // MARK: - VIEndpointDelegate -

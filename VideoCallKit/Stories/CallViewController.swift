@@ -10,7 +10,9 @@ final class CallViewController:
     UIViewController,
     AppLifeCycleDelegate,
     CXCallObserverDelegate,
-    AudioDeviceAlertSelecting
+    CallReconnectDelegate,
+    AudioDeviceAlertSelecting,
+    VIVideoRendererViewDelegate
 {
     @IBOutlet private weak var muteButton: CallOptionButton!
     @IBOutlet private weak var chooseAudioButton: CallOptionButton!
@@ -20,12 +22,17 @@ final class CallViewController:
     @IBOutlet private weak var localVideoStreamView: CallVideoView!
     @IBOutlet private weak var magneticView: EdgeMagneticView!
     @IBOutlet private weak var remoteVideoStreamView: CallVideoView!
-    @IBOutlet private weak var callStateLabel: UILabel!
+    @IBOutlet private weak var callStateLabel: LabelWithTimer!
+    @IBOutlet private weak var endpointDisplayNameLabel: UILabel!
+    @IBOutlet private weak var labelsStackView: UIStackView!
     
     var callController: CXCallController! // DI
     var getCallInfo: ((CXCall) -> VICall?)! // DI
     
+    private var userName: String?
+    private var userDisplayName: String?
     private var call: CXCall? { callController.callObserver.calls.first }
+    private var reconnecting = false
     private var muted = false
     private var onHold = false
     private var sendingVideo = true
@@ -119,6 +126,8 @@ final class CallViewController:
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateContent()
+        labelsStackView.layoutMargins = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        labelsStackView.isLayoutMarginsRelativeArrangement = true
     }
     
     @IBAction private func localVideoStreamTapped(_ sender: UITapGestureRecognizer) {
@@ -145,7 +154,9 @@ final class CallViewController:
             completion(VIVideoRendererView(containerView: localVideoStreamView.streamView))
         } else {
             remoteVideoStreamView.streamEnabled = true
-            completion(VIVideoRendererView(containerView: remoteVideoStreamView.streamView))
+            let renderer = VIVideoRendererView(containerView: remoteVideoStreamView.streamView)
+            renderer.delegate = self
+            completion(renderer)
         }
     }
     
@@ -155,6 +166,16 @@ final class CallViewController:
     
     private func updateContent() {
         if let call = call, let callinfo = getCallInfo(call) {
+            
+            let endpoint = callinfo.endpoints.first
+            if let userName = endpoint?.user {
+                self.userName = userName
+            }
+            if let userDisplayName = endpoint?.userDisplayName {
+                self.userDisplayName = userDisplayName
+            }
+            endpointDisplayNameLabel.text = userDisplayName ?? userName
+            
             muted = !callinfo.sendAudio
             onHold = call.isOnHold
             
@@ -162,17 +183,23 @@ final class CallViewController:
             
             localVideoStreamView.streamEnabled = !onHold && sendingVideo
 
-            callStateLabel.text = onHold
-                ? "Call is on hold"
-                : (call.hasConnected ? "Call in progress" : "Connecting...")
+            if call.hasConnected && !reconnecting {
+                call.isOnHold ? callStateLabel.stopTimer() : callStateLabel.runTimer(with: callinfo.duration())
+            } else {
+                callStateLabel.text = reconnecting ? "Reconnecting..." : "Connecting..."
+            }
             
-            videoButton.state = onHold || !call.hasConnected
+            if !reconnecting && call.isOnHold {
+                callStateLabel.text = "Call on hold"
+            }
+            
+            videoButton.state = onHold || !call.hasConnected || reconnecting
                 ? .unavailable
                 : (sendingVideo ? .normal : .selected)
             
-            holdButton.state = call.hasConnected
-                ? (onHold ? .selected : .normal)
-                : .unavailable
+            holdButton.state = !call.hasConnected || reconnecting
+                ? .unavailable
+                : (onHold ? .selected : .normal)
         }
     }
     
@@ -197,5 +224,39 @@ final class CallViewController:
         static let hold = CallOptionButtonModel(image: UIImage(named: "pause"), text: "Hold")
         static let video = CallOptionButtonModel(image: UIImage(named: "videoOn"), imageSelected: UIImage(named: "videoOff"), text: "Cam")
         static let hangup = CallOptionButtonModel(image: UIImage(named: "hangup"), imageTint: #colorLiteral(red: 1, green: 0.02352941176, blue: 0.2549019608, alpha: 1), text: "Hangup")
+    }
+}
+
+// MARK: CallReconnectDelegate
+extension CallViewController {
+    func callDidStartReconnecting(uuid: UUID) {
+        if self.call?.uuid == uuid {
+            self.reconnecting = true
+            self.callStateLabel.stopTimer()
+            updateContent()
+        }
+    }
+    
+    func callDidReconnect(uuid: UUID) {
+        if self.call?.uuid == uuid, let call = call, let callinfo = getCallInfo(call) {
+            if call.hasConnected {
+                self.callStateLabel.runTimer(with: callinfo.duration())
+            } else {
+                self.callStateLabel.text = "Connecting"
+            }
+            self.reconnecting = false
+            updateContent()
+        }
+    }
+}
+
+// MARK: VIVideoRendererViewDelegate
+extension CallViewController {
+    func videoView(_ videoView: VIVideoRendererView, didChangeVideoSize size: CGSize) {
+        if size.height > size.width  {
+            videoView.resizeMode = .fill
+        } else {
+            videoView.resizeMode = .fit
+        }
     }
 }
