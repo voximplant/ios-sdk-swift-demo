@@ -11,6 +11,7 @@ final class CallViewController:
     AppLifeCycleDelegate,
     AudioDeviceAlertSelecting,
     VIAudioManagerDelegate,
+    CallReconnectDelegate,
     CXCallObserverDelegate
 {
     @IBOutlet weak var endpointDisplayNameLabel: EndpointLabel!
@@ -25,7 +26,7 @@ final class CallViewController:
     private var userDisplayName: String?
     private let callController: CXCallController = sharedCallController
     private var call: CXCall? { callController.callObserver.calls.first }
-    
+    private var reconnecting = false
     private var isMuted = false {
         willSet {
             muteButton.isSelected = newValue
@@ -63,7 +64,7 @@ final class CallViewController:
             self.keyPadView.isHidden = true
         }
         
-        callStateLabel.additionalText = " - Call in progress"
+        sharedCallManager.reconnectDelegate = self
         
         let audioManager = VIAudioManager.shared()
         audioManager.delegate = self
@@ -86,14 +87,15 @@ final class CallViewController:
             }
             endpointDisplayNameLabel.setUser(userDisplayName, userName)
             
-            if call.hasConnected {
+            if call.hasConnected && !reconnecting {
                 dtmfButton.isEnabled = true // show call duration and unblock buttons
                 holdButton.isEnabled = true
-                callStateLabel.runTimer(with: callinfo.duration())
+                call.isOnHold ? callStateLabel.stopTimer() : callStateLabel.runTimer(with: callinfo.duration())
             } else {
                 dtmfButton.isEnabled = false
                 holdButton.isEnabled = false
-                callStateLabel.text = "Connecting..."
+                callStateLabel.text = reconnecting ? "Reconnecting..." : "Connecting..."
+                keyPadView.hideHandler?()
             }
             
             if !call.isOnHold {
@@ -104,6 +106,10 @@ final class CallViewController:
                 holdButton.isSelected = true
                 holdButton.label.text = "resume"
                 holdButton.setImage(#imageLiteral(resourceName: "resumeP"), for: .normal)
+                dtmfButton.isEnabled = false
+                if !reconnecting {
+                    callStateLabel.text = "Call on hold"
+                }
             }
             
             self.isMuted = !callinfo.sendAudio
@@ -233,6 +239,29 @@ extension CallViewController {
 extension CallViewController {
     func applicationDidBecomeActive(_ application: UIApplication) {
         updateContent()
+    }
+}
+
+// MARK: CallReconnectDelegate
+extension CallViewController {
+    func callDidStartReconnecting(uuid: UUID) {
+        if self.call?.uuid == uuid {
+            self.reconnecting = true
+            self.callStateLabel.stopTimer()
+            updateContent()
+        }
+    }
+    
+    func callDidReconnect(uuid: UUID) {
+        if self.call?.uuid == uuid, let call = call, let callinfo = call.info {
+            if call.hasConnected {
+                self.callStateLabel.runTimer(with: callinfo.duration())
+            } else {
+                self.callStateLabel.text = "Connecting"
+            }
+            self.reconnecting = false
+            updateContent()
+        }
     }
 }
 

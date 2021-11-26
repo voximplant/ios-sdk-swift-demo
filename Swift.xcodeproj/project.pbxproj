@@ -376,6 +376,12 @@
 		C5E0CFD222B773BC009C7F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFCE22B773BC009C7F2D /* AppDelegate.swift */; };
 		C5E0CFDB22B78633009C7F2D /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFD722B78633009C7F2D /* Tokens.swift */; };
 		C5E0CFE422B787FC009C7F2D /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0CFE222B787FC009C7F2D /* CallManager.swift */; };
+		F2DD1B6D275129CB00E19C8F /* current_us_can.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2DD1B6C275129CB00E19C8F /* current_us_can.wav */; };
+		F2DD1B6E275129CB00E19C8F /* current_us_can.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2DD1B6C275129CB00E19C8F /* current_us_can.wav */; };
+		F2DD1B6F275129D600E19C8F /* current_us_can.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2DD1B6C275129CB00E19C8F /* current_us_can.wav */; };
+		F2DD1B70275129D600E19C8F /* current_us_can.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2DD1B6C275129CB00E19C8F /* current_us_can.wav */; };
+		F2DD1B73275129F300E19C8F /* CallReconnectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DD1B71275129F300E19C8F /* CallReconnectDelegate.swift */; };
+		F2DD1B75275129F900E19C8F /* CallReconnectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DD1B71275129F300E19C8F /* CallReconnectDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -562,6 +568,8 @@
 		C5E0CFCF22B773BC009C7F2D /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		C5E0CFD722B78633009C7F2D /* Tokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		C5E0CFE222B787FC009C7F2D /* CallManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
+		F2DD1B6C275129CB00E19C8F /* current_us_can.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = current_us_can.wav; sourceTree = "<group>"; };
+		F2DD1B71275129F300E19C8F /* CallReconnectDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallReconnectDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -905,6 +913,7 @@
 		7EB67E01244D8A5B009DDA51 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				F2DD1B71275129F300E19C8F /* CallReconnectDelegate.swift */,
 				7EB67E02244D8A8F009DDA51 /* VoximplantSDKVersionContainable.swift */,
 				7EB67E1A244DC327009DDA51 /* LoadingShowable.swift */,
 				7EB67E37244DDE2C009DDA51 /* AppLifeCycleDelegate.swift */,
@@ -1113,6 +1122,7 @@
 		C51841F723968465006778E6 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				F2DD1B6C275129CB00E19C8F /* current_us_can.wav */,
 				C51841F9239684A2006778E6 /* fennelliott-beeping.wav */,
 				C5517F79240D4A1D00C37867 /* noisecollector-beam.aiff */,
 			);
@@ -1483,6 +1493,7 @@
 				7E7A00CE24C5AEC300691771 /* DefaultIncomingCallView.xib in Resources */,
 				7E7A00D024C5AECA00691771 /* DefaultCallFailedView.xib in Resources */,
 				7E7A009724C5A33100691771 /* DefaultLoginView.xib in Resources */,
+				F2DD1B6F275129D600E19C8F /* current_us_can.wav in Resources */,
 				7E09860924C60F0E00BA42B5 /* README.md in Resources */,
 				7E7A008324C5A11900691771 /* Main.storyboard in Resources */,
 			);
@@ -1498,6 +1509,7 @@
 				7E37C373244F37B200F18266 /* CallOptionButton.xib in Resources */,
 				7E47562D244EFC620028495E /* DefaultMainView.xib in Resources */,
 				7E9A49512451F75500F8773E /* README.md in Resources */,
+				F2DD1B70275129D600E19C8F /* current_us_can.wav in Resources */,
 				7EB67E3F244DE069009DDA51 /* DefaultLoginView.xib in Resources */,
 				7EB67DF1244D8543009DDA51 /* Main.storyboard in Resources */,
 			);
@@ -1541,6 +1553,7 @@
 				C5E0CFBB22B771A0009C7F2D /* LaunchScreen.storyboard in Resources */,
 				7E7A00EC24C5FC0D00691771 /* Call.storyboard in Resources */,
 				C5491E7222F99E0E001D9601 /* Roboto-Regular.ttf in Resources */,
+				F2DD1B6D275129CB00E19C8F /* current_us_can.wav in Resources */,
 				7E386D06248802BF00556D3D /* DefaultIncomingCallView.xib in Resources */,
 				7E47562C244EFC610028495E /* DefaultMainView.xib in Resources */,
 				7E537DCF24880C8A00013D6E /* DefaultCallFailedView.xib in Resources */,
@@ -1554,6 +1567,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2DD1B6E275129CB00E19C8F /* current_us_can.wav in Resources */,
 				7EF4B53224C9FEB900DFF3C6 /* KeyPadView.xib in Resources */,
 				C5184201239684A2006778E6 /* fennelliott-beeping.wav in Resources */,
 				C5A8B63222D35A3A007DC646 /* README.md in Resources */,
@@ -1707,6 +1721,7 @@
 				7EB67DFF244D888C009DDA51 /* Storyboard.swift in Sources */,
 				7E37C372244F37A300F18266 /* CallOptionButton.swift in Sources */,
 				BB7A090A263878EF004F366D /* LogSharingButton.swift in Sources */,
+				F2DD1B75275129F900E19C8F /* CallReconnectDelegate.swift in Sources */,
 				7E47562E244F051C0028495E /* PermissionsHelper.swift in Sources */,
 				7EB67DEE244D8543009DDA51 /* LoginViewController.swift in Sources */,
 				7EB67E03244D8A8F009DDA51 /* VoximplantSDKVersionContainable.swift in Sources */,
@@ -1860,6 +1875,7 @@
 				7EB67E42244DE0FC009DDA51 /* DefaultLoginView.swift in Sources */,
 				C5393E9D240D38420064006F /* CXAudioFile.swift in Sources */,
 				BB7A0909263878EF004F366D /* LogSharingButton.swift in Sources */,
+				F2DD1B73275129F300E19C8F /* CallReconnectDelegate.swift in Sources */,
 				BB7A091826387913004F366D /* LogSharingView.swift in Sources */,
 				7E37C36D244F34CA00F18266 /* AudioDeviceAlertSelecting.swift in Sources */,
 				7E9A493A2451BC8000F8773E /* PushTokenHolder.swift in Sources */,
@@ -2500,7 +2516,7 @@
 			repositoryURL = "https://github.com/voximplant/ios-sdk-releases.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 2.45.0;
+				minimumVersion = 2.46.0;
 			};
 		};
 		BBD6C007265FA1B00092B694 /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {

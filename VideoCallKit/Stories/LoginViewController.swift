@@ -57,7 +57,6 @@ final class LoginViewController:
     
     // MARK: - CXCallObserverDelegate -
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
-        hideProgress()
         let mainViewController = storyAssembler.assembleMain()
         present(mainViewController, animated: true) {
             mainViewController.callObserver(callObserver, callChanged: call)

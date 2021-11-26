@@ -28,6 +28,7 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
     var loggedInUser: String?
     var loggedInUserDisplayName: String?
     var state: VIClientState { client.clientState }
+    var isLoggedIn: Bool { state == .loggedIn || state == .reconnecting}
     
     init(_ client: VIClient) {
         self.client = client

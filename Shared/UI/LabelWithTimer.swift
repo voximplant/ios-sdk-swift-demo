@@ -10,8 +10,7 @@ final class LabelWithTimer: UILabel {
     var additionalText: String?
     
     deinit {
-        timer?.invalidate()
-        timer = nil
+        stopTimer()
     }
     
     func runTimer(with dataSource: @autoclosure @escaping () -> TimeInterval) {
@@ -23,6 +22,11 @@ final class LabelWithTimer: UILabel {
                 self?.text = "\(dataSource().string)\(self?.additionalText ?? "")"
             }
         )
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
     }
 }
 

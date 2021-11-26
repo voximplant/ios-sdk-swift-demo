@@ -7,6 +7,7 @@ import VoxImplantSDK
 final class CallWrapper {
     var direction: Direction
     var hasConnected: Bool = false
+    var hasStarted: Bool = false
     
     weak var delegate: VICallDelegate? {
         willSet {

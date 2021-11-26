@@ -43,9 +43,7 @@ final class CallViewController:
             }
             self?.keyPadView.isHidden = true
         }
-        
-        callStateLabel.additionalText = " - Call in progress"
-        
+                
         callManager.callObserver = { [weak self] call in
             self?.updateContent(with: call)
         }
@@ -187,16 +185,27 @@ final class CallViewController:
         holdButton.setImage(call.isOnHold ? #imageLiteral(resourceName: "resumeP") : #imageLiteral(resourceName: "hold"), for: .normal)
         holdButton.label.text = call.isOnHold ? "resume" : "hold"
         
-        dtmfButton.isEnabled = call.state == .connected
+        dtmfButton.isEnabled = call.state == .connected && !call.isOnHold
         holdButton.isEnabled = call.state == .connected
         
         switch call.state {
         case .connecting:
-            callStateLabel.text = "Connecting..."
+            if call.direction == .outgoing {
+                callStateLabel.text = "Connecting..."
+            }
         case .ringing:
             callStateLabel.text = "Ringing..."
         case .connected:
-            callStateLabel.runTimer(with: call.duration)
+            if call.isOnHold {
+                callStateLabel.stopTimer()
+                callStateLabel.text = "Call on hold"
+            } else {
+                callStateLabel.runTimer(with: call.duration)
+            }
+        case .reconnecting:
+            keyPadView.hideHandler?()
+            callStateLabel.stopTimer()
+            callStateLabel.text = "Reconnecting..."
         default: break
         }
     }

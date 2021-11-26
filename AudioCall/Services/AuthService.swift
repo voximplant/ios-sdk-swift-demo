@@ -17,7 +17,7 @@ final class AuthService: NSObject, VIClientSessionDelegate {
     @UserDefault("lastFullUsername")
     var loggedInUser: String?
     var loggedInUserDisplayName: String?
-    var isLoggedIn: Bool { state == .loggedIn }
+    var isLoggedIn: Bool { state == .loggedIn || state == .reconnecting }
     private var state: VIClientState { client.clientState }
     
     init(_ client: VIClient) {

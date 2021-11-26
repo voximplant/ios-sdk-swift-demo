@@ -29,7 +29,7 @@ final class CallManager:
             managedCall?.delegate = self // new managedCall
         }
     }
-    
+    weak var reconnectDelegate: CallReconnectDelegate?
     var hasManagedCall: Bool { managedCall != nil }
     private var hasNoManagedCalls: Bool { !hasManagedCall }
     
@@ -46,10 +46,19 @@ final class CallManager:
         return CXProvider(configuration: providerConfiguration)
     }()
         
-    fileprivate var progresstone: CXAudioFile? = {
-        let progresstone = (name: "fennelliott-beeping", extension: "wav")
-        if let progresstonePath = Bundle.main.path(forResource: progresstone.name, ofType: progresstone.extension) {
-            return CXAudioFile(url: URL(fileURLWithPath: progresstonePath), looped: true)
+    fileprivate var progressTone: CXAudioFile? = {
+        let progressTone = (name: "current_us_can", extension: "wav")
+        if let progressTonePath = Bundle.main.path(forResource: progressTone.name, ofType: progressTone.extension) {
+            return CXAudioFile(url: URL(fileURLWithPath: progressTonePath), looped: true)
+        } else {
+            return nil
+        }
+    }()
+    
+    fileprivate var reconnectTone: CXAudioFile? = {
+        let reconnectTone = (name: "fennelliott-beeping", extension: "wav")
+        if let reconnectTonePath = Bundle.main.path(forResource: reconnectTone.name, ofType: reconnectTone.extension) {
+            return CXAudioFile(url: URL(fileURLWithPath: reconnectTonePath), looped: true)
         } else {
             return nil
         }
@@ -74,10 +83,10 @@ final class CallManager:
     
     func endCall(_ uuid: UUID) {
         if let call = managedCall, call.uuid == uuid {
-            if !call.hasConnected && call.direction == .incoming {
-                call.call?.reject(with: .decline, headers: nil)
-            } else {
+            if call.direction == .outgoing || call.hasStarted {
                 call.call?.hangup(withHeaders: nil)
+            } else {
+                call.call?.reject(with: .decline, headers: nil)
             }
         }
         // SDK will invoke VICallDelegate methods (didDisconnectWithHeaders or didFailWithError)
@@ -115,6 +124,7 @@ final class CallManager:
         {
             managedCall.call = vicall
             vicall.start()
+            managedCall.hasStarted = true
             callProvider.reportOutgoingCall(with: managedCall.uuid, startedConnectingAt: nil)
         }
     }
@@ -164,7 +174,7 @@ final class CallManager:
     
     // MARK: - CXProviderDelegate -
     func provider(_ provider: CXProvider, execute transaction: CXTransaction) -> Bool {
-        if authService.state == .loggedIn {
+        if authService.isLoggedIn {
             return false
         } else {
             if authService.state == .disconnected {
@@ -207,13 +217,15 @@ final class CallManager:
     func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
         VIAudioManager.shared().callKitStartAudio()
         self.audioIsActive = true
-        progresstone?.didActivateAudioSession()
+        progressTone?.didActivateAudioSession()
+        reconnectTone?.didActivateAudioSession()
     }
     
     func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
         VIAudioManager.shared().callKitStopAudio()
         self.audioIsActive = false
-        progresstone?.didDeactivateAudioSession()
+        progressTone?.didDeactivateAudioSession()
+        reconnectTone?.didDeactivateAudioSession()
         
         // callKitReleaseAudio should be called after deactivating CallKit session by iOS subsystem after the call ended.
         if self.managedCall == nil {
@@ -234,6 +246,7 @@ final class CallManager:
         let settings = VICallSettings()
         settings.videoFlags = VIVideoFlags.videoFlags(receiveVideo: false, sendVideo: false)
         managedCall?.call?.answer(with: settings)
+        managedCall?.hasStarted = true
         action.fulfill()
     }
     
@@ -268,15 +281,15 @@ final class CallManager:
     // MARK: - VICallDelegate -
     func call(_ call: VICall, didFailWithError error: Error, headers: [AnyHashable : Any]?) {
         reportCallEnded(call.callKitUUID!, .failed)
-        
-        progresstone?.stop()
+        progressTone?.stop()
+        reconnectTone?.stop()
     }
     
     func call(_ call: VICall, didDisconnectWithHeaders headers: [AnyHashable : Any]?, answeredElsewhere: NSNumber) {
         let endReason: CXCallEndedReason = answeredElsewhere.boolValue ? .answeredElsewhere : .remoteEnded
         reportCallEnded(call.callKitUUID!, endReason)
-        
-        progresstone?.stop()
+        progressTone?.stop()
+        reconnectTone?.stop()
     }
     
     func call(_ call: VICall, didConnectWithHeaders headers: [AnyHashable : Any]?) {
@@ -300,16 +313,33 @@ final class CallManager:
             }
             managedCall.hasConnected = true
         }
-        
         managedCall?.completePushProcessing()
+    }
+    
+    func callDidStartReconnecting(_ call: VICall) {
+        if let managedCall = managedCall {
+            reconnectDelegate?.callDidStartReconnecting(uuid: managedCall.uuid)
+            progressTone?.stop()
+            reconnectTone?.play()
+        }
+    }
+    
+    func callDidReconnect(_ call: VICall) {
+        if let managedCall = managedCall {
+            reconnectDelegate?.callDidReconnect(uuid: managedCall.uuid)
+            reconnectTone?.stop()
+            if !managedCall.hasConnected {
+                progressTone?.play()
+            }
+        }
     }
 
     func call(_ call: VICall, startRingingWithHeaders headers: [AnyHashable : Any]?) {
-        progresstone?.play()
+        progressTone?.play()
     }
     
     func callDidStartAudio(_ call: VICall) {
-        progresstone?.stop()
+        progressTone?.stop()
     }
 
     // MARK: - VIClientCallManagerDelegate -
