@@ -25,6 +25,26 @@ The application is able to:
 - push notifications 
 - CallKit integration
 
+## Install the app
+
+### From the source code
+
+1. Clone this repo 
+
+2. Open the `Swift.xcodeproj` workspace
+
+3. Target AudioCallKit and build the project using Xcode
+
+### Download the application build
+
+Use the [invite link](https://testflight.apple.com/join/iBctSgsK) to get access the latest builds and subscribe for the application updates.
+
+| :warning: &nbsp;&nbsp; Please consider that you need to set up a Voximplant account to make calls. Please follow the instructions below. |
+| :--- |
+
+| :warning: &nbsp;&nbsp; Push notifications require additional setup. If the application is built from the source code, [set up push notifications](https://voximplant.com/docs/howtos/sdks/push_notifications/ios_sdk). If the application was installed from the invite link, push notifications cannot be configured. |
+| :--- |
+
 
 ## Getting started
 
@@ -60,14 +80,6 @@ You can set up it manually using our [Getting started](https://voximplant.com/do
   VoxEngine.easyProcess(e.call, newCall, ()=>{}, true);
   });
   ```
-
-## Installing
-
-1. Clone this repo 
-
-2. Open the `Swift.xcodeproj` workspace
-
-3. Target AudioCallKit and build the project using Xcode
 
 ## Usage
 
