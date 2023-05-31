@@ -160,7 +160,16 @@ final class CallManager:
             completion(nil)
         }
     }
-    
+
+    func toggleMuteStatus(_ completion: @escaping (Error?) -> Void) {
+        guard let wrapper = managedCallWrapper else {
+            completion(CallError.hasNoActiveCall)
+            return
+        }
+        wrapper.call.sendAudio = !wrapper.call.sendAudio
+        completion(nil)
+    }
+
     func endCall() throws {
         guard let call = managedCallWrapper?.call else {
             throw CallError.hasNoActiveCall

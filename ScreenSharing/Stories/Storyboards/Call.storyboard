@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="landscape" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,22 +14,26 @@
             <objects>
                 <viewController storyboardIdentifier="CallViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="lXc-bE-qju" customClass="CallViewController" customModule="ScreenSharing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tjM-Yt-clB">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T0h-N4-6gM" customClass="ConferenceView" customModule="ScreenSharing" customModuleProvider="target">
-                                <rect key="frame" x="121" y="2" width="731" height="389"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="730"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Zjy-PN-zVg">
-                                <rect key="frame" x="60" y="123.5" width="45" height="167"/>
+                                <rect key="frame" x="83" y="788" width="248" height="70"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFu-ye-gm0" customClass="CallOptionButton" customModule="ScreenSharing" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvf-hv-WgN" userLabel="Mute Button" customClass="CallOptionButton" customModule="ScreenSharing" customModuleProvider="target">
+                                        <rect key="frame" x="66" y="0.0" width="50" height="70"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chO-89-Yb9" customClass="CallOptionButton" customModule="ScreenSharing" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="61" width="45" height="45"/>
+                                        <rect key="frame" x="132" y="0.0" width="50" height="70"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="Whp-r5-cfG"/>
@@ -45,7 +50,7 @@
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfP-kl-nOy" customClass="CallOptionButton" customModule="ScreenSharing" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="122" width="45" height="45"/>
+                                        <rect key="frame" x="198" y="0.0" width="50" height="70"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -75,6 +80,7 @@
                                 </variation>
                             </stackView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="X75-Rp-ZZc"/>
                         <color key="backgroundColor" red="0.10980392160000001" green="0.043137254899999998" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="T0h-N4-6gM" firstAttribute="trailing" secondItem="X75-Rp-ZZc" secondAttribute="trailing" id="6Ed-nX-f5a"/>
@@ -88,7 +94,6 @@
                             <constraint firstItem="T0h-N4-6gM" firstAttribute="top" secondItem="X75-Rp-ZZc" secondAttribute="top" constant="2" id="j6V-bb-8rG"/>
                             <constraint firstItem="X75-Rp-ZZc" firstAttribute="bottom" secondItem="T0h-N4-6gM" secondAttribute="bottom" constant="2" id="ylj-Zz-zal"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="X75-Rp-ZZc"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="ylj-Zz-zal"/>
@@ -113,6 +118,7 @@
                     <connections>
                         <outlet property="conferenceView" destination="T0h-N4-6gM" id="hvd-yL-7T6"/>
                         <outlet property="hangupButton" destination="ZfP-kl-nOy" id="WsV-cj-U8r"/>
+                        <outlet property="muteButton" destination="bvf-hv-WgN" id="CiQ-HA-QAI"/>
                         <outlet property="sharingButton" destination="chO-89-Yb9" id="CjM-b0-QQv"/>
                         <outlet property="videoButton" destination="hFu-ye-gm0" id="ANy-h1-WTv"/>
                     </connections>
@@ -136,10 +142,10 @@
             <objects>
                 <viewController storyboardIdentifier="CallFailedViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="etP-PU-pd4" customClass="CallFailedViewController" customModule="ScreenSharing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uSO-4c-pCo" customClass="DefaultCallFailedView" customModule="ScreenSharing" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="pMn-C2-FaM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="callFailedView" destination="uSO-4c-pCo" id="Sp3-Ar-zjL"/>
@@ -150,4 +156,9 @@
             <point key="canvasLocation" x="1461" y="125"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -1,6 +1,6 @@
 /*
-*  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
-*/
+ *  Copyright (c) 2011-2020, Zingaya, Inc. All rights reserved.
+ */
 
 import UIKit
 import VoxImplantSDK
@@ -10,6 +10,7 @@ final class CallViewController: UIViewController {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .all }
     @IBOutlet private weak var conferenceView: ConferenceView!
     @IBOutlet private weak var videoButton: CallOptionButton!
+    @IBOutlet private weak var muteButton: CallOptionButton!
     @IBOutlet private weak var sharingButton: CallOptionButton!
     @IBOutlet private weak var hangupButton: CallOptionButton!
     private var screenSharingButtonSubview: UIImageView?
@@ -41,7 +42,31 @@ final class CallViewController: UIViewController {
                 button.state = previousState
             }
         }
-        
+
+        muteButton.state = .initial(model: CallOptionButtonModels.mute)
+        muteButton.state = .normal
+        muteButton.touchUpHandler = { [weak self] button in
+            Log.d("Changing mute status")
+
+            let previousState = button.state
+            button.state = .unavailable
+
+            self?.callManager.toggleMuteStatus { error in
+                if let error = error {
+                    Log.e("sendAudio error \(error.localizedDescription)")
+                    AlertHelper.showError(message: error.localizedDescription, on: self)
+                }
+                button.state = previousState
+                if button.state == .normal {
+                    button.state = .selected
+                    button.updateButtonLabel(text: "Unmute")
+                } else {
+                    button.state = .normal
+                    button.updateButtonLabel(text: "Mute")
+                }
+            }
+        }
+
         if #available(iOS 12.0, *) {
             sharingButton.state = .initial(model: CallOptionButtonModels.screen)
         } else {
@@ -142,12 +167,12 @@ final class CallViewController: UIViewController {
             screenSharingButtonSubview?.tintColor = call.sharingScreen ? #colorLiteral(red: 0.9607843137, green: 0.2941176471, blue: 0.368627451, alpha: 1) : .white
         } else {
             sharingButton.state = call.state == .connected
-                ? call.sharingScreen ? .selected : .normal
-                : .unavailable
+            ? call.sharingScreen ? .selected : .normal
+            : .unavailable
         }
         videoButton.state = call.state == .connected
-            ? call.sendingVideo ? .normal : .selected
-            : .unavailable
+        ? call.sendingVideo ? .normal : .selected
+        : .unavailable
     }
     
     private enum CallOptionButtonModels {
@@ -155,5 +180,8 @@ final class CallViewController: UIViewController {
         static let screen = CallOptionButtonModel(image: nil, text: "Screen")
         static let camera = CallOptionButtonModel(image: UIImage(named: "videoOn"), imageSelected: UIImage(named: "videoOff"), text: "Camera")
         static let hangup = CallOptionButtonModel(image: UIImage(named: "hangup"), imageTint: #colorLiteral(red: 1, green: 0.02352941176, blue: 0.2549019608, alpha: 1), text: "Hangup")
+        static let mute = CallOptionButtonModel(image: UIImage(named: "micOn"),
+                                                imageSelected: UIImage(named: "micOff"),
+                                                text: "Mute")
     }
 }

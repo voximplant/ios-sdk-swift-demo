@@ -82,4 +82,8 @@ final class CallOptionButton: UIView, NibLoadable {
     @IBAction private func touchUpInside(_ sender: UIButton) {
         touchUpHandler?(self)
     }
+
+    func updateButtonLabel(text: String) {
+        buttonDescriptionLabel.text = text
+    }
 }
