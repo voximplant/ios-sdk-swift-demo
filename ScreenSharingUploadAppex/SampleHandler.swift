@@ -124,8 +124,15 @@ class SampleHandler: RPBroadcastSampleHandler, VICallDelegate {
     }
     
     override func broadcastFinished() {
+        Log.i("Broadcast finished")
         // User has requested to finish the broadcast or it interrupted by OS (with incoming call, for example).
-        self.notificationCenter.sendNotification(.broadcastEnded)
+        if let screenSharingCall = self.screenSharingCall {
+            Log.i("Hangup")
+            screenSharingCall.hangup(withHeaders: nil)
+            self.notificationCenter.sendNotification(.broadcastEnded)
+        } else {
+            self.finishBroadcast(with: BroadcastError.noCall)
+        }
     }
     
     override func processSampleBuffer(_ sampleBuffer: CMSampleBuffer, with sampleBufferType: RPSampleBufferType) {
