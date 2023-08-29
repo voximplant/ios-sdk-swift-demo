@@ -2079,7 +2079,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.VideoCallKit;
@@ -2104,7 +2104,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.3;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.VideoCallKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2392,7 +2392,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift.AudioCallKit;
@@ -2419,7 +2419,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.voximplant.demos.swift.AudioCallKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2520,7 +2520,7 @@
 			repositoryURL = "https://github.com/voximplant/ios-sdk-releases.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 2.47.0;
+				minimumVersion = 2.48.0;
 			};
 		};
 		BBD6C007265FA1B00092B694 /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
