@@ -79,7 +79,8 @@ fileprivate extension VIClient {
             Logger.sdkLogger.log(
                 asynchronous: severity != .error,
                 message: DDLogMessage(
-                    message: message,
+                    format: "",
+                    formatted: message,
                     level: .verbose,
                     flag: severity.flag,
                     context: 0,

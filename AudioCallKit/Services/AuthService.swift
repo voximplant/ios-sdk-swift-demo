@@ -9,7 +9,7 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
     private typealias DisconnectCompletion = (Error?) -> Void
     typealias LoginCompletion = (Error?) -> Void
     typealias LogoutCompletion = (Error?) -> Void
-    
+
     private var client: VIClient
     private var connectCompletion: ConnectCompletion?
     private var disconnectCompletion: DisconnectCompletion?
@@ -24,31 +24,43 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
             }
         }
     }
+    @UserDefault("node")
+    var nodeString: String?
     @UserDefault("lastFullUsername")
     var loggedInUser: String?
     var loggedInUserDisplayName: String?
     var state: VIClientState { client.clientState }
     var isLoggedIn: Bool { state == .loggedIn || state == .reconnecting}
-    
+
     init(_ client: VIClient) {
         self.client = client
         super.init()
         client.sessionDelegate = self
     }
-    
-    func login(user: String, password: String, _ completion: @escaping LoginCompletion) {
-        connect() { [weak self] error in
+
+    func login(user: String,
+               password: String,
+               nodeString: String,
+               _ completion: @escaping LoginCompletion) {
+        guard let node = nodeString.toNode() else {
+            print("fail to get node")
+            let error = AuthError.loginDataNotFound
+            completion(error)
+            return
+        }
+        connect(node: node) { [weak self] error in
             if let error = error {
                 completion(error)
                 return
             }
-            
+
             self?.client.login(withUser: user, password: password,
                                success: { (displayUserName: String, tokens: VIAuthParams?) in
                 if let tokens = tokens {
                     Tokens.update(with: tokens)
                 }
                 self?.loggedInUser = user
+                self?.nodeString = nodeString
                 self?.loggedInUserDisplayName = displayUserName
                 if let pushToken = self?.pushToken {
                     self?.client.registerVoIPPushNotificationsToken(pushToken) { error in
@@ -64,14 +76,16 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
             })
         }
     }
-    
+
     func loginWithAccessToken(registerPushToken: Bool = true, completion: @escaping LoginCompletion) {
-        guard let user = self.loggedInUser else {
+        guard let user = self.loggedInUser,
+              let nodeString = self.nodeString,
+              let node = nodeString.toNode() else {
             let error = AuthError.loginDataNotFound
             completion(error)
             return
         }
-        
+
         if client.clientState == .loggedIn,
            loggedInUserDisplayName != nil,
            !Tokens.areExpired
@@ -79,22 +93,22 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
             completion(nil)
             return
         }
-        
-        connect() { [weak self] error in
+
+        connect(node: node) { [weak self] error in
             if let error = error  {
                 completion(error)
                 return
             }
-            
+
             self?.updateAccessTokenIfNeeded(for: user) {
                 [weak self]
                 (result: Result<Token, Error>) in
-                
+
                 switch result {
                 case let .failure(error):
                     completion(error)
                     return
-                    
+
                 case let .success(accessKey):
                     self?.client.login(withUser: user, token: accessKey.token,
                                        success: { (displayUserName: String, tokens: VIAuthParams?) in
@@ -102,6 +116,7 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
                             Tokens.update(with: tokens)
                         }
                         self?.loggedInUser = user
+                        self?.nodeString = nodeString
                         self?.loggedInUserDisplayName = displayUserName
                         if let pushToken = self?.pushToken, registerPushToken  {
                             self?.client.registerVoIPPushNotificationsToken(pushToken) { error in
@@ -120,7 +135,7 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
             }
         }
     }
-    
+
     private func updateAccessTokenIfNeeded(for user: String,
                                            _ completion: @escaping (Result<Token, Error>)->Void) {
         guard let accessToken = Tokens.access,
@@ -128,7 +143,7 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
                   completion(.failure(AuthError.loginDataNotFound))
                   return
               }
-        
+
         if accessToken.isExpired {
             client.refreshToken(withUser: user, token: refreshToken.token)
             { (authParams: VIAuthParams?, error: Error?) in
@@ -144,18 +159,18 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
             completion(.success(accessToken))
         }
     }
-    
-    private func connect(_ completion: @escaping ConnectCompletion) {
+
+    private func connect(node: VIConnectionNode, _ completion: @escaping ConnectCompletion) {
         if client.clientState == .disconnected ||
             client.clientState == .connecting
         {
             connectCompletion = completion
-            client.connect()
+            client.connect(to: node)
         } else {
             completion(nil)
         }
     }
-    
+
     private func disconnect(_ completion: @escaping DisconnectCompletion) {
         if client.clientState == .disconnected {
             completion(nil)
@@ -164,7 +179,7 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
             client.disconnect()
         }
     }
-    
+
     func unregisterPushToken(token: Data,  completion: @escaping (Error?) -> Void) {
         self.client.unregisterVoIPPushNotificationsToken(token) { error in
             if let error = error {
@@ -177,7 +192,7 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
             }
         }
     }
-    
+
     func logout(_ completion: @escaping LogoutCompletion) {
         guard let pushToken = self.pushToken else {
             self.disconnect(completion)
@@ -198,18 +213,18 @@ final class AuthService: NSObject, VIClientSessionDelegate, PushTokenHolder {
             self.unregisterPushToken(token: pushToken, completion: completion)
         }
     }
-    
+
     // MARK: - VIClientSessionDelegate -
     func clientSessionDidConnect(_ client: VIClient) {
         connectCompletion?(nil)
         connectCompletion = nil
     }
-    
+
     func client(_ client: VIClient, sessionDidFailConnectWithError error: Error) {
         connectCompletion?(error)
         connectCompletion = nil
     }
-    
+
     func clientSessionDidDisconnect(_ client: VIClient) {
         disconnectCompletion?(nil)
         disconnectCompletion = nil
