@@ -76,7 +76,7 @@ final class CallViewController: UIViewController {
         sharingButton.touchUpHandler = { _ in
             if #available(iOS 12.0, *) {
                 // nothing, besause used handler of RPSystemBroadcastPickerView, which created in self.init() method
-            } else if #available(iOS 11.0, *) {
+            } else {
                 AlertHelper.showAlert(title: "On iOS 11 enabling screensharing", message: "Open the Control Panel (swipe up from bottom) -> hold down on the Record Button until options appeared -> select ScreenSharingUploadAppex -> start broadcast. If can't find Record Button in Control Panel go to the Settings -> Control Center -> Customize Controls and add Screen Recording to the Control Panel.", defaultAction: true)
             }
         }

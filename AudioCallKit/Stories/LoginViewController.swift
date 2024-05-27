@@ -17,7 +17,7 @@ final class LoginViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let loginHandler: AuthService.LoginCompletion = { [weak self] error in
             guard let self = self else { return }
             self.hideProgress()
@@ -27,21 +27,22 @@ final class LoginViewController:
                 self.performSegue(withIdentifier: MainViewController.self, sender: self)
             }
         }
-        
+
         loginView.configure(
             title: "Audio call demo",
             controller: self,
-            loginHandler: { [weak self] username, password in
+            loginHandler: { [weak self] username, password, nodeString in
                 Log.d("Manually Logging in with password")
                 self?.showLoading(title: "Connecting", details: "Please wait...")
                 self?.authService.login(
                     user: username.appendingVoxDomain,
                     password: password,
+                    nodeString: nodeString,
                     loginHandler
                 )
             }
         )
-        
+
         if authService.possibleToLogin {
             Log.d("Automatically Logging in with token")
             self.showLoading(title: "Connecting", details: "Please wait...")
