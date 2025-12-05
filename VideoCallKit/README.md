@@ -39,7 +39,7 @@ The application is able to:
 
 ### Download the application build
 
-Use the [invite link](https://testflight.apple.com/join/99XUgGHI) to get access the latest builds and subscribe for the application updates.
+Use the [invite link](https://testflight.apple.com/join/VEf9vKpp) to get access the latest builds and subscribe for the application updates.
 
 | :warning: &nbsp;&nbsp; Please consider that you need to set up a Voximplant account to make calls. Please follow the instructions below. |
 | :--- |
