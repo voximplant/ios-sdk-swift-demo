@@ -22,12 +22,6 @@ The demo demonstrates basic screen sharing functionality of the Voximplant iOS S
 ## [InAppScreenSharing demo](InAppScreenSharing)
 The demo demonstrates basic in-app screen sharing functionality of the Voximplant iOS SDK.
 
-## [Conference demo](https://github.com/voximplant/solutions-videoconference/tree/master/client-ios-swift)
-The demo demonstrates conference call functionality of the Voximplant iOS SDK.
-
-## [Messaging demo](https://github.com/voximplant/solutions-messaging/tree/draft-4/client-ios-swift)
-The demo demonstrates messaging functionality of the Voximplant iOS SDK.
-
 ## License
 In these demos sound resources are used whose authors are:
 * [fennelliott-beeping.wav](Shared/Resources/Sounds) by author [fennelliott](https://freesound.org/people/fennelliott/sounds/379419/) with [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) license
