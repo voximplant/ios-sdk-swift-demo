@@ -29,6 +29,10 @@ extension String {
             return .node9
         case "Node 10":
             return .node10
+        case "Node 11":
+            return .node11
+        case "Node 12":
+            return .node12
         default:
             return nil
         }
