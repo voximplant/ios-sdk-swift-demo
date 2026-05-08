@@ -7,7 +7,7 @@ import VoxImplantSDK
 import CallKit
 import Intents
 
-fileprivate let client: VIClient = VIClient(delegateQueue: DispatchQueue.main)
+fileprivate let client: VIClient = VIClient(delegateQueue: DispatchQueue.main, bundleId: Bundle.main.bundleIdentifier)
 fileprivate let authService: AuthService = AuthService(client)
 fileprivate let callController: CXCallController = CXCallController(queue: .main)
 fileprivate let callManager: CallManager = CallManager(client, authService)

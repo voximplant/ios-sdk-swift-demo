@@ -7,7 +7,7 @@ import VoxImplantSDK
 import CallKit
 import Intents
 
-let sharedClient: VIClient = VIClient(delegateQueue: DispatchQueue.main)
+let sharedClient: VIClient = VIClient(delegateQueue: DispatchQueue.main, bundleId: Bundle.main.bundleIdentifier)
 let sharedAuthService: AuthService = AuthService(sharedClient)
 let sharedCallController: CXCallController = CXCallController(queue: .main)
 let sharedCallManager: CallManager = CallManager(sharedClient, sharedAuthService)
