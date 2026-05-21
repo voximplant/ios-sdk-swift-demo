@@ -63,7 +63,8 @@ final class DefaultLoginView:
                      "Node 9",
                      "Node 10",
                      "Node 11",
-                     "Node 12"]
+                     "Node 12",
+                     "Node 13"]
         nodePicker.configure(with: nodes, defaultRow: 3)
     }
 
