@@ -33,6 +33,8 @@ extension String {
             return .node11
         case "Node 12":
             return .node12
+        case "Node 13":
+            return .node13
         default:
             return nil
         }
