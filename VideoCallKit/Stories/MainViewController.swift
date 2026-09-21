@@ -63,7 +63,7 @@ final class MainViewController:
     
     // MARK: - CXCallObserverDelegate -
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
-        let callViewController = storyAssembler.assembleCall()
+        let callViewController = (UIApplication.shared.delegate as! AppDelegate).storyAssembler.assembleCall()
         present(callViewController, animated: true) {
             callViewController.callObserver(callObserver, callChanged: call)
         }

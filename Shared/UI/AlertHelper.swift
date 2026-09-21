@@ -49,7 +49,7 @@ final class AlertHelper {
         on viewController: UIViewController? = nil
     ) {
         DispatchQueue.main.async {
-            if let rootViewController = UIApplication.shared.keyWindow?.rootViewController  {
+            if let rootViewController = UIApplication.shared.foregroundKeyWindow?.rootViewController  {
                 let alertController = UIAlertController(
                     title: "Something went wrong",
                     message: message,
@@ -80,7 +80,7 @@ final class AlertHelper {
         on viewController: UIViewController? = nil
     ) {
         DispatchQueue.main.async {
-            if let rootViewController = UIApplication.shared.keyWindow?.rootViewController  {
+            if let rootViewController = UIApplication.shared.foregroundKeyWindow?.rootViewController  {
                 let alertController = UIAlertController(
                     title: title,
                     message: message,

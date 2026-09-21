@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B15D83B8306159750099F58E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83B7306159750099F58E /* SceneDelegate.swift */; };
+		B15D83BA3061598A0099F58E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83B93061598A0099F58E /* SceneDelegate.swift */; };
+		B15D83BC306159A20099F58E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83BB306159A20099F58E /* SceneDelegate.swift */; };
+		B15D83BE306159B20099F58E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83BD306159B20099F58E /* SceneDelegate.swift */; };
+		B15D83C0306159C50099F58E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83BF306159C50099F58E /* SceneDelegate.swift */; };
+		B15D83C2306159D70099F58E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83C1306159D70099F58E /* SceneDelegate.swift */; };
+		B15D83C430615A100099F58E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83C330615A100099F58E /* UIApplication.swift */; };
+		B15D83C530615A100099F58E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83C330615A100099F58E /* UIApplication.swift */; };
+		B15D83C630615A100099F58E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83C330615A100099F58E /* UIApplication.swift */; };
+		B15D83C730615A100099F58E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83C330615A100099F58E /* UIApplication.swift */; };
+		B15D83C830615A100099F58E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83C330615A100099F58E /* UIApplication.swift */; };
+		B15D83C930615A100099F58E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D83C330615A100099F58E /* UIApplication.swift */; };
 		7E09860924C60F0E00BA42B5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7E09860824C60F0E00BA42B5 /* README.md */; };
 		7E37C363244F1D9600F18266 /* CXExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8B63722D35A84007DC646 /* CXExtensions.swift */; };
 		7E37C364244F1FBC00F18266 /* PushCallNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8B65C22D36D94007DC646 /* PushCallNotifier.swift */; };
@@ -418,6 +430,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B15D83B7306159750099F58E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B15D83B93061598A0099F58E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B15D83BB306159A20099F58E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B15D83BD306159B20099F58E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B15D83BF306159C50099F58E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B15D83C1306159D70099F58E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B15D83C330615A100099F58E /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		7E09860824C60F0E00BA42B5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7E37C365244F1FD100F18266 /* CallWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallWrapper.swift; sourceTree = "<group>"; };
 		7E37C369244F29C100F18266 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
@@ -681,6 +700,7 @@
 				C56001872498CD1100818028 /* ScreenSharing.entitlements */,
 				7E8A831024891BC3000578C6 /* README.md */,
 				7E386CAC248793B800556D3D /* AppDelegate.swift */,
+				B15D83BB306159A20099F58E /* SceneDelegate.swift */,
 				7E386CE0248798C300556D3D /* Stories */,
 				7E386CEE24879A0900556D3D /* Services */,
 				7E386CE92487993800556D3D /* Resources */,
@@ -780,6 +800,7 @@
 			children = (
 				7E09860824C60F0E00BA42B5 /* README.md */,
 				7E7A007B24C5A11900691771 /* AppDelegate.swift */,
+				B15D83B93061598A0099F58E /* SceneDelegate.swift */,
 				7E7A009124C5A1B400691771 /* Stories */,
 				7E7A009B24C5A37800691771 /* Services */,
 				7E7A008D24C5A14000691771 /* Resources */,
@@ -834,6 +855,7 @@
 				92F00F9322C610E00061AF13 /* UIExtensions.swift */,
 				C5A8B63722D35A84007DC646 /* CXExtensions.swift */,
 				7E7A00A024C5A43300691771 /* Extensions.swift */,
+				B15D83C330615A100099F58E /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -901,6 +923,7 @@
 				7E9A49502451F75400F8773E /* README.md */,
 				7E9A493F2451CC8000F8773E /* VideoCallKit.entitlements */,
 				7EB67DE9244D8543009DDA51 /* AppDelegate.swift */,
+				B15D83C1306159D70099F58E /* SceneDelegate.swift */,
 				7EB67DFB244D87A5009DDA51 /* Stories */,
 				7EB67E07244D8BAB009DDA51 /* Services */,
 				7EB67E32244DCC23009DDA51 /* Resources */,
@@ -1029,6 +1052,7 @@
 			children = (
 				7EF4B5E1249A4DA600081013 /* README.md */,
 				7EF4B5F7249A4DA600081013 /* AppDelegate.swift */,
+				B15D83BD306159B20099F58E /* SceneDelegate.swift */,
 				7EF4B5E2249A4DA600081013 /* Stories */,
 				7EF4B5F8249A4DA600081013 /* Services */,
 				7EF4B5DE249A4DA600081013 /* Resources */,
@@ -1179,6 +1203,7 @@
 			children = (
 				92AF8C8222CBA73200888C51 /* README.md */,
 				C5E0CFCE22B773BC009C7F2D /* AppDelegate.swift */,
+				B15D83B7306159750099F58E /* SceneDelegate.swift */,
 				C5E0CFA122B7713B009C7F2D /* Stories */,
 				7E7A00E224C5E8B000691771 /* Services */,
 				C5E0CFA022B77116009C7F2D /* Resources */,
@@ -1192,6 +1217,7 @@
 				C5A8B63122D35A3A007DC646 /* README.md */,
 				C5A8B65722D35BBB007DC646 /* AudioCallKit.entitlements */,
 				C5A8B61322D33569007DC646 /* AppDelegate.swift */,
+				B15D83BF306159C50099F58E /* SceneDelegate.swift */,
 				C5A8B63422D35A66007DC646 /* Stories */,
 				7E7A00E324C5E8EE00691771 /* Services */,
 				C5A8B64A22D35AE2007DC646 /* Resources */,
@@ -1637,6 +1663,8 @@
 				7E386CF62487B3D300556D3D /* CallViewController.swift in Sources */,
 				7E386CCE248797B700556D3D /* Theme.swift in Sources */,
 				7E386CAD248793B800556D3D /* AppDelegate.swift in Sources */,
+				B15D83BC306159A20099F58E /* SceneDelegate.swift in Sources */,
+				B15D83C430615A100099F58E /* UIApplication.swift in Sources */,
 				7E7A00DD24C5E62100691771 /* AudioDeviceSelecting.swift in Sources */,
 				7E386CC92487976C00556D3D /* NibLoadable.swift in Sources */,
 				7E386CF72487C02500556D3D /* AudioDeviceAlertSelecting.swift in Sources */,
@@ -1702,6 +1730,8 @@
 				BBFB09502638759C003AB533 /* Logger.swift in Sources */,
 				7E7A00AF24C5A4F000691771 /* Theme.swift in Sources */,
 				7E7A007C24C5A11900691771 /* AppDelegate.swift in Sources */,
+				B15D83BA3061598A0099F58E /* SceneDelegate.swift in Sources */,
+				B15D83C530615A100099F58E /* UIApplication.swift in Sources */,
 				7EF4B52D24C9E17200DFF3C6 /* AnimatedTransitionNavigationController.swift in Sources */,
 				7E7A009A24C5A37400691771 /* AuthService.swift in Sources */,
 			);
@@ -1752,6 +1782,8 @@
 				7E7A00DA24C5E4E900691771 /* SpeakerAutoselecting.swift in Sources */,
 				7E537DD12488235B00013D6E /* EdgeMagneticView.swift in Sources */,
 				7EB67DEA244D8543009DDA51 /* AppDelegate.swift in Sources */,
+				B15D83C2306159D70099F58E /* SceneDelegate.swift in Sources */,
+				B15D83C630615A100099F58E /* UIApplication.swift in Sources */,
 				7E37C374244F37B500F18266 /* CallOptionButtonModel.swift in Sources */,
 				7EF7222A244F4FEA00B0037E /* CallVideoView.swift in Sources */,
 				BB7A091926387913004F366D /* LogSharingView.swift in Sources */,
@@ -1796,6 +1828,8 @@
 				7E8E1A01249A668C00BC78F9 /* DefaultIncomingCallView.swift in Sources */,
 				7E8E1A17249A672E00BC78F9 /* CallOptionButtonModel.swift in Sources */,
 				7EF4B631249A4ECE00081013 /* AppDelegate.swift in Sources */,
+				B15D83BE306159B20099F58E /* SceneDelegate.swift in Sources */,
+				B15D83C730615A100099F58E /* UIApplication.swift in Sources */,
 				7E8E1A12249A670800BC78F9 /* Color.swift in Sources */,
 				7EF4B637249A4EEA00081013 /* MainViewController.swift in Sources */,
 				7E7A00C724C5ADC700691771 /* CallVideoView.swift in Sources */,
@@ -1861,6 +1895,8 @@
 				92049F9922DDDD47006DB07F /* ButtonWithLabel.swift in Sources */,
 				7E475628244EE41B0028495E /* Theme.swift in Sources */,
 				C5E0CFD222B773BC009C7F2D /* AppDelegate.swift in Sources */,
+				B15D83B8306159750099F58E /* SceneDelegate.swift in Sources */,
+				B15D83C830615A100099F58E /* UIApplication.swift in Sources */,
 				7E9F20E3243C733F002B5700 /* AlertHelper.swift in Sources */,
 				C5E0CFE422B787FC009C7F2D /* CallManager.swift in Sources */,
 				B21F81642BFE0A960023DFE2 /* DefaultPickerView.swift in Sources */,
@@ -1892,6 +1928,8 @@
 			files = (
 				B21F81652BFE0A960023DFE2 /* DefaultPickerView.swift in Sources */,
 				C5A8B61422D33569007DC646 /* AppDelegate.swift in Sources */,
+				B15D83C0306159C50099F58E /* SceneDelegate.swift in Sources */,
+				B15D83C930615A100099F58E /* UIApplication.swift in Sources */,
 				7EB67E42244DE0FC009DDA51 /* DefaultLoginView.swift in Sources */,
 				C5393E9D240D38420064006F /* CXAudioFile.swift in Sources */,
 				BB7A0909263878EF004F366D /* LogSharingButton.swift in Sources */,
@@ -1993,7 +2031,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/ScreenSharing/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2019,7 +2057,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/ScreenSharing/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2042,7 +2080,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/VideoCall/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2066,7 +2104,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/VideoCall/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2090,7 +2128,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/VideoCallKit/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2115,7 +2153,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/VideoCallKit/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2138,7 +2176,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/InAppScreenSharing/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2162,7 +2200,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/InAppScreenSharing/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2228,7 +2266,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2285,7 +2323,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ld_classic";
@@ -2305,7 +2343,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = ScreenSharingUploadAppex/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2331,7 +2369,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = ScreenSharingUploadAppex/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2357,7 +2395,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/AudioCall/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2382,7 +2420,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/AudioCall/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2407,7 +2445,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/AudioCallKit/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2434,7 +2472,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9BHJBL635;
 				INFOPLIST_FILE = "$(SRCROOT)/AudioCallKit/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

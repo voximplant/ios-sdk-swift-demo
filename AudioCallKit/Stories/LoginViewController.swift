@@ -13,7 +13,9 @@ final class LoginViewController:
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     @IBOutlet var loginView: DefaultLoginView!
     
-    private let authService: AuthService = sharedAuthService
+    private var authService: AuthService {
+        (UIApplication.shared.delegate as! AppDelegate).authService
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

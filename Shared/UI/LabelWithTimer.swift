@@ -31,18 +31,14 @@ final class LabelWithTimer: UILabel {
 }
 
 fileprivate extension TimeInterval {
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(identifier: "UTC")
-        formatter.dateFormat = "HH:mm:ss"
-        return formatter
-    }
-    
     var string: String {
-        let date = Date(timeIntervalSince1970: self)
-        let formattedDate = dateFormatter.string(from: date)
-        return formattedDate.starts(with: "00")
-            ? String(formattedDate.dropFirst(3))
-            : formattedDate
+        let totalSeconds = Int(self)
+        let hours = totalSeconds / 3600
+        let minutes = (totalSeconds / 60) % 60
+        let seconds = totalSeconds % 60
+        
+        return hours > 0
+            ? String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+            : String(format: "%02d:%02d", minutes, seconds)
     }
 }

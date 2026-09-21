@@ -14,8 +14,11 @@ final class MainViewController:
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     @IBOutlet private var mainView: DefaultMainView!
     
-    private let callController: CXCallController = sharedCallController
-    private let authService: AuthService = sharedAuthService
+    private var appDelegate: AppDelegate {
+        UIApplication.shared.delegate as! AppDelegate
+    }
+    private var callController: CXCallController { appDelegate.callController }
+    private var authService: AuthService { appDelegate.authService }
     
     override func viewDidLoad() {
         super.viewDidLoad()

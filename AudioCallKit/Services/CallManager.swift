@@ -4,6 +4,7 @@
 
 import VoxImplantSDK
 import CallKit
+import UIKit
 
 final class CallManager:
     NSObject,
@@ -404,7 +405,8 @@ final class CallManager:
 
 extension CXCall {
     var info: VICall? {
-        if let managedCall = sharedCallManager.managedCall,
+        let callManager = (UIApplication.shared.delegate as! AppDelegate).callManager
+        if let managedCall = callManager.managedCall,
            self.uuid == managedCall.uuid
         {
             return managedCall.call

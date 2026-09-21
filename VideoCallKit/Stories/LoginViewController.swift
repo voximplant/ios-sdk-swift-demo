@@ -23,7 +23,7 @@ final class LoginViewController:
             if let error = error {
                 AlertHelper.showError(message: error.localizedDescription, on: self)
             } else {
-                self.present(storyAssembler.assembleMain(), animated: true)
+                self.present((UIApplication.shared.delegate as! AppDelegate).storyAssembler.assembleMain(), animated: true)
             }
         }
 
@@ -59,7 +59,7 @@ final class LoginViewController:
     // MARK: - CXCallObserverDelegate -
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
         hideProgress()
-        let mainViewController = storyAssembler.assembleMain()
+        let mainViewController = (UIApplication.shared.delegate as! AppDelegate).storyAssembler.assembleMain()
         present(mainViewController, animated: true) {
             mainViewController.callObserver(callObserver, callChanged: call)
         }
