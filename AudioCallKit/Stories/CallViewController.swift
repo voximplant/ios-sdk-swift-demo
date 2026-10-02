@@ -24,7 +24,10 @@ final class CallViewController:
     
     private var userName: String?
     private var userDisplayName: String?
-    private let callController: CXCallController = sharedCallController
+    private var appDelegate: AppDelegate {
+        UIApplication.shared.delegate as! AppDelegate
+    }
+    private var callController: CXCallController { appDelegate.callController }
     private var call: CXCall? { callController.callObserver.calls.first }
     private var reconnecting = false
     private var isMuted = false {
@@ -64,7 +67,7 @@ final class CallViewController:
             self.keyPadView.isHidden = true
         }
         
-        sharedCallManager.reconnectDelegate = self
+        appDelegate.callManager.reconnectDelegate = self
         
         let audioManager = VIAudioManager.shared()
         audioManager.delegate = self
